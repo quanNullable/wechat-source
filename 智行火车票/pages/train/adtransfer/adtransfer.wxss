@@ -1,0 +1,207 @@
+page {
+    background: url(http://images3.c-ctrip.com/zt/artifact/bg.jpg) no-repeat top center #fff;
+    background-size: 100% auto;
+    font-weight: 300;
+}
+
+.artf-logo-box {
+    font-size: 26rpx;
+    color: #fff;
+    line-height: 40rpx;
+    margin: 30rpx;
+}
+
+.artf-logo-box .icon-logo {
+    width: 40rpx;
+    height: 40rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -4rpx 15rpx 0 0;
+}
+
+.artf-txt-city {
+    text-align: center;
+    color: #fff06f;
+    font-size: 28rpx;
+    margin-top: 35rpx;
+}
+
+.artf-txt-city text {
+    font-size: 45rpx;
+    font-weight: 500;
+    margin: 0 10rpx;
+}
+
+.artf-slogan {
+    width: 588rpx;
+    height: 165rpx;
+    margin: 15rpx auto 0;
+    display: block;
+    background: url(http://images3.c-ctrip.com/zt/artifact/slogan.png) no-repeat;
+    background-size: cover;
+}
+
+.artf-time {
+    text-align: center;
+    color: #fff;
+    margin-top: -20rpx;
+    font-size: 28rpx;
+}
+
+.artf-time::before,.artf-time::after {
+    width: 20rpx;
+    height: 1rpx;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: #fff;
+    margin: -4rpx 0 0;
+}
+
+.artf-time text {
+    margin: 0 15rpx;
+}
+
+.artf-tip {
+    width: 570rpx;
+    display: block;
+    margin: 60rpx auto;
+    background: url(http://images3.c-ctrip.com/zt/artifact/tip-bg2.png) no-repeat center center #fff;
+    background-size: 750rpx 1252rpx;
+    border-radius: 10rpx;
+    box-shadow: 0 11rpx 33rpx rgba(0,86,215,.15);
+    padding: 50rpx 20rpx 50rpx 60rpx;
+    box-sizing: border-box;
+}
+
+.artf-tip .item {
+    position: relative;
+    padding: 15rpx 0;
+}
+
+.artf-tip .item::after {
+    width: 1px;
+    height: 50rpx;
+    border-left: 1px dashed #2f8bfd;
+    position: absolute;
+    content: "";
+    left: 17rpx;
+    top: 75rpx;
+}
+
+.artf-tip .item:last-child::after {
+    display: none;
+}
+
+.artf-tip .item .icon-train,.artf-tip .item .icon-flight,.artf-tip .item .icon-bus {
+    float: left;
+    margin-top: 8rpx;
+}
+
+.artf-tip .item .icon-train {
+    width: 35rpx;
+    height: 37rpx;
+    background: url(http://images3.c-ctrip.com/zt/artifact/icon-train.png) no-repeat;
+    background-size: cover;
+}
+
+.artf-tip .item .icon-flight {
+    width: 36rpx;
+    height: 36rpx;
+    background: url(http://images3.c-ctrip.com/zt/artifact/icon-flight.png) no-repeat;
+    background-size: cover;
+}
+
+.artf-tip .item .icon-bus {
+    width: 36rpx;
+    height: 35rpx;
+    background: url(http://images3.c-ctrip.com/zt/artifact/icon-bus.png) no-repeat;
+    background-size: cover;
+}
+
+.artf-tip .item .from,.artf-tip .item .to {
+    display: inline-block;
+}
+
+.artf-tip .item .from {
+    margin: 0 40rpx;
+}
+
+.artf-tip .item .to {
+    margin-left: 40rpx;
+}
+
+.artf-tip .item .time {
+    font-size: 38rpx;
+    font-weight: 600;
+}
+
+.artf-tip .item .adday {
+    font-size: 24rpx;
+    vertical-align: top;
+    display: inline-block;
+    margin: 2rpx 0 0 8rpx;
+}
+
+.artf-tip .item .city {
+    font-size: 28rpx;
+}
+
+.artf-tip .item .arr {
+    display: inline-block;
+    width: 47rpx;
+    height: 13rpx;
+    background: url(http://images3.c-ctrip.com/zt/artifact/arr.png) no-repeat;
+    background-size: cover;
+    vertical-align: top;
+    margin-top: 18rpx;
+}
+
+.artf-btn-box {
+    margin: 100rpx 80rpx 0;
+}
+
+.artf-btn-box button {
+    height: 94rpx;
+    line-height: 94rpx;
+    border-radius: 94rpx;
+    margin-bottom: 25rpx;
+    font-size: 32rpx;
+}
+
+.artf-btn-box button::after {
+    border: 0;
+}
+
+.artf-btn-box .btn-acitve::after {
+    background-color: rgba(0,0,0,.1);
+}
+
+.artf-btn-box .btn-buy.zx {
+    background: linear-gradient(left,#2f8bfd 0%,#195ac9 100%);
+    color: #fff;
+}
+
+.artf-btn-box .btn-download.zx {
+    background: #fff;
+    border: 1px solid #2f8bfd;
+    color: #2f8bfd;
+}
+
+.artf-btn-box .btn-buy.ty {
+    background: linear-gradient(left,#fc6151 0%,#ff8257 100%);
+    color: #fff;
+}
+
+.artf-btn-box .btn-download.ty {
+    background: #fff;
+    border: 1px solid #ff745e;
+    color: #ff745e;
+}
+
+.artf-foot-txt {
+    text-align: center;
+    font-size: 28rpx;
+    color: #666;
+    font-weight: 300;
+}

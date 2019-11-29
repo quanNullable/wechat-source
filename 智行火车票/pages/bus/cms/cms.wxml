@@ -1,0 +1,13 @@
+<view class="header">
+    <image class="image-success" src="http://xicui.ctrip.com/xicuiadmin/xcx/mini/icon-dui1.png"></image>
+    <view class="view-text">
+        <text class="text1">支付成功</text>
+        <text class="text2">请在零钱机取走零钱</text>
+    </view>
+</view>
+<view class="image-container">
+    <image class="image-jizi" src="http://xicui.ctrip.com/xicuiadmin/xcx/mini/jizi.png"></image>
+    <view class="image-header"></view>
+    <view class="image-bottom"></view>
+</view>
+<image bindtap="goBusIndex" class="image-banner" src="http://xicui.ctrip.com/xicuiadmin/xcx/mini/banner.png"></image>

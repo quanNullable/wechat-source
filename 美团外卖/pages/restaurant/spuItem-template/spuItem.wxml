@@ -1,0 +1,41 @@
+<template name="spuItem">
+    <view bindtap="showProductInfo" class="food-item" data-item="{{item}}" id="spu-{{tag}}-{{item.id}}">
+        <view class="food-item-image">
+            <image class="food-item-img" mode="aspectFill" src="{{item.picture?item.picture:'/img/icons/no-shopImg.png'}}"></image>
+            <view class="no-sale-style" wx:if="{{item.status!==0}}"></view>
+            <view class="sold-out flex-center" wx:if="{{item.status===1}}"> 已售罄 </view>
+        </view>
+        <view class="food-info-wrap">
+            <view class="food-info">
+                <view class="food-info-wrap-wrap">
+                    <view class="food-item-header {{item.highlight?'food-item-focus':''}}">{{item.name}}</view>
+                    <view class="food-description" wx:if="{{item.description}}">{{item.description}}</view>
+                    <view class="food-item-sales-info">月售{{item.month_saled||0}} 赞{{item.praise_num_new||0}}</view>
+                </view>
+                <view class="food-item-price-info">
+                    <text class="food-item-price left-margin-7 {{item.status===0?'':'no-sale-color'}}">￥{{item.skus[0].price}}</text>
+                    <text class="food-item-origin-price" wx:if="{{item.skus[0].price!=item.skus[0].origin_price}}">￥{{item.skus[0].origin_price}}</text>
+                    <text class="food-item-unit" wx:if="{{item.unit!==''&&item.unit!=='份'}}">/{{item.unit}}</text>
+                </view>
+                <block wx:if="{{item.status===0&&poiData.poi_info.status===1}}">
+                    <view class="choose-num panel-right flex-center" wx:if="{{item.skus.length===1&&item.attrs.length===0}}">
+                        <block wx:if="{{(cartCountMap[item.id]||0)!==0}}">
+                            <image bindtap="onClickDelFood" class="remove-food" data-action="modifyFood" data-foodid="{{item.id}}" data-id="{{item.skus[0].id}}" src="/img/icons/remove.png"></image>
+                            <view class="food-num"> {{cartCountMap[item.id]||0}} </view>
+                        </block>
+                        <image bindtap="onClickAddFood" class="add-food" data-action="modifyFood" data-foodid="{{item.id}}" data-id="{{item.skus[0].id}}" data-index="{{index}}" data-item="{{item}}" src="/img/icons/add.png"></image>
+                    </view>
+                    <view bindtap="onClickChooseFood" class="add-food-choose" data-action="modifyFood" data-id="{{item.id}}" data-item="{{item}}" wx:else>
+                        <view class="add-food-choose-num" wx:if="{{(cartCountMap[item.id]||0)!==0}}"> {{cartCountMap[item.id]||0}} </view> 选规格 </view>
+                </block>
+                <view class="cannot-buy-now choose-num panel-right flex-center" wx:elif="{{item.status===3&&poiData.poi_info.status===1}}">
+                    <image class="cannot-buy-now-image" src="/img/icons/rule-icon.png"></image> 非可售时间 </view>
+            </view>
+            <view class="spu-tag-container">
+                <view class="food-item-tip ellipsis" wx:if="{{item.skus[0].promotion_info}}"> {{item.skus[0].promotion_info}} </view>
+                <view class="food-item-tip" wx:elif="{{item.skus[0].min_order_count>1}}"> {{item.skus[0].min_order_count}}份起购 </view>
+                <image class="food-item-tip-img" src="{{tag.picture_url}}" style="height: {{tag.height/2}}px; width: {{tag.width/2}}px;" wx:for="{{item.product_label_picture_list}}" wx:for-item="tag" wx:key="{{index}}"></image>
+            </view>
+        </view>
+    </view>
+</template>

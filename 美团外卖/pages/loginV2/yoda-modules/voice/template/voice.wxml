@@ -1,0 +1,23 @@
+<template name="popsvoice">
+    <view class="popsvoice" wx:if="{{show}}">
+        <view class="rowWrapper">
+            <view class="row">
+                <text class="label">{{mobileLable}}</text>
+                <view class="inputContainer" wx:if="{{!isMobile}}">
+                    <input bindinput="bindMobileInput" class="mobileInput" maxlength="11" placeholder="{{mobileInput.mobilePlac}}" style="caret-color:{{mobileInput.caretColor}}" type="number"></input>
+                </view>
+                <text class="mobileRow" wx:else>{{data.mobile}}</text>
+                <button bindtap="tapSeedVoice" class="sendVoiceButton" disabled="{{sendVoiceDisa}}" style="border: {{codeButton.border}}; border-radius: {{codeButton.borderRadius}}; background-color: {{codeButton.backgroundColor}}; color: {{codeButton.color}}; " type="default">{{codeButton.codeButText}}</button>
+            </view>
+            <view class="row">
+                <text class="label">{{verifyCodeLable}}</text>
+                <view class="inputContainer">
+                    <input bindinput="bindVoiceCodeInput" class="mobileCodeInput" focus="{{voiceFocus}}" maxlength="6" placeholder="{{codeInput.mobilePlac}}" style="caret-color:{{mobileInput.caretColor}}" type="number" value="{{voicecode}}"></input>
+                </view>
+            </view>
+            <view class="submitButtonRow">
+                <button bindtap="bindVerify" class="verifyBtn" disabled="{{verifyDisa}}" style="border: {{verifyButton.border}}; border-radius: {{verifyButton.borderRadius}}; background-color: {{verifyButton.backgroundColor}}; color: {{verifyButton.color}}; opacity: {{opacity}}" type="default">{{verifyButton.verifyButText}}</button>
+            </view>
+        </view>
+    </view>
+</template>

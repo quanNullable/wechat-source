@@ -1,0 +1,13 @@
+<template name="user">
+    <view class="user-info" style="background:#5495e6">
+        <view class="user-service">
+            <text class="ico-phone" type="ctripIcon"></text>
+            <text bindtap="makeCall">021-60420000</text>
+        </view>
+        <view class="user-desc">
+            <text class="user-name">{{userName}}</text>
+            <text bindtap="logout" class="user-exit" data-ubt-key="myctrip-logout" wx:if="{{userName&&userName.length>0}}">退出</text>
+            <text bindtap="login" class="user-exit" data-ubt-key="myctrip-logout" wx:else>登录</text>
+        </view>
+    </view>
+</template>

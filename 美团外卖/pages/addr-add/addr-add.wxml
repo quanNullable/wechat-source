@@ -1,0 +1,98 @@
+<view class="page-container-abs bg-white">
+    <include src="../base.wxml"></include>
+    <form hidden="{{showMap}}">
+        <view class="message" hidden="{{!message}}">{{message}}</view>
+        <view class="form-block">
+            <view class="form-item"> 联系人: <input bindconfirm="onConfirmName" bindinput="onInputName" class="form-input {{validname?'':'form-input-invalid'}}" focus="{{focusedInput==='name'}}" name="name" placeholder="请填写收货人的姓名" placeholderClass="{{validname?'input-placeholder':'form-input-invalid'}}" value="{{inputName}}"></input>
+            </view>
+            <view class="form-item">
+                <view bindtap="onClickGender" class="radio gender-male {{gender==='先生'?'radio-checked':''}}" data-gender="先生">
+                    <image class="radio-img" src="{{gender==='先生'?'../../img/icons/check.png':'../../img/icons/circle.png'}}"></image> 先生 </view>
+                <view bindtap="onClickGender" class="radio {{gender!=='先生'?'radio-checked':''}}" data-gender="1">
+                    <image class="radio-img" src="{{gender!=='先生'?'../../img/icons/check.png':'../../img/icons/circle.png'}}"></image> 女士 </view>
+            </view>
+            <view class="form-item"> 手机号: <input bindblur="onBlurPhone" bindfocus="onFocusPhone" bindinput="onInputPhone" class="form-input" focus="{{focusedInput==='phone'}}" maxlength="11" name="phone" placeholder="请填写收货人手机号码" placeholderClass="input-placeholder" type="number" value="{{inputPhone}}"></input>
+                <view class="phone-suggest" hidden="{{phoneSuggest.length===0}}">
+                    <view bindtap="onClickPhoneSuggest" class="phone-suggest-item" data-phone="{{item}}" wx:for="{{phoneSuggest}}" wx:key="{{item}}"> {{item}} </view>
+                </view>
+            </view>
+        </view>
+        <view class="form-block">
+            <view bindtap="onClickMap" class="form-item"> 收货地址: <view class="form-input form-input-alt map-input {{address?'':'map-input-deative'}}">
+                    <image class="map-input-icon" src="../../img/icons/position2.png"></image>
+                    <view class="map-input-text"> {{address?address:'点击选择'}} </view>
+                    <view class="map-input-arrow ui-arrow ui-arrow-right"></view>
+                </view>
+            </view>
+            <view class="form-item"> 门牌号: <input bindconfirm="onClickSubmit" bindinput="onInputHouse" class="form-input form-input-alt {{validhouse_number?'':'form-input-invalid'}}" name="house_number" placeholder="详细地址，例：16号楼5层301室" placeholderClass="{{validhouse_number?'input-placeholder':'form-input-invalid'}}" value="{{inputHouse_number}}"></input>
+            </view>
+        </view>
+        <button bindtap="onClickSubmit" class="btn-submit" type="primary"> 保存地址 </button>
+        <button bindtap="onClickDelete" class="btn-del" hidden="{{action=='add'}}" type="primary"> 删除地址 </button>
+    </form>
+    <block wx:if="{{showMap}}">
+        <view class="loc-search-container">
+            <view bindtap="onClickCitySelect" class="flex-left select-type" wx:if="{{!!locSearch.city}}">
+                <image class="position-icon" src="/img/icons/position.png"></image>
+                <view class="loc-address-text">{{locSearch.city}}</view>
+                <image class="select-icon {{locSearch.activeTab?'select-icon-down':'select-icon-up'}}" src="/img/icons/select-arrow-down2.png"></image>
+            </view>
+            <view class="loc-search flex1">
+                <image class="loc-search-icon" src="../../img/icons/search.png"></image>
+                <input bindconfirm="{{searchText?'onSearchSubmit':''}}" bindinput="onSearchInput" class="loc-search-input" focus="{{inputFocus}}" name="loc-search" placeholder="请输入收货地址" placeholderClass="loc-search-placeholder" type="text" value="{{searchTextInput}}"></input>
+                <view bindtap="onSearchClear" class="loc-search-icon-del" hidden="{{searchText==''}}">
+                    <image class="loc-search-icon" src="../../img/icons/delete.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="main-container" wx:if="{{locSearch.cityShow}}">
+            <view class="loc-city-container">
+                <image class="position-icon" src="/img/icons/position.png"></image> 当前定位城市 <view bindtap="bindCity" class="loc-city" data-city="{{locCity}}"> {{locCity}} </view>
+            </view>
+            <view class="searchLetter touchClass" style="height:{{locSearch.sideBarHeight}}px; top: {{locSearch.sideBarTop}}px">
+                <view catchtouchend="searchEnd" catchtouchmove="searchMove" catchtouchstart="searchStart" data-index="{{index}}" data-letter="{{item.name}}" style="height:{{locSearch.itemH}}px" wx:for="{{locSearch.searchLetter}}" wx:key="index">
+                    <view class="{{locSearch.showLetter==item.name||locSearch.scrollLetter==item.name?'selected-side-letter':''}}">{{item.name}}</view>
+                </view>
+            </view>
+            <view class="showSlectedLetter" style="top:{{locSearch.waterTop}}px" wx:if="{{locSearch.isShowLetter}}">
+                <view class="selectedLetterInner"> {{locSearch.showLetter}} </view>
+            </view>
+            <scroll-view scrollY bindscroll="cityScroll" scrollIntoView="{{locSearch.showLetter}}" scrollTop="{{locSearch.scrollTop}}" style="height:{{locSearch.winHeight}}px">
+                <view class="selection" wx:for="{{locSearch.cityList}}" wx:key="{{item.index}}">
+                    <view class="item_letter" id="{{item.index}}">{{item.index}}</view>
+                    <view bindtap="bindCity" class="item_city" data-city="{{ct.cityName}}" wx:for="{{item.cities}}" wx:for-item="ct" wx:key="{{ct.cityId}}"> {{ct.cityName}} </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="addr-list-container" hidden="{{!searchText||searchResults.length===0}}">
+            <scroll-view scrollY class="addr-list-scroll">
+                <view class="addr-list">
+                    <view bindtap="onTapAddr" class="addr-item addr-item-address {{index===searchResults.length-1?'addr-item-last':''}}" data-address="{{item.name}}" data-latitude="{{item.wm_latitude}}" data-longitude="{{item.wm_longitude}}" wx:for="{{searchResults}}" wx:key="{{index}}">
+                        <view class="addr-item-addr flex-left">
+                            <view class="addr-name">{{item.prename}}<span class="search-text-color">{{item.poiName}}</span>{{item.leftName}}</view>
+                            <view class="addr-item-distance" hidden="{{item.distance==0}}">{{item.distance}}</view>
+                        </view>
+                        <view class="addr-item-desc addr-item-desc-search"> {{item.address}} </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="addr-block" hidden="{{searchText}}">
+            <scroll-view scrollY class="addr-list-scroll">
+                <view class="addr-block-title flex-left" hidden="{{!near.length}}">
+                    <image class="add-block-near" src="../../img/icons/near2.png"></image> 附近地址 </view>
+                <view class="addr-list">
+                    <view bindtap="onTapAddr" class="addr-item addr-item-near {{index===near.length-1?'addr-item-last':''}}" data-addr="{{item.address}}" data-address="{{item.name}}" data-latitude="{{item.wm_latitude}}" data-longitude="{{item.wm_longitude}}" wx:for="{{near}}" wx:key="{{item.name}}">
+                        <view class="addr-item-addr">{{item.name}}</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="search-empty flex-center" hidden="{{searching||!searchText||searchResults.length!==0}}">
+            <view>
+                <view class="search-empty-icon ui-error ui-error-no-pos"></view>
+                <view>没发现这个地址，换个关键词试试吧~</view>
+            </view>
+        </view>
+    </block>
+</view>

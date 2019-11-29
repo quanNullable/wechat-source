@@ -1,0 +1,38 @@
+<template name="strideTrain">
+    <view bindtap="CrossStationGrabTicketToggleItem" class="stride-box {{solution.isCrossStationGrabCheckoutSelected?'current':''}} {{solution.disabled?'disabled':''}}" data-index="{{index}}" data-ubt-key="{{index}}">
+        <view class="txt"> 抢{{solution.recommendDepartStation+'-'+solution.recommendArriveStation}}
+                    <text wx:if="{{solution.recommendArriveCount<0}}">先上车再补票</text>
+            <text wx:if="{{solution.recommendDepartCount>0}}">需付<text class="tgrey">
+                    <text>￥{{solution.f_extraAmount}}</text>
+                </text>，在<text class="color-primary">{{originalTrain.DepartStation}}</text>上车</text>
+            <text wx:if="{{solution.recommendArriveCount>0}}">需付<text class="tgrey">
+                    <text>￥{{solution.f_extraAmount}}</text>
+                </text>，在<text class="color-primary">{{originalTrain.ArriveStation}}</text>下车</text>
+        </view>
+        <view class="stride-bd">
+            <view class="item" wx:if="{{solution.recommendDepartCount>0}}">
+                <view class="station">{{solution.recommendDepartStation}}</view>
+                <view class="info">多买{{solution.recommendDepartCount}}站</view>
+            </view>
+            <view class="item item-original {{solution.recommendDepartCount<0?'bu':''}}">
+                <view class="station color-primary">{{originalTrain.DepartStation}}</view>
+                <view class="info" wx:if="{{solution.recommendDepartCount<0}}">补票{{-solution.recommendDepartCount}}站</view>
+            </view>
+            <view class="item {{solution.recommendDepartCount<0?'bu':''}}" wx:if="{{solution.recommendDepartCount<0}}">
+                <view class="station">{{solution.recommendDepartStation}}</view>
+            </view>
+            <view class="item" wx:if="{{solution.recommendArriveCount<0}}">
+                <view class="station">{{solution.recommendArriveStation}}</view>
+            </view>
+            <view class="item item-original {{solution.recommendArriveCount<0?'bu':''}}">
+                <view class="station color-primary">{{originalTrain.ArriveStation}}</view>
+                <view class="info" wx:if="{{solution.recommendArriveCount<0}}">补票{{-solution.recommendArriveCount}}站</view>
+            </view>
+            <view class="item" wx:if="{{solution.recommendArriveCount>0}}">
+                <view class="station">{{solution.recommendArriveStation}}</view>
+                <view class="info">多抢{{solution.recommendArriveCount}}站</view>
+            </view>
+        </view>
+        <view class="icon-checkbox"></view>
+    </view>
+</template>

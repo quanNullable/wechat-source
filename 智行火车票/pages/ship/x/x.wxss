@@ -1,0 +1,41 @@
+@import "../../../__wuBaseWxss__/1.wxss";
+
+.ship-x-title .time {
+    font-size: 1.4rem;
+}
+
+.ship-x-title .station {
+}
+
+.ship-x-list {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+}
+
+.ship-x-item .price {
+    font-size: 1rem;
+}
+
+.ship-x-item {
+    border-bottom-width: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 0.8rem;
+}
+
+.ship-x-item:last-child {
+    border-bottom-width: 0px;
+}
+
+.ship-x-item .seat,.ship-x-item .price,.ship-x-item .number {
+    line-height: 2;
+}
+
+.btn-x {
+    font-size: 0.8rem;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 2.2;
+}

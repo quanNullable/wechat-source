@@ -1,0 +1,9 @@
+<view class="list" wx:if="{{show}}">
+    <view class="title">
+        <text>选择下面一个验证方式进行更换手机号</text>
+    </view>
+    <view bindtap="bindClick" class="row" data-key="{{item.key}}" wx:for="{{list}}" wx:key="item">
+        <text>验证{{item.value}}</text>
+        <text class="icon"> > </text>
+    </view>
+</view>

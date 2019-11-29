@@ -1,0 +1,6 @@
+<import src="../../components/compat/compat.wxml"></import>
+<view bindtap="onTap" bindtouchmove="onTouchMove" class="page-container">
+    <include src="../base.wxml"></include>
+    <wm-webview wmData="{{webviewData}}" wx:if="{{type===CONST.REDIRECT}}"></wm-webview>
+    <wm-webview wmData="{{webviewData}}" wmSrc="{{webviewData.webviewUrl}}" wx:if="{{type===CONST.DIRECT}}"></wm-webview>
+</view>

@@ -1,0 +1,26 @@
+.index-search-icon {
+    width: 26rpx;
+    height: 26rpx;
+    flex: 0 0 auto;
+}
+
+.index-search-container {
+    position: relative;
+    margin-left: 20rpx;
+    flex: 1 1;
+}
+
+.index-search-placeholder {
+    margin-left: 7rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.index-search-bg {
+    background: #EFEFEF;
+    border-radius: 100rpx;
+    padding: 0 20rpx;
+    margin-right: 20rpx;
+    flex: 1 1 0;
+    width: 300rpx;
+}

@@ -1,0 +1,38 @@
+<view>
+    <view class="book-tips">由铁路局实名制规定，请使用12306账号本人或乘车人身份证对应的银行卡号</view>
+    <view class="pay-info">
+        <view class="station">{{train.DepartStation}} - {{train.ArriveStation}}</view>
+    金额<text class="price">{{totalPrice}}元</text>
+    </view>
+    <view class="pay-list">
+        <view class="item">
+            <label>卡号</label>
+            <input bindinput="cardInput" class="input-pay {{isCheckCard?'disabled':false}}" disabled="{{isCheckCard}}" placeholder="银行卡号" type="number" value="{{cardNo}}"></input>
+            <image class="image" src="http://images3.c-ctrip.com/train/wxapp/bank/cup.png"></image>
+        </view>
+        <view class="item" wx:if="{{!!showTabs.ismobile}}">
+            <label>手机号</label>
+            <input bindinput="mobileInput" class="input-pay" placeholder="预留手机号" type="number" value="{{mobile}}"></input>
+        </view>
+        <view class="item" wx:if="{{!!showTabs.iscvn||!!showTabs.iscvn2}}">
+            <label>CVN码</label>
+            <input bindinput="cvnInput" class="input-pay" placeholder="信用卡CVN码" type="number" value="{{cvnCode}}"></input>
+        </view>
+        <view class="item" wx:if="{{!!showTabs.isexpire}}">
+            <label>有效期</label>
+            <input bindinput="expireInput" class="input-pay" placeholder="有效期0917" type="number" value="{{expire}}"></input>
+        </view>
+        <view class="item" wx:if="{{!!showTabs.iscredential}}">
+            <label>证件号码</label>
+            <input bindinput="credentialInput" class="input-pay" placeholder="预留证件号码" type="text" value="{{credential}}"></input>
+        </view>
+        <view class="item" wx:if="{{!!showTabs.ismobile}}">
+            <label>验证码</label>
+            <input bindinput="smsInput" class="input-pay" placeholder="输入验证码" type="number" value="{{smsCode}}"></input>
+            <button bindtap="getsmscode" class="btn-code" hoverClass="btn-code_hover" wx:if="{{!isSendcodeDisabled}}">获取验证码</button>
+            <button bindtap="getsmscode" class="btn-code disabled" hoverClass="btn-code_hover" wx:if="{{isSendcodeDisabled}}">{{smsCountDown+'s'}}</button>
+        </view>
+        <button bindtap="checkCardInfo" class="btn btn-primary" hoverClass="btn-primary_hover" wx:if="{{!isCheckCard}}">下一步</button>
+        <button bindtap="onpay" class="btn btn-primary" hoverClass="btn-primary_hover" wx:if="{{!!isCheckCard}}">确认支付</button>
+    </view>
+</view>

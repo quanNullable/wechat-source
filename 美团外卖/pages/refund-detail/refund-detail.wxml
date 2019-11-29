@@ -1,0 +1,19 @@
+<view class="page-container-abs">
+    <include src="../base.wxml"></include>
+    <scroll-view scrollY class="page-scroll">
+        <view class="summary" wx:if="{{refundDetail}}">
+            <view class="summary-item">
+                <view class="item-title"> 退款金额 </view>
+                <view class="item-contents strong"> {{refundDetail.money}}元 </view>
+            </view>
+            <view class="summary-item">
+                <view class="item-title"> 退回账户 </view>
+                <view class="item-contents"> {{refundDetail.third_name===null?'美团余额':refundDetail.third_name}} </view>
+            </view>
+            <view class="summary-item">
+                <view class="item-title"> 到账时间 </view>
+                <view class="item-contents"> {{refundStatus}} {{refundTime}} </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>

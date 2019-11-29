@@ -1,0 +1,215 @@
+@import "../common/components/toast/toast.wxss";
+
+.train-list {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0;
+    border-top-width: 1px;
+    background: #fff;
+    line-height: 86rpx;
+}
+
+.train-list .item {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0;
+    border-bottom-width: 1px;
+    padding-right: 30rpx;
+}
+
+.train-list .add-box {
+    position: relative;
+    padding-left: 160rpx;
+    min-height: 88rpx;
+    font-size: 30rpx;
+}
+
+.train-list .add-box.greyarr {
+    padding-right: 70rpx;
+}
+
+.greyarr::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-top: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    transform: rotate(45deg);
+    position: absolute;
+    content: "";
+    right: 36rpx;
+    top: 50%;
+    margin-top: -10rpx;
+}
+
+.train-list .label {
+    margin-left: 30rpx;
+    width: 160rpx;
+    left: 0;
+    top: 0;
+    position: absolute;
+    color: #666;
+    font-size: 26rpx;
+}
+
+.train-list .label.name::after {
+    width: 26rpx;
+    height: 26rpx;
+    position: absolute;
+    content: "?";
+    color: #099fde;
+    border: 1px solid #099fde;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30rpx;
+    right: 60rpx;
+    top: 50%;
+    margin-top: -15rpx;
+    font-size: 24rpx;
+}
+
+.tblue {
+    color: #099fde;
+}
+
+input {
+    width: 100%;
+    height: 90rpx;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.placeholder {
+    color: #ccc;
+}
+
+.child-tips {
+    font-size: 24rpx;
+    padding: 30rpx 30rpx 10rpx;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.child-tips .p--sub {
+    margin-left: 1.1em;
+}
+
+.btns {
+    padding: 30rpx;
+}
+
+.tip-txt {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    padding: 40rpx 50rpx;
+    overflow-y: auto;
+    color: #dbdbdb;
+    background: #fff;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.tip-txt.active {
+    opacity: 1;
+    z-index: 10000;
+}
+
+.tip-txt .p {
+    color: #000;
+    padding: 0.5em 0;
+}
+
+.tip-txt .cblue {
+    color: #099fde;
+    font-weight: 500;
+    padding: 0.5em 0;
+}
+
+.child-info {
+    position: relative;
+    overflow: hidden;
+}
+
+.child-info-i {
+    color: #099fde;
+    font-size: 24rpx;
+    text-align: right;
+    float: right;
+    padding: 10rpx 30rpx;
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image: url(//pic.c-ctrip.com/h5/train/train-icon.png?v=20160629);
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: -120px -40px;
+    vertical-align: middle;
+    margin: -2px 2px 0 0;
+}
+
+.switch-country {
+    position: absolute;
+    top: 20rpx;
+    width: 100rpx;
+    height: 50rpx;
+    right: 30rpx;
+    border-radius: 6rpx;
+    border: 1px solid #e0e0e0;
+    background: #e0e0e0;
+    overflow: hidden;
+}
+
+.switch-country .cn,.switch-country .en {
+    display: inline-block;
+    float: left;
+    width: 50rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 26rpx;
+}
+
+.switch-country .cn.current,.switch-country .en.current {
+    background: #fff;
+    color: #099fde;
+    border-radius: 6rpx;
+}
+
+.train-list .ename input {
+    height: 70rpx;
+}
+
+.train-list .ename .label {
+    line-height: 70rpx;
+}
+
+.train-list .ename .name::after {
+    right: 35rpx;
+}
+
+.train-list .cnname input,.train-list .ename input {
+    width: 80%;
+}
+
+.yellow-tips {
+    background: #fff7de;
+    padding: 20rpx 35rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+}
+
+.word--orange {
+    color: #ff9a14;
+}

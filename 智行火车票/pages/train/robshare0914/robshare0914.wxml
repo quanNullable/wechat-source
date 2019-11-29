@@ -1,0 +1,269 @@
+<import src="../common/components/toast/toast.wxml"></import>
+<import src="../common/components/wxappTips/wxappTips.wxml"></import>
+<view class="botm100">
+    <view class="speed-top" wx:if="{{statusDesc==='正在抢票'&&isShared!=1}}">
+        <view class="speed-rocket speed-imgpx"></view>
+        <view class="speed-loading speed-imgpx"></view>
+        <view class="speed-txt">去<text>{{arriveStation}}的火车票</text>太难抢啦</view>
+        <view class="speed-tit-ask speed-img"></view>
+    </view>
+    <view class="speed-top" wx:if="{{statusDesc==='正在抢票'&&isShared==1}}">
+        <view class="speed-rocket speed-imgpx"></view>
+        <view class="speed-loading speed-imgpx speed-img__up"></view>
+        <view class="speed-txt">已帮好友加速成功</view>
+        <view class="speed-tit-thank speed-img"></view>
+    </view>
+    <block wx:if="{{'抢票成功'===statusDesc||'出票成功'===statusDesc}}">
+        <block wx:if="{{isShared!=1}}">
+            <view class="speed-top speed-tcenter" wx:if="{{!isTieyou}}">
+                <view class="speed-txt">已成功抢到去<text>{{arriveStation}}</text>的票</view>
+                <view class="speed-tit-kaopu speed-img"></view>
+            </view>
+            <view class="speed-top speed-tcenter" wx:if="{{isTieyou}}">
+                <view class="speed-txt">已成功抢到去<text>{{arriveStation}}</text>的票</view>
+                <view class="speed-tit-kaopu speed-img"></view>
+            </view>
+        </block>
+        <view class="speed-top speed-tcenter" wx:else>
+            <view class="speed-txt">已成功抢到去<text>{{arriveStation}}</text>的票</view>
+            <view class="speed-tit-zhiyuan speed-img"></view>
+        </view>
+    </block>
+    <view class="speed-top speed-tcenter" wx:if="{{statusDesc==='已取消抢票'&&isShared!=1}}">
+        <view class="speed-txt">抢票加速已结束</view>
+        <view class="speed-tit-kaopu speed-img"></view>
+    </view>
+    <view class="speed-top speed-tcenter" wx:if="{{statusDesc==='已取消抢票'&&isShared==1}}">
+        <view class="speed-txt">抢票加速已结束</view>
+        <view class="speed-tit-zhiyuan speed-img"></view>
+    </view>
+    <view class="speed-top speed-tcenter" wx:if="{{robshareUtil.isOtherStatus(statusDesc)}}">
+        <view class="speed-txt"></view>
+        <view class="{{isTieyou?'speed-tit-ty':'speed-tit-zx'}} speed-img"></view>
+    </view>
+    <view class="speed-plan">
+        <view class="speed-stage">
+            <view class="item {{index+1==lightningLevel?'current':''}}" wx:for="{{speedLevels}}">{{item.name}}</view>
+        </view>
+        <view class="speed-line">
+            <view class="item" wx:if="{{index<lightningLevel}}" wx:for="{{[0,1,2,3,4]}}"></view>
+        </view>
+        <view class="speed-target" wx:if="{{statusDesc==='正在抢票'}}">
+            <rich-text nodes="{{nextLevel}}" wx:if="{{canRichText}}"></rich-text>
+            <text wx:else>{{nextLevel}}</text>
+        </view>
+    </view>
+    <view bindtap="getNewGuestCoupon" class="speed-xinke" wx:if="{{(!isLogin||isLogin&&isCanGetNewGuestGift)&&btnType===0}}">
+        <view class="tit">感谢您帮忙加速 赠您新客礼包一份</view>
+        <view class="cont">
+            <view class="item">
+                <view class="price tred">
+                    <text class="strong">70</text>元</view>
+                <view class="txt">机票优惠</view>
+            </view>
+            <view class="item">
+                <view class="price tblue">
+                    <text class="strong">20</text>元</view>
+                <view class="txt">火车票优惠</view>
+            </view>
+            <view class="item">
+                <view class="price tblue2">
+                    <text class="strong">50</text>元</view>
+                <view class="txt">酒店优惠</view>
+            </view>
+            <view class="item">
+                <view class="icon-arr"></view>
+                <view class="get">立即领取</view>
+            </view>
+        </view>
+    </view>
+    <view class="speed-btnbox">
+        <block wx:if="{{isGetUserInfoFailed}}">
+            <button bindgetuserinfo="acceAfterUserInfo" class="btn-red" hoverClass="btn-red_hover" id="tieyou_wx_robshare0914_acce" openType="getUserInfo" wx:if="{{canOpenTypeUserInfo}}">立即帮他加速</button>
+            <button bindtap="onAcceRate" class="btn-red" hoverClass="btn-red_hover" id="tieyou_wx_robshare0914_acce" wx:else>立即帮他加速</button>
+        </block>
+        <block wx:else>
+            <view wx:if="{{btnType===1}}"></view>
+            <block wx:if="{{btnType===0}}">
+                <block wx:if="{{!(isShared==1)}}">
+                    <view class="speed-tit speed-tit--black" wx:if="{{statusDesc==='正在抢票'&&isShared==2}}">您今天的加速次数已达上限</view>
+                    <block wx:if="{{'抢票成功'===statusDesc||'出票成功'===statusDesc||'已取消抢票'===statusDesc}}">
+                        <button bindtap="download" class="btn-red btn-download" hoverClass="btn-red_hover" id="tieyou_wx_robshare_download" wx:if="{{!isDownloadClicked}}">点击复制下载链接<text>打开浏览器粘贴链接下载APP</text>
+                        </button>
+                        <button bindtap="showDownloadToast" class="btn-red btn-clicked" id="tieyou_wx_robshare_download_clicked" wx:else>已复制下载链接</button>
+                    </block>
+                </block>
+            </block>
+        </block>
+        <block wx:if="{{!isGetUserInfoFailed}}">
+            <form bindsubmit="buyTicketSubmit" reportSubmit="true">
+                <button bindtap="buyTicket" class="{{statusDesc==='正在抢票'&&canShare?'btn-red':'btn-lineblue'}} tline {{availablePoint>0?'':'tline--oneline'}}" formType="submit" hoverClass="{{statusDesc==='正在抢票'&&canShare?'btn-red':'btn-lineblue'}}_hover" id="tieyou_wx_robshare0914_buy">我也要抢票
+                <text class="s" wx:if="{{availablePoint>0}}">当前可用加速包：{{availablePoint}}个</text>
+                    <text class="tag" wx:if="{{balloonTxt}}">{{balloonTxt}}</text>
+                </button>
+            </form>
+            <form bindsubmit="shareSubmit" reportSubmit="true">
+                <button bindtap="noop" class="btn-lineblue" formType="submit" hoverClass="btn-lineblue_hover" id="tieyou_wx_robshare0914_share" openType="share" wx:if="{{statusDesc==='正在抢票'&&canShare}}">召集好友帮Ta加速</button>
+            </form>
+        </block>
+    </view>
+    <view class="speed-tit" wx:if="{{sharedRecords.length}}">已有 {{sharedRecords.length}} 位朋友送Ta {{flowPacketCount}} 个加速包</view>
+    <view class="speed-friend" wx:if="{{sharedRecords.length}}">
+        <view class="item" wx:if="{{index<3||isShowAll}}" wx:for="{{sharedRecords}}" wx:for-item="friendItem">
+            <image class="img-avatar" src="{{friendItem.passagePhotoUrl}}"></image>
+            <view class="fr">
+                <text>{{friendItem.flowPacketCount}}</text>个</view>
+            <view class="name">{{friendItem.passageName||'神秘用户'}}<text class="tag" wx:if="{{friendItem.passageTag}}">{{friendItem.passageTag}}</text>
+            </view>
+        </view>
+        <view bindtap="showAllRecords" class="more" id="tieyou_wx_robshare0914_more" wx:if="{{sharedRecords.length>3&&!isShowAll}}"></view>
+    </view>
+    <view class="speed-tit speed-rules">活动规则</view>
+    <view class="speed-info">
+        <view>1. 每位用户可邀请的好友数量无上限。</view>
+        <view>2. 每位用户每天最多可以帮助5位好友加速。</view>
+        <view>3. 进入页面后，会自动帮助您的好友抽取加速包，加速包数量随机，2、5、10或20个不等。</view>
+        <view>4. 赠人玫瑰，手有余香，帮助好友加速后，您将获得赠礼一份，内含2个加速包；当您分享加速页面后，可升级赠礼为4个加速包，新用户更有机会领取10个加速包的超值好礼。</view>
+        <view>5. 您在本页面上获得的加速包和机票国内优惠券均可在小程序内使用，其余优惠券请至APP内使用。</view>
+        <view>6. 如果出现违规行为（如作弊领取、恶意套现等），将取消用户的活动资格；同时有权撤销违规交易，收回相关优惠券或加速包（包括已使用的以及未使用的）；必要时将追究违规用户的法律责任。</view>
+        <view>7. 我们将根据本活动的实际举办情况对活动规则进行变动或调整，相关变动或调整将公布在活动页面上，并于公布时即时生效。</view>
+    </view>
+    <view class="botm-collect">
+        <icon class="icon-star"></icon>
+        <text wx:if="{{isIOS}}">将小程序添加星标，使用更方便</text>
+        <text wx:else>点击右上角 <span>
+                <image class="guide4" src="http://images3.c-ctrip.com/zt/wechat/guide-4.png?v=20180305"></image>
+            </span> 添加小程序到桌面</text>
+        <button bindtap="showUserTips" class="btn-add" id="tieyou_wx_robshare0914_wxapptips">添加</button>
+    </view>
+</view>
+<view>
+    <form bindsubmit="hideBackdropSubmit" reportSubmit="true" wx:if="{{showMask}}">
+        <button bindtap="noop" class="shade-box" data-ubt-key="hideBackdrop" formType="submit"></button>
+    </form>
+    <view class="speed-tips speed-tips--lottery" wx:if="{{showMask==='lottery'}}">
+        <view class="speed-tips-hd">正在帮您的好友抽取加速包</view>
+        <view class="speed-tips-bd">
+            <view class="speed-draw">
+                <view class="item {{index==curPkgIdx?'current':''}}" wx:for="{{accePackages}}" wx:for-item="pkg">
+                    <view class="txt">
+                        <text class="strong">{{pkg}}</text>个</view>
+                    <view class="txt packages">加速包</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="" wx:if="{{showMask==='post'}}">
+        <view>
+            <button bindtap="savePost" class="btn btn-primary" hoverClass="btn-primary_hover" id="tieyou_wx_robshare0914_savepost">保存抢票神器</button>
+        </view>
+    </view>
+    <view class="speed-hongbao" wx:if="{{showMask==='newGuest'}}">
+        <view class="item" wx:if="{{!isFlightNewGuest}}">
+            <view class="price">
+                <dfn>￥</dfn>
+                <text class="strong">20</text>
+            </view>
+            <view class="cont">
+                <view class="tit">机票新客专享</view>
+                <view class="txt">无门槛立减</view>
+            </view>
+        </view>
+        <view class="item" wx:if="{{!isFlightNewGuest}}">
+            <view class="price">
+                <dfn>￥</dfn>
+                <text class="strong">50</text>
+            </view>
+            <view class="cont">
+                <view class="tit">机票新客专享</view>
+                <view class="txt">无门槛立减</view>
+            </view>
+        </view>
+        <view class="item" wx:if="{{!isHotelNewGuest}}">
+            <view class="price">
+                <dfn>￥</dfn>
+                <text class="strong">50</text>
+            </view>
+            <view class="cont">
+                <view class="tit">酒店新客专享</view>
+                <view class="txt">满{{isTieyou?'250':'300'}}减50</view>
+            </view>
+        </view>
+        <view class="info">已领取成功，请去<text>APP使用</text>
+        </view>
+        <icon bindtap="hideBackdrop" class="icon-closed"></icon>
+    </view>
+    <view class="speed-tips" wx:if="{{showMask==='new-acce'||showMask==='geted'||showMask==='old-acce'}}">
+        <view class="speed-tips-cont" wx:if="{{showMask==='new-acce'}}">
+            <view class="txt">帮好友抽取了{{accePackages[curPkgIdx]}}个加速包</view>
+            <view class="tit">帮忙分享页面，您将获赠</view>
+            <view class="speed-tips-coupon">
+                <view class="price">
+                    <text class="strong">10</text>元</view>
+                <view class="name">火车抢票加速包</view>
+                <text class="tag">限量领取</text>
+            </view>
+        </view>
+        <view class="speed-tips-cont" wx:if="{{showMask==='geted'}}">
+            <view class="tit">恭喜您，领取成功！</view>
+            <view class="speed-tips-coupon">
+                <view class="price">
+                    <text class="strong">{{newPointShareType&&newPointShareType.pointCount||2}}</text>元</view>
+                <view class="name">火车抢票加速包</view>
+                <text class="tag" wx:if="{{newPointShareType&&newPointShareType.pointCount==10}}">限量领取</text>
+                <text class="tag" wx:if="{{newPointShareType&&newPointShareType.pointCount==4}}">分享赠礼</text>
+                <text class="tag" wx:else>加速赠礼</text>
+            </view>
+        </view>
+        <view class="speed-tips-cont" wx:if="{{showMask==='old-acce'}}">
+            <view class="txt">帮好友抽取了{{accePackages[curPkgIdx]}}个加速包</view>
+            <view class="tit">赠您加速包一份，分享可翻倍</view>
+            <view class="speed-tips-share">
+                <view class="item blue">
+                    <view class="num">
+                        <text class="strong">2</text>元</view>
+                    <view class="info">抢票加速包</view>
+                </view>
+                <view class="item white">
+                    <view class="num">
+                        <text class="strong">4</text>元</view>
+                    <view class="info">抢票加速包</view>
+                </view>
+            </view>
+        </view>
+        <button bindtap="noop" class="btn-yellow" id="tieyou_wx_robshare0914_package0503_get" openType="share" wx:if="{{showMask==='new-acce'}}">立即领取</button>
+        <button bindtap="hideBackdrop" class="btn-white" id="tieyou_wx_robshare0914_accepackage_ok" wx:if="{{showMask==='geted'}}">确定</button>
+        <button bindtap="noop" class="btn-white" id="tieyou_wx_robshare0914_package0503_share" openType="share" wx:if="{{showMask==='old-acce'}}">立即分享</button>
+        <view bindtap="giveUpCoupon" class="btn-fanqi" data-ubt-key="tieyou_wx_robshare0914_package0503_giveupcoupon" wx:if="{{showMask==='old-acce'}}">放弃翻倍</view>
+    </view>
+    <view class="speed-tips white" wx:if="{{showMask==='failed-repair'||showMask==='failed-mercy'}}">
+        <view class="speed-tips-bk" wx:if="{{showMask==='failed-repair'}}">
+            <view class="txt">页面崩溃了</view>
+            <view class="tit">程序猿正在拼命修复中！</view>
+            <view class="bk-img">
+                <view class="bk-da"></view>
+            </view>
+            <button bindtap="hit" class="btn-blue" id="tieyou_wx_robshare0914_fail_hit">抽打程序猿</button>
+        </view>
+        <view class="speed-tips-bk" wx:if="{{showMask==='failed-mercy'}}">
+            <view class="txt">页面崩溃了</view>
+            <view class="tit">改！改！改！别抽</view>
+            <view class="bk-img">
+                <view class="bk-bengkui"></view>
+                <view class="bk-bang"></view>
+            </view>
+            <button bindtap="hideBackdrop" class="btn-blue" id="tieyou_wx_robshare0914_fail_close">关闭</button>
+        </view>
+    </view>
+    <template is="wxappTips" data="{{showType:showMask,isTieyou:isTieyou,isIOS:isIOS,partnerCN:partnerCN}}"></template>
+</view>
+<template is="train-toast" data="{{trainToast:trainToast}}"></template>
+<wxs module="robshareUtil">
+var isOtherStatus = function(statusDesc) {
+    return !statusDesc || statusDesc != "正在抢票" && statusDesc != "出票成功" && statusDesc != "抢票成功" && statusDesc != "已取消抢票";
+};
+
+module.exports = {
+    isOtherStatus: isOtherStatus
+};
+</wxs>

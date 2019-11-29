@@ -1,0 +1,9 @@
+<template name="action-sheet">
+    <block wx:if="{{show}}">
+        <view bindtap="onClickBaseActionSheet" class="ui-modal-backdrop"></view>
+        <view class="action-sheet-container">
+            <view bindtap="onClickBaseActionSheet" class="action-sheet-item flex-center" data-index="{{index}}" data-item="true" wx:for="{{itemList}}" wx:key="{{index}}"> {{item}} </view>
+            <view bindtap="onClickBaseActionSheet" class="action-sheet-cancel flex-center"> 取消 </view>
+        </view>
+    </block>
+</template>

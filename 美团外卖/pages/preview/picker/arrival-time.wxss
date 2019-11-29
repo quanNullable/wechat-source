@@ -1,0 +1,74 @@
+.picker-arrival-time {
+    font-size: 28rpx;
+    color: #666;
+}
+
+.picker-arrival-time .picker-footer {
+    border-top-color: #e0e0e0;
+    color: #333;
+}
+
+.picker-arrival-time .picker-content {
+    height: 560rpx;
+}
+
+.arrival-time-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    background: #fafafa;
+}
+
+.arrival-time-right {
+    position: absolute;
+    left: 30%;
+    top: 0;
+    width: 70%;
+    height: 100%;
+}
+
+.arrival-time-item,.arrival-time-day {
+    line-height: 90rpx;
+}
+
+.arrival-time-day {
+    text-align: center;
+    border-bottom: 1rpx solid #eee;
+}
+
+.arrival-time-item {
+    position: relative;
+    padding-left: 30rpx;
+}
+
+.arrival-time-day.selected {
+    background: #fff;
+    color: #333;
+}
+
+.arrival-time-item.selected {
+    color: #348bed;
+}
+
+.arrival-time-fee {
+    float: right;
+    margin-right: 78rpx;
+}
+
+.arrival-time-check {
+    position: absolute;
+    width: 38rpx;
+    height: 24rpx;
+    top: 50%;
+    right: 20rpx;
+    margin-top: -12rpx;
+}
+
+.arrival-time-invalid {
+    padding: 20rpx 0;
+    text-align: center;
+    font-size: 30rpx;
+    color: #666;
+}

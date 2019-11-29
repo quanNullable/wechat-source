@@ -1,0 +1,5 @@
+.reset-filter.ui-error-container {
+    margin-top: 40px;
+    position: relative;
+    z-index: 0;
+}

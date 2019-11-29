@@ -1,0 +1,6 @@
+<template name="payToast">
+    <view class="pay-toast-mask" hidden="{{hidden}}"></view>
+    <view class="pay-toast" hidden="{{hidden}}">
+        <view class="pay-toast-content">{{text}}</view>
+    </view>
+</template>

@@ -1,0 +1,38 @@
+.addr-list {
+    background: #fff;
+    padding: 0 30rpx 0 71rpx;
+}
+
+.addr-item {
+    padding: 28rpx 0;
+    position: relative;
+}
+
+.addr-item:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.addr-item-last,.addr-item-last:after {
+    border-bottom: none;
+}
+
+.addr-item-addr,.addr-item-desc {
+    height: 40rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 32rpx;
+}
+
+.addr-item-desc {
+    color: #999;
+    margin-top: 12rpx;
+    font-size: 24rpx;
+    font-weight: normal;
+}

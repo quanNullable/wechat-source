@@ -1,0 +1,94 @@
+<template name="qr-code">
+    <view class="qr-content">
+        <image mode="aspectFit" src="{{data['fetcher_qrcode']}}"></image>
+        <text>{{data['passenger_name']}}({{data['_num']}})</text>
+    </view>
+</template>
+<template name="ticket-picker">
+    <view class="other-info">
+        <view class="row">
+            <view class="other-title">订单号</view>
+            <view class="column-1">{{data['orderNumber']}}</view>
+        </view>
+        <view class="row">
+            <view class="other-title">乘客信息</view>
+            <view class="column-1">
+                <view wx:for="{{data['ticketInfo']}}" wx:key="{{index}}">{{item['identityName']}} {{item['identityCode']}}</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="other-title">取票人</view>
+            <view class="column-1">
+                <view>{{data['contactInfo'].name}} {{data['contactInfo'].cardNum}}</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="other-title">联系手机</view>
+            <view class="column-1">
+                <view>{{data['contactInfo'].mobile}}</view>
+            </view>
+        </view>
+    </view>
+</template>
+<template name="picker-info-extend">
+    <view class="ticket-pick" wx:if="{{data['takeInfoOther']}}">
+        <view class="ticket-title">取票信息</view>
+        <block wx:if="{{data['fetcherQrCodeInfo']&&data['fetcherQrCodeInfo'].length>0}}">
+            <view class="txt" wx:if="{{data['fetcherQrCodeInfo'][0].ticket_check_code}}">扫二维码，免取票，直接上车</view>
+            <view class="txt" wx:if="{{!data['fetcherQrCodeInfo'][0].ticket_check_code}}">扫码取票，方便快捷</view>
+            <view class="bus-order-qrcode">
+                <view class="row" style="width: {{data['fetcherQrCodeInfo'].length*80+'%'}}">
+                    <view bindtap="onShowQr" class="mt10 code column-1" data-index="{{index}}" wx:for="{{data['fetcherQrCodeInfo']}}" wx:key="{{index}}">
+                        <image class="qrcode-img" mode="aspectFit" src="{{item.fetcher_qrcode}}"></image>
+                        <text>{{item.passenger_name}}({{item._num}})</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <view wx:if="{{data['takeInfoOther'].takeNum}}">
+            <text>取票号</text>{{data['takeInfoOther'].takeNum}}
+        </view>
+        <view wx:if="{{data['takeInfoOther'].takeOrderNum&&!data['takeInfoOther'].takeNum}}">
+            <text>取票号</text>{{data['takeInfoOther'].takeOrderNum}}
+        </view>
+        <view wx:if="{{data['takeInfoOther'].takePass}}">
+            <text>密码</text>{{data['takeInfoOther'].takePass}}
+        </view>
+        <view wx:if="{{data['takeInfoOther'].takeCode}}">
+            <text>取票验证码</text>{{data['takeInfoOther'].takeCode}}
+        </view>
+        <view wx:if="{{data['takeInfoOther'].seatNumber}}">
+            <text>座位号</text>{{data['takeInfoOther'].seatNumber}}
+        </view>
+        <view wx:if="{{data['takeInfoOther'].ticketCheck}}">
+            <text>检票口</text>{{data['takeInfoOther'].ticketCheck}}
+        </view>
+    </view>
+</template>
+<template name="line">
+    <view class="businfo">
+        <view class="info-title">{{data['fromCityName']}} <icon class="icon-single"></icon> {{data['toCityName']}}</view>
+        <view>
+            <icon class="icon-time" style="color:#FF7D13;"></icon>{{data['ticketDate']}} {{data['ticketFromTime']}}
+        </view>
+        <view>
+            <icon class="icon-depart" style="color:#1EC088;"></icon>{{data['fromStationName']}}
+        </view>
+        <view>
+            <icon class="icon-dest" style="color:#FF5959;"></icon>{{data['toStationName']}}
+        </view>
+    </view>
+</template>
+<template name="ticket">
+    <view class="order-info">
+        <view class="row">
+            <view class="">{{data['orderState']}}</view>
+            <view catchtap="showPriceDetail" class="t_r" style="color:#ffffff;">
+                <text class="small">¥</text>
+                <text class="arr-right">{{data['totalFee']}}</text>
+            </view>
+        </view>
+        <view class="refund-desc">{{data['_msg']}}</view>
+    </view>
+    <view class="order-optional" wx:if="{{data['optionalBusInfo']}}">提示：{{data['optionalBusInfo']}}</view>
+</template>

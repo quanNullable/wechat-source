@@ -1,0 +1,3 @@
+@import "../../components/coupon/coupon.wxss";
+
+@import "../../__wuBaseWxss__/24.wxss";

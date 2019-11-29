@@ -1,0 +1,29 @@
+<import src="../../components/poi-list/poi-list.wxml"></import>
+<import src="../../components/filter/filter-header-index.wxml"></import>
+<import src="../../components/filter/filter-body.wxml"></import>
+<import src="../../components/filter/filter-type-horizon.wxml"></import>
+<import src="../../components/filter/quick-filter.wxml"></import>
+<import src="../../components/reset-filter/reset-filter.wxml"></import>
+<view bindtap="onTap" catchtouchmove="{{filter.activeTab==='sort'||filter.activeTab==='filter'||filter.filterTypeShow?'onTouchMove':''}}" class="wrap">
+    <include src="../base.wxml"></include>
+    <view class="poi-container">
+        <include src="../../components/index-search/search.wxml"></include>
+        <view class="channel-filter-container {{!filter.horizonTypeShow?'channel-filter-notype':''}}">
+            <template is="filter-type-horizon" data="{{...filter}}"></template>
+            <template is="filter-header-index" data="{{...filter}}"></template>
+            <template is="filter-body" data="{{...filter}}"></template>
+        </view>
+        <template is="quick-filter" data="{{quickFilterActivityFilterList:filter.quickFilterActivityFilterList,selectedCodes:filter.selectedCodes}}" wx:if="{{filter.quickFilterActivityFilterList.length>0}}"></template>
+        <view class="poi-list" hidden="{{!poilist.length}}">
+            <template is="poi-list" data="{{poilist:poilist,cat_id:filter.typeCode,cartKeys:cartKeys}}"></template>
+        </view>
+        <view class="no-poi-list" wx:if="{{!poilist.length&&!isLoading&&!showResetFilter}}">
+            <view class="ui-error ui-error-no-net no-list-icon"></view>
+            <view>没找到合适的商家呢，看看别的吧！</view>
+        </view>
+        <template is="reset-filter" data wx:if="{{showResetFilter}}"></template>
+        <view class="loading-data flex-center" wx:elif="{{hasMore}}">
+            <view class="ui-loading-logo ui-loading-logo-animate"></view> 努力加载中... </view>
+        <view class="no-data flex-center" wx:if="{{!hasMore&&!isLoading&&poilist.length}}"> 更多商家接入中，敬请期待！ </view>
+    </view>
+</view>

@@ -1,0 +1,22 @@
+<view class="sev-tit">
+    <icon class="icon-gj"></icon>客服管家猜你想了解：
+</view>
+<view class="sev-bd">
+    <view class=" item {{isShow?'current':''}}" wx:if="{{isGetAnswer}}">
+        <view bindtap="toggleTap" class="tit">{{questionTitle}}</view>
+        <view wx:for="{{questionAnswer}}">
+            <view class="txt" wx:if="{{item.TextType=='1'}}">
+        {{item.Content}}
+      </view>
+            <view class="txt" wx:if="{{item.TextType=='4'}}">
+                <image bindtap="previewImg" data-link="{{item.Link}}" src="{{item.Content}}"></image>
+            </view>
+        </view>
+    </view>
+    <view bindtap="getAnswer" class="item {{index===currentIndex?'current':''}}" data-index="{{index}}" data-item="{{item}}" wx:if="{{!isGetAnswer}}" wx:for="{{QuestionList}}">
+        <view class="tit">{{item.Content}}</view>
+        <view class="txt">{{questionAnswerList[index]}}</view>
+    </view>
+</view>
+<view class="sev-botm">人工服务 (06:00-23:00) <text bindtap="makeCall">联系客服</text>
+</view>

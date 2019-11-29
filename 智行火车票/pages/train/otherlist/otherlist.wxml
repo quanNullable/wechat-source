@@ -1,0 +1,62 @@
+<view class="{{isTieyou?'ty':'zx'}}">
+    <view class="content-box">
+        <view class="train-list qiangpiao-list" wx:if="{{primeRecommendTrainList.length>0}}">
+            <view class="item tit">推荐车次
+                <text>(多选几个车次，成功率更高)</text>
+            </view>
+            <view bindtap="toggleRecommendTrain" class="item {{train.current?'current':''}}" data-index="{{index}}" wx:for="{{primeRecommendTrainList}}" wx:for-item="train" wx:key="TrainNumber">
+                <view class="sel-time">
+                    <view class="p">
+                        <text class="current">{{train.DepartTime}}</text>
+                    </view>
+                    <view class="p">
+                        <text>{{train.ArriveTime}}</text>
+                    </view>
+                </view>
+                <view class="sel-price">
+                    <view class="p tnum">{{train.TrainNumber}}</view>
+                    <view class="p">{{train.TimesCost}}</view>
+                </view>
+                <view class="sel-station">
+                    <view class="p from">
+                        <text>{{train.DepartStation}}</text>
+                    </view>
+                    <view class="p to guo">
+                        <text>{{train.ArriveStation}}</text>
+                    </view>
+                </view>
+                <view class="p tgreen" wx:if="{{train.RateText}}">{{train.RateText}}</view>
+            </view>
+        </view>
+        <view class="train-list qiangpiao-list mt10" wx:if="{{primeOtherTrainList.length>0}}">
+            <view class="item tit">其他车次</view>
+            <view bindtap="toggleOtherTrain" class="item {{train.current?'current':''}}" data-index="{{index}}" wx:for="{{primeOtherTrainList}}" wx:for-item="train" wx:key="trainNumber">
+                <view class="sel-time">
+                    <view class="p">
+                        <text class="current">{{train.DepartTime}}</text>
+                    </view>
+                    <view class="p">
+                        <text>{{train.ArriveTime}}</text>
+                        <text class="tgrey">{{train.TakeDays?'+'+train.TakeDays:''}}</text>
+                    </view>
+                </view>
+                <view class="sel-price">
+                    <view class="p tnum">{{train.TrainNumber}}</view>
+                    <view class="p">{{train.TimesCost}}</view>
+                </view>
+                <view class="sel-station">
+                    <view class="p from {{!train.IsStartStation?'guo':''}}">
+                        <text>{{train.DepartStation}}</text>
+                    </view>
+                    <view class="p to {{!train.IsEndStation?'guo':''}}">
+                        <text>{{train.ArriveStation}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="norecommandtrain" wx:if="{{primeRecommendTrainList.length===0&&primeOtherTrainList.length===0}}">当前条件下无可推荐车次</view>
+    </view>
+    <view class="train-btn-fixed">
+        <button bindtap="confirm" class="btn-ok" hoverClass="btn-ok_hover">确定</button>
+    </view>
+</view>

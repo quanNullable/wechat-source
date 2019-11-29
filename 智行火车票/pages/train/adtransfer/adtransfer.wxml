@@ -1,0 +1,35 @@
+<view>
+    <view class="artf-logo-box">
+        <image class="icon-logo" src="http://images3.c-ctrip.com/zt/sharenew/logo-zx.png " wx:if="{{!isTieyou}}"></image>
+        <image class="icon-logo" src="http://images3.c-ctrip.com/zt/sharenew/logo-ty.png " wx:if="{{isTieyou}}"></image>{{partnerCN}}火车票
+    </view>
+    <view class="artf-txt-city">
+        <text>{{overallTripInfo.dstation}}</text>到<text>{{overallTripInfo.astation}}</text>
+    </view>
+    <view class="artf-slogan"></view>
+    <view class="artf-time">
+        <text>耗时{{overallTripInfo.takeDays?overallTripInfo.takeDays+'天':''}}{{overallTripInfo.takeHours?overallTripInfo.takeHours+'时':''}}{{overallTripInfo.takeSeconds?overallTripInfo.takeSeconds+'分':''}}</text>|<text>{{overallTripInfo.price}}元即可出行</text>
+    </view>
+    <view class="artf-tip">
+        <view class="item" wx:for="{{transferInfo}}" wx:for-item="tripItem">
+            <icon class="icon-train" wx:if="{{tripItem.isTrain}}"></icon>
+            <icon class="icon-flight" wx:if="{{tripItem.isFlight}}"></icon>
+            <icon class="icon-bus" wx:if="{{tripItem.isBus}}"></icon>
+            <view class="from">
+                <text class="time">{{tripItem.dTime}}</text>
+                <view class="city">{{tripItem.dstation}}</view>
+            </view>
+            <view class="arr"></view>
+            <view class="to">
+                <text class="time">{{tripItem.aTime}}</text>
+                <text class="adday" wx:if="{{tripItem.takeDays>=1}}">+{{tripItem.takeDays}}天</text>
+                <view class="city">{{tripItem.astation}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="artf-btn-box">
+        <button bindtap="goHome" class="btn-buy {{isTieyou?'ty':'zx'}}" hoverClass="btn-acitve" id="tieyou_wx_adtransfer_buy">即刻买票出发</button>
+        <button bindtap="download" class="btn-download {{isTieyou?'ty':'zx'}}" hoverClass="btn-acitve" id="tieyou_wx_adtransfer_download">下载{{partnerCN}}APP，体验黑科技</button>
+    </view>
+    <view class="artf-foot-txt">智慧出行  省心省钱</view>
+</view>

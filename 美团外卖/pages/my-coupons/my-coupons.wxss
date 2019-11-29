@@ -1,0 +1,11 @@
+@import "../../components/coupon/coupon.wxss";
+
+@import "../../__wuBaseWxss__/24.wxss";
+
+.coupon-error-tips {
+    position: fixed;
+    z-index: 9999;
+    bottom: 100rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}

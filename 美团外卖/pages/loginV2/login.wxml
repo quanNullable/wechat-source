@@ -1,0 +1,24 @@
+<view class="login-container">
+    <view class="login-head">
+        <image class="head-logo" src="../../img/icons/logo.png"></image>
+        <view class="head-name">美团外卖</view>
+    </view>
+    <view class="login-loading" wx:if="{{pageState=='0'}}">
+        <image class="loading-logo" src="../../img/icons/loading.png"></image>
+        <view class="loading-title">正在登录</view>
+    </view>
+    <view class="login-auth" wx:elif="{{pageState=='1'}}">
+        <view class="auth-tip-sub">申请获得你的公开信息(昵称、头像等)</view>
+        <button bindgetuserinfo="onClickAuth" class="login-auth-btn" openType="getUserInfo">微信授权</button>
+    </view>
+    <view class="login-iptphone" wx:else>
+        <view class="iptphone-ipt {{iptPhone.error?'number-error':''}}">
+            <input autoFocus="true" bindinput="onCheckPhoneNumber" class="iptphone-number" confirmType="done" focus="true" maxlength="13" placeholder="请输入您的手机号" placeholderClass="iptphone-ipt-placeholder" type="number" value="{{iptPhone.inputValue}}"></input>
+            <view bindtap="onClearIpt" class="iptphone-clear-ipt" wx:if="{{iptPhone.hasValue}}"></view>
+        </view>
+        <view class="iptphone-tip" wx:if="{{!iptPhone.error}}">如果您还没有用这个手机号注册过美团，我们将为您创建美团账号。</view>
+        <view class="iptphone-tip iptphone-error-tip" wx:else>请输入正确的11位手机号码</view>
+        <view bindtap="onNextCheck" class="iptphone-controls {{iptPhone.isRight?'iptphone-isright':''}}">下一步</view>
+    </view>
+    <include src="../base.wxml"></include>
+</view>

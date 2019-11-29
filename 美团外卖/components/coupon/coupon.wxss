@@ -1,0 +1,144 @@
+.coupon {
+    display: block;
+    position: relative;
+    background: #fff;
+    border-radius: 10rpx;
+    margin: 30rpx;
+}
+
+.coupon:before,.coupon:after {
+    content: '';
+    position: absolute;
+    top: 112rpx;
+    width: 13rpx;
+    height: 26rpx;
+    background: #f4f4f4;
+}
+
+.coupon:before {
+    left: 0;
+    border-radius: 0 26rpx 26rpx 0;
+}
+
+.coupon:after {
+    right: 0;
+    border-radius: 26rpx 0 0 26rpx;
+}
+
+.coupon-selected {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 62rpx;
+    width: 62rpx;
+}
+
+.coupon-top {
+    display: flex;
+    height: 190rpx;
+}
+
+.coupon-left {
+    padding: 34rpx 0 0 39rpx;
+    flex: 1 0 auto;
+    width: 200rpx;
+}
+
+.coupon-right {
+    padding: 11rpx 37rpx 0 0;
+    margin-left: auto;
+    text-align: right;
+    flex: 0 0 auto;
+    max-width: 400rpx;
+}
+
+.coupon-name {
+    font-size: 38rpx;
+    color: #fb4e44;
+    line-height: 53rpx;
+}
+
+.coupon-money {
+    line-height: 80rpx;
+    color: #fb4e44;
+    transform: translateY(10rpx);
+}
+
+.coupon-money-text {
+    font-size: 80rpx;
+    vertical-align: bottom;
+}
+
+.coupon-money-small {
+    font-size: 42rpx;
+    line-height: 59rpx;
+    vertical-align: bottom;
+}
+
+.coupon-price-limit {
+    font-size: 24rpx;
+    color: #666;
+    line-height: 36rpx;
+}
+
+.coupon-limits {
+    border-top: 1rpx dashed #f0f0f0;
+    margin: 0 42rpx;
+    line-height: 59rpx;
+    font-size: 20rpx;
+    color: #A9A9A9;
+}
+
+.coupon-deadline {
+    font-size: 24rpx;
+    color: #666;
+    line-height: 36rpx;
+    margin-top: 4rpx;
+}
+
+.coupon-status-img {
+    position: absolute;
+    top: 100rpx;
+    right: 28rpx;
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.coupon-bottom {
+    background: #fafafa;
+    padding: 10rpx 42rpx;
+}
+
+.coupon-bottom-title,.coupon-bottom-item {
+    font-size: 20rpx;
+    margin: 10rpx 0;
+    line-height: 28rpx;
+}
+
+.coupon-bottom-title {
+    color: #fb4e44;
+}
+
+.coupont-bottom-arrow {
+    width: 16rpx;
+    height: 12rpx;
+}
+
+.coupon-meituan-deliver {
+    font-size: 20rpx;
+    padding: 0 11rpx;
+    color: #333;
+    background: #FFD161;
+    line-height: 30rpx;
+    vertical-align: middle;
+    border-radius: 10rpx;
+}
+
+.coupon-disabled .coupon-meituan-deliver {
+    color: #fff;
+    background: #ccc;
+}
+
+.coupon-disabled .coupon-deadline,.coupon-disabled .coupon-name,.coupon-disabled .coupon-money,.coupon-disabled .coupon-price-limit {
+    color: #ccc;
+}

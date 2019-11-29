@@ -1,0 +1,269 @@
+.airdrop-coupon-mask {
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.airdrop-coupon {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.entrance-open {
+    width: 640rpx;
+    height: 790rpx;
+    padding: 0 40rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.entrance-pic {
+    display: block;
+    width: 100%;
+    height: 80%;
+}
+
+.close-btn {
+    background: url('data:image/png;charset=utf-8;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAATlBMVEX///8AAAD///////////////////////////////////////////////////////////////////////////////////////////////+h8NhCAAAAGXRSTlMaAE0uPiLXQQUe20VJFjcyKgpHJ7r28G+0UHM36gAAAnNJREFUWMPN2el22yAUBODJXGEgoN1Z/P4vWuGclsQqAix6Tue39UmAzHKFl+OYXsmgnadfdDeI6k3mAhxiU8dduimiVWA/+vv1g6zKWsAqtcpwv4Mf+1rQKB2wccUu6xhQrUwFaNRC6tEiETtqclGmFIQLPYXDhN51KALnIXI5cpjzIDydoCji6JEDhewsCmM7Ug5BE36BioT7mzQ4azqFqihHPafA2e2aW9RsNz+C0cMT+RL3oNHRqxW1+QvYRa9e7PagUNtnQaspjyBIhaejSPwEZ0/BiQj9/AMc2OFUOg7fQdDZc6B1RASNo+BkhM78AVVs8JlGq9+gWTidBycuJoDxAds8YgA1pxbgRP0F9tRoEs3+Do4c24AbFEDjmXgHP96ugl3k+vaReBfpzQb2ySF5v91eZee93m7vyWHpN1CSLf68BXHv3T6TbZYN1MlpRi53ceddpuSko19g6IESMXqCVDwNYhfmxeilOxGKA7JioYeBCkJBXizzArahKwrEIg8rB4RBLhF3XmKY4WhRIpZ4sHTwG1giRu8Q9CCBvFjmIWi+BHytABfavFfTZE1V4l0upYPSUZV4IpfC12bgWuBVvNhCyXs1fz3FIetVTQ49u5xXN30Z+oxXN8HGJSDr5UVFfbhIXfcXf4nXw0Uq3Ylvm1e7jB4v9O+fU+1C33or0nyz1Hg755pvOJtviVtv2psfK1oefOCI9kez9ofH9sfb9gfw9iWC9kWMM2WbWLhJFoK0rfb05jUvVf37YlrMVFvum3IFyX6pKUguaF0ybVzUbV52ri+Mq72mYmH8ZOnefi/d/w8fFx4+f9A7XfL54xfMKip7SPDqnwAAAABJRU5ErkJggg==') no-repeat;
+    background-size: 100% auto;
+    width: 80rpx;
+    height: 80rpx;
+    margin: 35rpx auto 0;
+    flex: 1;
+}
+
+.airdrop-layer {
+    width: 640rpx;
+    margin: 0 auto;
+}
+
+.top-bg {
+    width: 100%;
+    height: 320rpx;
+}
+
+.top-img {
+    width: 100%;
+    height: 320rpx;
+    display: block;
+}
+
+.coupon-list {
+    width: 100%;
+    padding: 0 20rpx 30rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 0 0 8rpx 8rpx;
+}
+
+.coupon-item {
+    width: 100%;
+    height: 150rpx;
+    box-sizing: border-box;
+    display: flex;
+    margin-bottom: 20rpx;
+    border-radius: 8rpx;
+    margin-top: 20rpx;
+}
+
+.coupon-item:last-child {
+    margin-bottom: 0;
+}
+
+.item-left {
+    height: 100%;
+    display: flex;
+    border-radius: 8rpx 0 0 8rpx;
+    flex-direction: row;
+    width: 380rpx;
+    background: #ffffff;
+    align-items: center;
+}
+
+.left-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30rpx;
+}
+
+.item-pic {
+    width: 90rpx;
+    height: 90rpx;
+    margin-left: 20rpx;
+    display: inline-block;
+}
+
+.item-title {
+    font-size: 28rpx;
+    color: #333333;
+    line-height: 40rpx;
+    margin-right: 10rpx;
+    margin-bottom: 12rpx;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.title-limit {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.trans-tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+    background: url('data:image/png;charset=utf-8;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAeAgMAAACnNVNgAAAADFBMVEUAAAD/0mL/1WL/0WEMR+JgAAAAA3RSTlMA8zzqiAonAAAASElEQVQoz+3NMRHAIADF0Fy3KsFWnVAn2EIJG/cxQDZGsr4h8NRsgzcmRaWJ6Ca6CUWlqVSVXDkqU2WodJUP2/zoBt2gG3SzAE/L2ME+3UrWAAAAAElFTkSuQmCC') no-repeat;
+    background-size: 100% auto;
+    font-size: 20rpx;
+    color: #333333;
+    text-align: center;
+}
+
+.valid-time {
+    font-size: 24rpx;
+    color: #666666;
+    line-height: 33rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.coupon-type-tip {
+    border: 1px solid #20A0FF;
+    border-radius: 8rpx;
+    margin-left: 10rpx;
+    font-size: 20rpx;
+    color: #20A0FF;
+    width: 73rpx;
+    height: 28rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-line {
+    width: 16rpx;
+    height: 100%;
+    background: url('data:image/png;charset=utf-8;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAACWBAMAAAAlNBWXAAAAJ1BMVEUAAAD////////////////////////////////////////m5ubx8fG5oNkPAAAACnRSTlMABM+BWBrIeG0n9WSngAAAAGxJREFUOMtjWDWBAQRmMaxqADO6GFYlgmjGLIZVi0EM5lUMq1YVAgWqQIxFrqJOq4AMMBicjDV7oIzVu+Eio7pGdY3qGnq66MdAlGyGwLLOahVS6acILg+1GFY5MICAF8OqADAjimGVAJghBQACsvZn6/f50gAAAABJRU5ErkJggg==') no-repeat;
+    background-size: 100% 100%;
+}
+
+.item-right {
+    width: 210rpx;
+    background: #ffffff;
+    border-radius: 0 8rpx 8rpx 0;
+    display: flex;
+}
+
+.money-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.money-num {
+    font-size: 32rpx;
+    color: #FB4E44;
+}
+
+.big-num {
+    font-size: 64rpx;
+    line-height: 76rpx;
+    display: inline-block;
+}
+
+.sale-tip {
+    font-size: 24rpx;
+    color: #666666;
+}
+
+.use-btn {
+    width: 50rpx;
+    height: 150rpx;
+    background: #FFD161;
+    color: #333333;
+    writing-mode: vertical-rl;
+    text-align: center;
+    line-height: 50rpx;
+    letter-spacing: 13rpx;
+    border-radius: 0 8rpx 8rpx 0;
+}
+
+.coupon-goto-btn {
+    height: 70rpx;
+    width: 260rpx;
+    border-radius: 8rpx;
+    font-size: 32rpx;
+    color: #333333;
+    text-align: center;
+    line-height: 70rpx;
+    margin: 30rpx auto 0;
+    background: #FFD161;
+}
+
+.airdrop-animate-show {
+    animation: showScaleLayer 0.5s;
+}
+
+.airdrop-animate-hide {
+    animation: hideScaleLayer 0.5s;
+}
+
+@-webkit-keyframes showScaleLayer {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes showScaleLayer {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes hideScaleLayer {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0);
+    }
+}
+
+@keyframes hideScaleLayer {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0);
+    }
+}

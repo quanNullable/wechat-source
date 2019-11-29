@@ -1,0 +1,33 @@
+page {
+    background: #f6f7f8;
+}
+
+.tx-list {
+    display: flex;
+    flex-flow: column;
+}
+
+.radio-group {
+    display: flex;
+    flex-flow: column;
+}
+
+.radio {
+    box-sizing: border-box;
+    padding: 0 20rpx;
+    width: 100%;
+    height: 96rpx;
+    line-height: 96rpx;
+    background: #fff;
+    border-bottom: 1px solid #f0f1f2;
+}
+
+.radio:last-child {
+    border-bottom: none;
+}
+
+.button-ts {
+    margin: 35rpx;
+    background: #0abb08;
+    color: #fff;
+}

@@ -1,0 +1,17 @@
+<template name="popsimage">
+    <view class="imgPops" wx:if="{{show}}">
+        <view animation="{{animationData}}" class="imgWrapper" style="background-color: #f8f9fb;">
+            <view catchtap="bingimgClose" class="close"></view>
+            <view class="titleWrapper">
+                <text class="title">{{title}}</text>
+            </view>
+            <view class="inputWrapper">
+                <image bindtap="bingUpdateImg" class="img" mode="scaleToFill" src="{{imgsrc}}"></image>
+                <input bindblur="bingImgInputBlur" bindfocus="bindImgInputFocus" bindinput="bindImgCodeInput" class="codeInput" maxlength="6" placeholder="" style="border-radius: {{inBorderRadius}}; border-width: {{inBorderWidth}}; border-color: {{inBorderColor}}; caret-color: {{inCaretColor}}" type="text" value="{{captchacode}}"></input>
+            </view>
+            <view class="btnWrapper">
+                <button bindtap="bindImgVerify" class="sure" disabled="{{verifyDisa}}" plain="{{plain}}" style="border-radius: {{btnBorderRadius}}; border-width: {{btnBorderWidth}}; border-color: {{btnBorderColor}}; color: {{btnColor}}; background-color: {{btnBgColor}}; opacity: {{opacity}};" type="default">{{btnText}}</button>
+            </view>
+        </view>
+    </view>
+</template>

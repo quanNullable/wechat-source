@@ -1,0 +1,123 @@
+@import "../common/components/toast/toast.wxss";
+
+.kq-tit {
+    margin: 24rpx 30rpx 20rpx;
+    line-height: 36rpx;
+    font-size: 28rpx;
+}
+
+.kq-tit icon {
+    width: 30rpx;
+    height: 36rpx;
+    background: url(http://images3.c-ctrip.com/zt/wechat/kq-zx.png) no-repeat;
+    background-size: 100rpx 36rpx;
+    margin: -4rpx 16rpx 0 0;
+}
+
+.kq-tit .icon-rocket {
+    background-position: 0 0;
+}
+
+.kq-tit .icon-ticket {
+    background-position: -32rpx 0;
+}
+
+.kq-cont {
+    background: #fff;
+    display: flex;
+    margin: 0 30rpx;
+    border-radius: 3px 3px 0 0;
+}
+
+.kq-cont .item {
+    flex: 1;
+    margin: 48rpx 0 36rpx;
+    line-height: 50rpx;
+    padding: 0 36rpx;
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    font-size: 28rpx;
+}
+
+.kq-cont .item:last-child {
+    border-right: 0;
+}
+
+.kq-cont .item .tblue {
+    font-size: 44rpx;
+    font-weight: 600;
+    color: #5495E6;
+    margin: 0 2rpx 0 40rpx;
+    vertical-align: -1px;
+    display: inline-block;
+}
+
+.kq-intr {
+    border-style: solid;
+    border-width: 1px 0 0;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    padding: 26rpx 36rpx;
+    background: #fff;
+    font-size: 22rpx;
+    color: #666;
+    line-height: 44rpx;
+    margin: 0 30rpx;
+    border-radius: 0 0 3px 3px;
+}
+
+.kq-coupon .item {
+    margin: 20rpx 30rpx;
+    background: #fff;
+    height: 160rpx;
+    background: #fff;
+    border-radius: 3px;
+}
+
+.kq-coupon .item .price {
+    width: 170rpx;
+    float: left;
+    border-right: 1px dashed #EFEFEF;
+    text-align: center;
+    line-height: 160rpx;
+    margin-right: 40rpx;
+    position: relative;
+}
+
+.kq-coupon .item .price .strong {
+    font-size: 44rpx;
+    color: #F15B38;
+    font-weight: 600;
+    margin-right: 3rpx;
+}
+
+.kq-coupon .item .price::after {
+    width: 22rpx;
+    height: 22rpx;
+    background: #efefef;
+    border-radius: 22rpx;
+    position: absolute;
+    content: "";
+    top: -11rpx;
+    right: -11rpx;
+    box-shadow: 0 160rpx 0 #efefef;
+}
+
+.kq-coupon .item .tit {
+    padding-top: 24rpx;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    margin-bottom: 4rpx;
+}
+
+.kq-coupon .item .txt {
+    font-size: 22rpx;
+    color: #999;
+    line-height: 32rpx;
+}
+
+.kq-coupon .item.none {
+    text-align: center;
+    line-height: 160rpx;
+    font-size: 30rpx;
+}

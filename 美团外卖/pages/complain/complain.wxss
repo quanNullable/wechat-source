@@ -1,0 +1,47 @@
+.red {
+    color: #FB4E44;
+}
+
+.order-info {
+    background: #fff;
+    margin: 20rpx 0;
+    padding: 15rpx 30rpx;
+    font-size: 28rpx;
+}
+
+.order-info-item {
+    display: flex;
+    height: 40rpx;
+    line-height: 40rpx;
+    padding: 15rpx 0;
+}
+
+.order-info-name {
+    width: 160rpx;
+    color: #999;
+}
+
+.order-info-dtl {
+    flex: 1;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.complain-sec {
+    margin-top: 10rpx;
+    background: #fff;
+    font-size: 28rpx;
+    padding: 30rpx;
+}
+
+.complain {
+    padding: 20rpx;
+    border: 1rpx solid #ccc;
+    background: #FAFAFA;
+}
+
+.complain-text {
+    line-height: 32rpx;
+}

@@ -1,0 +1,25 @@
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<scroll-view bindscrolltolower="onScrollEnd" class="city-module_list" hidden="{{!mLoaded}}" scrollIntoView="{{mCurrentV}}" scrollY="true" style="top:0rpx" wx:if="{{!isSearch}}">
+    <block wx:for="{{mKeys}}" wx:for-item="mkey" wx:key="{{index}}">
+        <view class="city-module_type" data-section="{{mkey}}" id="{{mkey}}">{{mkey}}</view>
+        <view class="city-module_items" wx:for="{{allGroup[mkey]}}" wx:for-index="index2" wx:key="{{index2}}">
+            <view bindtap="onSelect" class="city-module_name" data-cn="{{item['cn']}}" data-code="{{item['code']}}" data-country="{{item['country']}}">
+                <text>{{item['cn']}}</text>
+                <text style="margin-left: 20rpx;color: #999;" wx:if="{{IScountry}}">+{{item['code']}}</text>
+            </view>
+        </view>
+    </block>
+</scroll-view>
+<view class="city-module" hidden="{{!mLoaded}}" wx:if="{{!isSearch}}">
+    <view class="city-module_letter">
+        <view bindtap="onScrollView" data-value="{{item}}" wx:for="{{mKeys}}" wx:key="{{index}}">
+            <text bindtap="onScrollView" class="city-module_letter-item1" data-value="{{item}}">{{item}}</text>
+        </view>
+    </view>
+</view>
+<view>
+    <loading wx:if="{{mLoading['isLoading']}}">{{mLoading['message']}}</loading>
+</view>

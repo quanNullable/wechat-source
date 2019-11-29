@@ -1,0 +1,83 @@
+.tip-bot {
+    position: fixed;
+    left: 0;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    z-index: 3002;
+    transition: all ease-in-out 300ms;
+    transform: translate3d(0,100%,0);
+}
+
+.tip-bot.active {
+    transform: translate3d(0,0,0);
+}
+
+.cui-hd {
+    background: rgba(40,56,71,0.95);
+    color: #fff;
+    font-size: 34rpx;
+    display: table;
+    width: 100%;
+    padding: 16rpx 0;
+    height: 56rpx;
+    overflow: hidden;
+    min-width: 640rpx;
+}
+
+.cui-hd .cell {
+    display: table-cell;
+    line-height: 60rpx;
+    text-align: center;
+}
+
+.cui-hd .cancel-btn,.cui-hd .ok-btn {
+    width: 20%;
+}
+
+.cui-hd .cancel-btn {
+    padding-left: 30rpx;
+    text-align: left;
+}
+
+.cui-hd .ok-btn {
+    padding-right: 30rpx;
+    text-align: right;
+}
+
+.cui-hd .center-tit {
+    font-size: 28rpx;
+}
+
+.cui-hd .center-tit .clean {
+    display: inline-block;
+    width: 160rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.2);
+    font-size: 24rpx;
+    color: rgba(255,255,255,0.6);
+}
+
+.cui-bg {
+    background: #f4f4f4;
+    overflow: hidden;
+    height: 880rpx;
+}
+
+.backmask {
+    transition: all 300ms ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+}
+
+.backmask.active {
+    z-index: 3000;
+    background-color: rgba(0,0,0,0.5);
+}

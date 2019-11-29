@@ -1,0 +1,321 @@
+@import "../../components/no-net/no-net.wxss";
+
+.order-item {
+    margin-top: 20rpx;
+    background-color: #fff;
+}
+
+.order-inner {
+    margin-left: 30rpx;
+}
+
+.order-header {
+    height: 128rpx;
+    border-bottom: 1rpx solid #e4e4e4;
+}
+
+.order-info-list {
+    flex: 1;
+}
+
+.order-header,.order-info,.handle-btn,.cancel-order-btn,.confirm-order-btn,.no-order,.create-order {
+    display: flex;
+    align-items: center;
+}
+
+.shop-name {
+    font-size: 32rpx;
+    color: #333;
+    max-width: 380rpx;
+    flex: 0 1 auto;
+    font-weight: bold;
+}
+
+.arrow-icon {
+    margin-left: 20rpx;
+    width: 12rpx;
+    height: 22rpx;
+}
+
+.shop-name-arrow {
+    margin-right: auto;
+}
+
+.order-status {
+    color: #666;
+    font-size: 28rpx;
+}
+
+.order-status-highlight {
+    color: #ffb000;
+}
+
+.shipping {
+    color: #ffb000;
+}
+
+.order-info {
+    padding: 20rpx 0;
+}
+
+.shop-img {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 14rpx;
+    border: 1rpx solid #E4E4E4;
+}
+
+.order-info-list {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.order-info-list .arrow-icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.order-price {
+    font-size: 24rpx;
+    color: #666666;
+    text-align: right;
+    margin-top: 10rpx;
+}
+
+.order-price .bold {
+    font-weight: bold;
+    color: #151515;
+}
+
+.order-date-time {
+    margin: 7rpx 0 8rpx 0;
+}
+
+.order-date {
+    margin-right: 10rpx;
+}
+
+.mr20 {
+    margin-right: 20rpx;
+}
+
+.handle-btn {
+    justify-content: flex-end;
+    height: 110rpx;
+    border-top: 1rpx solid #e4e4e4;
+}
+
+.cancel-order-btn,.confirm-order-btn {
+    width: 170rpx;
+    height: 70rpx;
+    justify-content: center;
+    border-radius: 2rpx;
+    color: #333;
+    font-size: 28rpx;
+    background-color: #ffd161;
+}
+
+.cancel-order-btn {
+    border: 2rpx solid #e4e4e4;
+}
+
+.confirm-order-btn {
+    background-color: #ffd161;
+    border: 2rpx solid #ffd161;
+    width: 170rpx;
+}
+
+.order-btn-holo {
+    width: 170rpx;
+    height: 70rpx;
+    border-radius: 4rpx;
+    color: #333;
+    font-size: 28rpx;
+    border: 2rpx solid #dedede;
+}
+
+.no-order {
+    width: 297rpx;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.no-order-img {
+    width: 250rpx;
+    height: 231rpx;
+}
+
+.create-order {
+    width: 240rpx;
+    height: 68rpx;
+    background-color: #ffd161;
+    font-size: 32rpx;
+    color: #333;
+    justify-content: center;
+}
+
+.no-order-txt {
+    font-size: 28rpx;
+    color: #666;
+    margin: 31rpx 0 40rpx 0;
+}
+
+.search-empty {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 32rpx;
+}
+
+.search-empty-icon {
+    width: 237rpx;
+    height: 252rpx;
+    margin: 246rpx 0 30rpx;
+}
+
+.btn-login {
+    font-size: 28rpx;
+    margin-top: 30rpx;
+    height: 64rpx;
+    width: 120rpx;
+    background: #ffd161;
+    color: #333;
+    border-radius: 0;
+}
+
+.coupon-modal {
+    width: 560rpx;
+    position: fixed;
+    top: 280rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4000;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 50rpx 40rpx 0 50rpx;
+    border-radius: 15rpx;
+    flex-direction: column;
+}
+
+.result-content {
+    text-align: center;
+    width: 100%;
+}
+
+.seperate-line {
+    width: 100%;
+    height: 1rpx;
+    background-color: #dadada;
+}
+
+.result-content-img {
+    width: 182rpx;
+    height: 182rpx;
+}
+
+.result-content-title {
+    font-size: 36rpx;
+}
+
+.result-content-tip {
+    font-size: 24rpx;
+    margin: 30rpx 0;
+}
+
+.result-content-title,.result-content-tip {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.operate-btn {
+    padding: 30rpx 0;
+    font-size: 30rpx;
+}
+
+.order-button-wrap {
+    padding: 18rpx 30rpx;
+    border-top: 1px solid #e0e0e0;
+    overflow: hidden;
+}
+
+.order-button-yellow {
+    float: right;
+    background: #ffd161;
+    color: #333;
+    font-size: 28rpx;
+    line-height: 64rpx;
+    width: 200rpx;
+    text-align: center;
+    margin-left: 30rpx;
+    border-radius: 4rpx;
+}
+
+.order-arrow-right {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAWCAYAAAD0OH0aAAAABGdBTUEAALGPC/xhBQAAAMZJREFUOBGV00EOwiAQBVAg7F3pJfQG7uwJuuGQXeDKbd30BuopXHgCgn+aSmxgBjrJhJD+R0gn6GEYbkqpHbp3zr2ximXwlcJn9Ai8F9P4SKDXWr+wntBVpBFSdDLQPcZ4xPaJvnDXm8EWlEArWoEWlIEaKgIJsYBDIiigiQYnlrU2HYpZxbQpKe/9IYQwLgN9INOxoBSm6RcBF6ZbZEAKZ6AWXoGWcAKt4RlsCRMw+M/Xv4fTcQ+HwlQG4Q/WCc2+Mgr+6gsMKcAEqePS+AAAAABJRU5ErkJggg==');
+}
+
+.order-food-item {
+    margin-left: 94rpx;
+    margin-right: 20rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #666666;
+    margin-bottom: 10rpx;
+}
+
+.food-item-count {
+    float: right;
+}
+
+.confirm-order-hover {
+    background-color: #fa9700;
+    border: 2rpx solid #fa9700;
+}
+
+.paotui-entrance {
+    position: fixed;
+    bottom: 50rpx;
+    right: 30rpx;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 15px 0 rgba(0,0,0,0.16);
+}
+
+.paotui-icon {
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    top: 14rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.paotui-txt {
+    width: 90rpx;
+    height: 26rpx;
+    position: absolute;
+    bottom: 28rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}

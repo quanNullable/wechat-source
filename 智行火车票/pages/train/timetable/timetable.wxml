@@ -1,0 +1,24 @@
+<view>
+    <view class="checi-tab tit">
+        <view class="item">
+            <view class="fl station" style="width: 30%;">车站</view>
+            <view class="fl to" style="width: 25%;">到达</view>
+            <view class="fl from" style="width: 25%;">出发</view>
+            <view class="fl time" style="width: 20%;">停留</view>
+        </view>
+    </view>
+    <view class="main-box white" style="top: 56rpx;">
+        <view class="checi-tab list">
+            <scroll-view scrollY="true">
+                <view class="s-wrapper">
+                    <view class="item {{index?index==stopList.length-1?'zhong':'guo':'shi'}} {{(fromStation==stop.station_name||toStation==stop.station_name)&&'current'}}" wx:for="{{stopList}}" wx:for-item="stop" wx:key="station_name">
+                        <view class="fl station" style="width: 30%;">{{stop.station_name}}</view>
+                        <view class="fl to" style="width: 25%;">{{stop.arrive_time}}</view>
+                        <view class="fl from" style="width: 25%;">{{stop.start_time}}</view>
+                        <view class="fl time" style="width: 20%;">{{stop.stop_time?stop.stop_time+'分钟':'----'}}</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>

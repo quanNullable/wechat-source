@@ -1,0 +1,8 @@
+.score-star {
+    margin-right: 6rpx;
+    display: inline-block;
+}
+
+.score-star-last {
+    margin-right: 0;
+}

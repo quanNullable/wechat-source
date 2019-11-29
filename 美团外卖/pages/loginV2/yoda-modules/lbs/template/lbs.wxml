@@ -1,0 +1,17 @@
+<template name="popslbs">
+    <view class="popslbs" wx:if="{{show}}">
+        <view class="titleBar">
+            <text>{{hint}}</text>
+            <button bindtap="bindChange" class="change" plain="true" style="color:{{changeColor}}; background-color: {{changeBgColor}}" type="default">{{changeText}}</button>
+        </view>
+        <scroll-view class="lbsWrapper" enableBackToTop="true" scrollY="true">
+            <radio-group bindchange="bindRadioChange" class="radio-group">
+                <label class="radio" wx:for="{{items}}" wx:key="key">
+                    <radio checked="{{item.checked}}" value="{{item.geohash}}"></radio>{{item.locationDesc}} </label>
+            </radio-group>
+        </scroll-view>
+        <view class="btnWrapper">
+            <button bindtap="bindVerify" class="verify" disabled="{{verifyDisa}}" style="color:{{verifyButColor}}; background-color: {{verifyButBgColor}};opacity: {{opacity}}" type="default">{{verifyButText}}</button>
+        </view>
+    </view>
+</template>

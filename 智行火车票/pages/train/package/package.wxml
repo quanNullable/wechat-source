@@ -1,0 +1,31 @@
+<import src="../common/components/tip-bot/tip-bot-template.wxml"></import>
+<import src="../common/components/toast/toast.wxml"></import>
+<view>
+    <view class="train-list package mt10">
+        <view bindtap="choosePkg" class="item {{selectPackage.PackageID==pkg.PackageID?'current':''}}" data-index="{{index}}" style="border-bottom-width: {{!pkg.PackagePrice?'0':'1px'}}" wx:for="{{packageList}}" wx:for-item="pkg" wx:key="PackageID">
+            <view class="icon icon-radio"></view>
+            <view catchtap="showDetail" data-index="{{index}}" style="position:absolute;top:0;right:0;width:15%;height:80%;display:{{pkg.PackagePrice==0?'none':'block'}}">
+                <view class="icon icon-que">?</view>
+            </view>
+            <view>{{pkg.PackageTitle}}：<text class="jian" style="width: auto !important; padding: 0 2px !important">{{pkg.PackageTag}}</text>
+                <view class="train-price" hidden="{{!pkg.PackagePrice}}">
+                    <text class="dfn">¥</text>
+                    <text class="price">{{pkg.PackagePrice}}</text>
+                    <text class="pricesmall">/份</text>
+                </view>
+            </view>
+            <view class="cpinkgray">{{pkg.PackageSubTitle}}</view>
+        </view>
+    </view>
+    <template is="package-12306" data="{{showType:showType,login12306Name:login12306Name,login12306Pas:login12306Pas,isWorkTime:isWorkTime}}"></template>
+    <view bindtap="hideBackDrop" class="backmask {{showType=='login-12306'?'active':''}}"></view>
+    <template is="train-toast" data="{{trainToast:trainToast}}"></template>
+</view>
+<view bindtap="hideDetail" class="tip-txt {{isFilterViewAnimation?'active':''}}" hidden="{{showChooseType!='detail'}}">
+    <view class="wrapper">
+        <view class="pkg-detail">
+            <view class="cblue">{{xTitle}}</view>
+            <view class="p" wx:for="{{xDesc}}" wx:key="index">{{item}}</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,11 @@
+<template name="privacy-template">
+    <view class="preview-block" wx:if="{{support}}">
+        <view class="privacy-content">
+            <view class="privacy-header">
+                <image class="privacy-icon" src="{{icon}}"></image> {{title}} <image bindtap="onTapPrivacyServiceHelp" class="privacy-help-icon" src="/img/icons/privacy-help-icon.png"></image>
+            </view>
+            <view class="privacy-desc"> {{using?openTitle:offTitle}} </view>
+            <view bindtap="onTapSwitchPrivacyService" class="privacy-switch {{using?'on':''}}"></view>
+        </view>
+    </view>
+</template>

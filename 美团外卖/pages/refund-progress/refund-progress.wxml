@@ -1,0 +1,46 @@
+<import src="../../components/privacy_protection/privacy_protection.wxml"></import>
+<view class="page-box">
+    <include src="../base.wxml"></include>
+    <view class="page-container" wx:for="{{refund_record_list}}">
+        <view class="{{refund_record_list.length>1?'order-info order-info-multi':'order-info'}}">
+            <view class="order-info-item">
+                <view class="order-info-name">商家名称</view>
+                <view class="order-info-dtl">{{item.poi_name}}</view>
+            </view>
+            <view class="order-info-item">
+                <view class="order-info-name">订单号码</view>
+                <view class="order-info-dtl">{{item.order_view_id}}</view>
+            </view>
+            <view class="order-info-item">
+                <view class="order-info-name">退款金额</view>
+                <view class="order-info-dtl red">￥{{item.refund_price}}</view>
+            </view>
+            <view class="order-info-item order-insurance" wx:if="{{item.insurance_refund.show_insurance}}">
+                <view class="order-info-name">准时保退款</view>
+                <view class="order-info-dtl">￥{{item.insurance_refund.insurance_refund_price}}</view>
+                <view class="insurance-text" wx:if="{{item.insurance_refund.insurance_refund_status}}">{{item.insurance_refund.insurance_refund_status}}</view>
+            </view>
+            <view class="order-info-multi-line" wx:if="{{refund_record_list.length>1}}"></view>
+        </view>
+        <view class="refund-info">
+            <view class="refund-info-title">退款流程</view>
+            <view class="refund-list">
+                <view class="refund-item refund-item-bdr" wx:for="{{item.refund_status_list}}" wx:for-index="statusIndex" wx:for-item="statusItem">
+                    <view class="{{statusIndex==0?'refund-item-text refund-item-text-fst':'refund-item-text'}}">{{statusItem.main_desc}}</view>
+                    <view class="refund-item-dtl" wx:if="{{statusItem.words.length==0}}">{{statusItem.sub_desc}}</view>
+                    <view class="refund-item-dtl" wx:if="{{statusItem.words.length!=0}}">
+                        <block wx:for="{{statusItem.words}}" wx:for-item="word">
+                            <view class="refund-item-txt" wx:if="{{!word.keyword}}">{{word.word}}</view>
+                            <view bindtap="goToRefund" class="refund-item-txt refund-item-highlight" data-refund_no="{{word.refund_no}}" wx:if="{{!!word.keyword}}">{{word.keyword}}</view>
+                        </block>
+                    </view>
+                    <view class="refund-item-time">{{statusItem.status_view_time}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="oprt-wrap">
+        <view bindtap="onClickButtons" class="oprt-btn" data-code="{{item.code}}" wx:for="{{result.button_list}}"> {{item.title}} </view>
+    </view>
+    <template is="privacy_protection" data="{{...privacy}}"></template>
+</view>

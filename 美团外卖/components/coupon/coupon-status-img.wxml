@@ -1,0 +1,7 @@
+<template name="coupon-status-img">
+    <image class="coupon-status-img" src="/img/coupon/status-steal.png" wx:if="{{coupon.steal_status===1}}"></image>
+    <image class="coupon-status-img" src="/img/coupon/status-stolen.png" wx:elif="{{coupon.steal_status===2}}"></image>
+    <image class="coupon-status-img" src="/img/coupon/status-used.png" wx:elif="{{coupon.status===2}}"></image>
+    <image class="coupon-status-img" src="/img/coupon/status-expired.png" wx:elif="{{coupon.status===3}}"></image>
+    <image class="coupon-status-img" src="/img/coupon/status-freezed.png" wx:elif="{{coupon.status===4}}"></image>
+</template>

@@ -1,0 +1,1 @@
+<map bindtap="onClickMap" class="order-map" id="map" includePoints="{{mapdata.markers}}" latitude="{{mapdata.latitude}}" longitude="{{mapdata.longitude}}" markers="{{mapdata.markers}}" scale="{{mapdata.scale}}"></map>

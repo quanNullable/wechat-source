@@ -1,0 +1,52 @@
+<template name="filtratetime_tpl">
+    <view class="bus-filtrate-body">
+        <view style="background-color: #31404F; height:60rpx;">
+            <view bindtap="onCanceltime" class="coupons-cancel">取消</view>
+            <view bindtap="onConfirmtime" class="coupons-done">确认</view>
+        </view>
+        <view bindtap="selectalltime" class="b_border row item">
+            <view style="padding-top: 10rpx; padding-bottom: 10rpx;">
+                <text style="font-size: 30rpx; color: #0000ff;">不限</text>
+            </view>
+            <view class="column-1 check-view" data-type="check">
+                <icon class="{{alltime?'icon-checked':'icon-check'}}" data-type="check"></icon>
+            </view>
+        </view>
+        <scroll-view scrollY="true" style="height:260rpx;">
+            <view bindtap="selecttime" class="b_border row item" data-value="{{item['tid']}}" wx:for="{{data}}" wx:key="index">
+                <view style="padding-top: 10rpx; padding-bottom: 10rpx;">
+                    <text class="rowtext">{{item['time']}}</text>
+                </view>
+                <view class="column-1 check-view" data-type="check">
+                    <icon class="{{item['status']?'icon-checked':'icon-check'}}" data-type="check"></icon>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</template>
+<template name="filtratestation_tpl">
+    <view class="bus-filtrate-body">
+        <view style="background-color: #31404F; height:60rpx;">
+            <view bindtap="onCancelstation" class="coupons-cancel">取消</view>
+            <view bindtap="onConfirmstation" class="coupons-done">确认</view>
+        </view>
+        <view bindtap="selectallstation" class="b_border row item">
+            <view style="padding-top: 10rpx; padding-bottom: 10rpx;">
+                <text style="font-size: 30rpx; color: #0000ff;">不限</text>
+            </view>
+            <view class="column-1 check-view" data-type="check">
+                <icon class="{{allstation?'icon-checked':'icon-check'}}" data-type="check"></icon>
+            </view>
+        </view>
+        <scroll-view scrollY="true" style="height:260rpx;">
+            <view bindtap="selectstation" class="b_border row item" data-value="{{item['sid']}}" wx:for="{{data}}" wx:key="index">
+                <view style="padding-top: 10rpx; padding-bottom: 10rpx;">
+                    <text class="rowtext">{{item['name']}}</text>
+                </view>
+                <view class="column-1 check-view" data-type="check">
+                    <icon class="{{item['status']?'icon-checked':'icon-check'}}" data-type="check"></icon>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</template>

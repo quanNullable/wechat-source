@@ -1,0 +1,41 @@
+.poi-item-occupied {
+    display: flex;
+    padding: 30rpx 20rpx 30rpx 20rpx;
+    height: 120rpx;
+    background-color: #fff;
+}
+
+.poi-img-occupied {
+    width: 152rpx;
+    height: 114rpx;
+}
+
+.poi-rows-occupied {
+    flex: 1 1 auto;
+    margin-left: 15rpx;
+}
+
+.poi-row-occupied {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+}
+
+.row-left-occupied {
+    width: 300rpx;
+    height: 30rpx;
+}
+
+.row-right-occupied {
+    width: 100rpx;
+    height: 30rpx;
+}
+
+.poi-act-occupied {
+    width: 380rpx;
+    height: 30rpx;
+}
+
+.occupied-color {
+    background-color: #F4F4F4;
+}

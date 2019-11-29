@@ -1,0 +1,5 @@
+<view class="web-view-component">
+    <slot name="before" wx:if="{{showSlot}}"></slot>
+    <web-view bindmessage="onMessageWebview" src="{{url}}" wx:if="{{showWebView}}"></web-view>
+    <slot name="after" wx:if="{{showSlot}}"></slot>
+</view>

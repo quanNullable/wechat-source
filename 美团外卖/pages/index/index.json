@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "美团外卖",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark"
+}

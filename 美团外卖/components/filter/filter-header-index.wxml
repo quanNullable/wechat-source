@@ -1,0 +1,12 @@
+<template name="filter-header-index">
+    <view class="filter-header">
+        <view bindtap="filterOnClickSelectSort" class="filter-complex-sort flex-center {{sortTypeCode!==1&&sortTypeCode!==2?'filter-complex-sort-active':''}}"> {{sortName}} <image class="filter-arrow-icon filter-select-icon" src="/img/icons/{{activeTab==='sort'?'filter-up':'filter-down'}}.png"></image>
+        </view>
+        <view bindtap="filterOnClickSortType" class="filter-complex-sort flex-center {{sortTypeCode===1?'filter-complex-sort-active':''}}" data-id="1" data-name="综合排序"> 销量最高 </view>
+        <view bindtap="filterOnClickSortType" class="filter-complex-sort filter-br-light flex-center {{sortTypeCode===2?'filter-complex-sort-active':''}}" data-id="2" data-name="综合排序"> 速度最快 </view>
+        <view bindtap="filterOnClickSelectFilter" class="filter-select flex-center {{selectCount>0?'filter-complex-sort-active':''}}" wx:if="{{activityFilterList.length>0}}"> 筛选 <view class="filter-select-count filter-icon-count flex-center" wx:if="{{selectCount>0&&activeTab!=='filter'}}"> {{selectCount}} </view>
+            <image class="filter-select-icon filter-funnel-icon" src="/img/icons/funnel.png" wx:else></image>
+        </view>
+        <view class="filter-select-triangle" wx:if="{{activeTab==='filter'}}"></view>
+    </view>
+</template>

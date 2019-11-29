@@ -1,0 +1,16 @@
+<template name="booking-speed-slider">
+    <view class="speed-open">
+        <view class="tit strong">抢票速度</view>
+        <view catchtouchend="{{touchendHandlerFn}}" catchtouchmove="{{touchmoveHandlerFn}}" class="speed-open-bd">
+            <view class="speed-type">
+                <view class="type {{itemIndex===index?'cur':''}}" wx:for="{{items}}" wx:for-index="itemIndex" wx:key="itemIndex">{{item.title}}</view>
+            </view>
+            <view class="speed-line">
+                <view class="speed-line-blue" style="{{speedLineStyle}}">
+                    <view class="speed-line-btn"></view>
+                </view>
+            </view>
+        </view>
+        <view class="speen-txt">加速包<text>{{speedPkgNums}}</text>个 共 {{costPrice*speedPkgNums}}元 x {{pasNums}}人</view>
+    </view>
+</template>

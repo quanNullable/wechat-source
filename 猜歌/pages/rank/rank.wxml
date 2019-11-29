@@ -1,0 +1,30 @@
+<view class="swiper-tab">
+    <view bindtap="clickTab" class="tab-list {{currentTab==0?'on':''}}" data-current="0">荣誉榜</view>
+    <view bindtap="clickTab" class="tab-list {{currentTab==1?'on':''}}" data-current="1">毅力榜</view>
+</view>
+<swiper bindchange="swiperTab" class="swiper-box" current="{{currentTab}}" duration="300">
+    <swiper-item>
+        <scroll-view class="container" scrollY="true">
+            <view class="rank-list">
+                <view class="rank-item" wx:for="{{win}}">
+                    <view class="num">{{index+1}}</view>
+                    <image class="avatar" src="{{item.avatar_url}}"></image>
+                    <view class="name">{{item.nick_name}}</view>
+                    <view class="gift">成功<text>{{item.limit}}</text>次</view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+    <swiper-item>
+        <scroll-view class="container" scrollY="true">
+            <view class="rank-list">
+                <view class="rank-item" wx:for="{{challenge}}">
+                    <view class="num">{{index+1}}</view>
+                    <image class="avatar" src="{{item.avatar_url}}"></image>
+                    <view class="name">{{item.nick_name}}</view>
+                    <view class="gift">挑战<text>{{item.limit}}</text>次</view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+</swiper>

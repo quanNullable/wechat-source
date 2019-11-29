@@ -1,0 +1,21 @@
+<view class="page-container">
+    <include src="../base.wxml"></include>
+    <view class="verify-phone-desc"> {{verifyPhoneData.wm_verify_user_type===2?verifyPhoneData.feedback_call:'为保证送餐员能联系到您，请验证您的账户绑定手机号'}} </view>
+    <view class="ui-form-block">
+        <view class="ui-form-item">
+            <view class="verify-phone-bind"> 手机号： {{verifyPhoneData.bind_phone}} </view>
+            <button bindconfirm="onClickVerifyPhoneCheck" bindtap="{{verifyPhoneSeconds?'':'onClickVerifyPhoneSend'}}" class="ui-btn verify-phone-send {{verifyPhoneSeconds?'ui-btn-disabled verify-phone-send-disabled':''}}" data-sendtype="{{verifyPhoneData.wm_verify_user_type===2?2:1}}" disabled="{{verifyPhoneSeconds}}"> {{verifyPhoneSeconds?'重新获取（'+verifyPhoneSeconds+'）':'发送验证码'}} </button>
+        </view>
+        <view class="ui-form-item">
+            <input bindinput="onInputVerifyPhoneCode" class="ui-form-input verify-phone-input" focus="{{verifyPhoneInputFocus}}" placeholder="请输入收到的验证码" type="number" value="{{verifyPhoneCode}}"></input>
+            <view bindtap="onClickVerifyPhoneClear" class="ui-form-input-clear" hidden="{{!verifyPhoneCode}}"></view>
+        </view>
+    </view>
+    <button bindtap="{{verifyPhoneCode?'onClickVerifyPhoneCheck':''}}" class="ui-btn verify-phone-submit {{verifyPhoneCode?'':'ui-btn-disabled'}}" disabled="{{!verifyPhoneCode}}">提交</button>
+    <view class="verify-phone-call" wx:if="{{verifyPhoneData.wm_verify_user_type===3}}"> 收不到短信? <view class="ui-inline verify-phone-call-strong {{!verifyPhoneCallSeconds?'verify-phone-call-underline':''}}"> {{verifyPhoneCallSeconds?'语音验证码（'+verifyPhoneCallSeconds+'s重新获取）':'点击获取语音验证码'}} </view>
+        <view bindtap="{{verifyPhoneCallSeconds?'':'onClickVerifyPhoneCall'}}" class="verify-phone-call-tap" data-sendtype="2"></view>
+        <block wx:if="{{verifyPhoneData.contact_phone_verifycode_switch_for_order===1&&verifyPhoneContactShow}}">
+            <view bindtap="onClickVerifyPhoneContact" class="verify-phone-contact-tap"></view>
+            <view class="verify-phone-contact-text"> {{verifyPhoneData.feedback_call}} </view> 仍未收到验证码吗? 拨打 <view class="ui-inline verify-phone-call-strong verify-phone-call-underline"> 查询热线 </view> 快速获取吧（{{verifyPhoneData.customer_service_time}}提供服务） </block>
+    </view>
+</view>

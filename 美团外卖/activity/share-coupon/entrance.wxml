@@ -1,0 +1,16 @@
+<template name="coupon-entrance">
+    <view wx:if="{{share_switch&&!activitySwitch}}">
+        <image bindtap="onClickCouponEntrance" class="coupon-entrance-icon" mode="widthFix" src="{{share_tip.share_icon}}" wx:if="{{share_switch&&!activitySwitch}}"></image>
+        <view bindtap="onCouponPopCancle" class="coupon-popup-bg" data-type="cancle" wx:if="{{share_coupon_pop}}">
+            <view class="coupon-popup">
+                <image class="coupon-title" src="{{share_tip.icon?share_tip.icon:'/activity/share-coupon/coupon_tit.png'}}"></image>
+                <view class="coupon-title-1">{{share_tip.title}}</view>
+                <view class="coupon-title-2">{{share_tip.desc}}</view>
+                <view class="coupon-popup-bottom">
+                    <view bindtap="onCouponPopCancle" class="coupon-button-left" data-type="cancle">取消</view>
+                    <button class="coupon-button-right" openType="share">{{share_tip.button_name}}</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

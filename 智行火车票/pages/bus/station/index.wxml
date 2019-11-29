@@ -1,0 +1,52 @@
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<view class="white_bg">
+    <view class="search-module">
+        <icon class="icon-search search-pic"></icon>
+        <input bindinput="onInput" class="search-module_input {{isSearch?'margin_r100':''}}" placeholder="中文/拼音/首字母" placeholderClass="search-module_input_focus" value="{{mSearch}}"></input>
+        <text bindtap="onCancel" class="search-module_cancel" wx:if="{{isSearch}}">取消</text>
+    </view>
+    <scroll-view class="city-module_list" scrollY="true" style="top:110rpx" wx:if="{{isSearch}}">
+        <view bindtap="onSelect2" class="search-list_item" data-name="{{item.nm}}" wx:for="{{mSearchList}}" wx:key="{{index}}">
+            <text bindtap="cityTap" class="city-module_name" data-name="{{item['nm']}}" data-row="{{index}}">{{item.nm}}</text>
+        </view>
+    </scroll-view>
+    <block wx:else>
+        <scroll-view bindscrolltolower="onScrollEnd" class="city-module_list" hidden="{{!mLoaded}}" scrollIntoView="{{mCurrentV}}" scrollY="true" style="top:110rpx">
+            <view class="city-module_type" id="positon" wx:if="{{mCurrent['nm']}}">当前</view>
+            <view class="city-module_items {{isFrom&&mFrom==mCurrent['nm']||!isFrom&&mTo==mCurrent['nm']?'current':''}}" wx:if="{{mCurrent['nm']}}">
+                <text bindtap="onSelectLoc" class="city-module_name1" data-name="{{mCurrent['nm']}}">{{mCurrent['nm']}}</text>
+            </view>
+            <block wx:if="{{mHisList&&mHisList.length>0}}">
+                <view class="city-module_type" id="his">历史选择</view>
+                <view class="city-module_items">
+                    <text bindtap="onSelectHis" class="city-module_name1 {{isFrom&&mFrom==item||!isFrom&&mTo==item?'current':''}}" data-name="{{item}}" wx:for="{{mHisList}}" wx:key="{{index}}">{{item}}</text>
+                </view>
+            </block>
+            <view class="city-module_type" id="hot" wx:if="{{mHotList&&mHotList.length>0}}">热门城市</view>
+            <view class="city-module_items">
+                <text bindtap="onSelectHot" class="city-module_name1 {{isFrom&&mFrom==item.nm||!isFrom&&mTo==item.nm?'current':''}}" data-name="{{item.nm}}" wx:for="{{mHotList}}" wx:key="{{index}}">{{item.nm}}</text>
+            </view>
+            <block wx:for="{{mKeys}}" wx:for-item="mkey" wx:key="{{index}}">
+                <view class="city-module_type" data-section="{{mkey}}" id="{{mkey}}">{{mkey}}</view>
+                <view class="city-module_items" wx:for="{{mStations[mkey]}}" wx:for-index="index2" wx:key="{{index2}}">
+                    <text bindtap="onSelect" class="city-module_name {{isFrom&&mFrom==item.nm||!isFrom&&mTo==item.nm?'current':''}}" data-name="{{item['nm']}}">{{item['nm']}}</text>
+                </view>
+            </block>
+        </scroll-view>
+        <view class="city-module" hidden="{{!mLoaded}}">
+            <view class="city-module_letter">
+                <text bindtap="onScrollView" class="city-module_letter-item1" data-value="his">历史</text>
+                <text bindtap="onScrollView" class="city-module_letter-item1" data-value="hot">热门</text>
+                <view bindtap="onScrollView" data-value="{{item}}" wx:for="{{mSrcKeys}}" wx:key="{{index}}">
+                    <text bindtap="onScrollView" class="city-module_letter-item1" data-value="{{item}}">{{item}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<view>
+    <loading wx:if="{{mLoading['isLoading']}}">{{mLoading['message']}}</loading>
+</view>

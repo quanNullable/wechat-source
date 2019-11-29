@@ -1,0 +1,27 @@
+<template name="shiprcon">
+    <view class="order-rcon">
+        <view class="order-price {{item.isCancel?'order-cancel':''}}">
+            <text class="price-yen">¥</text>
+            <text class="price-num">{{item['OrderTotalPrice']}}</text>
+        </view>
+        <view class="order-status {{item.isCancel?'order-cancel':''}}">{{item['OrderStatusName']}}</view>
+    </view>
+</template>
+<template name="busrcon">
+    <view class="order-rcon">
+        <view class="order-price {{item.isCancel?'order-cancel':''}}">
+            <text class="price-yen">¥</text>
+            <text class="price-num">{{item['OrderTotalPrice']}}</text>
+        </view>
+        <view class="order-status {{item.isCancel?'order-cancel':''}}">{{item['OrderStatusName']}}</view>
+    </view>
+</template>
+<template name="rcon">
+    <view class="order-rcon train">
+        <view class="order-price {{!item.isValid?'order-cancel':'order-valid'}}">
+            <text class="price-yen">¥</text>
+            <text class="price-num">{{item.orderTotalPrice}}</text>
+        </view>
+        <view class="order-status {{!item.isValid?'order-cancel':'order-valid'}}">{{item.statusName}}</view>
+    </view>
+</template>

@@ -1,0 +1,55 @@
+<view class="page-register12306">
+    <view class="step-account" wx:if="{{step===0}}">
+        <view class="train-list">
+            <view class="item add-box">
+                <view class="label">姓名</view>
+                <input bindinput="inputIDName" placeholder="请填写真实姓名，最多20个字" type="text" value="{{registerInfo.IDName}}"></input>
+            </view>
+            <view class="item add-box">
+                <view class="label">证件号</view>
+                <input bindinput="inputIDNumber" placeholder="请输入18位身份证号码" type="text" value="{{registerInfo.IDNumber}}"></input>
+            </view>
+            <view class="item add-box">
+                <view class="label">手机号</view>
+                <input bindinput="inputMobile" placeholder="请输入11位手机号码" type="number" value="{{registerInfo.mobile}}"></input>
+            </view>
+            <view class="btns">
+                <button bindtap="submitIDInfo" class="btn btn-primary" hoverClass="btn-primary_hover" id="c_train_wx_12306_account">下一步</button>
+            </view>
+        </view>
+    </view>
+    <view class="step-mobile" wx:if="{{step===1}}">
+        <view bindtap="setSMSToClipboard" class="tips-sms">手机  <text class="color-orange">{{registerInfo.mobile}}</text>  发送短信  “<text class="color-orange">999</text>”  至12306。获取并填写您的专属验证码。每天最多发送三次哦。
+        </view>
+        <view class="train-list">
+            <view class="item add-box">
+                <view class="label">验证码</view>
+                <input bindinput="inputVerifyCode" placeholder="请输入手机验证码" type="text" value="{{registerInfo.verifyCode}}"></input>
+            </view>
+            <view class="btns">
+                <button bindtap="submitVerifyCode" class="btn btn-primary" hoverClass="btn-primary_hover" id="c_train_wx_12306_code">下一步</button>
+            </view>
+        </view>
+    </view>
+    <view class="step-success" wx:if="{{step===2}}">
+        <view class="tips-success-wrapper">
+            <view class="css-tick-wrapper">
+                <view class="css-tick"></view>
+            </view>
+            <view class="tips-success_row1">您的12306帐号</view>
+            <view class="tips-success_row2">已注册成功</view>
+        </view>
+        <view catchtouchend="setAccountToClipboard" catchtouchstart="onAccountTouchStart" class="box-account {{isAccountPressing?'account-copied':''}}">
+            <view>
+                <text class="label">帐号</text>    {{registerInfo.accountName}}</view>
+            <view>
+                <text class="label">密码</text>    {{registerInfo.accountPassword}}</view>
+        </view>
+        <view class="btns">
+            <button bindtap="submitLogin" class="btn btn-primary" hoverClass="btn-primary_hover" id="c_train_wx_12306_login">一键登录</button>
+        </view>
+        <view class="tips-account">
+            <text>如需修改帐号和密码，请下载{{firmName}}APP</text>
+        </view>
+    </view>
+</view>

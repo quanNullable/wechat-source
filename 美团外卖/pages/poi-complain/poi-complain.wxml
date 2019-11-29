@@ -1,0 +1,17 @@
+<view class="complaint-preview-box" wx:if="{{!!complaintPreview}}">
+    <include src="../base.wxml"></include>
+    <view class="order-info">
+        <view class="order-info-item">
+            <view class="order-info-name">商家名称</view>
+            <view class="order-info-dtl">{{complaintPreview.poi_name}}</view>
+        </view>
+        <view class="order-info-item">
+            <view class="order-info-name">订单号码</view>
+            <view class="order-info-dtl">{{complaintPreview.order_view_id}}</view>
+        </view>
+    </view>
+    <view class="order-info">
+        <textarea bindinput="onInputCaution" class="caution-textarea" placeholder="请输入您的投诉内容"></textarea>
+    </view>
+    <view bindtap="submitForm" class="submitBtn">提交</view>
+</view>

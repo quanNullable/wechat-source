@@ -1,0 +1,15 @@
+<template name="option-picker">
+    <view class="picker-container picker-arrival-time" wx:if="{{show}}">
+        <view bindtap="hideOption" class="picker-mask"></view>
+        <view class="picker-content">
+            <view class="picker-body">
+                <view class="picker-title">
+                    <image class="eco-icon-pure" src="/img/icons/eco-icon.png"></image>{{tableware_advocate_tip}}</view>
+                <scroll-view class="scroll-content scroll-content-diner" scrollY="true">
+                    <view bindtap="changeDinerOption" class="diner-option-item" data-item="{{item}}" wx:for="{{diners_option}}">{{item.description}}</view>
+                </scroll-view>
+            </view>
+            <view bindtap="hideOption" class="flex-center picker-footer"> 取消 </view>
+        </view>
+    </view>
+</template>

@@ -1,0 +1,175 @@
+<import src="../book/template/tpl_book.wxml"></import>
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<view hidden="{{isFetching}}">
+    <view class="b-b-note white_bg info-panel">
+        <view class="row">
+            <view class="column-1 info-left-panel">
+                <view class="city from-city">{{mLine['start_site_name']}}</view>
+            </view>
+            <view class="column-1 info-right-panel">
+                <view class="city to-city">{{mLine['end_site_name']}}</view>
+            </view>
+            <text class="arr-fromto info-from-to"></text>
+        </view>
+        <view>
+            <text>首班{{mSchedule['beginTime']}} 末班{{mSchedule['endTime']}} {{mSchedule['schedule']}}</text>
+        </view>
+    </view>
+    <view class="white_bg airbus-use-info">
+        <view class="b_border b-b-phonenum row airbus-phone-num" wx:if="{{!!isNeedAddress}}">
+            <view class="column-1">{{!!mLine['is_up_line']?'上车地址':'下车地址'}}</view>
+            <view class="column-4">
+                <input bindinput="onAddressChange" placeholder="请输入具体地址" value="{{mTripInfo['address']}}"></input>
+            </view>
+        </view>
+        <picker bindchange="onTimeChange1" range="{{mTimes}}" value="{{mTime1}}" wx:if="{{!!isNeedTime&&!!hasTime}}">
+            <view class="picker b_border b-b-phonenum row airbus-phone-num">
+                <view class="column-1">用车时间</view>
+                <view class="column-4">
+                    <text class="{{!mTripInfo['time']?'gray-text':''}}">{{!mTripInfo['time']?'输入用车时间':mTripInfo['time']}}</text>
+                </view>
+            </view>
+        </picker>
+        <picker bindchange="onTimeChange2" mode="time" value="{{'02:15'}}" wx:if="{{!!isNeedTime&&!hasTime}}">
+            <view class="picker b_border b-b-phonenum row airbus-phone-num">
+                <view class="column-1">用车时间</view>
+                <view class="column-4">
+                    <text class="{{!mTripInfo['time']?'gray-text':''}}">{{!mTripInfo['time']?'输入用车时间':mTripInfo['time']}}</text>
+                </view>
+            </view>
+        </picker>
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view bindtap="onShowFlight" class="column-1" style="position: relative;">
+                航班号<text class="airbus-flight">?</text>
+            </view>
+            <view class="column-4">
+                <input bindinput="onFlightChange" maxlength="6" placeholder="选填" type="number" value="{{mTripInfo['flight']}}"></input>
+            </view>
+        </view>
+    </view>
+    <view class="mt10 white_bg airbus-use-info" wx:if="{{!isRealName}}">
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view class="column-1">普通票</view>
+            <view class="column-4" style="color: #ff9a14;">
+                <text>¥{{mLine['full_price']||0}}</text>
+            </view>
+            <view class="">
+                <view class="btn-add-ticket">
+                    <view bindtap="onTicketsChange" class="add-cell first {{mCount<=0?'disable':''}}" data-value="-1"></view>
+                    <view class="add-cell middle">{{mCount}}</view>
+                    <view bindtap="onTicketsChange" class="add-cell last {{mCount>=5?'disable':''}}" data-value="1"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="b-b-passlist tour-pass-list white_bg" wx:if="{{!!isRealName}}">
+        <view class="b_border row item" wx:for="{{mSelUsers}}" wx:key="index">
+            <view bindtap="onPassengerDel" class="column-1 pass-remove" data-id="{{item['mPID']}}" data-index="{{index}}" data-type="{{item['mType']}}">
+                <icon class="icon-del del-view color_warn"></icon>
+            </view>
+            <view class="column-6 info">
+                <view class="row">
+                    <text class="name inline-block">{{item['mName']}}</text>
+                </view>
+                <view class="card">{{item['mCardNo']}}</view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="onAddPassenger" class="mt10 row white_bg justify-center add-passenger b_border tour-add-passenger" wx:if="{{!!isRealName}}">
+        <view class="row content-center">
+            <view class="add-icon-view color_enable">
+                <icon class="icon-add"></icon>
+            </view>
+            <view class="add-txt-view">添加乘客</view>
+        </view>
+    </view>
+    <view class="mt10 white_bg airbus-use-info">
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view class="column-1">联系人</view>
+            <view class="column-4">
+                <input bindinput="onNameChange" placeholder="请输入联系人" value="{{mContractor['name']}}"></input>
+            </view>
+        </view>
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view class="column-1">联系手机</view>
+            <view class="column-4">
+                <input bindinput="onMobileChange" maxlength="11" placeholder="请输入联系人手机" type="number" value="{{mContractor['mobile']}}"></input>
+            </view>
+        </view>
+    </view>
+    <view class="mt10 white_bg airbus-use-info">
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view class="column-1">发票</view>
+            <view bindtap="onSelInvoice" class="column-4 right-arrow">
+                <text class="{{!!mInvoice['isNeed']?'black-text':'gray-text'}}">{{mInvoice['isNeed']?'平信邮寄':'不需要'}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="airbus-description" wx:if="{{mDescriptions&&mDescriptions.length}}">
+        <view class="mt10" wx:for="{{mDescriptions}}" wx:key="{{index}}">
+            <view class="airbus-desc-title">{{item.title}}</view>
+            <view wx:for="{{item.desc}}" wx:for-index="idx" wx:for-item="mTxt" wx:key="{{idx}}">
+                <view>{{mTxt}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="row bar-pay">
+        <view class="column-1">
+            <text class="torange">¥ {{mTotalPrice}}</text>
+        </view>
+        <view class="column-3">
+            <text bindtap="onShowCostDetail" class="detail">明细</text>
+        </view>
+        <view class="column-2">
+            <form bindreset="formReset" bindsubmit="formSubmit" reportSubmit="ture">
+                <button bindtap="onSubmit" class="btn_primary btn-pay" formType="submit" hoverClass="btn_primary_hover" name="gopay">去支付</button>
+            </form>
+        </view>
+    </view>
+    <view bindtap="onHideCostDetail" hidden="{{!isShowPrice}}">
+        <template is="costdetail" data="{{data:mDetail,count:mCount}}"></template>
+    </view>
+</view>
+<view bindtap="onHideDeclaration" hidden="{{!isShowDeclar}}">
+    <template is="declaration" data="{{mList:mPrdInfo}}"></template>
+</view>
+<view class="bus-coupons-warp" hidden="{{!isAddPassenger}}">
+    <view bindtap="onCancelPassenger" class="bus-coupons-cancel">取消</view>
+    <view class="bus-coupons-title">
+        <text>{{'添加乘客'}}</text>
+    </view>
+    <view bindtap="onConfirmPassenger" class="bus-coupons-done color_enable">确认</view>
+    <scroll-view class="bus-coupons-body" scrollY="true">
+        <view class="bus-coupons-list">
+            <view bindtap="onNewPassenger" class="bus-coupons-btn-unused row justify-center">
+                <view class="row content-center">
+                    <view class="add-icon-view color_enable">
+                        <icon class="icon-add"></icon>
+                    </view>
+                    <view class="add-txt-view">添加乘客</view>
+                </view>
+            </view>
+            <view class="white_bg" style="margin-top: 20rpx;">
+                <view bindtap="onClickUser" class="row line26 b_border bottom-border-1" data-enable="{{!!item['mCardNo']}}" data-value="{{item['mPID']}}" wx:for="{{mUsers}}" wx:key="index">
+                    <view class="column-1 edit-view color_enable" data-type="edit">
+                        <icon class="icon-edit" data-type="edit"></icon>
+                    </view>
+                    <view class="column-5 {{item['mCardNo']?'':'grey'}}" data-type="select" style="padding: 20rpx 0 0 20rpx;">
+                        <view class="line12 {{item['mStatus']?'color_current':''}}" data-type="select">{{item['mName']}}</view>
+                        <view class="line08 {{!item['mCardNo']?'red-num-text':'com-num-text'}}" data-type="select" wx:if="{{item['mCardNo']}}">{{item['mCardNo']||'请补充证件信息'}}</view>
+                    </view>
+                    <view class="column-1 check-view" data-type="check" hidden="{{!item['mCardNo']}}">
+                        <icon class="{{item['mStatus']?'icon-checked':'icon-check'}}" data-type="check"></icon>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+<mask bindtap="onHideMask" hidden="{{!isShowMask}}" hoverStyle="none" style="background-color: rgba(0,0,0,0.8);"></mask>
+<view>
+    <loading wx:if="{{mLoading['isLoading']}}">{{mLoading['message']}}</loading>
+</view>

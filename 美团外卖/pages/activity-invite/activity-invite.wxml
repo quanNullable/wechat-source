@@ -1,0 +1,164 @@
+<import src="../../components/toast/toast.wxml"></import>
+<view class="page">
+    <template is="toast" data="{{...toast}}"></template>
+    <view bindtap="handleTapReload" wx:if="{{!showMainContent}}">
+        <view class="load-bg">
+            <view class="load-content">
+                <view wx:if="{{!showRetry}}">加载中...</view>
+                <view wx:if="{{showRetry}}">点击重新加载</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{showMainContent}}">
+        <view class="header-pic {{showNewVersion?'version-new':''}}"></view>
+        <view class="bonus" wx:if="{{showNewVersion}}">
+            <view class="bonus-process-wrapper">
+                <view class="bonus-process-border">
+                    <view class="bonus-process" style="width:{{bonusProcessWidth}};"></view>
+                </view>
+            </view>
+            <view class="bonus-list">
+                <view class="bonus-item">
+                    <view class="bonus-img {{invitedNum>=1?'active':''}}">
+                        <text class="bonus-unit">￥</text>
+                        <text class="bonus-price">5</text>
+                        <text class="bonus-limit">无门槛</text>
+                    </view>
+                    <view class="bonus-text">成功邀请1人</view>
+                </view>
+                <view class="bonus-item">
+                    <view class="bonus-img {{invitedNum>=3?'active':''}}">
+                        <text class="bonus-unit">￥</text>
+                        <text class="bonus-price">20</text>
+                        <text class="bonus-limit">无门槛</text>
+                    </view>
+                    <view class="bonus-text">成功邀请3人</view>
+                </view>
+                <view class="bonus-item">
+                    <view class="bonus-img {{invitedNum>=6?'active':''}}">
+                        <text class="bonus-unit">￥</text>
+                        <text class="bonus-price">45</text>
+                        <text class="bonus-limit">无门槛</text>
+                    </view>
+                    <view class="bonus-text">成功邀请6人</view>
+                </view>
+                <view class="bonus-item">
+                    <view class="bonus-img">
+                        <view class="bonus-tip">上不</view>
+                        <view class="bonus-tip">封顶</view>
+                    </view>
+                    <view class="bonus-text">成功邀请更多</view>
+                </view>
+            </view>
+        </view>
+        <view class="main-content">
+            <view>
+                <view>
+                    <form bindsubmit="getFormId" reportSubmit="true">
+                        <button bindtap="handleTapInviteNow" class="btn" formType="submit" openType="share">立即邀请</button>
+                    </form>
+                </view>
+                <view>
+                    <form bindsubmit="getFormId" reportSubmit="true">
+                        <button bindtap="handleTapQrCode" class="btn2" formType="submit">面对面邀请</button>
+                    </form>
+                </view>
+            </view>
+            <view>
+                <view class="history-info-list">
+                    <view class="info-item">
+                        <view>
+                            <text class="info-item-price {{futureSalary>0?'active':''}}">{{futureSalary}}</text>
+                            <text>元</text>
+                        </view>
+                        <view>
+                            <text class="info-item-text">红包在路上</text>
+                            <view class="tap-question-wrapper">
+                                <image class="info-item-img" src="{{img.iconQuestion}}"></image>
+                                <form bindsubmit="getFormId" reportSubmit="true">
+                                    <button bindtap="handleTapQuestion" class="tap-question" formType="submit"></button>
+                                </form>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="info-item">
+                        <view>
+                            <text class="info-item-price {{totalSalary>0?'active':''}}">{{totalSalary}}</text>
+                            <text>元</text>
+                        </view>
+                        <view class="info-item-text">累计获得</view>
+                    </view>
+                    <view class="info-item">
+                        <view>
+                            <text class="info-item-price {{invitedNum>0?'active':''}}">{{invitedNum}}</text>
+                            <text>人</text>
+                        </view>
+                        <view class="info-item-text">成功邀请</view>
+                    </view>
+                </view>
+                <view class="invite-list-wrapper">
+                    <view class="invite-list">
+                        <view class="invite-item" wx:for="{{list}}" wx:key="{{index}}">
+                            <view class="item-avatar" style="background-image:url({{item.headImgUrl}});"></view>
+                            <view class="item-content">
+                                <view class="item-name">{{item.nickName}}</view>
+                                <view class="item-time">{{item.statusUpdateTime}}</view>
+                            </view>
+                            <view class="item-option">
+                                <view class="item-tip">{{item.statusDesc}}</view>
+                                <view bindtap="handleTapStatusTip" class="item-btn" wx:if="{{item.statusTip}}">{{item.statusTip}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view bindtap="handleTapViewMore" class="invite-list-more" wx:if="{{showListMore}}">查看更多></view>
+                </view>
+            </view>
+        </view>
+        <view class="rule">
+            <view class="rule-title">
+                <text class="rule-title-content">活动规则</text>
+            </view>
+            <view class="rule-list" wx:if="{{contractType===0}}">
+                <view class="rule-item">1.邀请好友成为美团外卖新用户，好友领取您送出的红包，并在7天内完成实付金额5元以上的在线支付订单且无退款，无论是否使用领取的红包，您均可获得10元奖励红包</view>
+                <view class="rule-item">2.奖励红包会在邀请成功后的48小时内发放入您的账号，您可在美团外卖app-我的-红包中查看</view>
+                <view class="rule-item">3.您邀请的好友必须是美团外卖新用户，同一手机号、同一设备、同一支付账号视为同一用户</view>
+                <view class="rule-item">4.如有其它疑问请咨询美团外卖客服</view>
+            </view>
+            <view class="rule-list" wx:if="{{contractType===1}}">
+                <view class="rule-item">1.每邀请成功1人，您即获得一个5元无门槛红包；邀请成功3人，您可额外多获得一个5元无门槛红包；邀请成功6人，您可再额外多获得一个10元无门槛红包</view>
+                <view class="rule-item">2.邀请好友成为美团外卖新用户，好友领取您送出的红包，并在7天内完成实付金额5元以上的在线支付订单且无退款，无论是否使用领取的红包，您均可获得奖励红包</view>
+                <view class="rule-item">3.奖励红包会在邀请成功后的24小时内发放入您的账号，您可在美团外卖app-我的-红包中查看</view>
+                <view class="rule-item">4.您邀请的好友必须是美团外卖新用户，同一手机号、同一设备、同一支付账号视为同一用户</view>
+                <view class="rule-item">5.如有其它疑问请咨询美团外卖客服</view>
+            </view>
+            <view class="rule-list" wx:if="{{contractType===2}}">
+                <view class="rule-item">1.红包仅限美团外卖新用户领取</view>
+                <view class="rule-item">2.同一手机号、同一设备、同一支付账号视为同一用户</view>
+                <view class="rule-item">3.新用户红包不与其他优惠叠加</view>
+                <view class="rule-item">4.如有其它疑问请咨询美团外卖客服</view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="handleTapOverlay" catchtouchmove="true" class="overlay show-{{overlayType}}">
+        <view catchtap="handleTapOverlayContent" class="overlay-content">
+            <view class="overlay-remind">
+                <view class="remind-content">{{remindContent}}</view>
+                <view class="remind-title">提醒下单口令已生成</view>
+                <view class="remind-btn-group">
+                    <text bindtap="handleTapNotRemind" class="remind-btn">暂不提醒</text>
+                    <button bindtap="handleTapToPaste" class="remind-btn remind-copy">去粘贴</button>
+                </view>
+            </view>
+            <view class="overlay-ma">
+                <view class="ma-title">请好友扫码领取15元红包</view>
+                <image class="ma-img" src="{{qrCodeImg}}"></image>
+            </view>
+            <view class="overlay-knowledge">
+                <view class="knowledge-content">好友已领红包，待TA下单后，奖励红包会在48小时内放入您的账号中。</view>
+                <view bindtap="handleTapKnowledgeBtn" class="knowledge-btn-group">
+                    <text class="knowledge-btn">知道了</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

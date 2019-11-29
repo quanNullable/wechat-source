@@ -1,0 +1,213 @@
+.content-box {
+    padding-bottom: 160rpx;
+}
+
+.tgrey {
+    color: #999;
+}
+
+.tblue {
+    color: #19a0f0;
+}
+
+.torage {
+    color: #ff6913;
+}
+
+.tgreen {
+    color: #24bc53;
+}
+
+.ty .tnum {
+    color: #fc6351;
+}
+
+.zx .tnum {
+    color: #5495e6;
+}
+
+.train-list {
+    background: #fff;
+    line-height: 86rpx;
+}
+
+.train-list .item {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0;
+    border-bottom-width: 1px;
+    padding-right: 30rpx;
+}
+
+.train-list .item:last-child {
+    border-bottom: 0;
+}
+
+.train-list.mt10 {
+    margin-top: 20rpx;
+}
+
+.qiangpiao-list .item {
+    position: relative;
+    padding: 16rpx 120rpx 16rpx 30rpx;
+    color: #666;
+    font-size: 30rpx;
+    overflow: hidden;
+    margin-left: 0;
+}
+
+.qiangpiao-list .item:after {
+    top: 60rpx;
+    right: 30rpx;
+    width: 28rpx;
+    height: 28rpx;
+    border: 1px solid #b2b2b2;
+    position: absolute;
+    content: '';
+}
+
+.qiangpiao-list .tit {
+    line-height: 50rpx;
+    border-bottom-width: 0;
+    font-size: 34rpx;
+    font-weight: 600;
+    color: #222;
+    padding-top: 15rpx;
+}
+
+.qiangpiao-list .tit::after {
+    display: none;
+}
+
+.qiangpiao-list .tit text {
+    font-size: 30rpx;
+    margin-left: 30rpx;
+    color: #666;
+    font-weight: 400;
+}
+
+.qiangpiao-list .sel-time {
+    float: left;
+    width: 30%;
+}
+
+.qiangpiao-list .sel-time .tgrey {
+    font-size: 22rpx;
+}
+
+.qiangpiao-list .p {
+    height: 50rpx;
+    line-height: 50rpx;
+    overflow: hidden;
+}
+
+.qiangpiao-list .sel-station {
+    overflow: hidden;
+    padding-right: 5%;
+    position: relative;
+}
+
+.qiangpiao-list .sel-station .from,.qiangpiao-list .sel-station .to {
+    position: relative;
+    padding-left: 40rpx;
+}
+
+.qiangpiao-list .sel-station .from::before,.qiangpiao-list .sel-station .to::before {
+    width: 14rpx;
+    height: 14rpx;
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    background: #bdbdbd;
+    left: 8rpx;
+    z-index: 10;
+    top: 50%;
+    margin-top: -7rpx;
+}
+
+.qiangpiao-list .sel-station .from::after,.qiangpiao-list .sel-station .to::after {
+    width: 3rpx;
+    height: 32rpx;
+    position: absolute;
+    content: '';
+    background: #bdbdbd;
+    left: 14rpx;
+}
+
+.qiangpiao-list .sel-station .from.guo:before,.qiangpiao-list .sel-station .to.guo:before {
+    background: #fff;
+    border: 1px solid #bdbdbd;
+    box-sizing: border-box;
+}
+
+.qiangpiao-list .sel-station .from::after {
+    top: 18rpx;
+}
+
+.qiangpiao-list .sel-price {
+    width: 140rpx;
+    float: right;
+    text-align: right;
+}
+
+.qiangpiao-list .torage {
+    font-size: 24rpx;
+}
+
+.qiangpiao-list .item.current:after {
+    width: 36rpx;
+    height: 32rpx;
+    border: 0;
+    background-image: url(//pic.c-ctrip.com/train/h5/train/train-icon_v171030.png);
+    background-repeat: no-repeat;
+    background-size: 400rpx;
+    background-position: -162rpx -84rpx;
+    right: 26rpx;
+}
+
+.train-btn-fixed {
+    padding: 20rpx 30rpx;
+    background: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 960;
+    box-shadow: 0 -3px 7px rgba(51,51,51,0.1);
+}
+
+.btn-ok {
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0;
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.ty .btn-ok {
+    background: #fc6351;
+}
+
+.zx .btn-ok {
+    background: #5495e6;
+}
+
+.btn-ok::after {
+    border: 0;
+}
+
+.btn-ok_hover::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    border-radius: 8rpx;
+    background: rgba(0,0,0,0.1);
+    left: 0;
+    top: 0;
+}
+
+.norecommandtrain {
+    text-align: center;
+    line-height: 40rpx;
+}

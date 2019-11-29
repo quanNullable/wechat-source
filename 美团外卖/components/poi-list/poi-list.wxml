@@ -1,0 +1,6 @@
+<template name="poi-list">
+    <import src="poi-item.wxml"></import>
+    <navigator bindtap="onClickPoilistItem" class="poi-nav" data-id="{{item.id}}" data-index="{{index}}" data-poi="{{item}}" url="../restaurant/restaurant?poi_id={{item.id}}&cat_id={{cat_id||0}}" wx:for="{{poilist}}" wx:key="{{item.id}}">
+        <template is="poi-item" data="{{item:item,index:index,cartKeys:cartKeys}}"></template>
+    </navigator>
+</template>

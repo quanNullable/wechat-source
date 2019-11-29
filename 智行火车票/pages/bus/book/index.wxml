@@ -1,0 +1,239 @@
+<import src="../book/template/tpl_book.wxml"></import>
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<view>
+    <view class="bus-info white_bg">
+        <view class="b-b-station">
+            {{mLine['fStation']}}<text class="arr-fromto"></text>{{mLine['tStation']}}
+        </view>
+    </view>
+    <view class="b-b-note row white_bg">
+        <view bindtap="onShowDeclaration" class="column-2">{{mLine['refundDesc']}}</view>
+        <view bindtap="onShowDeclaration" class="column-1 txt_align_r">退改说明 ></view>
+    </view>
+    <view class="b-b-beixuan mt10 white_bg">
+        <view class="row">
+            <view class="column-2">备选车次</view>
+            <view class="column-6 note">无票时换临近时间车次</view>
+            <view class="right-view">
+                <switch bindchange="onSwitchFloat" checked="{{isAcceptFloat}}" class="switch" color="{{'#5495e6'}}"></switch>
+            </view>
+        </view>
+    </view>
+    <view class="bus-pass-list mt10 white_bg">
+        <view class="row">
+            <view class="pass-title column-7" wx:if="{{mLine['takeChildNum']>0}}">乘 客<text style="font-size: 24rpx;">（单笔订单限{{mLine['maxSaleCount']}}个乘客，免票携童{{mLine['takeChildNum']}}个）</text>
+            </view>
+            <view class="pass-title column-7" wx:if="{{!mLine['takeChildNum']}}">乘 客<text style="font-size: 24rpx;">（单笔订单限{{mLine['maxSaleCount']}}个乘客）</text>
+            </view>
+            <view class="right-view">
+                <button bindtap="onAddPassenger" class="btn-add btn_default" hoverClass="btn_default_hover">添 加</button>
+            </view>
+        </view>
+        <view class="b-b-passlist">
+            <view class="b_border row item" wx:for="{{mSelUsers}}" wx:key="index">
+                <view bindtap="onPassengerDel" class="column-1 pass-remove" data-id="{{item['mPID']}}" data-index="{{index}}" data-type="{{item['mType']}}">
+                    <icon class="icon-del del-view color_warn"></icon>
+                </view>
+                <view class="column-6 info">
+                    <view class="row">
+                        <text class="name inline-block">{{item['mName']}}</text>
+                        <view wx:if="{{item['mType']=='A'}}">
+                            <text class="label inline-block" style="margin-left: 30rpx">成人票</text>
+                        </view>
+                        <view wx:elif="{{item['mType']=='C'}}">
+                            <text class="label inline-block" style="margin-left: 30rpx">儿童票</text>
+                        </view>
+                        <view wx:else>
+                            <text class="label inline-block" style="margin-left: 30rpx">携童票</text>
+                        </view>
+                    </view>
+                    <view class="card">{{item['mCardNo']}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="b-t-picker mt10 white_bg" hidden="{{mSelUsers.length<=0}}">
+        <view class="row">
+            <view class="column-1">取票人</view>
+            <view class="column-4">
+                <view class="name">{{mTPicker['mName']}}</view>
+                <view class="card">{{mTPicker['mCardNo']}}</view>
+            </view>
+            <view class="right-view">
+                <button bindtap="onPickerChange" class="btn_default btn-add" hoverClass="btn-line_hover">修 改</button>
+            </view>
+        </view>
+    </view>
+    <view class="b_border b-b-phonenum white_bg row">
+        <view class="column-1">手机号</view>
+        <view class="column-4">
+            <input bindinput="onMobileChange" id="phone" maxlength="11" placeholder="用于接收取票信息" type="number" value="{{mContractTel}}"></input>
+        </view>
+    </view>
+    <block wx:if="{{mSelUsers.length>0}}">
+        <view class="row b_border bus-package white_bg mt10" wx:if="{{item['name']!='1元免票'}}" wx:for="{{mCouponGrp}}" wx:key="index">
+            <view class="column-1 b-b-icon color_enable">
+                <icon class="icon-info"></icon>
+            </view>
+            <view class="column-6">
+                <view class="bus-ins-title">{{item['name']}}</view>
+                <view class="bus-ins-explain">{{item['orderDetailPageTitle']}}</view>
+            </view>
+            <view class="b-b-switch right-view">
+                <switch bindchange="onSwitchCouponPkg" checked="{{item['open']}}" class="switch" color="{{'#5495e6'}}" data-id="{{item['__id']}}"></switch>
+            </view>
+            <view class="bus-ins-info"> ¥{{item['amount']}} x {{mSelUsers.length||0}} </view>
+        </view>
+        <view class="line25 mt10 relative white_bg" wx:if="{{isShowInvoice}}">
+            <view class="row">
+                <view class="column-4 pl75"> 附加产品发票 </view>
+                <view class="column-2">
+                    <text></text>
+                </view>
+                <view class="b-b-switch right-view">
+                    <switch bindchange="onSwitchInvoice" checked="{{isNeedInvoice}}" class="switch" color="{{'#5495e6'}}"></switch>
+                </view>
+            </view>
+        </view>
+        <view class="invoice white_bg" wx:if="{{isNeedInvoice}}">
+            <view class="row">
+                <view class="title">收 件 人</view>
+                <view class="column-1">
+                    <input bindblur="onUpdmail" id="mail_name" placeholder="请输入收件人姓名" value="{{mInvoice['contactName']}}"></input>
+                </view>
+            </view>
+            <view class="row">
+                <view class="title">邮政编码</view>
+                <view class="column-1">
+                    <input bindblur="onUpdcode" id="mail_zipcode" placeholder="请输入6位数邮政编码" value="{{mInvoice['zipCode']}}"></input>
+                </view>
+            </view>
+            <view class="row">
+                <view class="title">邮寄地址</view>
+                <view class="column-1">
+                    <input bindblur="onUpdAddress" id="mail_address" placeholder="省-市-区-详情地址" value="{{mInvoice['address']}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="white_bg line25 mt10 pl75" wx:if="{{mLine['servPack'][0]['amount']>0}}">
+            <view class="row">
+                <view class="column-1">{{mLine['servPack'][0]['name']}}</view>
+                <view class="column-4">
+                    <text>{{mLine['servPack'][0]['amount']}}元/人</text>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view bindtap="onShowCoupon" class="white_bg line25 mt10 pl75">
+        <view class="row">
+            <view class="column-3">优惠券</view>
+            <view class="column-2 coupon-sec">
+                <view style="color: #ff9a14;" wx:if="{{mUsedCoupon}}">
+                    <text>- </text>
+                    <text>¥</text>
+                    <text>{{mUsedCoupon['DeductionStrategy'][0]['DeductionAmount']}}</text>
+                    <text class="cpinkgray right-arrow"></text>
+                </view>
+                <view wx:else>
+                    <text class="cpinkgray right-arrow">未使用</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <template is="tickettips" data="{{ mList:mLine['notice']||[] }}"></template>
+    <view style="height:4rem"></view>
+    <view class="row bar-pay">
+        <view class="column-1">
+            <text class="torange">¥ {{mTotalPrice}}</text>
+        </view>
+        <view class="column-3">
+            <text bindtap="onShowCostDetail" class="detail">明细</text>
+        </view>
+        <view class="column-2">
+            <form bindreset="formReset" bindsubmit="formSubmit" reportSubmit="ture">
+                <button bindtap="onSubmit" class="btn_primary btn-pay" formType="submit" hoverClass="btn_primary_hover" name="gopay">去支付</button>
+            </form>
+        </view>
+    </view>
+    <view bindtap="onHideCostDetail" hidden="{{!isShowPrice}}">
+        <template is="costdetail" data="{{data:mDetail,count:mCount}}"></template>
+    </view>
+</view>
+<view bindtap="onHideDeclaration" hidden="{{!isShowDeclar}}">
+    <template is="declaration" data="{{mList:mSrvmsg}}"></template>
+</view>
+<view class="bus-coupons-warp" hidden="{{!isAddPassenger}}">
+    <view bindtap="onCancelPassenger" class="bus-coupons-cancel">取消</view>
+    <view class="bus-coupons-title">
+        <text>{{isSelPicker?'修改取票人':'添加乘客'}}</text>
+    </view>
+    <view bindtap="onConfirmPassenger" class="bus-coupons-done color_enable">确认</view>
+    <scroll-view class="bus-coupons-body" scrollY="true">
+        <view class="bus-coupons-list">
+            <view bindtap="onNewPassenger" class="bus-coupons-btn-unused row justifyContentcenter">
+                <view class="add-icon-view color_enable">
+                    <icon class="icon-add"></icon>
+                </view>
+                <view class="add-txt-view">{{btutilte}}</view>
+            </view>
+            <view style="text-align:center;padding-top:30rpx;display: none;">请您新增乘客</view>
+            <view class="white_bg" style="margin-top: 20rpx;">
+                <view bindtap="onClickUser" class="row line26 b_border bottom-border-1 zindex" data-enable="{{(mLine['ticketChild']&&item['mType']=='C'||mLine['ticketTakeChild']&&item['mType']=='X'||item['mType']=='A')&&item['mCardNo']}}" data-value="{{item['mPID']}}" wx:if="{{!( isSelPicker&&( item['mType']!='A'||!item['mStatus'] ) )&&(item['mCardType']==passtypeListA||item['mCardType']==passtypeListB)}}" wx:for="{{mUsers}}" wx:key="index">
+                    <view class="column-1 edit-view color_enable" data-type="edit">
+                        <icon class="icon-edit" data-type="edit"></icon>
+                    </view>
+                    <view class="column-5 {{(mLine['ticketChild']&&item['mType']=='C'||mLine['ticketTakeChild']&&item['mType']=='X'||item['mType']=='A')&&item['mCardNo']?'':'grey'}}" data-type="select" style="padding: 20rpx 0 0 20rpx;">
+                        <view class="row line12">
+                            <view class=" {{!isSelPicker&&item['mStatus']?'color_current':''}}" data-type="select">{{item['mName']}}</view>
+                            <view wx:if="{{item['mType']=='A'}}">
+                                <text class="label inline-block" style="margin-left: 30rpx">成人票</text>
+                            </view>
+                            <view wx:elif="{{item['mType']=='C'}}">
+                                <text class="label inline-block" style="margin-left: 30rpx">儿童票</text>
+                            </view>
+                            <view wx:else>
+                                <text class="label inline-block" style="margin-left: 30rpx">携童票</text>
+                            </view>
+                        </view>
+                        <view class="line08" data-type="select" style="font-size:23rpx;" wx:if="{{item['mCardNo']}}">{{item['mCardNo']}}</view>
+                        <view class="line08" data-type="select" style="font-size:23rpx; color:red;" wx:if="{{!item['mCardNo']}}">请补充相关信息</view>
+                    </view>
+                    <view class="column-1 check-view" data-type="check">
+                        <icon class="{{!isSelPicker&&item['mStatus']?'icon-checked':'icon-check'}} {{(mLine['ticketChild']&&item['mType']=='C'||mLine['ticketTakeChild']&&item['mType']=='X'||item['mType']=='A')&&item['mCardNo']?'':'grey'}}" data-type="check"></icon>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+<view class="bus-coupons-warp" wx:if="{{isSelCoupon}}">
+    <view class="bus-coupons-title">
+        <text>选择优惠券</text>
+    </view>
+    <view bindtap="onCloseCoupon" class="bus-coupons-close"></view>
+    <scroll-view class="bus-coupons-body" scrollY="true">
+        <view class="bus-coupons-list">
+            <view bindtap="onUnusedCoupon" class="bus-coupons-btn-unused color_enable"> 不使用优惠券 </view>
+            <view style="text-align:center;padding-top:.75rem;" wx:if="{{!mCouponList||mCouponList.length<=0}}">没有符合条件的优惠券</view>
+            <view bindtap="onSelectCoupon" class="bus-coupons-item {{item['_aviable']&&item['_canuse']?'':'disabled'}}" data-enable="{{item['_aviable']&&item['_canuse']}}" data-id="{{item['CouponCode']}}" wx:for="{{mCouponList}}" wx:key="index">
+                <view class="bus-coupon-item">
+                    <view class="bus-coupons-tics">
+                        <view class="discount">
+                            <text style="font-size:45rpx">{{item['DeductionStrategy'][0]['DeductionAmount']}}</text>元</view>
+                    </view>
+                    <view style="padding: 8rpx 0 2rpx;">{{item['DisplayName']}}</view>
+                    <view class="coupon-item-date {{item['CouponCode']==mUsedCoupon['CouponCode']?'current':''}}">{{item['DisplayCouponStartDate']}}至{{item['DisplayCouponEndDate']}}</view>
+                    <view bindtap="onToggleMsg" data-id="{{item['CouponCode']}}" data-name="coupon_info" style="color: #5495e6;">使用说明</view>
+                </view>
+                <view hidden="{{!item['_ishowMsg']}}" style="padding: 7rpx 15rpx 0;">{{item['Remark']}}</view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+<mask bindtap="onHideMask" hidden="{{!isShowMask}}" hoverStyle="none" style="background-color: rgba(0,0,0,0.6);"></mask>
+<view>
+    <loading wx:if="{{mLoading['isLoading']}}">{{mLoading['message']}}</loading>
+</view>

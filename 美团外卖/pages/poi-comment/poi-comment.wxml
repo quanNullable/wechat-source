@@ -1,0 +1,80 @@
+<view class="wrap">
+    <include src="../base.wxml"></include>
+    <scroll-view class="poi-container" scrollY="1">
+        <view class="delivery-card">
+            <view class="delivery-card-top clearfix">
+                <image class="delivery-avatar" src="{{gocomment_data.sender_info.head_icon}}"></image>
+                <view class="delivery-card-middle">
+                    <view class="delivery-card-title1">{{gocomment_data.sender_info.sender_name}}</view>
+                    <view class="delivery-card-title2">{{arrival_time_str}} 左右送达</view>
+                </view>
+                <view bindtap="onClickTimepicker" class="delivery-card-right"> 更正 <image class="delivery-card-icon" src="/img/icons/blueV.png"></image>
+                </view>
+            </view>
+            <view class="delivery-card-center" wx:if="{{deliveryScore>=0}}"> {{gocomment_data.comment_label_tips[deliveryScore].tip}} </view>
+            <view class="delivery-card-center" wx:else> 为配送打分 </view>
+            <view class="poi-score-view">
+                <image bindtap="onClickDeliveryScore" class="poi-score-star {{score===4?'poi-score-star-last':''}}" data-score="{{score}}" mode="scaleToFill" src="{{score<=deliveryScore?'/img/icons/bigscore.png':'/img/icons/bignoscore.png'}}" wx:for="{{[0,1,2,3,4]}}" wx:for-item="score" wx:key="{{item}}"></image>
+            </view>
+            <swiper bindchange="onChangeSwiperDelivery" circular="true" class="tip-swiper" wx:if="{{sender_labels.length>0}}">
+                <swiper-item wx:for="{{sender_labels}}">
+                    <view bindtap="onClickDeliveryLabel" class="tip-tags {{delivery_labels[sender_label.label_id]==true?'tip-tags-on':''}}" data-id="{{sender_label.label_id}}" wx:for="{{sender_labels[index]}}" wx:for-item="sender_label">{{sender_label.content}}</view>
+                </swiper-item>
+            </swiper>
+            <view class="indicator-wrap" wx:if="{{sender_labels.length>0}}">
+                <view class="{{index==deliveryCurrent?'indicator indicator-on':'indicator'}}" wx:for="{{sender_labels}}"></view>
+            </view>
+        </view>
+        <view class="delivery-card">
+            <view class="delivery-card-top delivery-card-center delivery-card-flex clearfix">
+                <image class="delivery-avatar" src="{{gocomment_data.poi_url}}"></image>
+                <view class="delivery-card-middle">
+                    <view class="delivery-card-title1 delivery-card-title3">{{gocomment_data.poi_name}}</view>
+                </view>
+            </view>
+            <view class="delivery-card-center" wx:if="{{productScore>=0}}"> {{gocomment_data.comment_label_tips[productScore].tip}} </view>
+            <view class="delivery-card-center" wx:else> 为商家打分 </view>
+            <view class="poi-score-view">
+                <image bindtap="onClickProductScore" class="poi-score-star {{score===4?'poi-score-star-last':''}}" data-score="{{score}}" mode="scaleToFill" src="{{score<=productScore?'/img/icons/bigscore.png':'/img/icons/bignoscore.png'}}" wx:for="{{[0,1,2,3,4]}}" wx:for-item="score" wx:key="{{item}}"></image>
+            </view>
+            <swiper bindchange="onChangeSwiperProduct" circular="true" class="tip-swiper" wx:if="{{product_tab_labels.length>0}}">
+                <swiper-item wx:for="{{product_tab_labels}}">
+                    <view bindtap="onClickProductLabel" class="tip-tags {{product_labels[product_label.label_id]==true?'tip-tags-on':''}}" data-id="{{product_label.label_id}}" wx:for="{{product_tab_labels[index]}}" wx:for-item="product_label">{{product_label.content}}</view>
+                </swiper-item>
+            </swiper>
+            <view class="indicator-wrap" wx:if="{{product_tab_labels.length>0}}">
+                <view class="{{index==productCurrent?'indicator indicator-on':'indicator'}}" wx:for="{{product_tab_labels}}"></view>
+            </view>
+            <view bindinput="onCommentInput" class="textarea-wrap">
+                <input bindinput="onCommentInput" class="poi-comment-content" maxlength="500" placeholder="{{poi_comment_placeholder}}"></input>
+                <view class="poi-comment-warn">{{poi_comment_warn}}</view>
+            </view>
+            <view class="poi-food-wrap" wx:if="{{gocomment_data.foodlist.length>0}}">
+                <view class="poi-food-tab" wx:for="{{gocomment_data.foodlist}}">
+                    <view class="poi-food-name">{{item.food_name}}</view>
+                    <view bindtap="onClickLikeButton" class="poi-food-button {{food_comments[item.food_id]==2?'poi-food-dislikeon':''}}" data-foodid="{{item.food_id}}" data-type="2">
+                        <image class="poi-food-button-icon" src="/img/icons/dislike.png"></image>
+                        <image class="poi-food-button-icon" src="/img/icons/dislike-on.png" wx:if="{{food_comments[item.food_id]==2}}"></image> 踩 </view>
+                    <view bindtap="onClickLikeButton" class="poi-food-button {{food_comments[item.food_id]==1?'poi-food-likeon':''}}" data-foodid="{{item.food_id}}" data-type="1">
+                        <image class="poi-food-button-icon" src="/img/icons/like.png"></image>
+                        <image class="poi-food-button-icon" src="/img/icons/like-on.png" wx:if="{{food_comments[item.food_id]==1}}"></image> 赞 </view>
+                </view>
+            </view>
+        </view>
+        <view class="poi-comment-send-wrap">
+            <view bindtap="onSubmitComment" class="poi-comment-send {{send_enable==true?'poi-comment-send-on':''}}">提交</view>
+        </view>
+    </scroll-view>
+    <view bindtap="closePicker" class="picker-bg" id="pickerBg" wx:if="{{timepicker}}">
+        <view class="main-picker">
+            <scroll-view class="picker-left-scroll" scrollY="true">
+                <view bindtap="onClickPickerDate" class="date-tab {{item.month==manual_order_arrive_time_date.month&&item.date==manual_order_arrive_time_date.date?'date-tab-on':''}}" data-date="{{item.date}}" data-index="{{index}}" data-month="{{item.month}}" wx:for="{{date_tabs}}">{{item.content}}</view>
+            </scroll-view>
+            <scroll-view class="picker-right-scroll" scrollIntoView="hour-{{timepickerSelectedIndex}}" scrollY="true">
+                <view bindtap="onClickPickerHour" class="hour-tab {{item.hour==manual_order_arrive_time_date.hour&&item.minute==manual_order_arrive_time_date.minute?'hour-tab-on':''}}" data-hour="{{item.hour}}" data-minute="{{item.minute}}" id="hour-{{index}}" wx:for="{{hour_tabs}}"> {{item.content}} <image class="check-icon" src="/img/icons/check-bare.png"></image>
+                </view>
+            </scroll-view>
+            <view bindtap="closePicker" class="picker-cancle" id="closePickerButton">取消</view>
+        </view>
+    </view>
+</view>

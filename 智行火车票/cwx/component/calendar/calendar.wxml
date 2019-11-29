@@ -1,0 +1,35 @@
+<view>
+    <view class="calendar-week {{tips?'calendar-week_tips':''}}">
+        <view class="calendar-module_tips-show" wx:if="{{tips}}">{{tips}}</view>
+        <view class="calendar-week_item {{index===0||index===6?'calendar-week_sun':''}}" wx:for="{{DAY_NAMES}}">{{item}}</view>
+    </view>
+    <scroll-view class="body" scrollIntoView="{{scrollToID}}" scrollY="true" style="padding-top:80rpx;">
+        <block wx:for="{{monthDates}}" wx:key="monthID">
+            <view class="calendar-month {{tips?'calendar-month_tips':''}}" id="{{item.monthID}}">
+		        {{item.monthName}}
+		    </view>
+            <view class="calendar-month_items ">
+                <view class="calendar-day" wx:for="{{item.dates}}" wx:for-item="dateItem">
+                    <view class="{{dateItem.choose?'calendar-item_checkin':''}} calendar-bg "></view>
+                    <view class="calendar-info_box">
+                        <text class="{{dateItem.choose?'calendar-txt_checkin':''}} calendar-txt " wx:if="{{dateItem.today}}">今天</text>
+                        <text class="calendar-txt" wx:if="{{!dateItem.date}}"></text>
+                        <text class="calendar-txt out-of-range" wx:elif="{{dateItem.outOfRange&&!dateItem.today}}">{{dateItem.date}}</text>
+                        <text class=" calendar-txt {{dateItem.choose?'calendar-txt_checkin':''}}" wx:elif="{{!dateItem.today}}">{{flightCalendar&&dateItem.holiday||dateItem.date}}</text>
+                        <text class=" calendar-title calendar-checkin" wx:if="{{dateItem.info.subTitle}}">{{dateItem.info.subTitle}}</text>
+                    </view>
+                    <view class="calendar-info_lunar">
+                        <text class="calendar-lunar {{dateItem.outOfRange?'out-of-range':''}} {{dateItem.choose?'calendar-txt_checkin':''}}">{{flightCalendar?dateItem.price:dateItem.lunar}}</text>
+                    </view>
+                    <view class="calendar-info_festival">
+                        <text class="calendar-festival {{dateItem.outOfRange?'out-of-range':''}}" wx:if="{{dateItem.holiday&&!flightCalendar&&!dateItem.info.title}}">{{dateItem.holiday}}</text>
+                        <text class="calendar-festival {{dateItem.outOfRange?'out-of-range':''}}" wx:if="{{!flightCalendar&&dateItem.info.title}}">{{dateItem.info.title}}</text>
+                    </view>
+                    <view class="calendar-work" wx:if="{{dateItem.workday}}">班</view>
+                    <view class="calendar-rest" wx:if="{{dateItem.restday}}">休</view>
+                    <view bindtap="onDateTap" class="calendar-bg" data-date="{{dateItem.value}}" wx:if="{{dateItem&&!dateItem.outOfRange}}"></view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</view>

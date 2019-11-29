@@ -1,0 +1,50 @@
+<template name="coupons">
+    <view class="bus-coupons-warp">
+        <view class="bus-coupons-title">
+            <text>选择优惠券</text>
+        </view>
+        <view class="bus-coupons-close"></view>
+        <scroll-view class="bus-coupons-body" scrollY="">
+            <view class="bus-coupons-list">
+                <view class="bus-coupons-btn-unused"> 不使用优惠券 </view>
+                <view style="text-align:center;padding-top:.75rem;">没有符合条件的优惠券</view>
+            </view>
+        </scroll-view>
+    </view>
+</template>
+<template name="costdetail">
+    <view class="price-detail">
+        <view wx:if="{{data['mTicket']}}">{{data['mTicket'].name}}<text class="fr orange">{{data['mTicket'].amount}} x {{count.mACnt}}张</text>
+        </view>
+        <view wx:if="{{data['mTicketChild']&&count.mCCnt}}">{{data['mTicketChild'].name}}<text class="fr orange">{{data['mTicketChild'].amount}} x {{count.mCCnt}}张</text>
+        </view>
+        <view wx:if="{{data['mTicketTakeChild']&&count.mXCnt}}">{{data['mTicketTakeChild'].name}}<text class="fr orange">{{data['mTicketTakeChild'].amount}} x {{count.mXCnt}}张</text>
+        </view>
+        <view wx:if="{{data['mSrv']}}">{{data['mSrv'].name}}<text class="fr orange">{{data['mSrv'].amount}} x {{count.mACnt+count.mCCnt}}份</text>
+        </view>
+        <view wx:for="{{data['mPack']}}" wx:key="index">{{item['name']}}<text class="fr orange">{{item['amount']}} x {{count.mACnt+count.mCCnt}}份</text>
+        </view>
+        <view wx:if="{{data['mIns']}}">{{data['mIns']['name']}}<text class="fr orange">{{data['mIns']['amount']}} x {{count.mACnt+count.mCCnt}}份</text>
+        </view>
+        <view wx:if="{{data['mCoupon']}}">{{data['mCoupon']['name']}}<text class="fr orange">-{{data['mCoupon']['amount']}}</text>
+        </view>
+    </view>
+</template>
+<template name="tickettips">
+    <view class="bus-warmnotes" wx:if="{{mList}}">
+        <view>1.服务费包含支付手续费，短信费，技术接入费；如产生退票，服务费不退</view>
+        <view wx:for="{{mList}}" wx:key="{{index}}">
+            {{index+2}}.{{item}}
+        </view>
+    </view>
+</template>
+<template name="declaration">
+    <view class="bus-desc touch-scroll" wx:if="{{mList&&mList.length>0}}">
+        <view wx:for="{{mList}}" wx:key="{{index}}">
+            <view class="t">{{item.title}}</view>
+            <view wx:for="{{item.desc}}" wx:for-index="idx" wx:for-item="mTxt" wx:key="{{idx}}">
+                <view>{{mTxt}}</view>
+            </view>
+        </view>
+    </view>
+</template>

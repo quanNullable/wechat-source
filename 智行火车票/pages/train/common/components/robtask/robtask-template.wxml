@@ -1,0 +1,99 @@
+<template name="robtask-success">
+    <view class="qp-task">
+        <view class="item" wx:if="{{orderInfo.alternativeTrainNumber}}">
+            <view class="label">备选车次</view>
+            <view class="txt">{{orderInfo.alternativeTrainNumber}}</view>
+        </view>
+        <view class="item" wx:if="{{orderInfo.alternativeSeatName}}">
+            <view class="label">备选座席</view>
+            <view class="txt">{{orderInfo.alternativeSeatName}}</view>
+        </view>
+        <view class="item" wx:if="{{orderInfo.alternativeDate}}">
+            <view class="label">备选日期</view>
+            <view class="txt">{{orderInfo.alternativeDate}}</view>
+        </view>
+        <view class="item" wx:if="{{orderInfo.f_crossStationDesc}}">
+            <view class="label">跨站</view>
+            <view class="txt">{{orderInfo.f_crossStationDesc}}</view>
+        </view>
+    </view>
+</template>
+<template name="robtask">
+    <view class="qp-task">
+        <view class="item" wx:if="{{grabOrder.f_route}}">
+            <view class="label">行程</view>
+            <view class="txt">{{grabOrder.f_route}}</view>
+        </view>
+        <view class="item">
+            <view class="label">乘客</view>
+            <view class="txt">{{grabOrder.f_passengerNames}}</view>
+        </view>
+        <view class="item" wx:if="{{otherDateStr}}">
+            <view class="label">日期</view>
+            <view class="txt">{{otherDateStr}}
+            </view>
+            <block wx:if="{{grabOrder.orderInfo.updateFlag}}">
+                <view bindtap="chooseOtherDate" class="color-primary qp-recommend">推荐多选</view>
+                <view class="arrow-right"></view>
+            </block>
+        </view>
+        <view class="item" wx:if="{{selectTrainNumberStr}}">
+            <view class="label">车次</view>
+            <view class="txt">{{selectTrainNumberStr}}
+            </view>
+            <block wx:if="{{grabOrder.orderInfo.updateFlag}}">
+                <view bindtap="chooseOtherTrain" class="color-primary qp-recommend">推荐多选</view>
+                <view class="arrow-right"></view>
+            </block>
+        </view>
+        <view class="item" wx:if="{{otherSeatStr}}">
+            <view class="label">座席</view>
+            <view class="txt">{{otherSeatStr}}
+            </view>
+            <block wx:if="{{grabOrder.orderInfo.updateFlag}}">
+                <view bindtap="chooseOtherSeat" class="color-primary qp-recommend">推荐多选</view>
+                <view class="arrow-right"></view>
+            </block>
+        </view>
+        <view class="item" wx:if="{{CrossStationGrabTicketInfoList.length}}">
+            <view class="label">跨站</view>
+            <view class="txt">{{util.formatCross(CrossStationGrabTicketInfoList)||'--'}}</view>
+            <block wx:if="{{grabOrder.orderInfo.updateFlag&&isShowCrossStationRevise&&CrossStationGrabTicketInfoList.length}}">
+                <view bindtap="chooseCrossStation" class="color-primary qp-recommend">推荐多选</view>
+                <view class="arrow-right"></view>
+            </block>
+        </view>
+        <view class="item" wx:if="{{grabOrder.f_AppendProductDesc}}">
+            <view class="label">其他</view>
+            <view class="txt">{{grabOrder.f_AppendProductDesc}}</view>
+        </view>
+    </view>
+</template>
+<wxs module="util">
+var formatCross = function(CrossStationGrabTicketInfoList) {
+    var desc = "";
+    var departs = [];
+    var arrives = [];
+    CrossStationGrabTicketInfoList.forEach(function(cross) {
+        if (cross.disabled || cross.confirmed) {
+            if (departs.indexOf(cross.recommendDepartStation) === -1) {
+                departs.push(cross.recommendDepartStation);
+            }
+            if (arrives.indexOf(cross.recommendArriveStation) === -1) {
+                arrives.push(cross.recommendArriveStation);
+            }
+        }
+    });
+    if (departs.length) {
+        desc = departs[0] + "-" + arrives[0];
+    }
+    if (departs.length > 1) {
+        desc += "等";
+    }
+    return desc;
+};
+
+module.exports = {
+    formatCross: formatCross
+};
+</wxs>

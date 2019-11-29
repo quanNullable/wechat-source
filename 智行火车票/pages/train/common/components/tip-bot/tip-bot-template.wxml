@@ -1,0 +1,89 @@
+<template name="select-pay-way">
+    <view class="tip-bot active">
+        <view class="cui-hd">
+            <view bindtap="hidePayWay" class="cell cancel-btn">取消</view>
+            <view class="cell center-tit">选择支付方式</view>
+            <view class="cell cancel-btn"></view>
+        </view>
+        <view class="cui-bg tips-book-pay">
+            <view bindtap="payFirst" class="item">
+                <button class="btn-pay-before">预付票款，自动出票</button>
+                <view class="tag" wx:if="{{!isOpenWeiXinCreditPay}}">推荐</view>
+                <view class="txt">抢到票后直接为您出票，抢不到全额退款</view>
+            </view>
+            <view bindtap="payLater" class="item">
+                <button class="btn-pay-after">抢到票，再付票款</button>
+                <view class="txt">开通微信免密支付，官方担保，不占用资金</view>
+            </view>
+        </view>
+    </view>
+</template>
+<template name="package-12306">
+    <view class="tip-bot {{showType=='login-12306'?'active':''}}">
+        <view class="cui-hd">
+            <view bindtap="cancel" class="cell cancel-btn">取消</view>
+        </view>
+        <view class="cui-bg tip-12306">
+            <block wx:if="{{isWorkTime}}">
+                <view class="login-12306-tips">登录12306帐号，出票成功率更高</view>
+                <view class="train-list login-12306">
+                    <view class="item">
+                        <view class="icon icon-user"></view>
+                        <input bindinput="inputName" placeholder="12306帐号/手机号" type="text" value="{{login12306Name}}"></input>
+                    </view>
+                    <view class="item">
+                        <view class="icon icon-pasd"></view>
+                        <input bindinput="inputPas" placeholder="12306密码" type="password" value="{{login12306Pas}}"></input>
+                    </view>
+                </view>
+                <view class="login-12306-btn">
+                    <button bindtap="goLogin" class="btn-primary" hoverClass="btn-primary_hover">登录 12306</button>
+                </view>
+                <view class="login-12306-btn">
+                    <button bindtap="chooseVIP" class="btn-default btn-secondary" hoverClass="btn-default_hover" id="tieyou_wx_package_worktimevip">
+                        <text>VIP出票</text>
+                    </button>
+                </view>
+                <view class="btn-tips">
+                    还没有12306帐号？<text bindtap="goToRegister12306" class="register-12306-link" id="tieyou_wx_package_register12306">立即注册</text>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="login-12306-tips">23:00-6:00是12306系统维护时间，您可以选择使用VIP优先出票继续购票或在6:00后购票</view>
+                <view class="login-12306-btn">
+                    <button bindtap="chooseVIP" class="btn-primary" hoverClass="btn-primary_hover" id="tieyou_wx_package_offtimevip">
+                        <text>VIP出票</text>
+                    </button>
+                </view>
+                <view class="login-12306-btn">
+                    <button bindtap="buyTomorrow" class="btn-default btn-secondary" hoverClass="btn-default_hover">6:00后购票</button>
+                </view>
+            </block>
+        </view>
+    </view>
+</template>
+<template name="login-12306">
+    <view class="tip-bot {{showType=='login-12306'?'active':''}}">
+        <view class="cui-hd">
+            <view bindtap="cancel" class="cell cancel-btn">取消</view>
+        </view>
+        <view class="cui-bg tip-12306">
+            <view class="train-list login-12306">
+                <view class="item">
+                    <view class="icon icon-user"></view>
+                    <input bindinput="inputName" placeholder="12306帐号/手机号" type="text" value="{{login12306Name}}"></input>
+                </view>
+                <view class="item">
+                    <view class="icon icon-pasd"></view>
+                    <input bindinput="inputPas" placeholder="12306密码" type="password" value="{{login12306Pas}}"></input>
+                </view>
+            </view>
+            <view class="login-12306-btn">
+                <button bindtap="goLogin" class="btn-primary" hoverClass="btn-primary_hover">登录 12306</button>
+            </view>
+            <view class="btn-tips">
+                还没有12306帐号？<text bindtap="goToRegister12306" class="register-12306-link" id="tieyou_wx_booking_register12306">立即注册</text>
+            </view>
+        </view>
+    </view>
+</template>

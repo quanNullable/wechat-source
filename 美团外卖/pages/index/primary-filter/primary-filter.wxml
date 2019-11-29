@@ -1,0 +1,20 @@
+<template name="primary-filter-item">
+    <view bindtap="onClickTypeIcon" class="primary-filter-item" data-code="{{item.code}}" data-index="{{index}}" data-name="{{item.name}}">
+        <image class="primary-filter-icon" src="{{item.url||'/img/icons/all.png'}}"></image> {{item.name}} </view>
+</template>
+<template name="primary-filter">
+    <view class="primary-filter" wx:if="{{filterPages.length===1}}">
+        <template is="primary-filter-item" data="{{item:item,index:index}}" wx:for="{{filterPages[0]}}" wx:key="{{item.code}}"></template>
+    </view>
+    <swiper bindchange="onKingkongPageChange" class="primary-filter primary-filter-swiper" current="{{current}}" indicatorDots="{{true}}" wx:elif="{{filterPages.length>1}}">
+        <swiper-item class="primary-filter-page" wx:for="{{filterPages}}" wx:key="{{item.code}}">
+            <template is="primary-filter-item" data="{{item:item,index:index}}" wx:for="{{item}}" wx:key="{{index}}"></template>
+        </swiper-item>
+    </swiper>
+    <view class="primary-filter primary-filter-placeholder" wx:else>
+        <view class="primary-filter-item" wx:for="{{[0,1,2,3,4,5,6,7,8,9]}}" wx:key="{{item}}">
+            <view class="primary-filter-icon primary-filter-icon-occupied"></view>
+            <view class="primary-filter-name"></view>
+        </view>
+    </view>
+</template>

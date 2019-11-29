@@ -1,0 +1,8 @@
+<template name="reset-filter">
+    <view class="ui-error-container reset-filter">
+        <view class="ui-error">
+            <view class="ui-error-txt"> 没有搜索结果，可以减少筛选内容试试 </view>
+            <view bindtap="onClickResetFilter" class="ui-btn ui-error-btn"> 清除筛选 </view>
+        </view>
+    </view>
+</template>

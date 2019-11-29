@@ -1,0 +1,11 @@
+<view class="page-container">
+    <include src="../base.wxml"></include>
+    <view class="caution-area">
+        <view class="caution-textarea-bg"></view>
+        <view class="caution-textarea-count">{{currentValue.length}} / 50</view>
+        <textarea bindconfirm="onConfirmCaution" bindinput="onInputCaution" class="caution-textarea" focus="{{focus}}" maxlength="50" placeholder="请输入备注，最多50个字哦" value="{{text}}"></textarea>
+        <view bindtap="onClickCautionSelect" class="caution-select ellipsis" data-item="{{item}}" wx:for="{{selects}}" wx:key="{{index}}">{{item}}</view>
+        <view class="ui-clear"></view>
+    </view>
+    <button bindtap="onConfirmCaution" class="ui-btn flex-center btn-caution"> 完成 </button>
+</view>

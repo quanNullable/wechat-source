@@ -1,0 +1,21 @@
+<template name="Bus-Modal">
+    <view class="modal-cover"></view>
+    <view class="modal-container">
+        <view class="box">
+            <view class="title">{{title||'提示'}}
+          <view bindtap="{{hiddenNotice}}" class="modal-close">
+                    <view class="clos-container">
+                        <view class="modal-triangle modal-triangle-top"></view>
+                        <view class="modal-triangle modal-triangle-left"></view>
+                        <view class="modal-triangle modal-triangle-bottom"></view>
+                        <view class="modal-triangle modal-triangle-right"></view>
+                    </view>
+                </view>
+            </view>
+            <view class="context">
+                <view class="content">{{content}}</view>
+                <view class="detail">{{detail}}</view>
+            </view>
+        </view>
+    </view>
+</template>

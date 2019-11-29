@@ -1,0 +1,75 @@
+.pop-white.jiashu-info {
+    border-radius: 6rpx;
+    padding: 15rpx 45rpx 30rpx;
+}
+
+.jiashu-info .txt {
+    padding-left: 24rpx;
+    font-size: 24rpx;
+    position: relative;
+    margin: 30rpx 0;
+}
+
+.jiashu-info .txt::before {
+    width: 10rpx;
+    height: 10rpx;
+    position: absolute;
+    content: '';
+    border-radius: 10rpx;
+    left: 2rpx;
+    top: 10rpx;
+}
+
+.ty .jiashu-info .txt::before {
+    background: #fc6e51;
+}
+
+.zx .jiashu-info .txt::before {
+    background: #5495e6;
+}
+
+.jiashu-info .txt--android::before {
+    top: 14rpx;
+}
+
+.jiashu-info .txt--android span {
+    display: inline-block;
+    height: 24rpx;
+    width: 40rpx;
+    text-align: center;
+}
+
+.jiashu-info .txt--android image {
+    height: 34rpx;
+    width: 34rpx;
+    vertical-align: bottom;
+    border: none;
+    box-shadow: none;
+}
+
+.jiashu-info image {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 8rpx 20rpx rgba(0,0,0,0.1);
+    width: 520rpx;
+}
+
+.jiashu-info .guide1 {
+    height: 290rpx;
+}
+
+.jiashu-info .guide2 {
+    height: 95rpx;
+}
+
+.jiashu-info .guide3 {
+    height: 95rpx;
+    margin-top: 20rpx;
+}
+
+.jiashu-info .guide2--android {
+    height: 320rpx;
+    box-shadow: none;
+    border: none;
+    width: 520rpx;
+    margin-left: -15rpx;
+}

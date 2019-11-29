@@ -1,0 +1,21 @@
+<template name="arrival-time">
+    <view class="picker-container picker-arrival-time" wx:if="{{show}}">
+        <view bindtap="hideArrivalTime" class="picker-mask"></view>
+        <view class="picker-content">
+            <view class="picker-body">
+                <scroll-view class="arrival-time-left" scrollIntoView="arrival-time-day" scrollY="1">
+                    <view bindtap="onClickArrivalTimeDay" class="arrival-time-day ellipsis {{index===dayIndex?'selected':''}}" data-index="{{index}}" id="{{index===dayIndex?'arrival-time-day':''}}" wx:for="{{days}}" wx:key="{{item}}"> {{item}} </view>
+                </scroll-view>
+                <scroll-view class="arrival-time-right" data-r="{{arrival_timelist&&arrival_timelist.length>0}}" data-test="{{arrival_timelist}}" scrollIntoView="{{dayIndex===selectedDayIndex?'arrival-time-active':''}}" scrollTop="{{scrollTop}}" scrollY="1">
+                    <block wx:if="{{arrival_timelist&&arrival_timelist.length>0}}">
+                        <view bindtap="onClickArrivalTimeItem" class="arrival-time-item {{unixtime===item.unixtime?'selected':''}}" data-unixtime="{{item.unixtime}}" id="{{unixtime===item.unixtime?'arrival-time-active':''}}" wx:for="{{arrival_timelist}}" wx:key="{{index}}"> {{item.view_time}} <view class="ui-inline arrival-time-fee"> {{item.view_shipping_fee}} </view>
+                            <image class="arrival-time-check" src="/img/icons/check-bare.png" wx:if="{{unixtime===item.unixtime}}"></image>
+                        </view>
+                    </block>
+                    <view class="arrival-time-invalid" wx:else> {{info||'该门店当天不营业'}} </view>
+                </scroll-view>
+            </view>
+            <view bindtap="hideArrivalTime" class="flex-center picker-footer"> 取消 </view>
+        </view>
+    </view>
+</template>

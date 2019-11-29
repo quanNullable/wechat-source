@@ -1,0 +1,46 @@
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<view>
+    <view class="white_bg airbus-use-info">
+        <view bindtap="onUnneed" class="b_border b-b-phonenum row airbus-phone-num airbus-invoice-item">
+            <view class="column-4">不需要发票</view>
+            <view class="column-1 checked-arrow" wx:if="{{!mInvoice['isNeed']}}"></view>
+        </view>
+        <view bindtap="onNeed" class="b_border b-b-phonenum row airbus-phone-num airbus-invoice-item">
+            <view class="column-4">平信邮寄发票</view>
+            <view class="column-1 checked-arrow" wx:if="{{!!mInvoice['isNeed']}}"></view>
+        </view>
+    </view>
+    <view class="mt10 white_bg airbus-use-info" hidden="{{!mInvoice['isNeed']}}">
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view class="column-1">发票金额</view>
+            <view class="column-4 ticket-price">
+                <text>¥ {{mPrice}}</text>
+            </view>
+        </view>
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view class="column-1">收件人</view>
+            <view class="column-4">
+                <input bindinput="onNameChange" id="name" placeholder="请输入联系人姓名" value="{{mInvoice['name']}}"></input>
+            </view>
+        </view>
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view class="column-1">邮政编码</view>
+            <view class="column-4">
+                <input bindinput="onCodeChange" id="code" maxlength="6" placeholder="请输入6位邮政编码" type="number" value="{{mInvoice['code']}}"></input>
+            </view>
+        </view>
+        <view class="b_border b-b-phonenum row airbus-phone-num">
+            <view class="column-1">邮寄地址</view>
+            <view class="column-4">
+                <input bindinput="onAddressChange" id="address" placeholder="省-市-区-详细地址" value="{{mInvoice['address']}}"></input>
+            </view>
+        </view>
+    </view>
+    <view class="airbus-invoice-msg" hidden="{{!mInvoice['isNeed']}}">此发票将在出行后10个工作日内以平信方式邮寄。</view>
+    <view class="btn-invoice">
+        <button bindtap="onConfirm">确定</button>
+    </view>
+</view>

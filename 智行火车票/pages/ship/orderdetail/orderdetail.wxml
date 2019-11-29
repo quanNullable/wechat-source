@@ -1,0 +1,24 @@
+<import src="../orderdetail/template/tpl_order.wxml"></import>
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<block wx:if="{{isLoaded}}">
+    <template is="ticket" data="{{data:mOrder}}"></template>
+    <template is="line" data="{{data:mOrder}}"></template>
+    <view class="order-btn" style="margin-top: 20rpx;" wx:if="{{showoperate}}">
+        <view class="row">
+            <view wx:for="{{mOrder.OrderOperate}}" wx:key="{{index}}">
+                <view bindtap="onRefund" style="width: 300rpx; margin-right:  50rpx;" wx:if="{{item['operate']!='orderZixun'}}">
+                    <button class="btn_default" data-id="{{item['operate']}}" hoverClass="btn-default_hover">{{item.name}}</button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <template is="ticket-picker" data="{{data:mOrder}}"></template>
+    <template is="ticket-address" data="{{data:mOrder}}"></template>
+    <template is="ticket-addresstips" data="{{data:mOrder.RuleDesc}}"></template>
+</block>
+<view>
+    <loading wx:if="{{mLoading['isLoading']}}">{{mLoading['message']}}</loading>
+</view>

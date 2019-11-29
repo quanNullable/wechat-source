@@ -1,0 +1,298 @@
+page {
+    background: linear-gradient(#7401aa,#650195,#500175);
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.container {
+    height: 100%;
+}
+
+.hover-class {
+    animation-name: scale;
+    animation-duration: .3s,.3s,.3s;
+    animation-delay: 0,0,0;
+}
+
+@-webkit-keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.popup-buy {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+}
+
+.popup-buy .popup-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10001;
+    background: rgba(0,0,0,.6);
+}
+
+.popup-buy .popup-panel {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 10002;
+    transform: translate(-50%,-50%);
+    width: 680rpx;
+    height: auto;
+}
+
+.popup-buy .popup-head {
+    position: absolute;
+    left: 50%;
+    top: -55rpx;
+    z-index: 10003;
+    margin-left: -357rpx;
+    width: 714rpx;
+    height: 178rpx;
+}
+
+.popup-buy .popup-head image {
+    width: 714rpx;
+    height: 178rpx;
+}
+
+.popup-buy .popup-main {
+    overflow: hidden;
+    height: auto;
+    background-color: #fff;
+    border-radius: 20rpx;
+}
+
+.popup-buy .popup-close {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    z-index: 10004;
+    box-sizing: border-box;
+    margin-left: -20px;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+.popup-buy .buy-list {
+    margin: 0 30rpx;
+    padding-top: 155rpx;
+    padding-bottom: 20rpx;
+}
+
+.popup-buy .buy-item {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 20rpx 0;
+    padding: 0 25rpx;
+    height: 128rpx;
+    background: #fff linear-gradient(to bottom,#ee9e4f,#dc7f49);
+    border: 6rpx solid #fff;
+    border-radius: 20rpx;
+    box-shadow: 0 5rpx 5rpx rgba(0,0,0,.3);
+    color: #fff;
+}
+
+.popup-buy .buy-item::after {
+    border: none;
+    border-radius: 0;
+}
+
+.popup-buy .buy-item .item-name {
+    line-height: 50rpx;
+    font-size: 34rpx;
+    font-weight: 700;
+    text-align: left;
+}
+
+.popup-buy .buy-item .item-desc {
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #f0c7b0;
+}
+
+.popup-buy .buy-item .item-price {
+    line-height: 56rpx;
+    font-size: 56rpx;
+    text-align: right;
+}
+
+.popup-buy .buy-item .item-original {
+    line-height: 48rpx;
+    font-size: 28rpx;
+    color: #999;
+    text-decoration: line-through;
+    text-align: right;
+}
+
+.popup-share {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+}
+
+.popup-share .popup-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10001;
+    background: rgba(0,0,0,.75);
+}
+
+.popup-share .popup-panel {
+    position: fixed;
+    left: 50%;
+    top: 45%;
+    z-index: 10002;
+    margin-left: -240rpx;
+    margin-top: -290rpx;
+    width: 480rpx;
+    height: 580rpx;
+    animation: popup-in .2s;
+}
+
+@-webkit-keyframes popup-in {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes popup-in {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.popup-share .popup-main {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-share .popup-close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    z-index: 10003;
+}
+
+.popup-share .popup-close image {
+    width: 64rpx;
+    height: 64rpx;
+}
+
+.popup-share button {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    line-height: normal;
+    background: none;
+    border-radius: 0;
+}
+
+.popup-share button::after {
+    border: none;
+    border-radius: 0;
+}
+
+.popup-share button image {
+    width: 100%;
+    height: 100%;
+}
+
+.popup-share button text {
+    position: absolute;
+    left: 50%;
+    bottom: 50rpx;
+    margin-left: -190rpx;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 10rpx;
+    width: 380rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: rgba(255,255,255,.08);
+    border: none;
+    border-radius: 40rpx;
+    color: #fff;
+    font-size: 32rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

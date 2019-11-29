@@ -1,0 +1,133 @@
+<import src="../book/template/tpl_book.wxml"></import>
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<view>
+    <view class="tour-info white_bg">
+        <text class="b-b-station">{{mDateMsg}}</text>
+    </view>
+    <view class="b-b-note row white_bg info-panel">
+        <view class="column-1 info-left-panel">
+            <view class="time">{{mLine['fromTime'||'--']}}</view>
+            <view class="city">{{mLine['fromCityName']}}</view>
+            <view class="station">{{mLine['fromStationName']}}</view>
+        </view>
+        <view class="column-1 info-right-panel">
+            <view class="time">{{mLine['toTime']||'--'}}</view>
+            <view class="city">{{mLine['toCityName']}}</view>
+            <view class="station">{{mLine['toStationName']}}</view>
+        </view>
+        <text class="arr-fromto info-from-to"></text>
+    </view>
+    <view class="mt10 white_bg">
+        <view class="b_border tour-desc">
+            <view>
+                <text class="gray-text">旅游专线</text>
+                <text>自由行旅游产品，直达景区，自由旅行</text>
+            </view>
+            <view wx:if="{{!mLine['is_need_ticket']}}">
+                <text class="gray-text">无需取票</text>
+                <text>豪华旅游巴士，直接上车</text>
+            </view>
+            <view>
+                <text class="gray-text">网上退票</text>
+                <text>发车前24小时外支持网上退票</text>
+            </view>
+            <view wx:if="{{!!hasPackage}}">
+                <text class="gray-text">包含套餐</text>
+                <text>含返程票</text>
+            </view>
+            <view bindtap="onShowDeclaration" class="tour-prd-info">
+                <text>{{'使用须知'}}</text>
+                <text class="right-arrow"></text>
+            </view>
+        </view>
+    </view>
+    <view class="passenger-title">
+        <text>旅客信息</text>
+    </view>
+    <view class="b-b-passlist tour-pass-list white_bg">
+        <view class="b_border row item" wx:for="{{mSelUsers}}" wx:key="index">
+            <view bindtap="onPassengerDel" class="column-1 pass-remove" data-id="{{item['mPID']}}" data-index="{{index}}" data-type="{{item['mType']}}">
+                <icon class="icon-del del-view color_warn"></icon>
+            </view>
+            <view class="column-6 info">
+                <view class="row">
+                    <text class="name inline-block">{{item['mName']}}</text>
+                </view>
+                <view class="card">{{item['mCardNo']}}</view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="onAddPassenger" class="row justify-center white_bg add-passenger b_border tour-add-passenger">
+        <view class="row content-center">
+            <view class="add-icon-view color_enable">
+                <icon class="icon-add"></icon>
+            </view>
+            <view class="add-txt-view">添加乘客</view>
+        </view>
+    </view>
+    <view class="mt10 mb120 b_border b-b-phonenum white_bg row tour-phone-num">
+        <view class="column-1">联系电话</view>
+        <view class="column-4">
+            <input bindinput="onMobileChange" id="phone" maxlength="11" placeholder="用于接收取票信息" type="number" value="{{mContractTel}}"></input>
+        </view>
+    </view>
+    <view class="row bar-pay">
+        <view class="column-1">
+            <text class="torange">¥ {{mTotalPrice}}</text>
+        </view>
+        <view class="column-3">
+            <text bindtap="onShowCostDetail" class="detail">明细</text>
+        </view>
+        <view class="column-2">
+            <form bindreset="formReset" bindsubmit="formSubmit" reportSubmit="ture">
+                <button bindtap="onSubmit" class="btn_primary btn-pay" formType="submit" hoverClass="btn_primary_hover" name="gopay">去支付</button>
+            </form>
+        </view>
+    </view>
+    <view bindtap="onHideCostDetail" hidden="{{!isShowPrice}}">
+        <template is="costdetail" data="{{data:mDetail,count:mCount}}"></template>
+    </view>
+</view>
+<view bindtap="onHideDeclaration" hidden="{{!isShowDeclar}}">
+    <template is="declaration" data="{{mList:mPrdInfo.mDescription}}"></template>
+</view>
+<view class="bus-coupons-warp" hidden="{{!isAddPassenger}}">
+    <view bindtap="onCancelPassenger" class="bus-coupons-cancel">取消</view>
+    <view class="bus-coupons-title">
+        <text>{{'添加乘客'}}</text>
+    </view>
+    <view bindtap="onConfirmPassenger" class="bus-coupons-done color_enable">确认</view>
+    <scroll-view class="bus-coupons-body" scrollY="true">
+        <view class="bus-coupons-list">
+            <view bindtap="onNewPassenger" class="bus-coupons-btn-unused row justify-center">
+                <view class="row content-center">
+                    <view class="add-icon-view color_enable">
+                        <icon class="icon-add"></icon>
+                    </view>
+                    <view class="add-txt-view">添加乘客</view>
+                </view>
+            </view>
+            <view class="white_bg" style="margin-top: 20rpx;">
+                <view bindtap="onClickUser" class="row line26 b_border bottom-border-1" data-enable="{{!!item['mCardNo']}}" data-value="{{item['mPID']}}" wx:for="{{mUsers}}" wx:key="index">
+                    <view class="column-1 edit-view color_enable" data-type="edit">
+                        <icon class="icon-edit" data-type="edit"></icon>
+                    </view>
+                    <view class="column-5 {{item['mCardNo']?'':'grey'}}" data-type="select" style="padding: 20rpx 0 0 20rpx;">
+                        <view class="line12 {{item['mStatus']?'color_current':''}}" data-type="select">{{item['mName']}}</view>
+                        <view class="line08 {{!item['mCardNo']?'red-num-text':'com-num-text'}}" data-type="select" wx:if="{{item['mCardNo']}}">{{item['mCardNo']||'请补充证件信息'}}</view>
+                    </view>
+                    <view class="column-1 check-view" data-type="check" hidden="{{!item['mCardNo']}}">
+                        <icon class="{{item['mStatus']?'icon-checked':'icon-check'}}" data-type="check"></icon>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+<mask bindtap="onHideMask" hidden="{{!isShowMask}}" hoverStyle="none" style="background-color: rgba(0,0,0,0.8);"></mask>
+<view>
+    <loading wx:if="{{mLoading['isLoading']}}">{{mLoading['message']}}</loading>
+</view>

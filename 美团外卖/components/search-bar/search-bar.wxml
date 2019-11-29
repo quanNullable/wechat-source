@@ -1,0 +1,7 @@
+<view class="search-container">
+    <view class="index-search-bg">
+        <image class="search-icon" src="/img/icons/search.png"></image>
+    </view>
+    <input bindinput="onSearchInput" class="index-search-input" name="loc-search" placeholder="输入商家、商品名" placeholderClass="shop-search-placeholder" type="text" value="{{keywordValue}}"></input>
+    <text bindtap="onClickSearch" class="search-button">搜索</text>
+</view>

@@ -1,0 +1,12 @@
+<view>
+    <swiper autoplay="{{false}}" bindchange="swiperChange" class="picture-scroll" duration="200" indicatorDots="{{false}}">
+        <swiper-item wx:for="{{images}}">
+            <image binderror="imageError" bindload="imageLoad" class="picture-item_show" mode="aspectFill" src="{{item.imageUrl}}"></image>
+        </swiper-item>
+    </swiper>
+    <view class="picture-item_detail">
+        <text class="picture-item_title">{{indexTitle}}</text>
+        <text class="picture-item_number">{{index+1+'/'+count}}</text>
+        <text class="picture-item_desc">{{indexDescription}}</text>
+    </view>
+</view>

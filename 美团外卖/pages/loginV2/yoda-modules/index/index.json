@@ -1,0 +1,8 @@
+{
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "验证中心",
+    "backgroundColor": "#ccc",
+    "backgroundTextStyle": "dark",
+    "disableScroll": true
+}

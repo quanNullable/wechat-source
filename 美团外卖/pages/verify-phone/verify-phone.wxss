@@ -1,0 +1,96 @@
+page {
+    font-size: 24rpx;
+}
+
+.ui-form-block {
+    padding: 0 30rpx;
+}
+
+.verify-phone-desc {
+    background: #a9aeb2;
+    color: #fff;
+    font-size: 20rpx;
+    line-height: 30rpx;
+    padding: 18rpx 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.verify-phone-bind {
+    color: #333;
+}
+
+.verify-phone-input {
+    color: #aaa;
+    padding-left: 0;
+}
+
+.verify-phone-send {
+    height: 72rpx;
+    line-height: 72rpx;
+    font-size: 24rpx;
+    margin: 0 0 0 auto;
+    border: 1rpx solid #eee;
+}
+
+.verify-phone-send:after {
+    display: none;
+}
+
+.verify-phone-check {
+    background: #ffd300!important;
+    color: #6b450a!important;
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    font-size: 40rpx;
+    margin-top: 40rpx;
+}
+
+button[disabled].verify-phone-send-disabled {
+    color: #ccc!important;
+    background-color: transparent!important;
+}
+
+.verify-phone-submit {
+    margin: 30rpx 30rpx 50rpx;
+}
+
+.verify-phone-call {
+    position: relative;
+    color: #666;
+    margin: 0 30rpx;
+    padding-top: 10rpx;
+}
+
+.verify-phone-call-tap {
+    position: absolute;
+    top: 0;
+    left: 120rpx;
+    width: 300rpx;
+    height: 100rpx;
+}
+
+.verify-phone-contact-tap {
+    position: absolute;
+    top: 220rpx;
+    left: 200rpx;
+    width: 200rpx;
+    height: 100rpx;
+}
+
+.verify-phone-call-strong {
+    color: #348bed;
+}
+
+.verify-phone-call-underline {
+    text-decoration: underline;
+}
+
+.verify-phone-contact-text {
+    border: 1rpx solid #ddd;
+    border-radius: 5rpx;
+    padding: 20rpx 12rpx;
+    margin: 80rpx 0 50rpx;
+    color: #666;
+    background: #eee;
+}

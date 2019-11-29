@@ -1,0 +1,78 @@
+<import src="../list/template/tpl_list.wxml"></import>
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<view class="bus-listdate">
+    <view class="row">
+        <view bindtap="onPrevDay" class="prev column-2 " data-enable="{{!isMin}}">前一天</view>
+        <view bindtap="onChangeDate" class="column-3 taday">
+            <text>{{mQuery.mDate2}} {{mQuery.mWeek}}</text>
+        </view>
+        <view bindtap="onNextDay" class="next column-2 " data-enable="{{!isMax}}">后一天</view>
+    </view>
+</view>
+<scroll-view bindscrolltolower="onScrollEnd" class="bus-list-view" scrollY="true">
+    <view class="bus-list" hidden="{{!isLoaded}}">
+        <view bindtap="onBook" class="b_border row {{item['bookable']?'':'disabled'}}" data-airbus="{{!!item['isAirBus']}}" data-enable="{{item['bookable']}}" data-params="?fromCity={{item.fromCityName}}&toCity={{item.toCityName}}&fromStation={{item.fromStationName}}&toStation={{item.toStationName}}&fromTime={{item.fromTime}}&endTime={{item.endTime}}&busNo={{item.busNumber}}&fullPrice={{item.fullPrice}}" data-pointbus="{{!!item['isPointBus']}}" data-symbol="{{item['symbol']}}" wx:for="{{mLines}}" wx:key="index">
+            <view class="time column-1" wx:if="{{item['isAirBus']!=1}}">
+                <view class="line50">{{item['fromTime']}}</view>
+                <view class="line30" wx:if="{{item['isPointBus']==1}}">旅游直通</view>
+            </view>
+            <view class="time column-1" wx:if="{{item['isAirBus']==1}}">
+                <view class="line40">{{item['fromTime']}} 首</view>
+                <view class="line40">{{item['endTime']}} 末</view>
+                <view class="line30">机场巴士</view>
+            </view>
+            <view class="column-4">
+                <view class="from">
+                    <view class="fr price">
+                        <text class="dfn">¥</text>
+                        <text class="strong">{{(item['fullPrice']||0)*1}}</text>
+                    </view>
+                    <view class="station">
+                        <icon class="icon-shi"></icon>{{item['fromStationName']}}
+                    </view>
+                </view>
+                <view class="to">
+                    <view class="fr">
+                        <text class="grey">{{item['showTicketInfo']}}</text>
+                    </view>
+                    <view class="station">
+                        <icon class="icon-zhong"></icon>{{item['toStationShow']||item['toStationName']}}
+                    </view>
+                </view>
+                <view class="models">
+                    <view class="fr">
+                        <text class="cost grey">{{item['costTime']}}</text>
+                    </view>
+                    <view class="bustype grey">
+                        <icon class="icon-bus"></icon>{{item['busType']}} </view>
+                </view>
+            </view>
+        </view>
+        <view class="list-end" hidden="{{!isEnd}}">
+            <text>共找到{{mLines.length}}条符合条件的车次</text>
+        </view>
+    </view>
+</scroll-view>
+<view class="row bar-pay">
+    <view bindtap="filtratestation" class="filtrate">
+        <view class="circlemark" wx:if="{{fromStation.length}}"></view>
+        <text class="filtratetext">筛选车站</text>
+    </view>
+    <view bindtap="filtratetime" class="filtrate">
+        <view class="circlemarkright" wx:if="{{timeRange.length}}"></view>
+        <text class="filtratetext">发车时段</text>
+    </view>
+</view>
+<view hidden="{{!isshowstation}}">
+    <template is="filtratestation_tpl" data="{{data:stationlines,allstation:allStation}}"></template>
+</view>
+<view hidden="{{!isshowtime}}">
+    <template is="filtratetime_tpl" data="{{data:departtimes,alltime:allTime}}"></template>
+</view>
+<mask bindtap="onHideMask" hidden="{{!isShowMask}}" hoverStyle="none" style="background-color: rgba(0,0,0,0.6);"></mask>
+<view>
+    <loading wx:if="{{mLoading['isLoading']}}">{{mLoading['message']}}</loading>
+</view>

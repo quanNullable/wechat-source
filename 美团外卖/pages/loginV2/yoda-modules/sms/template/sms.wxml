@@ -1,0 +1,26 @@
+<template name="popssms">
+    <view class="popssms" wx:if="{{show}}">
+        <view class="rowWrapper">
+            <view class="row">
+                <text class="label">{{mobileLable}}</text>
+                <view class="inputContainer" wx:if="{{!isMobile}}">
+                    <input bindinput="bindMobileInput" class="mobileInput" maxlength="11" placeholder="{{mobilePlac}}" style="caret-color:{{mobileInput.caretColor}}" type="number"></input>
+                </view>
+                <text class="mobileRow" wx:else>{{data.mobile}}</text>
+                <button bindtap="tapSeedSmS" class="sendSMSButton" disabled="{{sendSmsDisa}}" style="color: {{smsButColor}}" type="default">{{codeButText}}</button>
+            </view>
+            <view class="row">
+                <text class="label">{{verifyCodeLable}}</text>
+                <view class="inputContainer">
+                    <input bindblur="bindSmsBlurInput" bindfocus="bindSmsFocusInput" bindinput="bindSmsCodeInput" class="mobileCodeInput" focus="{{smsFocus}}" maxlength="6" placeholder="{{codePlac}}" style="caret-color:{{mobileInput.caretColor}}" type="number" value="{{smscode}}"></input>
+                </view>
+            </view>
+            <view class="submitButtonRow">
+                <button bindtap="bindSmsVerify" class="banMainBtn" disabled="{{verifyDisa}}" style="background-color: {{verifyButton.backgroundColor}}; color: {{verifyButton.color}}; opacity: {{opacity}}" type="default">{{verifyButText}}</button>
+            </view>
+            <view class="stext" wx:if="{{switchText}}">
+                <text bindtap="bindSmsSwitch" style="color: {{verifyButton.backgroundColor}};">换个验证方式</text>
+            </view>
+        </view>
+    </view>
+</template>

@@ -1,0 +1,42 @@
+<template name="privacy_protection">
+    <view catchtouchmove="prohibitScroll" class="mask" wx:if="{{modalStatus}}">
+        <view class="bounce" hidden="{{modalStatus===2||modalStatus===3}}">
+            <view class="header-block">
+                <image class="privacy-icon" src="/img/icons/privacy-protection.png"></image>
+                <view class="bounce-info">将使用该号码加密呼出</view>
+                <view class="bounce-number">{{dailingPhone}}</view>
+                <view catchtap="onTapChangeDailingPhone" class="modify">非本机号码请修改></view>
+            </view>
+            <view class="footer-block">
+                <view bindtap="onTapCancelCall" class="cancel">取消</view>
+                <view bindtap="bindingPrivacy" class="call call-btn-highlight" data-entrance="0">立即呼叫</view>
+            </view>
+        </view>
+        <view class="bounce" hidden="{{modalStatus===1||modalStatus===3}}">
+            <view class="header-block">
+                <view class="write-title">输入本机号码</view>
+                <view class="input-wrap {{isInputError?'error':''}}">
+                    <view class="input-content">
+                        <input bindinput="onInputChange" class="number-in" confirmType="done" focus="{{inputFocus}}" maxlength="13" placeholder="请输入手机号" placeholderClass="placeholder" type="number" value="{{inputPhoneStr}}"></input>
+                        <image catchtap="onTapClearInputText" class="clear-icon" src="/img/icons/clear@2x.png" wx:if="{{inputPhoneStr}}"></image>
+                    </view>
+                    <text class="error-msg">请输入正确的11位手机号</text>
+                </view>
+            </view>
+            <view class="footer-block">
+                <view bindtap="onTapCancelChangeDailingPhone" class="cancel">取消</view>
+                <view bindtap="bindingPrivacy" class="{{inputPhoneStr.length===13&&!isInputError?'call call-btn-highlight':'call'}}" data-entrance="1">呼叫</view>
+            </view>
+        </view>
+        <view class="bounce" hidden="{{modalStatus===1||modalStatus===2}}">
+            <view class="header-block">
+                <view class="exception-main-msg">{{exception.mainMsg}}</view>
+                <view class="exception-sub-msg">{{exception.subMsg}}</view>
+            </view>
+            <view class="footer-block">
+                <view bindtap="onTapCancelCall" class="cancel">取消</view>
+                <view bindtap="onTapCallWithoutPrivacy" class="call call-btn-highlight">{{isExpired?'联系客服':'继续呼叫'}}</view>
+            </view>
+        </view>
+    </view>
+</template>

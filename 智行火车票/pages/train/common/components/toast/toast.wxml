@@ -1,0 +1,20 @@
+<template name="train-toast">
+    <view>
+        <view class="train-toast" wx:if="{{trainToast&&trainToast.type==='loading'}}">
+            <icon class="loading"></icon>
+            <text>{{trainToast.text}}</text>
+        </view>
+        <view class="train-toast" wx:if="{{trainToast&&trainToast.type==='ok'}}">
+            <icon class="ok"></icon>
+            <text>{{trainToast.text}}</text>
+        </view>
+        <view class="train-toast" wx:if="{{trainToast&&trainToast.type==='fail'}}">
+            <icon class="fail"></icon>
+            <text>{{trainToast.text}}</text>
+        </view>
+        <view class="train-toast-txt" wx:if="{{trainToast&&trainToast.type==='txt'}}">
+            <text>{{trainToast.text}}</text>
+        </view>
+        <view class="train-toast-mask" wx:if="{{trainToast&&trainToast.mask}}"></view>
+    </view>
+</template>

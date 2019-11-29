@@ -1,0 +1,55 @@
+<view class="swiper-tab">
+    <view bindtap="clickTab" class="tab-list {{currentTab==0?'on':''}}" data-current="0">挑战领奖</view>
+    <view bindtap="clickTab" class="tab-list {{currentTab==1?'on':''}}" data-current="1">领奖记录</view>
+</view>
+<swiper bindchange="swiperTab" class="swiper-box" current="{{currentTab}}" duration="300" style="height:{{winHeight}}rpx">
+    <swiper-item>
+        <scroll-view class="container" scrollIntoView="{{toView}}" scrollTop="{{scrollTop}}" scrollY="true" style="height:{{winHeight}}rpx">
+            <view class="gift-list">
+                <view class="gift-item" wx:for="{{gift_list_slice}}" wx:key="index">
+                    <image class="item-image" src="{{item.img_url}}"></image>
+                    <view class="item-info">
+                        <text class="item-title">{{item.name}}</text>
+                        <button bindtap="linqu_click" class="item-button" data-id="{{item.id}}">领取</button>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+    <swiper-item>
+        <scroll-view class="container" scrollIntoView="{{toView}}" scrollTop="{{scrollTop}}" scrollY="true" style="height:{{winHeight}}rpx">
+            <view class="receive-list">
+                <view class="receive-item" wx:for="{{linqu_list}}" wx:key="index">
+                    <image class="item-image" src="{{item.img}}"></image>
+                    <view class="item-info">
+                        <text class="item-title">{{item.name}}</text>
+                        <button class="item-button">已领取</button>
+                    </view>
+                    <view class="item-time">领取时间：{{item.intime}}</view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+</swiper>
+<modal bindcancel="cancel" bindconfirm="send_gift" class="{{write_addres}}" confirmText="领取" title="请确认收货地址">
+    <view class="form">
+        <view class="form-item">
+            <label class="label">收货地址</label>
+            <view class="value">
+                <input bindchange="address" value="{{address}}"></input>
+            </view>
+        </view>
+        <view class="form-item">
+            <label class="label">收货人姓名</label>
+            <view class="value">
+                <input bindchange="true_name" value="{{true_name}}"></input>
+            </view>
+        </view>
+        <view class="form-item">
+            <label class="label">收货人电话</label>
+            <view class="value">
+                <input bindchange="phone_num" value="{{phone_num}}"></input>
+            </view>
+        </view>
+    </view>
+</modal>

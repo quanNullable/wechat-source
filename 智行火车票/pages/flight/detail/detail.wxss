@@ -1,0 +1,580 @@
+.order_service {
+    height: 90rpx;
+    background: #fff;
+    padding: 20rpx 28rpx;
+}
+
+.service_avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 80rpx;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    float: left;
+    margin: 5rpx 20rpx 5rpx 0;
+}
+
+.service_avatar .avatar {
+    width: 80rpx;
+    height: 80rpx;
+}
+
+.order_service text {
+    line-height: 90rpx;
+    display: inline-block;
+}
+
+.order_service .suc {
+    font-size: 34rpx;
+    color: #24bc53;
+}
+
+.order_service .pay {
+    font-size: 30rpx;
+    line-height: 130rpx;
+}
+
+.order_service .pay text {
+    color: #5495e6;
+}
+
+.order_num {
+    margin-top: 20rpx;
+    padding: 0 50rpx;
+    line-height: 65rpx;
+    font-size: 30rpx;
+}
+
+.order_modify {
+    background: #5495e6;
+    margin: 0 23rpx;
+    padding: 30rpx;
+    color: #fff;
+    border-radius: 16rpx 16rpx 0 0;
+}
+
+.flt_modify_info {
+    font-size: 28rpx;
+    margin-bottom: 15rpx;
+}
+
+.flt_modify_info .flt_date {
+    display: inline-block;
+}
+
+.flt_modify_info .flt_refound {
+    float: right;
+}
+
+.flt_modify_intro {
+    display: flex;
+    width: 100%;
+}
+
+.flt_depart,.flt_arrival,.separator {
+    flex: 1;
+}
+
+.flt_depart {
+    text-align: left;
+}
+
+.flt_arrival {
+    text-align: right;
+}
+
+.flt_time {
+    font-size: 60rpx;
+}
+
+.flt_adday {
+    font-size: 30rpx;
+}
+
+.flt_airport {
+    display: block;
+    font-size: 32rpx;
+}
+
+.separator {
+    text-align: center;
+    flex: .8;
+    position: relative;
+    line-height: 60rpx;
+}
+
+.spt_arr {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -73rpx;
+    width: 146rpx;
+    height: 1px;
+    background: #fff;
+}
+
+.spt_arr::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 5rpx;
+    width: 10rpx;
+    height: 1px;
+    background: #fff;
+    transform: rotate(45deg);
+}
+
+.spt_type {
+    font-size: 24rpx;
+}
+
+.spt_time {
+    font-size: 24rpx;
+}
+
+.order_modify_down {
+    margin: 0rpx 23rpx 20rpx 23rpx;
+    padding: 15rpx 30rpx;
+    background: #fff;
+    border-radius: 0 0 8rpx 8rpx;
+}
+
+.order_tick {
+    margin: 0 23rpx 20rpx 23rpx;
+    padding: 15rpx 30rpx;
+    background: #fff;
+    border-radius: 8rpx 8rpx 8rpx 8rpx;
+}
+
+.order_tick .tick_state {
+    float: right;
+    color: #5495e6;
+}
+
+.airline_info {
+    position: relative;
+    padding-top: 15rpx;
+    color: #999;
+    font-size: 28rpx;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.airline_logo {
+    margin-right: 8rpx;
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+.airline_arr {
+    width: 24rpx;
+    height: 2rpx;
+    background: #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -2px 20rpx 0 20rpx;
+    position: relative;
+}
+
+.airline_arr::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    content: "";
+    transform: rotate(45deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    right: 0;
+    top: 50%;
+    margin-top: -7rpx;
+}
+
+.airline_share {
+    margin-right: 20rpx;
+    padding-bottom: 5rpx;
+}
+
+.order_line {
+    border-style: solid;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQImWN88ODBfwY0wMLAwMAgLy/PCBN4+PDhfyZ0VQwMDAxYBVlgWpAFAbVJC08j6LRdAAAAAElFTkSuQmCC) 2 stretch;
+    border-width: 0;
+    border-bottom-width: 1rpx;
+}
+
+.order_line:last-child {
+    border-bottom: 0;
+}
+
+.order_pasg_hd,.order_phone_hd,.order_other_hd {
+    position: relative;
+    color: #999;
+    font-size: 28rpx;
+    padding: 15rpx;
+}
+
+.order_detail_hd::after {
+    width: 16rpx;
+    height: 16rpx;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    position: absolute;
+    content: "";
+    transform: rotate(-45deg);
+    right: 20rpx;
+    top: 50%;
+    margin-top: -10rpx;
+}
+
+.order_pasg_bd,.order_phone_bd,.order_other_bd {
+    margin-left: 50rpx;
+}
+
+.icon_pasg,.icon_phone,.icon_other {
+    width: 30rpx;
+    height: 30rpx;
+    display: inline-block;
+    background: url(http://images3.c-ctrip.com/tieyou/wechat/wechat_zx.png?v=1122) no-repeat;
+    background-size: 400rpx 400rpx;
+    vertical-align: middle;
+    margin: -4rpx 20rpx 0 0;
+}
+
+.icon_pasg {
+    background-position: -300rpx 0;
+}
+
+.icon_phone {
+    background-position: -330rpx 0;
+}
+
+.icon_other {
+    background-position: -360rpx 0;
+}
+
+.order_pasg_item {
+    border-bottom: 1px dashed #e0e0e0;
+    padding: 20rpx 0;
+    color: #999;
+    line-height: 45rpx;
+    font-size: 24rpx;
+}
+
+.order_pasg_item .name {
+    font-size: 32rpx;
+    color: #333;
+    margin-right: 20rpx;
+}
+
+.order_pasg_item:last-child {
+    border-bottom: 0;
+}
+
+.order_phone_item {
+    padding: 15rpx 0;
+    font-size: 32rpx;
+}
+
+.order_other_item {
+    padding: 15rpx 0;
+    font-size: 32rpx;
+}
+
+.order_other_item .txt_red {
+    color: #5495e6;
+}
+
+.order_opert {
+    background: #fff;
+    border-radius: 8rpx;
+    padding: 5rpx 10px;
+    margin: 20rpx 23rpx;
+    overflow: hidden;
+}
+
+.order_opert_item {
+    width: 50%;
+    float: left;
+    padding: 28rpx 0;
+    font-size: 26rpx;
+    border-style: solid;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQImWN88ODBfwY0wMLAwMAgLy/PCBN4+PDhfyZ0VQwMDAxYBVlgWpAFAbVJC08j6LRdAAAAAElFTkSuQmCC) 2 stretch;
+    border-width: 0;
+    border-bottom-width: 1rpx;
+}
+
+.order_opert_item:nth-last-child(2),.order_opert_item:last-child {
+    border-bottom: 0;
+}
+
+.icon_refund,.icon_endorse,.icon_etic,.icon_apply {
+    width: 50rpx;
+    height: 50rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -4rpx 20rpx 0 10rpx;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.icon_refund::after,.icon_endorse::after,.icon_etic::after,.icon_apply::after {
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    margin: -20rpx 0 0 -20rpx;
+    background: url(http://images3.c-ctrip.com/tieyou/wechat/wechat_zx.png?v=3344) no-repeat;
+    background-size: 400rpx 400rpx;
+    vertical-align: middle;
+}
+
+.icon_refund::after {
+    background-position: -180rpx -80rpx;
+}
+
+.icon_endorse::after {
+    background-position: -220rpx -80rpx;
+}
+
+.icon_etic::after {
+    background-position: -260rpx -80rpx;
+}
+
+.icon_apply::after {
+    background-position: -300rpx -80rpx;
+}
+
+.order_opert_item.disabled {
+    color: #999;
+}
+
+.order_opert_item.disabled .icon_refund::after {
+    background-position: -220rpx -120rpx;
+}
+
+.order_opert_item.disabled .icon_endorse::after {
+    background-position: -220rpx -120rpx;
+}
+
+.order_opert_item.disabled .icon_etic::after {
+    background-position: -260rpx -120rpx;
+}
+
+.order_opert_item.disabled .icon_apply::after {
+    background-position: -300rpx -120rpx;
+}
+
+.order_back {
+    padding-bottom: 140rpx;
+}
+
+.order_total {
+    background: #fff;
+    border-radius: 8rpx;
+    padding: 0 40px 0 30rpx;
+    margin: 20rpx 23rpx 20rpx;
+    overflow: hidden;
+    line-height: 100rpx;
+    position: relative;
+}
+
+.order_total::after {
+    width: 16rpx;
+    height: 16rpx;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    position: absolute;
+    content: "";
+    transform: rotate(-135deg);
+    right: 40rpx;
+    top: 50%;
+    margin-top: -10rpx;
+}
+
+.flt_price {
+    font-size: 36rpx;
+    color: #fe6b5b;
+}
+
+.flt_price::before {
+    content: "\00A5";
+    font-size: 22rpx;
+    padding-right: 7rpx;
+    color: #fe6b5b;
+}
+
+.order_total .detail {
+    float: right;
+    color: #5495e6;
+}
+
+.btn_again {
+    width: 550rpx;
+    height: 80rpx;
+    margin: 30rpx auto 40rpx;
+    background: #fff;
+    color: #5495e6;
+    line-height: 80rpx;
+    position: relative;
+}
+
+.btn_again_hover::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: rgba(0,0,0,.1);
+}
+
+.refund_rule_tips {
+    background: #fefad7;
+    padding: 20rpx 30rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.pay_box {
+    height: 124rpx;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 960;
+    background: rgba(255,255,255,.95);
+    border-style: solid;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQImWN88ODBfwY0wMLAwMAgLy/PCBN4+PDhfyZ0VQwMDAxYBVlgWpAFAbVJC08j6LRdAAAAAElFTkSuQmCC) 2 stretch;
+    border-width: 0;
+    border-top-width: 1rpx;
+    padding: 0 40rpx;
+    line-height: 124rpx;
+    font-size: 34rpx;
+    color: #666;
+}
+
+.btn_cancel {
+    width: 306rpx;
+    height: 78rpx;
+    position: absolute;
+    top: 23rpx;
+    left: 40rpx;
+    line-height: 78rpx;
+    padding: 0;
+    background: #fff;
+    color: #5495e6;
+    border: 2rpx solid;
+}
+
+.btn_cancel::after {
+    border: 0;
+}
+
+.btn_cancel_hover::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: rgba(0,0,0,.1);
+}
+
+.btn_pay {
+    width: 306rpx;
+    height: 78rpx;
+    position: absolute;
+    top: 23rpx;
+    right: 40rpx;
+    line-height: 78rpx;
+    padding: 0;
+    background: #5495e6;
+    color: #fff;
+}
+
+.btn_pay::after {
+    border: 0;
+}
+
+.btn_pay_hover::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: rgba(0,0,0,.1);
+}
+
+.order_tips {
+    margin: -28rpx 23rpx 0;
+}
+
+.mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 1000;
+}
+
+.pop_price {
+    height: 100%;
+    width: 100%;
+    display: table;
+    overflow-y: auto;
+}
+
+.pop_price_list {
+    vertical-align: middle;
+    display: table-cell;
+    color: #fff;
+    padding: 0 35rpx;
+}
+
+.pop_price_total {
+    font-size: 36rpx;
+    line-height: 50rpx;
+}
+
+.pop_price_total .flt_price {
+    float: right;
+}
+
+.pop_price_tit {
+    color: #5495e6;
+    font-size: 32rpx;
+    margin: 30rpx 0 15rpx;
+}
+
+.pop_price_item {
+    line-height: 65rpx;
+}
+
+.pop_price_item .price {
+    float: right;
+    font-size: 32rpx;
+}
+
+.pop_insurance {
+    width: 100%;
+    overflow-y: auto;
+}
+
+.pop_insurance_item {
+    line-height: 45rpx;
+    font-size: 24rpx;
+    word-break: break-all;
+}

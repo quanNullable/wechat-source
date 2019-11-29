@@ -1,0 +1,70 @@
+<include src="../base.wxml"></include>
+<view class="qualication-wrapper">
+    <view class="safer-notice" wx:if="{{poiSafeInfoShown}}">
+        <view class="sn-title">{{support_classify?'食品安全监督量化等级公示':'食品安全监督公示'}}</view>
+        <view class="safer-info">
+            <view class="img-info-main">
+                <view class="notice-info-w">
+                    <view class="info-row-s" wx:if="{{certify_info.place_grade}}">场所等级：{{gradeMap[certify_info.place_grade]}}</view>
+                    <view class="info-row-s" wx:if="{{certify_info.manage_grade}}">管理等级：{{gradeMap[certify_info.manage_grade]}}</view>
+                    <view class="info-row-s" wx:if="{{certify_info.check_grade}}">
+                        <view wx:if="{{!support_classify}}"> 监督检查结果：{{gradeMap[certify_info.check_grade]}} </view>
+                        <view wx:else> 食品安全量化分级：{{classifyMap[certify_info.check_grade]}} </view>
+                    </view>
+                    <view class="info-row-s" wx:if="{{certify_info.last_check_grade}}">上年度检查等级：{{levelMap[certify_info.last_check_grade]}}</view>
+                    <view class="info-row-s" wx:if="{{certify_info.check_date}}">检查日期：{{certify_info.check_date}}</view>
+                </view>
+                <image class="quali-avatar" src="{{certify_info.pic_url}}" wx:if="{{certify_info.pic_url}}"></image>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.company_name}}">
+                <view class="info-r-name">单位名称：</view>
+                <view class="info-r-value">{{certify_info.company_name}}</view>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.permit_num}}">
+                <view class="info-r-name">许可证号：</view>
+                <view class="info-r-value">{{certify_info.permit_num}}</view>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.company_owner}}">
+                <view class="info-r-name">法定代表人：</view>
+                <view class="info-r-value">{{certify_info.company_owner}}</view>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.address}}">
+                <view class="info-r-name">经营地址：</view>
+                <view class="info-r-value">{{certify_info.address}}</view>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.business_type}}">
+                <view class="info-r-name">主题业态：</view>
+                <view class="info-r-value">{{certify_info.business_type}}</view>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.business_scope}}">
+                <view class="info-r-name">经营范围：</view>
+                <view class="info-r-value">{{certify_info.business_scope}}</view>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.expire_time}}">
+                <view class="info-r-name">有效期：</view>
+                <view class="info-r-value">{{certify_info.expire_time}}</view>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.certify_office}}">
+                <view class="info-r-name">发证机关：</view>
+                <view class="info-r-value">{{certify_info.certify_office}}</view>
+            </view>
+            <view class="info-row" wx:if="{{certify_info.licence_num}}">
+                <view class="info-r-name">营业执照：</view>
+                <view class="info-r-value">{{certify_info.licence_num}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="quali-info" wx:if="{{qualiPicsShown}}">
+        <view class="sn-title">商家资质信息公示</view>
+        <view class="quali-img-w">
+            <image bindtap="onClickPhotos" class="quali-img {{qualify_pics.length>1?'quali-info-multipic':'quali-info-singlepic'}}" data-picarry="{{qualify_pics}}" data-picnow="{{index}}" mode="aspectFill" src="{{foodpic}}" wx:for="{{qualify_pics}}" wx:for-item="foodpic" wx:key="{{index}}"></image>
+        </view>
+    </view>
+    <view class="quali-info" wx:if="{{foodClassifyShown}}">
+        <view class="sn-title">食品安全量化分级公示</view>
+        <view class="quali-img-w">
+            <image bindtap="onClickPhotos" class="{{classify_pics.length>1?'quali-info-multipic':'quali-info-singlepic'}}" data-picarry="{{classify_pic}}" data-picnow="{{index}}" mode="aspectFill" src="{{foodpic}}" wx:for="{{classify_pic}}" wx:for-item="foodpic" wx:key="{{index}}"></image>
+        </view>
+    </view>
+    <view class="no-data-tip" wx:if="{{noDataShown}}"> 商家资质正在审核中... </view>
+</view>

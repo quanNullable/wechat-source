@@ -1,0 +1,147 @@
+@import "../../components/poi-list/poi-list.wxss";
+
+@import "../../components/poi-status/poi-status.wxss";
+
+@import "../../__wuBaseWxss__/5.wxss";
+
+@import "../../components/index-search/search.wxss";
+
+@import "../../components/reset-filter/reset-filter.wxss";
+
+page {
+    font-size: 22rpx;
+    color: #666;
+    overflow-y: scroll;
+    height: 100%;
+    background: #FAFAFA;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+    display: none;
+}
+
+.poi-container,.wrap {
+    background: #fff;
+    min-height: 100%;
+}
+
+.index-search-container {
+    background: #FAFAFA;
+    margin-left: 0;
+    padding-left: 20rpx;
+}
+
+.filter-header {
+    position: relative;
+}
+
+.channel-filter-container {
+    position: sticky;
+    z-index: 20;
+    top: 0;
+    width: 100%;
+    background: #FAFAFA;
+    padding-top: 20rpx;
+}
+
+.filter-sort-wrap,.filter-select-wrap {
+    top: 222rpx;
+}
+
+.filter-backdrop {
+    top: 400rpx;
+}
+
+.channel-filter-notype .filter-sort-wrap,.channel-filter-notype .filter-select-wrap {
+    top: 142rpx;
+}
+
+.poi-list {
+    background: #fff;
+    padding-left: 20rpx;
+    position: relative;
+    z-index: 0;
+}
+
+.search-empty {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 32rpx;
+}
+
+.search-empty-icon {
+    width: 237rpx;
+    height: 252rpx;
+    margin: 246rpx 0 30rpx;
+}
+
+.btn-loc {
+    width: 240rpx;
+    height: 68rpx;
+    border-radius: 4rpx;
+    background: #FFD161;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40rpx auto 0;
+    color: #333;
+}
+
+.loading-data,.no-data {
+    height: 120rpx;
+    color: #999;
+    bottom: 0;
+    font-size: 25rpx;
+    background: #fff;
+    padding: 0 20rpx;
+    display: flex;
+}
+
+.no-data::before,.no-data::after {
+    content: '';
+    height: 1rpx;
+    background: #e4e4e4;
+    flex: 1;
+}
+
+.no-data::before {
+    margin-right: 20rpx;
+}
+
+.no-data::after {
+    margin-left: 20rpx;
+}
+
+.loading-data {
+    background-color: #fff;
+}
+
+.no-poi-list {
+    width: 448rpx;
+    position: absolute;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 28rpx;
+    color: #999;
+}
+
+.no-list-icon {
+    width: 231rpx;
+    height: 215rpx;
+    margin-bottom: 44rpx;
+}
+
+.back-top-img {
+    width: 84rpx;
+    height: 84rpx;
+    position: fixed;
+    bottom: 20rpx;
+    right: 20rpx;
+}

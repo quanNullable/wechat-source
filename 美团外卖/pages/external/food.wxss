@@ -1,0 +1,213 @@
+@import "poi.wxss";
+
+.food-share-wrap {
+    width: 690rpx;
+    border-radius: 12rpx 12rpx 0 0;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.food-share-pic {
+    width: 100%;
+    border-radius: 12rpx 12rpx 0 0;
+}
+
+.food-share-wrap-1 {
+    width: 626rpx;
+    margin: 0 auto;
+    margin-top: 20rpx;
+}
+
+.food-share-name {
+    line-height: 50rpx;
+    color: #2C3038;
+    font-size: 36rpx;
+}
+
+.food-share-price {
+    color: #F01800;
+    font-size: 32rpx;
+    line-height: 45rpx;
+    padding: 12rpx 0;
+}
+
+.clearfix {
+    overflow: hidden;
+}
+
+.food-month-sale {
+    height: 20rpx;
+    line-height: 32rpx;
+    font-size: 24rpx;
+    color: #63666B;
+    padding-right: 20rpx;
+    border-right: 1rpx solid #E2E2E2;
+}
+
+.food-praised {
+    height: 20rpx;
+    line-height: 32rpx;
+    font-size: 24rpx;
+    color: #63666B;
+    padding-left: 20rpx;
+}
+
+.food-praise-bar {
+    color: #63666B;
+    font-size: 24rpx;
+    line-height: 32rpx;
+    padding-bottom: 24rpx;
+    position: relative;
+}
+
+.red-word {
+    font-size: 24rpx;
+    color: #F01800;
+}
+
+.food-praise-precent {
+    width: 490rpx;
+    height: 6rpx;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -3rpx;
+    background: #E8E8E8;
+}
+
+.food-praise-yellow {
+    background: #FFD300;
+    height: 6rpx;
+}
+
+.fs-introduce {
+    line-height: 36rpx;
+    font-size: 24rpx;
+    color: #63666B;
+    overflow: hidden;
+    position: relative;
+}
+
+.fs-icon {
+    width: 20rpx;
+    height: 10rpx;
+    position: absolute;
+    left: 50%;
+    bottom: 0rpx;
+    margin-left: -10rpx;
+}
+
+.fs-more {
+    padding-bottom: 24rpx;
+}
+
+.gray-line {
+    width: 634rpx;
+    height: 1rpx;
+    position: relative;
+    top: 50%;
+    margin: 0 auto;
+    border-bottom: 1rpx dotted #e5e5e5;
+}
+
+.food-share-wrap-2 {
+    width: 690rpx;
+    background: #fff;
+    margin: 0 auto;
+    border-bottom: 1rpx dotted #e5e5e5;
+    border-radius: 0 0 12rpx 12rpx;
+}
+
+.fs-poi-logo {
+    width: 120rpx;
+    height: 120rpx;
+    float: left;
+    margin-right: 24rpx;
+    border-radius: 50%;
+    border: 1px solid #ebebeb;
+}
+
+.fs-info-wrap {
+    width: 626rpx;
+    margin: 0 auto;
+    padding-top: 10rpx;
+    padding-bottom: 40rpx;
+    border-bottom: 1rpx solid #E2E2E2;
+}
+
+.food-share-wrap-2 {
+    width: 690rpx;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.fs-info-name {
+    color: #2C3038;
+    line-height: 45rpx;
+    font-size: 32rpx;
+    margin-bottom: 10rpx;
+    width: 400rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fs-info-right {
+    width: 470rpx;
+    overflow: hidden;
+}
+
+.fs-info-wrap .poi-score-view,.fs-info-wrap .business-fee {
+    text-align: left;
+}
+
+.fs-info-wrap .business-privilege {
+    border: none;
+    font-size: 24rpx;
+    line-height: 32rpx;
+    padding: 0;
+    width: 470rpx;
+}
+
+.discount-item image {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+    float: left;
+}
+
+.discount-item {
+    overflow: hidden;
+    margin-bottom: 8rpx;
+}
+
+.discount-show-button {
+    bottom: 0rpx;
+}
+
+.discount-item-info {
+    width: 314rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    color: #999;
+    font-size: 24rpx;
+}
+
+.coupon-share {
+    margin-bottom: 0;
+}
+
+.section-coupon-wrap {
+    border-radius: 12rpx;
+    padding-bottom: 52rpx;
+}
+
+.food-share-container {
+    padding-top: 30rpx;
+}
+
+.food-month-sale-bar {
+    margin-top: 12rpx;
+}

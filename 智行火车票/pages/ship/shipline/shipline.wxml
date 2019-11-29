@@ -1,0 +1,31 @@
+<view class="search-module">
+    <input bindinput="onInput" class="search-module_input {{isSearch?'margin_r100':''}}" placeholder="输入出发或到达城市名" placeholderClass="search-module_input_focus" value="{{mSearch}}"></input>
+    <text bindtap="onCancel" class="search-module_cancel" wx:if="{{isSearch}}">取消</text>
+</view>
+<view wx:if="{{isSearch}}" wx:for="{{mSearchList}}" wx:key="{{index}}">
+    <view bindtap="onSelect" class="stationline" data-from="{{item['from_city_info']['station_name']}}" data-to="{{item['to_city_info']['station_name']}}">{{item['from_city_info']['station_name']}}-{{item['to_city_info']['station_name']}}</view>
+</view>
+<view>
+    <scroll-view class="h-scroll" scrollX="true" scrollY="false" style=" white-space: nowrap; background-color: #fff; height: 80rpx;" wx:if="{{!isSearch}}">
+        <view class="tags" style="margin-top: 10rpx;">
+            <view class="tags" wx:for="{{mtags}}" wx:key="{{index}}">
+                <text bindtap="onSelecttag" class="tagsitem {{selecttag==item?'current':''}}" data-from="{{item}}">{{item}}                  </text>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+<scroll-view bindscrolltolower="onScrollEnd" class="city-module_list" hidden="{{!mLoaded}}" scrollIntoView="{{mCurrentV}}" scrollY="true" style="top:190rpx" wx:if="{{!isSearch}}">
+    <block wx:for="{{mKeys}}" wx:for-item="mkey" wx:key="{{index}}">
+        <view class="city-module_type" data-section="{{mkey}}" id="{{mkey}}">{{mkey}}</view>
+        <view class="city-module_items" wx:for="{{allGroup[mkey]}}" wx:for-index="index2" wx:key="{{index2}}">
+            <text bindtap="onSelect" class="city-module_name" data-from="{{item['from_city_info']['station_name']}}" data-to="{{item['to_city_info']['station_name']}}">{{item['from_city_info']['station_name']}}-{{item['to_city_info']['station_name']}}</text>
+        </view>
+    </block>
+</scroll-view>
+<view class="city-module" hidden="{{!mLoaded}}" wx:if="{{!isSearch}}">
+    <view class="city-module_letter">
+        <view bindtap="onScrollView" data-value="{{item}}" wx:for="{{mKeys}}" wx:key="{{index}}">
+            <text bindtap="onScrollView" class="city-module_letter-item1" data-value="{{item}}">{{item}}</text>
+        </view>
+    </view>
+</view>

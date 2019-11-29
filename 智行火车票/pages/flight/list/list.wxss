@@ -1,0 +1,500 @@
+.datePicker {
+    background: #5495e6;
+    height: 112rpx;
+    position: relative;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin-bottom: -1px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.datePicker_prev,.datePicker_next {
+    width: 130rpx;
+    height: 112rpx;
+    line-height: 40rpx;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+}
+
+.datePicker_prev text,.datePicker_next text {
+    padding-top: 14rpx;
+    display: block;
+}
+
+.datePicker_prev {
+    padding-left: 60rpx;
+    left: 0;
+}
+
+.datePicker_next {
+    padding-right: 60rpx;
+    right: 0;
+}
+
+.datePicker_prev::before,.datePicker_next text::after {
+    width: 16rpx;
+    height: 16rpx;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    position: absolute;
+    content: "";
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -10rpx;
+}
+
+.datePicker_prev::before {
+    transform: rotate(45deg);
+    left: 45rpx;
+}
+
+.datePicker_next text::after {
+    transform: rotate(-135deg);
+    right: 45rpx;
+}
+
+.datePicker_price {
+    font-size: 24rpx;
+}
+
+.datePicker_price::before {
+    content: "\00A5";
+    font-size: 22rpx;
+    padding-right: 6rpx;
+    color: #fff;
+}
+
+.datePicker_mid {
+    text-align: center;
+    background: #fff;
+    color: #5495e6;
+    margin: 14rpx 220rpx;
+    border-radius: 8rpx;
+    line-height: 30rpx;
+    position: relative;
+}
+
+.datePicker_mid text {
+    font-size: 26rpx;
+}
+
+.datePicker_mid .datePicker_price::before {
+    color: #5495e6;
+}
+
+.datePicker_mid::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-left: 2px solid #5495e6;
+    border-bottom: 2px solid #5495e6;
+    position: absolute;
+    content: "";
+    transform: rotate(-45deg);
+    top: 50%;
+    margin-top: -10rpx;
+    right: 20rpx;
+}
+
+.datePicker_mid .next {
+    transition: all 0.3s ease-in-out;
+    transform: translate3d(0,-100%,0);
+}
+
+.datePicker_mid .prev {
+    transition: all 0.3s ease-in-out;
+    transform: translate3d(0,100%,0);
+}
+
+.fltlist_group {
+    padding: 0 0 100rpx;
+}
+
+.fltlist_item {
+    background: #fff;
+    margin: 20rpx 15rpx 0;
+    border-radius: 8rpx;
+    padding: 20rpx;
+}
+
+.flt_intro {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flt_col {
+    width: 370rpx;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.flt_depart,.flt_arrival {
+    width: 130rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.flt_depart {
+    text-align: left;
+}
+
+.flt_arrival {
+    text-align: right;
+}
+
+.flt_time {
+    font-size: 40rpx;
+    color: #333;
+}
+
+.flt_airport {
+    display: block;
+    font-size: 26rpx;
+    color: #666;
+}
+
+.separator {
+    position: relative;
+    margin: 0 15rpx;
+    width: 148rpx;
+    text-align: center;
+    line-height: 45rpx;
+}
+
+.spt_arr {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+}
+
+.spt_arr::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 5rpx;
+    width: 10rpx;
+    height: 1px;
+    background: #ccc;
+    transform: rotate(45deg);
+}
+
+.spt_type {
+    font-size: 20rpx;
+    color: #666;
+}
+
+.spt_type.txt_color {
+    color: #5495e6;
+}
+
+.spt_time {
+    font-size: 20rpx;
+    color: #666;
+}
+
+.price_col {
+    padding-right: 20rpx;
+    text-align: right;
+}
+
+.flt_price {
+    font-size: 36rpx;
+    color: #fe6b5b;
+}
+
+.flt_price::before {
+    content: "\00A5";
+    font-size: 22rpx;
+    padding-right: 7rpx;
+    color: #fe6b5b;
+}
+
+.flt_price::after {
+    content: '起';
+    font-size: 24rpx;
+    padding-left: 7rpx;
+    color: #fe6b5b;
+}
+
+.flt_discount {
+    display: block;
+    color: #999;
+    font-size: 26rpx;
+}
+
+.flt_lijian {
+    background: #FC6E51;
+    color: #fff;
+    line-height: 34rpx;
+    border-radius: 34rpx;
+    padding: 0 12rpx;
+    font-size: 22rpx;
+    height: 34rpx;
+}
+
+.airline_info {
+    position: relative;
+    padding: 15rpx 45rpx 0 10rpx;
+    color: #999;
+    line-height: 1;
+    font-size: 22rpx;
+}
+
+.airline_logo {
+    margin-right: 8rpx;
+    width: 28rpx;
+    height: 28rpx;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+.airline_share {
+    padding: 0 10rpx;
+    color: #5495e6;
+}
+
+.airline_type {
+    padding-left: 10rpx;
+    border-left: 1px solid #ccc;
+    margin-left: 10rpx;
+}
+
+.airline_tips {
+    position: absolute;
+    right: 20rpx;
+    color: #fe6b5b;
+    font-size: 26rpx;
+}
+
+.airline_coupon {
+    position: absolute;
+    right: 20rpx;
+    color: #fe6b5b;
+    font-size: 26rpx;
+}
+
+.fltlist_end {
+    padding: 30rpx 0 30rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #666;
+}
+
+.fltlist_none {
+    color: #5495e6;
+    text-align: center;
+    font-size: 26rpx;
+}
+
+.fltlist_none::before {
+    width: 180rpx;
+    height: 180rpx;
+    background: url(http://images3.c-ctrip.com/tieyou/wechat/wechat_zx.png) no-repeat;
+    background-size: 400rpx 400rpx;
+    display: block;
+    margin: 90rpx auto 50rpx;
+    content: '';
+}
+
+.fltlist_filter {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100rpx;
+    z-index: 100;
+    background: rgba(41,51,64,.9);
+}
+
+.filter_item {
+    flex: 1;
+    text-align: center;
+    color: #ccc;
+    font-size: 24rpx;
+}
+
+.filter_item-active {
+    color: #5495e6;
+    background: #283847;
+}
+
+.icon_filter,.icon_time,.icon_price {
+    width: 40rpx;
+    height: 40rpx;
+    display: block;
+    margin: 15rpx auto 5rpx;
+    background: url(http://images3.c-ctrip.com/tieyou/wechat/wechat_zx.png) no-repeat;
+    background-size: 400rpx 400rpx;
+}
+
+.icon_filter {
+    background-position: -180rpx 0;
+}
+
+.icon_time {
+    background-position: -220rpx 0;
+}
+
+.icon_price {
+    background-position: -260rpx 0;
+}
+
+.filter_item-active .icon_filter {
+    background-position: -180rpx -40rpx;
+}
+
+.filter_item-active .icon_time {
+    background-position: -220rpx -40rpx;
+}
+
+.filter_item-active .icon_price {
+    background-position: -260rpx -40rpx;
+}
+
+.now_prev {
+    transform: translate3d(0,-100%,0);
+}
+
+.now,.now_prev,.now_next {
+    padding: 10rpx 0;
+}
+
+.now_next,.now_prev {
+    position: absolute;
+    width: 100%;
+}
+
+.list-recomd {
+    margin: 10rpx;
+    background: #fff;
+    border-radius: 4px;
+    padding: 30rpx 20rpx;
+    overflow: hidden;
+}
+
+.list-recomd .label {
+    width: 72rpx;
+    height: 72rpx;
+    float: left;
+    border: 1px solid #5495E6;
+    border-radius: 8rpx;
+    font-size: 26rpx;
+    line-height: 30rpx;
+    text-align: center;
+    color: #5495E6;
+    padding: 6rpx 0;
+    box-sizing: border-box;
+    margin-right: 30rpx;
+}
+
+.list-recomd .rbox {
+    width: 200rpx;
+    float: right;
+    text-align: right;
+}
+
+.list-recomd .tag {
+    background: #FC6E51;
+    color: #fff;
+    line-height: 34rpx;
+    border-radius: 34rpx;
+    padding: 0 12rpx;
+    font-size: 22rpx;
+    display: inline-block;
+    height: 34rpx;
+}
+
+.list-recomd .cont {
+    overflow: hidden;
+}
+
+.list-recomd .station {
+    font-size: 32rpx;
+}
+
+.list-recomd .time {
+    font-size: 24rpx;
+    color: #999;
+}
+
+.list-recomd {
+    margin: 10rpx;
+    background: #fff;
+    border-radius: 4px;
+    padding: 30rpx 20rpx;
+    overflow: hidden;
+}
+
+.list-recomd .label {
+    width: 72rpx;
+    height: 72rpx;
+    float: left;
+    border: 1px solid #5495E6;
+    border-radius: 8rpx;
+    font-size: 26rpx;
+    line-height: 30rpx;
+    text-align: center;
+    color: #5495E6;
+    padding: 6rpx 0;
+    box-sizing: border-box;
+    margin-right: 30rpx;
+}
+
+.list-recomd .rbox {
+    width: 200rpx;
+    float: right;
+    text-align: right;
+    padding-right: 20rpx;
+    margin-top: 16rpx;
+}
+
+.list-recomd .rbox .train-price .price {
+    font-size: 36rpx;
+    color: #fe6b5b;
+}
+
+.list-recomd .rbox .train-price .price::before {
+    content: "\00A5";
+    font-size: 22rpx;
+    padding-right: 7rpx;
+    color: #fe6b5b;
+}
+
+.list-recomd .tag {
+    background: #FC6E51;
+    color: #fff;
+    line-height: 34rpx;
+    border-radius: 34rpx;
+    padding: 0 12rpx;
+    font-size: 22rpx;
+    display: inline-block;
+    height: 34rpx;
+}
+
+.list-recomd .cont {
+    overflow: hidden;
+}
+
+.list-recomd .station {
+    font-size: 32rpx;
+}
+
+.list-recomd .time {
+    font-size: 24rpx;
+    color: #999;
+}
+
+.transfer_separate {
+    margin: 20rpx 15rpx 0;
+    font-size: 26rpx;
+    color: #666;
+}

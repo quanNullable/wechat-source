@@ -1,0 +1,63 @@
+<template name="flightInfo">
+    <view class="order_modify">
+        <view class="flt_modify_info">
+            <view class="flt_date">{{flightSegmentInfo.departDate_display+' '+flightSegmentInfo.cabinName}}</view>
+            <view bindtap="onRule" class="flt_refound" data-value="{{index}}">
+                <icon color="#ffffff" size="16" type="info_circle"></icon> 退改说明
+            </view>
+        </view>
+        <view class="flt_modify_intro">
+            <view class="flt_depart">
+                <text class="flt_time">{{flightSegmentInfo.departTime_display}}</text>
+                <text class="flt_airport">{{flightSegmentInfo.departTerminal}}</text>
+            </view>
+            <view class="separator">
+                <view class="spt_type">{{flightSegmentInfo.stopType==0?'':flightSegmentInfo.stopType==1?'经停':'中转'}}</view>
+                <view class="spt_arr"></view>
+                <view class="spt_type">{{flightSegmentInfo.costTime}}</view>
+            </view>
+            <view class="flt_arrival">
+                <text class="flt_time">{{flightSegmentInfo.arriveTime_display}}</text>
+                <text class="flt_airport">{{flightSegmentInfo.arriveTerminal}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="order_modify_down">
+        <view class="airline_info">
+            <image class="airline_logo" src="{{flightSegmentInfo.airCompanyIcon}}"></image>
+            <text class="airline_num">{{flightSegmentInfo.airCompanyName+flightSegmentInfo.flightNumber}}</text>
+            <block wx:if="{{flightSegmentInfo.isShare}}">
+                <text class="airline_arr"></text>
+                <text class="airline_share">实际承运</text>
+                <image class="airline_logo" src="http://img3.tieyou.com/images/99admin_img/upload/images/flight/MU.png"></image>
+                <text class="airline_num">{{flightSegmentInfo.carrierName+flightSegmentInfo.carrierFlightNumber}}</text>
+            </block>
+        </view>
+        <view class="order_pasg_hd">
+            <text class="icon_pasg"></text>
+            <text>乘机人: {{passNameArr_display}}</text>
+        </view>
+    </view>
+    <view class="order_tick" wx:if="{{showRefund}}">
+        <view class="order_pasg_hd" data-value="{{index}}">
+            <text class="icon_pasg"></text>
+            <text>退票人:{{refundPassNameArr_display}}</text>
+            <text class="tick_state">{{refundStatus_display}}</text>
+        </view>
+    </view>
+    <view class="order_tick" wx:if="{{showFlightChange}}">
+        <view class="order_pasg_hd">
+            <text class="icon_pasg"></text>
+            <text>航变人:{{flightChangePassNameArr_display}}</text>
+        </view>
+    </view>
+    <block wx:if="{{showRebook}}">
+        <view class="order_tick" wx:for="{{rebookInfos}}" wx:for-item="refundInfo">
+            <view class="order_pasg_hd">
+                <text class="icon_pasg"></text>
+                <text>改签人:{{refundInfo.passNameArr_display}}</text>
+                <text class="tick_state">{{refundInfo.rebookStatus_display}}</text>
+            </view>
+        </view>
+    </block>
+</template>

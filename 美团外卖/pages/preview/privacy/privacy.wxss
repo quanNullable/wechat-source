@@ -1,0 +1,60 @@
+.privacy-content {
+    position: relative;
+    padding: 30rpx 20rpx;
+}
+
+.privacy-header {
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-size: 28rpx;
+}
+
+.privacy-icon {
+    margin-right: 10rpx;
+    width: 36rpx;
+    height: 36rpx;
+}
+
+.privacy-help-icon {
+    margin-left: 10rpx;
+    width: 25rpx;
+    height: 25rpx;
+}
+
+.privacy-desc {
+    margin-top: 10rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.privacy-switch {
+    position: absolute;
+    top: 30rpx;
+    right: 20rpx;
+    width: 82rpx;
+    height: 50rpx;
+    border: 1rpx solid #E0E0E0;
+    border-radius: 100rpx;
+}
+
+.privacy-switch:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    content: ' ';
+    width: 50rpx;
+    height: 50rpx;
+    background-color: #FFF;
+    border-radius: 50%;
+    box-shadow: 0 2rpx 6rpx 0 rgba(0,0,0,0.3);
+}
+
+.privacy-switch.on {
+    background-color: #FFD161;
+    border-color: #FFD161;
+}
+
+.privacy-switch.on:after {
+    right: 0;
+}

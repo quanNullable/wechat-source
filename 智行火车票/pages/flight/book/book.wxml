@@ -1,0 +1,232 @@
+<page>
+    <view class="book_modify">
+        <view class="book_modify_white">
+            <view bindtap="showFlight" class="book_modify_tick">
+                <text class="book_modify_date">{{flight.modifyDate}}</text>
+                <text class="book_modify_city">{{flight.departCityName}} — {{flight.arriveCityName}}</text>
+            </view>
+            <view class="book_modify_info" wx:for="{{orderRemark}}">
+        {{item}}
+      </view>
+            <text bindtap="showRefundTips" class="book_modify_rule">退改详情/行李额</text>
+        </view>
+    </view>
+    <form bindsubmit="formSubmit">
+        <view class="book_box">
+            <view class="book-section">
+                <view class="book-section-hd">
+          乘机人
+          <text wx:if="{{hasChildSeat&&hasBabySeat}}">成人{{adultAmount}}人 儿童{{childAmount+childAsAdultAmount}}人 婴儿{{babyAmount}}人</text>
+                    <text wx:elif="{{hasChildSeat}}">成人{{adultAmount}}人 儿童{{childAmount+childAsAdultAmount}}人 婴儿不可订</text>
+                    <text wx:elif="{{hasBabySeat}}">成人{{adultAmount}}人 儿童不可订 婴儿{{babyAmount}}人</text>
+                    <text wx:else>成人{{adultAmount}}人 儿童/婴儿不可订</text>
+                    <button bindtap="goToPassenger" class="btn_add_pasg  btn-primary">添加乘机人</button>
+                </view>
+                <view class="pasg_list book_item" wx:for="{{passengerSels}}" wx:for-item="pas">
+                    <icon bindtap="delPas" class="icon del" color="#5495e6" data-index="{{index}}" size="28"></icon>
+                    <text class="name">{{pas.passengerName?pas.passengerName:pas.passengerENFirstName+'/'+pas.passengerENLastName}} {{pas.passengerType}}</text>
+                    <text class="cert">{{pas.passportType}} {{pas.passportCode}}</text>
+                    <view bindtap="childToAdult" class="notice" data-index="{{index}}" wx:if="{{pas.passengerType=='儿童票'&&hasChildSeat&&isSupportAdultChild}}">
+              订成人票更便宜，但
+              <text class="txt_warn">退改费同成人票</text>
+                        <icon class="icon_checkbox" color="" size="24" type="{{pas.ticketType&&pas.ticketType=='成人票'?'success_circle':'circle'}}"></icon>
+                    </view>
+                </view>
+                <view class="book_item phone_add">
+                    <label>
+                        <text>联系手机</text>
+                        <input bindinput="mobileInput" class="book_input" maxlength="11" name="phone" placeholder="请输入11位联系人手机号" type="number" value="{{mobile}}"></input>
+                    </label>
+                </view>
+            </view>
+            <view class="book-section">
+                <view class="book_item extra_add" wx:for="{{additionalProducts}}" wx:for-item="product" wx:key="productCode">
+                    <text bindtap="showProductInfo" data-index="{{index}}">{{product.productName}}</text>
+                    <icon bindtap="showProductInfo" class="icon_info" color="#999999" data-index="{{index}}" size="16" type="info_circle"></icon>
+                    <text class="txt_warn">¥{{product.price}}/{{product.productType=='P'?'人':'份'}}</text>
+                    <switch bindchange="proSwitchChange" checked="{{product.selected}}" class="book_switch" data-index="{{index}}"></switch>
+                </view>
+            </view>
+            <view class="book-section" wx:if="{{invoiceRelateInfo}}">
+                <view class="book_item bill_add">
+                    <text class="bill_label">报销凭证</text>
+                    <switch bindchange="checkBill" checked="{{needSendBill}}" class="book_switch"></switch>
+                </view>
+                <view wx:if="{{needSendBill}}">
+                    <view class="book_item bill_add">
+                        <text class="bill_label">凭证类型</text>
+                        <text>{{invoiceRelateInfo.invoiceRemark}}</text>
+                    </view>
+                    <view class="book_item bill_add">
+                        <text class="bill_label">配送方式</text>
+                        <text>快递费¥{{invoiceRelateInfo.deliveryPrice}}</text>
+                    </view>
+                    <view class="invoice_type" wx:if="{{invoiceRelateInfo.isInvoiceAlterable}}">
+                        <view bindtap="clickInvoiceType" class="item {{item.name==selectedInvoice.name?'current':''}}" data-index="{{index}}" wx:for="{{supportedInvoiceType}}" wx:key="name">
+                            <view class="invoice_name">{{item.name}}</view>
+                        </view>
+                    </view>
+                    <view class="book_item bill_add" wx:if="{{invoiceRelateInfo.isInvoiceAlterable}}">
+                        <label>
+                            <text class="bill_label">{{selectedInvoice.name}}</text>
+                            <input bindinput="invoiceTitleInput" class="book_input" name="name" placeholder="请输入发票抬头" type="text" value="{{invoiceTitle}}"></input>
+                        </label>
+                    </view>
+                    <view class="book_item bill_add" wx:if="{{selectedInvoice.code=='2'&&invoiceRelateInfo.isInvoiceAlterable}}">
+                        <label>
+                            <text class="bill_label">税号</text>
+                            <input bindinput="invoiceTaxInput" class="book_input" name="name" placeholder="纳税人识别号（必填，限字母与数字）" type="text" value="{{invoiceTax}}"></input>
+                        </label>
+                    </view>
+                    <view class="book_item bill_add">
+                        <label>
+                            <text class="bill_label">收件人</text>
+                            <input bindinput="nameInput" class="book_input" name="name" placeholder="请输入收件人姓名" type="text" value="{{contactName}}"></input>
+                        </label>
+                    </view>
+                    <view class="book_item bill_add">
+                        <label>
+                            <text class="bill_label">配送地址</text>
+                            <input bindinput="addressInput" class="book_input" name="address" placeholder="请输入详细配送地址" type="text" value="{{contactAddress}}"></input>
+                        </label>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="pay_box">
+            <view bindtap="showPriceDetail" class="pay_open">
+                <text>总计：</text>
+                <text class="pay_price">{{totalPrice==''?'---':totalPrice}}</text>
+            </view>
+            <button class="btn_pay" formType="submit" hoverClass="btn_pay_hover">立即预订</button>
+        </view>
+    </form>
+    <view bindtap="hideTips" class="tip-txt {{isFilterViewAnimation?'active':''}}" hidden="{{!showType}}">
+        <view hidden="{{showType!='priceDetail'}}">
+            <view class="pop_price mask">
+                <view class="pop_price_list">
+                    <view class="pop_price_total">
+            订单总额明细
+            <text class="flt_price">{{totalPrice}}</text>
+                    </view>
+                    <view class="pop_price_tit">价格明细</view>
+                    <view class="pop_price_item" wx:for="{{priceDetail}}">
+              {{item.name}}
+              <text class="price">{{item.price}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view hidden="{{showType!='proInfo'}}">
+            <view class="pop_price_list">
+                <view class="pop_price_tit">{{proInfo.title}}</view>
+                <view class="pop_insurance_item" wx:for="{{proInfo.infoArr}}" wx:for-item="info">{{info}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="tip-bot {{showType=='pas'?'active':''}}">
+        <view class="cui-hd">
+            <view bindtap="cancelPasChoose" class="cell cancel-btn">取消</view>
+            <view bindtap="confirmPasChoose" class="cell ok-btn">确定</view>
+        </view>
+        <view class="cui-bg tip-addpas">
+            <view class="train-list">
+                <view class="ov-hid">
+                    <view bindtap="addNewPassenger" class="add-btn" style="width:100%;">新增乘客</view>
+                    <view class="add-btn" hidden="true">导入12306联系人</view>
+                </view>
+            </view>
+            <view class="train-list tip-pass-list mt5">
+                <view bindtap="selectPassenger" class="item {{item.isSelected?'current':''}}" data-index="{{index}}" wx:for="{{passengers}}">
+                    <view catchtap="editPassenger" class="edit" data-index="{{index}}"></view>
+                    <view class="choose"></view>
+                    <text class="name">{{item.passengerName?item.passengerName:item.passengerENFirstName+'/'+item.passengerENLastName}}</text>
+                    <text class="tag-grey">{{item.passengerType}}</text>
+                    <view class="identity">{{!item.passportType||!item.passportCode?'请补全证件信息':item.passportType+' '+item.passportCode}}</view>
+                </view>
+            </view>
+            <view class="tip-pass-none" wx:if="{{!passengers.length}}">
+                <view class="p">您还没有添加过乘客信息哦</view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="hideFlight" hidden="{{showType!='flight'}}">
+        <view class="backmask active"></view>
+        <view class="flt-pop-box">
+            <view class="flt-pop-mid">
+                <view class="flt-pop-tit">航班详情</view>
+                <view class="book_modify_white" wx:if="{{!isTransfer}}">
+                    <view class="airline_info">
+                        <image class="airline_logo" src="{{cabinDetailList[0].flightOverview.airlineIcon}}"></image>
+                        <text class="airline_num">{{cabinDetailList[0].flightOverview.airlineName}}{{cabinDetailList[0].flightOverview.flightNumber}}</text>
+                        <image class="airline_logo"></image>
+                        <text class="airline_num"></text>
+                    </view>
+                    <view class="flt_modify_intro">
+                        <view class="flt_depart">
+                            <text class="flt_time">{{cabinDetailList[0].flightOverview.departTimeDes}}</text>
+                            <text class="flt_airport">{{cabinDetailList[0].flightOverview.departAirportName}}{{cabinDetailList[0].flightOverview.departTerminal}}</text>
+                        </view>
+                        <view class="separator">
+                            <view class="spt_type">直飞</view>
+                            <view class="spt_arr"></view>
+                            <view class="spt_type">{{cabinDetailList[0].flightOverview.costTime}}</view>
+                        </view>
+                        <view class="flt_arrival">
+                            <text class="flt_time">{{cabinDetailList[0].flightOverview.arriveTimeDes}}</text>
+                            <text class="flt_airport">{{cabinDetailList[0].flightOverview.arriveAirportName}}{{cabinDetailList[0].flightOverview.arriveTerminal}}</text>
+                        </view>
+                    </view>
+                    <view class="flt_modify_info">
+                        <text>{{cabinDetailList[0].flightOverview.flightRemark}}</text>
+                    </view>
+                </view>
+                <view class="book_modify_white" wx:else>
+                    <view class="flight_trans">
+                        <view class="info">
+                            <text class="date">{{flightStartDate}}</text>
+                            <text class="haoshi">总时长 {{flight.costTime}}</text>
+                        </view>
+                        <view class="range">
+                            <view class="from">
+                                <text class="time strong">{{timeArray[0]}}</text>
+                                <text class="station">{{flight.subsegments[0].departAirportName}}{{flight.subsegments[0].departTerminal}}</text>
+                            </view>
+                            <view class="hangban">
+                                <text class="jingting" wx:if="{{flight.subsegments[0].subsegments[0]}}">经停{{flight.subsegments[0].subsegments[0].arriveCityName}}</text>
+                                <image class="flight_logo" src="{{flight.subsegments[0].airlineIcon}}"></image> {{flight.subsegments[0].airlineName}} {{flight.subsegments[0].flightNumber}} {{flight.subsegments[0].aircraftType}}
+                    </view>
+                            <view class="to">
+                                <text class="time">{{timeArray[1]}}</text>
+                                <text class="station">{{flight.subsegments[0].arriveAirportName}}{{flight.subsegments[0].arriveTerminal}}</text>
+                            </view>
+                        </view>
+                        <view class="trans">
+                            <view class="zhuan">转</view>{{flight.subsegments[0].arriveCityName}} 停留{{flight.subsegments[0].stopTime}}
+                </view>
+                        <view class="range">
+                            <view class="from">
+                                <text class="time">{{timeArray[2]}}</text>
+                                <text class="station">{{flight.subsegments[1].departAirportName}}{{flight.subsegments[1].departTerminal}}</text>
+                            </view>
+                            <view class="hangban">
+                                <text class="jingting" wx:if="{{flight.subsegments[1].subsegments[0]}}">经停{{flight.subsegments[1].subsegments[0].arriveCityName}}</text>
+                                <image class="flight_logo" src="{{flight.subsegments[1].airlineIcon}}"></image> {{flight.subsegments[1].airlineName}} {{flight.subsegments[1].flightNumber}} {{flight.subsegments[1].aircraftType}}
+                    </view>
+                            <view class="to">
+                                <text class="time strong">{{timeArray[3]}}</text>
+                                <text class="station">{{flight.subsegments[1].arriveAirportName}}{{flight.subsegments[1].arriveTerminal}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</page>
+<view bindtap="hideTips" class="tip-txt {{isFilterViewAnimation?'active':''}}" wx:if="{{showType==='refund'}}">
+    <view>
+        <rich-text class="s" nodes="{{rescheduleRefundRemark}}" wx:if="{{canIUseRichText}}"></rich-text>
+        <view class="s" wx:if="{{!canIUseRichText}}">{{rescheduleRefundRemark}}</view>
+    </view>
+</view>

@@ -1,0 +1,22 @@
+@import "../../components/poi-list/poi-list.wxss";
+
+@import "../../components/poi-status/poi-status.wxss";
+
+.poi-list {
+    padding-left: 20rpx;
+    opacity: 0.5;
+}
+
+page {
+    background: #fff;
+    font-size: 22rpx;
+    color: #666;
+}
+
+page,.non-list-container,.wrap {
+    height: 100%;
+}
+
+.poi-estimate,.poi-distance {
+    display: none;
+}

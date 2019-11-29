@@ -1,0 +1,58 @@
+<import src="../../components/poi-list/poi-list.wxml"></import>
+<import src="../../components/filter/filter-header-index.wxml"></import>
+<import src="../../components/filter/filter-body.wxml"></import>
+<import src="primary-filter/primary-filter.wxml"></import>
+<import src="../../components/header-index/header-index.wxml"></import>
+<import src="poi-list-occupied/poi-list-occupied.wxml"></import>
+<import src="../../activity/airdrop-coupon/airdrop-coupon.wxml"></import>
+<import src="../../components/filter/quick-filter.wxml"></import>
+<import src="../../components/reset-filter/reset-filter.wxml"></import>
+<import src="newuser-redpack-entry/newuser-redpack-entry.wxml"></import>
+<view bindtap="onTap" bindtouchmove="onTouchMove" class="page-container">
+    <include src="../base.wxml"></include>
+    <view catchtouchmove="{{filter.activeTab?'onTouchMove':''}}" class="index-container" wx:if="{{locationEnabled}}">
+        <include src="../../components/mt-tabs/mt-tabs.wxml"></include>
+        <view class="header-index-holder">
+            <template is="header-index" data="{{forceDock:filter.activeTab,...headerIndex,locState:locState,locName:locName,recommended_search_keyword:recommended_search_keyword}}"></template>
+        </view>
+        <template is="airdrop-coupon" data="{{...airDropCouponData}}" wx:if="{{airDropCouponData&&airDropCouponData.hasActivity&&showAirDropLayer}}"></template>
+        <template is="primary-filter" data="{{filterPages:filterPages,current:filterPagesCurrent}}" wx:if="{{showFilterPages}}"></template>
+        <template is="newuser-redpack-entry" data="{{...newUserRedpackInfo}}" wx:if="{{newUserRedpackInfo}}"></template>
+        <swiper autoplay circular="true" class="bnr-sec" duration="600" indicatorActiveColor="#FFD161" indicatorColor="rgba(255, 255, 255, .5)" interval="4000" wx:if="{{bnrImgs.length==1}}">
+            <swiper-item wx:for="{{bnrImgs}}">
+                <view bindtap="openWebview" data-index="{{index}}" data-viewurl="{{item.h5_url}}">
+                    <image class="slide-image" src="{{item.banner_pic_url}}"></image>
+                </view>
+            </swiper-item>
+        </swiper>
+        <swiper autoplay indicatorDots bindchange="bannerChange" circular="true" class="bnr-sec" duration="600" indicatorActiveColor="#FFD161" indicatorColor="rgba(255, 255, 255, .5)" interval="4000" wx:if="{{bnrImgs.length>1}}">
+            <swiper-item wx:for="{{bnrImgs}}">
+                <view bindtap="openWebview" data-index="{{index}}" data-viewurl="{{item.h5_url}}">
+                    <image class="slide-image" src="{{item.banner_pic_url}}"></image>
+                </view>
+            </swiper-item>
+        </swiper>
+        <view class="poi-list-header flex-center"> 附近商家 </view>
+        <view class="filter-holder" wx:if="{{filter.sortTypeList.length>0}}">
+            <template is="filter-header-index" data="{{...filter}}" wx:if="{{!filter.activeTab}}"></template>
+        </view>
+        <view class="filter-header-fixed" wx:if="{{filter.activeTab}}">
+            <template is="filter-header-index" data="{{...filter}}"></template>
+        </view>
+        <template is="filter-body" data="{{...filter}}"></template>
+        <template is="quick-filter" data="{{quickFilterActivityFilterList:filter.quickFilterActivityFilterList,selectedCodes:filter.selectedCodes}}" wx:if="{{filter.quickFilterActivityFilterList.length>0}}"></template>
+        <view class="poi-list-holder">
+            <view class="poi-list" hidden="{{!poilist.length}}">
+                <template is="poi-list" data="{{poilist:poilist,cartKeys:cartKeys}}"></template>
+            </view>
+            <view class="loading-data flex-center" wx:if="{{hasMore&&poilist.length}}">
+                <view class="ui-loading-logo {{loadingLogo?'ui-loading-logo-animate':''}}"></view> 努力加载中... </view>
+            <view class="ui-error ui-error-no-poi error-no-poi" wx:if="{{empty&&!showResetFilter}}"> 啊哦, 暂无商家 </view>
+            <template is="reset-filter" data wx:if="{{showResetFilter}}"></template>
+            <view class="no-more" wx:if="{{!hasMore&&poilist.length}}"> 更多商家接入中，敬请期待！ </view>
+            <view class="poi-list-occupied" hidden="{{poilist.length||empty||showResetFilter}}">
+                <template is="poi-list-occupied" data></template>
+            </view>
+        </view>
+    </view>
+</view>

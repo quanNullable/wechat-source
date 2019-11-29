@@ -1,0 +1,36 @@
+<view class="login-by_phone" id="dynamicLoginView" style="display:{{dynamicLoginShow}}">
+    <view class="tips_top" style="display:{{errorMsgShow}}">{{errorMsg}}</view>
+    <view class="login-form_list">
+        <view class="login-item{{mobilephonewarn}}">
+            <label class="login-item_title">手机号</label>
+            <input bindblur="getImageCode" bindchange="textChange" class="login-item_input login-item_input-tel" id="mobilephone" maxlength="15" name="mobilephone" placeholder="注册或绑定手机号" type="number"></input>
+        </view>
+        <view class="login-item{{imgcodewarn}}" style="{{imgCodeShow}}">
+            <label class="login-item_title">验证码</label>
+            <input bindchange="textChange" class="login-item_input login-item_input-auth login-item_input-picauth" id="img_code_box" name="img_code_box" placeholder="右图所示"></input>
+            <image alt="" bindtap="getImageCode" class="auth-image" data_hash="{{captchaID}}" id="img_code" src="{{imgCodeUrl}}"></image>
+        </view>
+        <view class="login-item{{dyncpwdwarn}}">
+            <label class="login-item_title">动态码</label>
+            <input bindchange="textChange" class="login-item_input login-item_input-auth" id="dyncpwd" maxlength="8" name="dyncpwd" placeholder="短信动态码" type="text"></input>
+            <button bindtap="sendVerifyCodeWithRiskControl" class="btn-line login-item_auth" hoverClass="btn-line_hover" wx:if="{{getdynamicabled==true}}">获取动态码</button>
+            <button class="btn-disabled login-item_auth" disabled="true" wx:else>{{getdynamictitle}}</button>
+        </view>
+        <view class="login-item" style="{{invitecodeShow}}">
+            <label class="login-item_title">邀请码</label>
+            <input bindchange="textChange" class="login-item_input login-item_input-invite" id="invitecode" maxlength="20" name="invitecode" placeholder="选填" type="text"></input>
+        </view>
+        <button bindtap="dynamicLoginClick" class="btn-primary btn-login" hoverClass="btn-primary_hover" id="dynamicLogin">登录</button>
+    </view>
+</view>
+<view id="redirectLoginView" style="display:{{rediectLoginShow}}">
+    <view class="tips_top" style="display:{{errorMsgShow}}">{{errorMsg}}</view>
+    <view class="login-user">
+        <text class="login-user_name"></text>
+        <image class="login-user_head" src="{{avatarUrl}}" style="{{avatarShow}}"></image>
+        <text class="login-user_name" style="{{nicknameShow}}">{{nickname}}</text>
+        <text class="login-user_tel" style="{{shownameShow}}">{{showname}}</text>
+    </view>
+    <button bindtap="redirectLoginClick" class="btn-primary btn-login" hoverClass="btn-primary_hover" id="redirectLogin" style="{{rediectLoginBtnShow}}">直接登录</button>
+    <button bindtap="changeOtherLogin" class="btn-line btn-login_other" hoverClass="btn-line_hover">换个账号登录</button>
+</view>

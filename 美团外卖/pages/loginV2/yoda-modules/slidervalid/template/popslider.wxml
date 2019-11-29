@@ -1,0 +1,28 @@
+<template name="popslider">
+    <view class="popslider" wx:if="{{show}}">
+        <view animation="{{animationData}}" class="slider">
+            <view catchtap="sliderClose" class="close"></view>
+            <block wx:if="{{validStep==='slider'}}">
+                <view class="title">请向右拖动滑块</view>
+                <view class="slider-warpper">
+                    <view class="slider-boxWrapper">
+                        <view bindtouchcancel="sliderTouchEnd" bindtouchend="sliderTouchEnd" bindtouchmove="sliderTouchMove" bindtouchstart="sliderTouchStart" class="slider-boxStatic {{slideStatusClass}}" style="left:{{moveWidth}}px;"></view>
+                        <view class="slider-movingBar" style="width:{{moveWidth}}px;"></view>
+                        <view class="tip">请向右拖动滑块</view>
+                    </view>
+                    <view class="slider-yodaTip" id="yodaTip">3s 未完成验证，请重试。</view>
+                </view>
+            </block>
+            <block wx:elif="{{validStep==='code'}}">
+                <view class="title">请输入图片中的内容</view>
+                <view class="code-warpper">
+                    <view class="code">
+                        <image bindtap="sliderUpdataCaptch" class="img" mode="scaleToFill" src="{{codeImage}}"></image>
+                        <input bindblur="bingSliderInputBlur" bindfocus="bindSliderInputFocus" bindinput="sliderValideCodeInput" class="ipt" placeholder="" type="text" value="{{sliderCode}}"></input>
+                    </view>
+                    <view bindtap="sliderValideCode" class="btn">验证</view>
+                </view>
+            </block>
+        </view>
+    </view>
+</template>

@@ -1,0 +1,7 @@
+<view class="no-net-container" hidden="{{hasNet}}">
+    <view class="no-net">
+        <view class="ui-error ui-error-no-net"></view>
+        <view class="no-net-txt"> 啊哦，网络悄悄跑到外星球去了~ </view>
+        <view bindtap="onClickRefreshPage" class="refresh-btn flex-center"> 重新加载 </view>
+    </view>
+</view>

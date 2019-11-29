@@ -1,0 +1,60 @@
+<view bindtap="onTap" bindtouchmove="onTouchMove" class="page-container" hidden="{{!hasNet}}">
+    <include src="../base.wxml"></include>
+    <view class="order-item" hidden="{{!hasLogin}}" wx:for="{{ordersList}}" wx:key="{{item.hash_id}}">
+        <view class="order-inner">
+            <navigator bindtap="onClickOrderHeader" data-index="{{index}}" data-order="{{item.hash_id}}" data-poi="{{item.wm_poi_id}}" url="../restaurant/restaurant?poi_id={{item.wm_poi_id}}&hash_id={{item.hash_id}}&from=orders">
+                <view class="order-header">
+                    <image class="shop-img" mode="aspectFill" src="{{item.poi_pic}}"></image>
+                    <view class="shop-name ellipsis">{{item.poi_name}}</view>
+                    <view class="shop-name-arrow arrow-icon ui-arrow ui-arrow-right order-arrow-right"></view>
+                    <text class="order-status mr20 {{item._highlight?'order-status-highlight':''}}">{{item.status_description}}</text>
+                </view>
+            </navigator>
+            <navigator bindtap="onClickOrderDetail" data-poi="{{item.wm_poi_id}}" url="../order-info/order-info?view_id={{item.hash_id}}">
+                <view class="order-info">
+                    <view class="order-info-list">
+                        <view class="order-food-item" wx:for="{{item.product_list}}" wx:for-index="idx" wx:for-item="fooditem" wx:key="{{fooditem.product_name}}"> {{fooditem.product_name}}<view class="food-item-count">x{{fooditem.product_count}}</view>
+                        </view>
+                        <view class="order-price mr20">共{{item.product_list.length}}件商品,实付<text class="bold">￥{{item._total}}</text>
+                        </view>
+                    </view>
+                </view>
+            </navigator>
+            <view class="handle-btn">
+                <block wx:for="{{item.button_list}}" wx:for-item="button" wx:key="{{button.code}}">
+                    <view bindtap="onClickBuyAgain" class="{{button.highlight==1?'confirm-order-btn':''}} order-btn-holo flex-center mr20" data-id="{{item.hash_id}}" data-poi="{{item.wm_poi_id}}" wx:if="{{button.code==1001}}">{{button.title}}</view>
+                    <view bindtap="onClickPay" class="{{button.highlight==1?'confirm-order-btn':''}} cancel-order-btn mr20" data-id="{{item.hash_id}}" wx:if="{{button.code==2001}}">立即付款</view>
+                    <view bindtap="onClickConfirmTake" class="{{button.highlight==1?'confirm-order-btn':''}} mr20" data-id="{{item.hash_id}}" data-index="{{index}}" hoverClass="confirm-order-hover" wx:if="{{button.code==2005}}">确认收货</view>
+                    <navigator class="{{button.highlight==1?'confirm-order-btn':''}} mr20" hoverClass="confirm-order-hover" url="../poi-comment/poi-comment?poi_id={{item.wm_poi_id}}&hash_id={{item.hash_id}}&order_id={{item.order_id}}&from=orders" wx:if="{{button.code==2010}}">去评论</navigator>
+                    <navigator class="{{button.highlight==1?'confirm-order-btn':''}} mr20" hoverClass="confirm-order-hover" url="../refund-progress/refund-progress?view_id={{item.hash_id}}" wx:if="{{button.code==2013}}">退款详情</navigator>
+                </block>
+            </view>
+        </view>
+    </view>
+    <view class="no-order" hidden="{{!hasLogin||loading.show||ordersList.length}}">
+        <view class="no-order-img ui-error ui-error-no-order"></view>
+        <view class="no-order-txt">最近3个月没有订单哦~</view>
+    </view>
+    <view class="search-empty" hidden="{{hasLogin}}">
+        <view class="search-empty-icon ui-error ui-error-no-order"></view> 您还没有登录，请登录后查看订单 <view bindtap="onClickAvatar" class="btn-login flex-center"> 登录 </view>
+    </view>
+    <view hidden="{{!resultModalShown}}">
+        <view class="modal-backdrop"></view>
+        <view class="coupon-modal">
+            <view class="modal-content flex-center">
+                <view class="result-content">
+                    <image class="result-content-img" src="{{poi_coupon.icon}}"></image>
+                    <view class="result-content-title">{{poi_coupon.title}}</view>
+                    <view class="result-content-tip">{{poi_coupon.desc}}</view>
+                </view>
+                <view class="seperate-line"></view>
+                <view bindtap="confirmReultModal" class="operate-btn" data-viewid="{{poi_coupon.view_id}}"> 知道了 </view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="onPaoTuiClicked" class="paotui-entrance" wx:if="{{showPaoTui}}">
+        <image class="paotui-icon" src="../../img/icons/paotui_icon.png"></image>
+        <image class="paotui-txt" src="../../img/icons/paotui_txt.png"></image>
+    </view>
+</view>
+<include src="../../components/no-net/no-net.wxml"></include>

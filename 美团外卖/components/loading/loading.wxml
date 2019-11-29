@@ -1,0 +1,3 @@
+<template name="loading">
+    <view catchtouchmove="{{catchtouchmove?'onTouchMove':''}}" class="ui-loading-backdrop" wx:if="{{show}}"></view>
+</template>

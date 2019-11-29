@@ -1,0 +1,98 @@
+<import src="flightInfo.wxml"></import>
+<page>
+    <view class="order_back">
+        <view class="order_service">
+            <view class="service_avatar">
+                <image class="avatar" src="{{order.serverPhoto}}"></image>
+            </view>
+            <text class="{{order.payFlag?'\bpay':'\bsuc'}}">{{order.orderStateDesc}}</text>
+        </view>
+        <view class="order_num">订单号: {{order.vendorOrderNumber}}</view>
+        <template is="flightInfo" data="{{...flightInfo}}" wx:for="{{order.flightSegments}}" wx:for-index="idx" wx:for-item="flightInfo"></template>
+        <view class="order_tick">
+            <view bindtap="onOrderInfoOpenSwitch" class="order_pasg_hd order_detail_hd">
+                <text class="icon_pasg"></text>订单详情
+        </view>
+            <block wx:if="{{isOrderInfoOpen}}">
+                <view class="order_pasg order_line">
+                    <view class="order_pasg_bd">
+                        <view class="order_pasg_item" wx:for="{{order.passengers}}" wx:for-index="idx" wx:for-item="passenger">
+                            <text class="name">{{passenger.passengerName}}</text>
+                            <text>{{passenger.passengerType}}</text>
+                            <view>{{passenger.passportType+': '+passenger.passportCode}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="order_phone order_line">
+                    <view class="order_phone_hd">
+                        <text class="icon_phone"></text>电话
+                </view>
+                    <view class="order_phone_bd">
+                        <view class="order_phone_item">{{order.contactInfo.contactPhone}}</view>
+                    </view>
+                </view>
+                <view class="order_other order_line" wx:if="{{order.showPackage}}">
+                    <view class="order_other_hd">
+                        <text class="icon_other"></text>其他
+                    </view>
+                    <view class="order_other_bd">
+                        <view class="order_other_item" wx:for="{{order.appendProducts}}" wx:for-item="aProduct">
+                            <text bindtap="onAppendProduct" class="txt_red" data-value="{{index}}">{{aProduct.productTitle}}</text>
+                            <text> {{aProduct.productNum+'份'}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="order_opert">
+            <view bindtap="onRefund" class="order_opert_item">
+                <text class="icon_refund"></text>申请退票
+        </view>
+            <view bindtap="onETicket" class="order_opert_item">
+                <text class="icon_endorse"></text>航司预定号/电子票号
+        </view>
+        </view>
+        <view class="refund_rule_tips order_tips">下载智行app申请改签，查看退款进度</view>
+        <view bindtap="onPriceDetail" class="order_total">
+        订单总额: <text class="flt_price">{{order.orderPrice}}</text>
+            <text class="detail">订单明细</text>
+        </view>
+        <button bindtap="onContinue" class="btn_again" hoverClass="btn_again_hover" type="default" wx:if="{{!order.payFlag}}">继续购票</button>
+    </view>
+    <view class="pay_box" wx:if="{{order.payFlag}}">
+        <button bindtap="onCancel" class="btn_cancel" formType="submit" hoverClass="btn_cancel_hover">立即取消</button>
+        <button bindtap="onPay" class="btn_pay" formType="submit" hoverClass="btn_pay_hover">立即支付</button>
+    </view>
+    <view bindtap="onPriceDetail" class="pop_price mask" wx:if="{{isPriceDetailOpen}}">
+        <view class="pop_price_list">
+            <view class="pop_price_total">
+            订单总额明细 <text class="flt_price">{{order.orderPrice}}</text>
+            </view>
+            <block wx:for="{{order.priceInfos}}" wx:for-item="priceInfo">
+                <view class="pop_price_tit">{{priceInfo.title}}</view>
+                <view class="pop_price_item" wx:for="{{priceInfo.priceDetails}}" wx:for-item="priceItem">
+                        {{priceItem.title}}<text class="price">￥{{priceItem.price}} X {{priceItem.count}}人</text>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view bindtap="onETicket" class="pop_price mask" wx:if="{{isETicketOpen}}">
+        <view class="pop_price_list">
+            <view class="pop_price_total">
+            航司预订号/电子票号
+          </view>
+            <block wx:for="{{order.eTickets}}" wx:for-item="eTicket">
+                <view class="pop_price_tit">{{eTicket.airlineInfo}}</view>
+                <view class="pop_price_item" wx:for="{{eTicket.ticketInfo}}" wx:for-item="ticketItem">
+                        {{ticketItem.passengerName}}<text class="price">{{ticketItem.ticketNumber}}</text>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view bindtap="onCloseMask" class="pop_insurance mask" wx:if="{{isAppendProductInfoOpen}}">
+        <view class="pop_price_list">
+            <view class="pop_price_tit">{{appendProductInfo.title}}</view>
+            <view class="pop_insurance_item" wx:for="{{appendProductInfo.infoArr}}" wx:for-item="info">{{info}}</view>
+        </view>
+    </view>
+</page>

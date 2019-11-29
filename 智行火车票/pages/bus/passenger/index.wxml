@@ -1,0 +1,46 @@
+<view class="tips_top" hidden="{{!isError}}">{{mError}}</view>
+<view class="passenger-list">
+    <view class="b_border bottom-border-1">
+        <picker bindchange="onPickPassengerType" range="{{mPRange}}" value="{{mPIndex}}" wx:if="{{mPRange.length>1}}">
+            <view class="picker row">
+                <label class="column-2">乘客类型：</label>
+                <view class="column-4 right-arrow">{{mPRange[mPIndex]}}</view>
+            </view>
+        </picker>
+        <view class="row" wx:if="{{mPRange.length<=1}}">
+            <label class="column-2">乘客类型：</label>
+            <lable class="column-4">{{mPRange[0]}}</lable>
+        </view>
+    </view>
+    <view class="row b_border bottom-border-1" style="vertical-align: middle;">
+        <label class="column-2">姓名</label>
+        <view class="column-4">
+            <input bindinput="onUpdName" class="align-center" placeholder="与证件姓名一致" style="height: 100%;" type="text" value="{{mName}}"></input>
+        </view>
+    </view>
+    <view class="b_border bottom-border-1">
+        <picker bindchange="onPickCard" range="{{mCRange}}" value="{{mCIndex}}" wx:if="{{mCRange.length>1}}">
+            <view class="picker row">
+                <label class="column-2">证件类型：</label>
+                <view class="column-4 right-arrow">{{mCRange[mCIndex]}}</view>
+            </view>
+        </picker>
+        <view class="row" wx:if="{{mCRange.length<=1}}">
+            <label class="column-2">证件类型：</label>
+            <lable class="column-4">{{mCRange[0]}}</lable>
+        </view>
+    </view>
+    <view class="row b_border bottom-border-1">
+        <label class="column-2">证件号：</label>
+        <view class="column-4">
+            <input bindinput="onUpdCode" class="align-center" placeholder="乘客证件号码" style="height: 100%;" type="text" value="{{mCardNo}}"></input>
+        </view>
+    </view>
+    <picker bindchange="onUpBirth" end="2018-01-01" mode="date" start="1945-01-01" value="{{mBirth}}" wx:if="{{mCRange[mCIndex]!='身份证'}}">
+        <view class="picker row">
+            <label class="column-2">出生日期：</label>
+            <lable class="column-4">{{mBirth}}</lable>
+        </view>
+    </picker>
+</view>
+<button bindtap="onConfirm" class="btn_primary btn-confirm" hoverClass="btn_primary_hover">确 定</button>

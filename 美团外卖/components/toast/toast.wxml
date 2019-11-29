@@ -1,0 +1,3 @@
+<template name="toast">
+    <view class="ui-toast {{className||''}}" wx:if="{{show}}"> {{message||'未知消息'}} </view>
+</template>

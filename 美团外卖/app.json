@@ -1,0 +1,77 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/login/login",
+        "pages/loginV2/login",
+        "pages/restaurant/restaurant",
+        "pages/verify-phone/verify-phone",
+        "pages/loc-select/loc-select",
+        "pages/addr-add/addr-add",
+        "pages/my-address/my-address",
+        "pages/orders/orders",
+        "pages/order-info/order-info",
+        "pages/preview/preview",
+        "pages/preview/caution",
+        "pages/request-refund/request-refund",
+        "pages/refund-detail/refund-detail",
+        "pages/channel-page/channel-page",
+        "pages/search/search",
+        "pages/non-delivery/non-delivery",
+        "pages/mine/mine",
+        "pages/poi-comment/poi-comment",
+        "pages/my-coupons/my-coupons",
+        "pages/external/poi",
+        "pages/external/food",
+        "pages/external/brand",
+        "pages/my-coupons-expired/my-coupons-expired",
+        "pages/qualification/qualification",
+        "pages/refund-progress/refund-progress",
+        "pages/poi-complain/poi-complain",
+        "pages/complain/complain",
+        "pages/refund-apply/refund-apply",
+        "pages/order-info/order-info-map",
+        "pages/web-view/web-view",
+        "pages/loginV2/yoda-modules/index/index",
+        "pages/activity-invite/activity-invite"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "美团外卖",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#2C2D31",
+        "backgroundTextStyle": "light",
+        "enablePullDownRefresh": false
+    },
+    "tabBar": {
+        "color": "#999",
+        "backgroundColor": "#fafafa",
+        "selectedColor": "#333",
+        "borderStyle": "white",
+        "list": [
+            {
+                "text": "首页",
+                "pagePath": "pages/index/index",
+                "iconPath": "img/tabs/home.png",
+                "selectedIconPath": "img/tabs/home-active.png"
+            },
+            {
+                "text": "订单",
+                "pagePath": "pages/orders/orders",
+                "iconPath": "img/tabs/orders.png",
+                "selectedIconPath": "img/tabs/orders-active.png"
+            },
+            {
+                "text": "我的",
+                "pagePath": "pages/mine/mine",
+                "iconPath": "img/tabs/user.png",
+                "selectedIconPath": "img/tabs/user-active.png"
+            }
+        ],
+        "position": "bottom"
+    },
+    "networkTimeout": {
+        "request": 5000,
+        "connectSocket": 5000
+    },
+    "debug": false
+}

@@ -1,0 +1,87 @@
+page {
+    background: #ffffff;
+}
+
+.qualication-wrapper {
+    background: #fff;
+    font-size: 26rpx;
+    color: #333;
+}
+
+.sn-title {
+    line-height: 73rpx;
+    font-size: 24rpx;
+    color: #666666;
+    height: 73rpx;
+    background: #F4F4F4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 30rpx;
+}
+
+.safer-info {
+    padding-left: 30rpx;
+}
+
+.img-info-main {
+    display: flex;
+    border-bottom: #F4F4F4 1rpx solid;
+}
+
+.quali-avatar {
+    width: 250rpx;
+    height: 202rpx;
+    margin-top: 20rpx;
+    margin-right: 34rpx;
+}
+
+.notice-info-w {
+    flex: 1;
+    font-size: 28rpx;
+    color: #333;
+    line-height: 80rpx;
+}
+
+.info-row-s {
+}
+
+.info-row {
+    display: flex;
+    margin-top: 20rpx;
+    font-size: 28rpx;
+    color: #333;
+    border-bottom: #F4F4F4 1rpx solid;
+}
+
+.info-r-name,.info-r-value {
+    line-height: 80rpx;
+}
+
+.info-r-name {
+    white-space: nowrap;
+}
+
+.info-r-value {
+    white-space: normal;
+    max-width: 82%;
+}
+
+.quali-img-w {
+    display: flex;
+    padding: 30rpx;
+}
+
+.quali-img {
+    flex: 1;
+    height: 248rpx;
+}
+
+.quali-info-multipic:nth-child(1) {
+    margin-right: 14rpx;
+}
+
+.quali-info-singlepic {
+    width: 330rpx;
+    height: 248rpx;
+}

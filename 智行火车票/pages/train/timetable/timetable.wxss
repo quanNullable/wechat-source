@@ -1,0 +1,112 @@
+.main-box {
+    position: absolute;
+    top: 100rpx;
+    bottom: 0px;
+    width: 100%;
+    overflow: auto;
+}
+
+.main-box.white {
+    background: #fff;
+}
+
+.train-list {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 1px 0 0 0;
+    background: #fff;
+    line-height: 86rpx;
+    margin-top: -1px;
+}
+
+.train-list .item {
+    margin-left: 30rpx;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px 0;
+    border-bottom-width: 1px;
+    padding-right: 30rpx;
+}
+
+.fl {
+    float: left;
+}
+
+.checi-tab {
+    line-height: 56rpx;
+    height: 56rpx;
+}
+
+.checi-tab.tit {
+    background: #5495e6;
+    padding-left: 108rpx;
+    color: #fff;
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.checi-tab.list .s-wrapper {
+    padding-left: 108rpx;
+}
+
+.checi-tab.list .item {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px 0;
+    height: 82rpx;
+    line-height: 82rpx;
+    position: relative;
+}
+
+.checi-tab .current {
+    color: #5495e6;
+}
+
+.checi-tab .item::before {
+    width: 4rpx;
+    height: 84rpx;
+    background: rgba(155,155,155,0.2);
+    top: 0rpx;
+    left: -56rpx;
+    bottom: 0rpx;
+    position: absolute;
+    content: "";
+}
+
+.checi-tab .shi::before {
+    top: 34rpx;
+    height: 50rpx;
+}
+
+.checi-tab .zhong::before {
+    bottom: 34rpx;
+    height: 52rpx;
+    top: -2rpx;
+}
+
+.checi-tab .item::after {
+    position: absolute;
+    content: "";
+    width: 16rpx;
+    height: 16rpx;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 50%;
+    top: 50%;
+    left: -64rpx;
+    margin-top: -10rpx;
+}
+
+.checi-tab .shi::after,.checi-tab .zhong::after {
+    background: #e5e5e5;
+    border-color: #e5e5e5;
+}
+
+.checi-tab .current::after {
+    background: #5495e6;
+    border-color: #5495e6;
+}

@@ -1,0 +1,74 @@
+<template name="brand-banner">
+    <view class="brand-bannder-container">
+        <swiper autoplay="1" circular="1" class="brand-banner" indicatorDots="1" wx:if="{{banners.length>1}}">
+            <swiper-item wx:for="{{banners}}" wx:key="{{item.pic_url}}">
+                <image class="brand-banner-img" src="{{item.pic_url}}"></image>
+            </swiper-item>
+        </swiper>
+        <image class="brand-banner-img" src="{{banners[0].pic_url}}" wx:else></image>
+    </view>
+</template>
+<template name="brand-poi">
+    <view bindtap="onClickPoi" class="brand-poi" data-poi="{{item.wm_poi_id}}">
+        <view class="brand-poi-header">
+            <image class="brand-poi-img" src="{{item.pic_url}}"></image>
+            <view class="brand-poi-name ellipsis"> {{item.name}} </view>
+            <template is="brand-poi-score" data="{{score:item.dp_score}}" wx:if="{{item.status===1}}"></template>
+            <view class="poi-status-tag" wx:else> {{item.status_desc}} </view>
+            <view class="brand-poi-info"> {{item.min_price_tip}} <view class="brand-poi-info-split"></view> 距离 {{item.distance}} <view class="brand-poi-info-split"></view> 配送{{item.delivery_time_tip}} </view>
+        </view>
+        <template is="brand-poi-rec" data="{{products:item.rcmd_products}}" wx:if="{{item.rcmd_products&&item.rcmd_products.length>0}}"></template>
+        <template is="brand-poi-discounts" data="{{discounts:item.discounts,expand:item._actvs_expand,index:index}}" wx:if="{{item.discounts&&item.discounts.length>0}}"></template>
+        <view class="brand-poi-biz-center ellipsis" wx:if="{{item.biz_center}}">
+            <image class="brand-poi-biz-center-icon" src="/img/icons/near.png"></image> {{item.biz_center}} </view>
+    </view>
+</template>
+<template name="brand-poi-discounts">
+    <view catchtap="{{discounts.length<3?'':'onClickPoilistActvs'}}" class="poi-actvs {{expand?'poi-actvs-expanded':''}}" data-index="{{index}}">
+        <view class="poi-arrow {{expand?'ui-arrow ui-arrow-up':'ui-arrow ui-arrow-down'}}" wx:if="{{discounts.length>2}}"></view>
+        <view class="poi-actvs-item" hidden="{{idx>1&&!expand}}" wx:for="{{discounts}}" wx:for-index="idx" wx:for-item="actv" wx:key="{{actv.type}}">
+            <image class="poi-actvs-icon" src="{{actv.icon_url}}" wx:if="{{actv.icon_url}}"></image>
+            <view class="poi-actvs-text">{{actv.info}}</view>
+        </view>
+    </view>
+</template>
+<template name="brand-poi-rec">
+    <scroll-view class="brand-poi-rec" scrollX="1">
+        <view class="brand-poi-rec-content">
+            <view class="brand-poi-product" data-spu="{{item.spu_id}}" wx:for="{{products}}" wx:key="{{index}}">
+                <view class="brand-poi-product-dp flex-center" wx:if="{{item.rcmd_type===1}}">
+                    <image class="brand-poi-product-dp-icon" src="/img/icons/dianping.png"></image> 推荐 </view>
+                <image class="brand-poi-product-img" src="{{item.pic}}"></image>
+                <view class="brand-poi-product-name ellipsis"> {{item.name}} </view>
+                <view class="brand-poi-product-price"> ￥{{item.price}} </view>
+            </view>
+        </view>
+    </scroll-view>
+</template>
+<template name="score-internal">
+    <image class="brand-score-dp" src="/img/icons/dianping.png"></image>
+    <image class="brand-score-star" src="/img/icons/{{num<score?num+1>score?'bighalfscore-red':'bigscore-red':'bignoscore'}}.png" wx:for="{{[0,1,2,3,4]}}" wx:for-item="num" wx:key="{{item}}"></image>
+</template>
+<template name="brand-poi-score">
+    <template is="score-internal" data="{{score:score%1>0.78?(score|0)+1:score%1>0.28?(score|0)+0.5:score|0}}"></template>
+</template>
+<view class="page-container">
+    <include src="../base.wxml"></include>
+    <block wx:if="{{locationEnabled}}">
+        <view class="header-index">
+            <include src="../../components/header-index/header/loc.wxml"></include>
+        </view>
+        <block wx:if="{{poi_list&&poi_list.length>0}}">
+            <template is="brand-banner" data="{{banners:banners}}" wx:if="{{banners&&banners.length>0}}"></template>
+            <view class="poi-list-header flex-center"> 附近商家 </view>
+            <view class="brand-poi-list">
+                <template is="brand-poi" data="{{item:item,index:index}}" wx:for="{{poi_list}}" wx:key="{{index}}"></template>
+            </view>
+            <navigator class="brand-end" openType="switchTab" url="/pages/index/index"> 不是你的菜？去看更多品牌 <image class="brand-end-arrow ui-inline-block" src="/img/icons/order-arrow.png"></image>
+            </navigator>
+        </block>
+        <navigator class="brand-end brand-no-result" openType="switchTab" url="/pages/index/index" wx:if="{{no_result}}">
+            <view class="ui-error"></view> 您的附近暂无相关商家，去看更多品牌 <image class="brand-end-arrow ui-inline-block" src="/img/icons/order-arrow.png"></image>
+        </navigator>
+    </block>
+</view>

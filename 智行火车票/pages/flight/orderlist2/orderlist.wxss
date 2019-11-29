@@ -1,0 +1,157 @@
+.order_list_item {
+    background: #fff;
+    margin: 20rpx 20rpx 0;
+    padding: 25rpx 15rpx;
+    border-radius: 8rpx;
+}
+
+.order_list_hd {
+    border-bottom: 1px dashed #e0e0e0;
+    padding: 0 15rpx 20rpx;
+    overflow: hidden;
+}
+
+.order_list_hd .airport {
+    display: inline-block;
+    font-size: 32rpx;
+}
+
+.separator {
+    position: relative;
+    margin: 0 25rpx;
+    width: 60rpx;
+    height: 4rpx;
+    background: #ccc;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.separator::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10rpx 10rpx 10rpx 0;
+    border-color: transparent transparent #ccc;
+}
+
+.flt_price {
+    font-size: 36rpx;
+    color: #fe6b5b;
+    float: right;
+    margin-top: 10rpx;
+}
+
+.flt_price::before {
+    content: "\00A5";
+    font-size: 22rpx;
+    padding-right: 7rpx;
+    color: #fe6b5b;
+}
+
+.order_list_bd {
+    padding: 0 15rpx;
+    position: relative;
+}
+
+.order_list_tic {
+    margin-top: 20rpx;
+    font-size: 24rpx;
+    line-height: 45rpx;
+}
+
+.order_list_tic .date {
+    color: #666;
+    display: block;
+}
+
+.order_list_tic .airplane {
+    color: #999;
+    display: block;
+}
+
+.order_list_state {
+    position: absolute;
+    top: 50%;
+    right: 15rpx;
+    margin-top: -30rpx;
+    line-height: 60rpx;
+}
+
+.txt_state {
+    color: #5495e6;
+    font-size: 30rpx;
+}
+
+.btn_pay {
+    width: 120rpx;
+    height: 60rpx;
+    background: #5495e6;
+    color: #fff;
+    padding: 0;
+    line-height: 60rpx;
+    font-size: 28rpx;
+}
+
+.btn_pay::after {
+    border: 0;
+}
+
+.flt_none {
+    color: #5495e6;
+    text-align: center;
+    font-size: 26rpx;
+}
+
+.flt_none::before {
+    width: 180rpx;
+    height: 180rpx;
+    background: url(http://images3.c-ctrip.com/tieyou/wechat/wechat_zx.png) no-repeat;
+    background-size: 400rpx 400rpx;
+    display: block;
+    margin: 90rpx auto 50rpx;
+    content: '';
+}
+
+.order_tab {
+    display: flex;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #333;
+    font-size: 32rpx;
+    position: relative;
+    width: 100%;
+}
+
+.order_tab_item {
+    flex: 1;
+    text-align: center;
+    background: #fff;
+}
+
+.scrollbar {
+    position: absolute;
+    width: 50%;
+    height: 8rpx;
+    left: 0;
+    bottom: -1px;
+    background: #5495e6;
+    transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out;
+    z-index: -1;
+}
+
+.order_tab_item.current~.scrollbar {
+    z-index: 2;
+}
+
+.order_tab_item:nth-of-type(1).currnet~.scrollbar {
+    transform: translate3d(0,0,0);
+}
+
+.order_tab_item:nth-of-type(2).currnet~.scrollbar {
+    transform: translate3d(100%,0,0);
+}

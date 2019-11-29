@@ -1,0 +1,7 @@
+.order-map {
+    width: 710rpx;
+    height: 640rpx;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20rpx;
+}

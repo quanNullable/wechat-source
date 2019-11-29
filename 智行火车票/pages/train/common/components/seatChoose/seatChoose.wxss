@@ -1,0 +1,49 @@
+.train-seat {
+    background-color: #fff;
+}
+
+.train-seat-bd {
+    padding: 10rpx 10rpx 30rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    text-align: center;
+}
+
+.train-seat-bd .txt {
+    flex: 1;
+    color: #ccc;
+    font-size: 24rpx;
+    line-height: 64rpx;
+}
+
+.train-seat-bd .seat {
+    flex: 1;
+    height: 64rpx;
+    position: relative;
+    line-height: 30rpx;
+}
+
+.train-seat-bd .seat text {
+    color: #fff;
+    font-size: 20rpx;
+    position: relative;
+}
+
+.train-seat-bd .seat::before {
+    width: 70rpx;
+    height: 64rpx;
+    position: absolute;
+    content: "";
+    z-index: 0;
+    background: url(http://images3.c-ctrip.com/train/wxapp/icon-seat.png) no-repeat;
+    background-size: 150rpx 64rpx;
+    background-position: -79rpx 0;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%);
+}
+
+.train-seat-bd .seat.cur::before {
+    background-position: 0 0;
+}

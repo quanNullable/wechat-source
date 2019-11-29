@@ -1,0 +1,56 @@
+<view class="page-container-abs" style="background:#fff;">
+    <include src="../base.wxml"></include>
+    <scroll-view class="address-scroll" scrollY="{{scroll}}">
+        <view class="item-wrap">
+            <view bindtouchend="touchE" bindtouchmove="touchM" bindtouchstart="touchS" class="address-list-item" data-index="{{index}}" style="right:{{item.right}}px" wx:if="{{item.bind_type>=11}}" wx:for="{{addresses}}" wx:key="{{item.id}}">
+                <view bindtap="{{poi_id?'onClickAddress':''}}" class="address-info" data-can="{{item.can_shipping}}" data-id="{{item.id}}">
+                    <view class="address-txt"> {{item.address}} {{item.house_number}} </view>
+                    <view class="user-info">
+                        <view class="user-name-txt" hidden="{{!item.name}}"> {{item.name}} </view>
+                        <view class="user-gender" hidden="{{!item.name}}"> {{item.name?item.gender:''}} </view>
+                        <view class="phone-number"> {{item.phone}} </view>
+                    </view>
+                </view>
+                <view class="manage-address">
+                    <view bindtap="onClickModify" class="manage-btn flex-center" data-id="{{item.id}}">
+                        <image class="modify-addr-icon" src="/img/icons/edit.png"></image>
+                    </view>
+                </view>
+                <text bindtap="onClickDel" class="delete" data-id="{{item.id}}" data-index="{{index}}">删除</text>
+            </view>
+            <view class="undone-addr-wrap" hidden="{{!hasUndoneAddr}}">需要完善的地址</view>
+            <view bindtouchend="touchE" bindtouchmove="touchM" bindtouchstart="touchS" class="undone-addr-item address-list-item" data-index="{{index}}" style="right:{{item.right}}px" wx:if="{{item.bind_type<11}}" wx:for="{{addresses}}" wx:key="{{item.id}}">
+                <view bindtap="{{poi_id?'onClickAddress':''}}" class="address-info" data-can="{{item.can_shipping}}" data-id="{{item.id}}">
+                    <view class="flex-center">
+                        <view class="address-txt undone-addr-item"> {{item.address}} {{item.house_number}} </view>
+                        <view class="flex-center addr-need-edit">
+                            <image class="modify-addr-icon" src="/img/icons/addrUndone.png"></image>需完善 </view>
+                    </view>
+                    <view class="user-info">
+                        <view class="user-name-txt" hidden="{{!item.name}}"> {{item.name}} </view>
+                        <view class="user-gender" hidden="{{!item.name}}"> {{item.name?item.gender:''}} </view>
+                        <view class="phone-number"> {{item.phone}} </view>
+                    </view>
+                </view>
+                <view class="manage-address" hidden="{{item.isDelShow}}">
+                    <view bindtap="onClickModify" class="manage-btn flex-center" data-id="{{item.id}}">
+                        <image class="modify-addr-icon" src="/img/icons/edit.png"></image>
+                    </view>
+                </view>
+                <text bindtap="onClickDel" class="delete" data-id="{{item.id}}" data-index="{{index}}">删除</text>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="no-address" hidden="{{loading.show||addresses.length}}">
+        <view class="no-address-img ui-error ui-error-no-pos"></view>
+        <view>您还没有添加收货地址哦~</view>
+    </view>
+    <view class="footer">
+        <navigator class="nav-footer flex-center" url="../addr-add/addr-add?poi_id={{poi_id}}">
+            <view class="address-add-bar">
+                <image class="address-icon" src="/img/icons/add-light.png"></image>
+                <view class="footer-address-txt">新增收货地址</view>
+            </view>
+        </navigator>
+    </view>
+</view>

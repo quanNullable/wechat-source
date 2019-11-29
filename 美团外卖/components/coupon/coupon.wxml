@@ -1,0 +1,32 @@
+<template name="coupon">
+    <import src="coupon-status-img.wxml"></import>
+    <view bindtap="{{selected||disabled?'':'onSelectCoupon'}}" class="coupon {{disabled?'coupon-disabled':''}}" data-couponid="{{coupon.coupon_view_id}}">
+        <image class="coupon-selected" src="/img/coupon/icon-selected.png" wx:if="{{selected}}"></image>
+        <view class="coupon-top">
+            <view class="coupon-left">
+                <view class="coupon-name ellipsis"> {{coupon.title}} </view>
+                <view class="coupon-deadline ellipsis">
+                    <view class="ui-inline-block coupon-meituan-deliver" wx:if="{{coupon.shipping_type===1}}"> 美团专送专享 </view> {{coupon.valid_time_desc}} </view>
+            </view>
+            <view class="coupon-right">
+                <view class="coupon-money ellipsis" wx:if="{{coupon.coupon_type===1}}">
+                    <view class="ui-inline-block coupon-money-small">¥</view>
+                    <view class="ui-inline coupon-money-text">{{coupon.amount}}</view>
+                    <view class="ui-inline coupon-money-small" wx:if="{{coupon.tail}}">{{coupon.tail}}</view>
+                </view>
+                <view class="coupon-money ellipsis" wx:elif="{{coupon.coupon_type===2}}">
+                    <view class="ui-inline-block coupon-money-text">{{coupon.amount}}</view>
+                    <view class="ui-inline-block coupon-money-small">{{coupon.tail||''}}折</view>
+                </view>
+                <view class="coupon-price-limit ellipsis"> {{coupon.price_limit}} </view>
+            </view>
+        </view>
+        <view class="coupon-limits ellipsis" wx:if="{{coupon.use_limits}}"> {{coupon.use_limits}} </view>
+        <view bindtap="onClickToggleReason" class="coupon-bottom" data-couponid="{{coupon.coupon_view_id}}" data-key="{{reasonKey}}" wx:if="{{disabled&&requestReason}}">
+            <view class="coupon-bottom-title"> 不可用原因 <view class="coupont-bottom-arrow ui-inline-block ui-arrow {{reasons?'ui-arrow-up':'ui-arrow-down'}}"></view>
+            </view>
+            <view class="coupon-bottom-item" wx:if="{{reasons}}" wx:for="{{reasons}}" wx:for-item="reason" wx:key="{{index}}"> ·{{reason}} </view>
+        </view>
+        <template is="coupon-status-img" data="{{coupon:coupon}}"></template>
+    </view>
+</template>

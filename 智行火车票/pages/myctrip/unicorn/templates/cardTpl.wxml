@@ -1,0 +1,31 @@
+<template name="ship">
+    <view class="order-title">
+        <text>{{item['ShipOrderItems'][0]['DepartureCity']}}</text>
+        <view class="icon-go"></view>
+        <text>{{item['ShipOrderItems'][0]['ArrivalCity']}}</text>
+    </view>
+    <view class="order-detail">
+        <text class="order-desc">{{item['Shipfromdate']}} {{item['ShipOrderItems'][0]['DeparturePort']}}出发</text>
+    </view>
+</template>
+<template name="bus">
+    <view class="order-title">
+        <text>{{item['QicheOrderItems'][0]['DepartureStationName']}}</text>
+        <view class="icon-go"></view>
+        <text>{{item['QicheOrderItems'][0]['ArrivalStationName']}}</text>
+    </view>
+    <view class="order-detail">
+        <text class="order-desc">{{item['QicheOrderItems'][0]['DepartureDateStr']}} 出发</text>
+    </view>
+</template>
+<template name="train">
+    <view class="order-title">
+        <text>{{item.trainInfo.fromStation}}</text>
+        <view class="icon-go"></view>
+        <text>{{item.trainInfo.toStation}}</text>
+    </view>
+    <view class="order-detail">
+        <text class="order-desc">{{item.trainInfo.fromDate+' '+item.trainInfo.fromTime+(!item.trainInfo.toTime?' 出发':' 至 '+item.trainInfo.toTime)}}</text>
+        <text class="order-desc">{{item.trainInfo.trainNo}}</text>
+    </view>
+</template>

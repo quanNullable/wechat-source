@@ -1,0 +1,8 @@
+<view class="wx_unlimit_qrcode_wrap">
+    <view class="loading_tips">
+        <view class="train-toast">
+            <icon class="loading"></icon>
+            <text>精彩内容加载中</text>
+        </view>
+    </view>
+</view>

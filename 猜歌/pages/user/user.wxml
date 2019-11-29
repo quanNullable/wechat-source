@@ -1,0 +1,69 @@
+<scroll-view class="container" scrollY="true" style="height:100%;">
+    <view class="user-info">
+        <view class="base">
+            <image class="avatar" src="{{isAuthorize?avatarUrl:'../../image/user_logo.jpg'}}"></image>
+            <view class="nickname">
+                <block wx:if="{{isAuthorize}}">
+          {{nickName}},
+        </block>
+                <button bindgetuserinfo="get_ureinfo" openType="getUserInfo" wx:else>未登录</button>
+        可领取奖品{{wins}}个
+      </view>
+        </view>
+        <view class="info">
+            <view class="info-item">
+                <view class="item-num">
+                    <text>{{play_times}}</text>次</view>
+                <view class="item-txt">已挑战</view>
+            </view>
+            <view class="info-item">
+                <view class="item-num">
+                    <text>{{score}}</text>分</view>
+                <view class="item-txt">最高分</view>
+            </view>
+        </view>
+        <view class="actions">
+            <button class="button-flaunt" data-id="0" openType="share">
+                <image class="icon" src="../../image/icon-wx-color.png"></image>炫耀战绩</button>
+            <button class="button-chance" data-id="1" openType="share">约好友一起挑战</button>
+        </view>
+        <view class="complaint">
+            <button bindtap="tousu" openType="complaint">
+                <image class="icon" src="../../image/icon-complaint.png"></image>
+                <text>投诉</text>
+            </button>
+        </view>
+    </view>
+    <view class="online-service">
+        <button openType="contact" sessionFrom="weapp">
+            <image class="icon" src="../../image/icon-service.png"></image>
+            <text>客服微信：{{kefu_title}}</text>
+        </button>
+    </view>
+    <view class="app-list" wx:if="{{moreGames.length>0}}">
+        <view class="app-item" wx:for="{{moreGames}}" wx:key="index">
+            <image class="item-img" src="{{item.app_icon}}"></image>
+            <view class="item-info">
+                <view class="item-name">{{item.app_title}}</view>
+                <view class="item-intro">{{item.app_desc}}</view>
+            </view>
+            <view class="item-button">
+                <button bindtap="more_games" class="button-play" data-appid="{{item.appid}}" data-extardata="{{item.extardata}}" data-path="{{item.link_path}}" data-toid="{{item.app_id}}" data-version="{{item.version}}">{{item.link_text}}</button>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+<view class="popup-share {{share_status}}">
+    <view class="popup-mask"></view>
+    <view class="popup-panel">
+        <view class="popup-main">
+            <button openType="share">
+                <image src="../../image/invite.png"></image>
+                <text>{{user_share_txt}}</text>
+            </button>
+        </view>
+        <view class="popup-close">
+            <icon bindtap="closePopupShare" color="white" size="30" type="clear"></icon>
+        </view>
+    </view>
+</view>

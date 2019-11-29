@@ -1,0 +1,27 @@
+<import src="../common/components/toast/toast.wxml"></import>
+<view>
+    <view class="kq-tit">
+        <icon class="icon-rocket"></icon>抢票加速包</view>
+    <view class="kq-cont">
+        <view class="item">总计<text class="tblue">{{speedPointNumber}}</text>个</view>
+        <view class="item">锁定<text class="tblue">{{lockPoint}}</text>个</view>
+    </view>
+    <view class="kq-intr">
+        <view>1. 抢票加速包将在您选择抢票速度时自动使用，1加速包=1元；</view>
+        <view>2. 我们将全力为您抢票，但不保证100%有票；</view>
+        <view>3. 取消抢票订单或抢票失败，已使用的加速包将全额退还。</view>
+    </view>
+    <view class="kq-tit">
+        <icon class="icon-ticket"></icon>优惠券</view>
+    <view class="kq-coupon">
+        <view bindtap="clickCoupon" class="item" data-type="{{coupon.type}}" wx:if="{{couponList.length>0}}" wx:for="{{couponList}}" wx:for-item="coupon" wx:key="couponId">
+            <view class="price">
+                <text class="strong">{{coupon.couponPrice}}</text>元</view>
+            <view class="tit">{{coupon.title}}</view>
+            <view class="txt">{{coupon.couponDisplayName}}</view>
+            <view class="txt">有效期：{{coupon.couponStartDate}}至{{coupon.couponEndDate}}</view>
+        </view>
+        <view class="item none" wx:if="{{couponList.length<1}}">您当前没有可用的优惠券</view>
+    </view>
+</view>
+<template is="train-toast" data="{{trainToast:trainToast}}"></template>

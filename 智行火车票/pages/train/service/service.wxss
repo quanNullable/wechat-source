@@ -1,0 +1,83 @@
+.sev-tit {
+    margin: 24rpx 30rpx;
+    line-height: 70rpx;
+    font-size: 36rpx;
+    font-weight: 600;
+}
+
+.sev-tit .icon-gj {
+    width: 70rpx;
+    height: 70rpx;
+    background: url(http://images3.c-ctrip.com/train/wxapp/icon-gj.png) no-repeat;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -4rpx 24rpx 0 0;
+}
+
+.sev-bd {
+    margin: 0 30rpx;
+    background: #fff;
+}
+
+.sev-bd .item {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px;
+    padding: 30rpx;
+}
+
+.sev-bd .item:last-child {
+    border-bottom: 0;
+}
+
+.sev-bd .item .tit {
+    font-size: 30rpx;
+    color: #19a0f0;
+    position: relative;
+}
+
+.sev-bd .item .tit::after {
+    width: 14rpx;
+    height: 14rpx;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    content: "";
+    transform: rotate(-45deg);
+    margin: -8px 6px 0 0;
+}
+
+.sev-bd .item .txt {
+    margin-top: 30rpx;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    display: none;
+}
+
+.sev-bd .item.current .tit::after {
+    transform: rotate(135deg);
+    margin-top: -2rpx;
+}
+
+.sev-bd .item.current .txt {
+    display: block;
+}
+
+.sev-botm {
+    text-align: center;
+    color: #999;
+    font-size: 26rpx;
+    padding: 0 0 70rpx;
+    margin-top: 50rpx;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.sev-botm text {
+    color: #19a0f0;
+}

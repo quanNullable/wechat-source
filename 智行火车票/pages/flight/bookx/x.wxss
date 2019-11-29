@@ -1,0 +1,518 @@
+.book_modify {
+    padding: 20rpx 30rpx;
+    background: #5495e6;
+}
+
+.book_modify_white {
+    background: #fff;
+    padding: 30rpx;
+    border-radius: 8rpx;
+}
+
+.flt_modify_intro {
+    display: flex;
+    width: 100%;
+}
+
+.flt_depart,.flt_arrival,.separator {
+    flex: 1;
+}
+
+.flt_depart {
+    text-align: left;
+}
+
+.flt_arrival {
+    text-align: right;
+}
+
+.flt_time {
+    font-size: 60rpx;
+    color: #333;
+}
+
+.flt_adday {
+    font-size: 30rpx;
+}
+
+.flt_airport {
+    display: block;
+    font-size: 32rpx;
+    color: #666;
+}
+
+.separator {
+    text-align: center;
+    flex: .8;
+    position: relative;
+    line-height: 60rpx;
+}
+
+.spt_arr {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -73rpx;
+    width: 146rpx;
+    height: 1px;
+    background: #ccc;
+}
+
+.spt_arr::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 5rpx;
+    width: 10rpx;
+    height: 1px;
+    background: #ccc;
+    transform: rotate(45deg);
+}
+
+.spt_type {
+    font-size: 24rpx;
+    color: #666;
+}
+
+.spt_time {
+    font-size: 24rpx;
+    color: #666;
+}
+
+.airline_info {
+    position: relative;
+    padding-top: 15rpx;
+    color: #999;
+    line-height: 1;
+    font-size: 28rpx;
+}
+
+.airline_logo {
+    margin-right: 8rpx;
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+.airline_arr {
+    width: 24rpx;
+    height: 2rpx;
+    background: #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -2px 20rpx 0 20rpx;
+    position: relative;
+}
+
+.airline_arr::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    content: "";
+    transform: rotate(45deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    right: 0;
+    top: 50%;
+    margin-top: -7rpx;
+}
+
+.airline_share {
+    margin-right: 20rpx;
+    padding-bottom: 5rpx;
+}
+
+.flt_modify_info {
+    color: #fff;
+    margin-top: 20rpx;
+    font-size: 24rpx;
+}
+
+.flt_modify_info text {
+    padding: 0 20rpx;
+    border-right: 1rpx solid rgba(255,255,255,.5);
+}
+
+.flt_modify_info text:first-child {
+    padding-left: 0;
+}
+
+.flt_modify_info text:last-child {
+    border-right: 0;
+}
+
+.flight_tab {
+    display: flex;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #333;
+    position: relative;
+    width: 100%;
+    margin-top: 20rpx;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px;
+}
+
+.flight_tab_list {
+    flex: 1;
+    text-align: center;
+    background: #fff;
+    font-size: 36rpx;
+}
+
+.scrollbar {
+    position: absolute;
+    left: 0;
+    height: 8rpx;
+    bottom: -1px;
+    background: #5495e6;
+    transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out;
+    z-index: -1;
+}
+
+.tabnum2 {
+    width: 50%;
+}
+
+.flight_tab_list.flight_tab-active~.scrollbar {
+    z-index: 2;
+}
+
+.flight_tab_list:nth-of-type(1).flight_tab-active~.scrollbar {
+    transform: translate3d(0,0,0);
+}
+
+.flight_tab_list:nth-of-type(2).flight_tab-active~.scrollbar {
+    transform: translate3d(100%,0,0);
+}
+
+.fltlist_end {
+    padding: 30rpx 0 120rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #999;
+}
+
+.fltlist_end::after {
+    width: 10rpx;
+    height: 10rpx;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    transform: rotate(-45deg);
+    margin: -12rpx 0 0 10rpx;
+}
+
+.flight_seat_list {
+    background: #fff;
+}
+
+.flight_seat_item {
+    position: relative;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px;
+    margin-left: 30rpx;
+    padding: 30rpx 30rpx 30rpx 0;
+    overflow: hidden;
+    height: 150rpx;
+    box-sizing: border-box;
+}
+
+.flight_seat_item:last-child {
+    border: 0;
+}
+
+.flight_seat_info {
+    font-size: 32rpx;
+}
+
+.flight_seat_tit {
+    line-height: 44rpx;
+}
+
+.flight_seat_txt {
+    line-height: 36rpx;
+}
+
+.flt_changwei {
+    white-space: nowrap;
+}
+
+.btn_book {
+    width: 124rpx;
+    height: 60rpx;
+    position: absolute;
+    right: 25rpx;
+    top: 50%;
+    margin-top: -30rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+
+.flight_seat_price {
+    width: 160rpx;
+    position: absolute;
+    top: 50%;
+    margin-top: -18rpx;
+    right: 180rpx;
+    display: table;
+}
+
+.flight_seat_price .price_box {
+    vertical-align: middle;
+    display: table-cell;
+    text-align: right;
+}
+
+.flt_price {
+    font-size: 36rpx;
+    color: #fe6b5b;
+}
+
+.flt_price::before {
+    content: "\00A5";
+    font-size: 22rpx;
+    padding-right: 7rpx;
+    color: #fe6b5b;
+}
+
+.flt_info {
+    font-size: 22rpx;
+    color: #fc6e51;
+}
+
+.txt_num {
+    color: #5495e6;
+    margin-left: 26rpx;
+}
+
+.txt_grey {
+    color: #999;
+    font-size: 28rpx;
+}
+
+.flt_w200 {
+    min-width: 130rpx;
+    display: inline-block;
+    margin-right: 20rpx;
+}
+
+.flight_seat_detail {
+    font-size: 24rpx;
+}
+
+.flight_seat_detail::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    transform: rotate(-45deg);
+    margin: -12rpx 0 0 10rpx;
+}
+
+.flight_seat_item_s {
+    position: relative;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px;
+    padding: 30rpx;
+    overflow: hidden;
+}
+
+.flight_seat_item_s:last-child {
+    border: 0;
+}
+
+.flight_seat_item_s .flight_seat_info {
+    line-height: 50rpx;
+    font-size: 30rpx;
+}
+
+.flight_seat_item_s .txt_num {
+    color: #fc6e51;
+    margin-left: 0;
+}
+
+.tip-txt {
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    padding: 40rpx 50rpx;
+    overflow-y: auto;
+    color: #dbdbdb;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.tip-txt.active {
+    opacity: 1;
+}
+
+.tip-txt .txt-blue {
+    margin-top: 30rpx;
+    color: #5495e6;
+    font-weight: bold;
+    padding: 0.5em 0;
+}
+
+.tip-txt .p {
+    padding: 0.5em 0;
+}
+
+.tip-txt .s {
+    font-size: 28rpx;
+}
+
+.flight_trans {
+    background: #fff;
+    padding: 40rpx 30rpx;
+    margin-bottom: 20rpx;
+}
+
+.flight_trans .info {
+    font-size: 32rpx;
+    color: #666;
+    margin-bottom: 40rpx;
+}
+
+.flight_trans .info .haoshi {
+    float: right;
+}
+
+.flight_trans .range {
+}
+
+.flight_trans .from,.flight_trans .to {
+    padding-left: 180rpx;
+    position: relative;
+    font-size: 32rpx;
+    color: #333;
+    line-height: 44rpx;
+}
+
+.flight_trans .from::after,.flight_trans .to::after {
+    width: 12rpx;
+    height: 12rpx;
+    background: #E5E5E5;
+    border-radius: 12rpx;
+    position: absolute;
+    content: "";
+    top: 16rpx;
+    left: 144rpx;
+}
+
+.flight_trans .from::before,.flight_trans .to::before {
+    width: 2rpx;
+    background: #E5E5E5;
+    position: absolute;
+    content: "";
+    left: 148rpx;
+    height: 16rpx;
+}
+
+.flight_trans .from::before {
+    top: 28rpx;
+}
+
+.flight_trans .to::before {
+    top: 0;
+}
+
+.flight_trans .time {
+    width: 120rpx;
+    text-align: right;
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 44rpx;
+}
+
+.flight_trans .strong {
+    font-size: 42rpx;
+}
+
+.flight_trans .hangban {
+    padding: 44rpx 0 44rpx 180rpx;
+    font-size: 24rpx;
+    color: #999;
+    position: relative;
+}
+
+.flight_trans .hangban .jingting {
+    position: absolute;
+    left: 0;
+    width: 120rpx;
+    text-align: right;
+    top: 24rpx;
+}
+
+.flight_trans .hangban::before {
+    width: 2rpx;
+    background: #E5E5E5;
+    position: absolute;
+    content: "";
+    left: 149rpx;
+    top: 0;
+    bottom: 0;
+}
+
+.flight_trans .flight_logo {
+    width: 32rpx;
+    height: 32rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -3px;
+}
+
+.flight_trans .trans {
+    padding: 20rpx 0 20rpx 180rpx;
+    font-size: 24rpx;
+    color: #999;
+    position: relative;
+    line-height: 40rpx;
+}
+
+.flight_trans .xuzhi {
+    float: right;
+    color: #5495E6;
+}
+
+.flight_trans .zhuan {
+    width: 40rpx;
+    height: 40rpx;
+    border: 1px solid #E5E5E5;
+    border-radius: 40rpx;
+    box-sizing: border-box;
+    position: absolute;
+    top: 20rpx;
+    left: 130rpx;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.flight_notice {
+    margin: -20rpx 0 20rpx;
+    background: #FFF6D4;
+    padding: 24rpx 28rpx;
+    font-size: 24rpx;
+    color: #666;
+}
+
+.flight_notice text {
+    color: #FC6E51;
+}

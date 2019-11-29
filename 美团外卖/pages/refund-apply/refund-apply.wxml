@@ -1,0 +1,136 @@
+<include src="../base.wxml"></include>
+<view class="page-container">
+    <scroll-view class="page-scroll" scrollTop="0" scrollY="true">
+        <block wx:if="{{page_show}}">
+            <view class="refund-sec">
+                <view class="refund-title">退款原因</view>
+                <view class="refund-reason">
+                    <picker bindchange="bindPickerChange" class="refund-reason-pick" range="{{refund_reasons}}" rangeKey="reason_context">
+                        <view class="picker"> {{picker_index>-1?refund_reasons[picker_index].reason_context:'请选择退款原因'}} </view>
+                    </picker>
+                </view>
+                <view class="refund-reason-text">
+                    <input bindinput="updateRefundText" maxlength="200" placeholder="请描述退款原因" placeholderClass="reason-text-placeholder" type="text"></input>
+                    <view class="refund-reason-image-group">
+                        <view class="refund-reason-image-box" wx:for="{{fakePictures}}">
+                            <image class="refund-reason-image" mode="aspectFill" src="{{item.path}}"></image>
+                            <view class="refund-reason-image-mask" wx:if="{{item.percent<100||item.reload}}">
+                                <view class="refund-reason-image-mask-word-box" wx:if="{{!item.reload}}">
+                                    <view>{{item.percent}}%</view>
+                                    <view>正在上传</view>
+                                </view>
+                                <view bindtap="onClickRetryUpload" class="refund-reason-image-mask-word-box" data-index="{{index}}" data-path="{{item.path}}" wx:if="{{item.reload}}">
+                                    <view>上传失败</view>
+                                    <view>点击重试</view>
+                                </view>
+                            </view>
+                            <image bindtap="onClickDeleteImage" class="refund-reason-image-delete" data-index="{{index}}" src="/img/icons/photo-delete.png"></image>
+                        </view>
+                        <view bindtap="onClickChooseImage" class="refund-reason-image-add" wx:if="{{fakePictures&&fakePictures.length<maxImageCount}}">
+                            <image class="refund-reason-add-image" src="/img/icons/photo.png"></image>
+                            <view class="refund-reason-image-word">添加图片</view>
+                            <view class="refund-reason-image-word-real">添加图片</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="refund-sec">
+                <view class="refund-title">选择退款来源</view>
+                <view class="refund-type" wx:for="{{refund_type}}">
+                    <view class="refund-type-text">{{item.description}}</view>
+                    <view class="pay-check">
+                        <image class="radio-pic" src="{{item.is_selected==1?'/img/icons/select-refund.min.png':'/img/icons/un-select-refund.min.png'}}"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="refund-sec" wx:if="{{refund_way_list&&refund_way_list.length}}">
+                <view class="refund-title">选择退款方式</view>
+                <view bindtap="onClickToggleRefundWay" class="refund-way {{item.is_selected==-1?' disabled':''}}" data-disabled="{{item.is_selected==-1}}" data-index="{{index}}" data-type="{{item.type}}" wx:for="{{refund_way_list}}">
+                    <view class="refund-way-text">
+                        <view class="refund-way-title">
+                            <view>{{item.title}}</view>
+                            <image bindtap="onClickShowInstruction" class="refund-way-question" data-instructions="{{item.instruction.instructions}}" data-title="{{item.instruction.title}}" src="/img/icons/question-mark-grey.png" wx:if="{{item.instruction&&item.instruction.title}}"></image>
+                        </view>
+                        <view class="refund-way-tip">{{item.tip}}</view>
+                    </view>
+                    <view class="refund-way-radio">
+                        <image class="radio-pic" src="{{item.is_selected==1?'/img/icons/select-refund.min.png':'/img/icons/un-select-refund.min.png'}}" wx:if="{{item.is_selected==1}}"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="refund-sec refund-foods-sec">
+                <view class="refund-title">选择退款商品</view>
+                <view class="restaurant-info">
+                    <view class="restaurant-img">
+                        <image src="{{poi_info.poi_url}}"></image>
+                    </view>
+                    <view class="restaurant-intro">
+                        <view class="restaurant-name">{{poi_info.poi_name}}</view>
+                    </view>
+                    <image class="restaurant-delivery-new" src="/img/icons/deliver-new.min.png" wx:if="{{poi_info.shipping_type==1}}"></image>
+                </view>
+                <view class="refund-food">
+                    <view class="refund-foodlist">
+                        <view class="food-item" wx:for="{{foods}}">
+                            <view bindtap="chooseSingle" class="choose-single-check {{item.refund_status_code==1?'single-check-hidden':''}}" data-checked="{{item.checked}}" data-clickable="{{item.refund_status_code!=1}}" data-index="{{index}}" wx:if="{{refund_way!=1}}">
+                                <image class="radio-pic" data-checked="{{item.checked}}" data-index="{{index}}" src="{{select_all||item.checked?'/img/icons/select-refund.min.png':'/img/icons/un-select-refund.min.png'}}"></image>
+                            </view>
+                            <view class="food-img">
+                                <image mode="aspectFill" src="{{item.food_pic_url?item.food_pic_url:'/img/icons/no-shopImg.png'}}"></image>
+                            </view>
+                            <view class="food-info">
+                                <view class="food-name">
+                                    <image class="food-label" src="{{item.food_label_url}}" wx:if="{{item.food_label_url}}"></image>{{item.food_name}} </view>
+                                <view class="food-sub-name">{{item.attr_info}}</view>
+                                <view class="food-num">x{{item.count}}{{item.box_price?'（含包装费）':''}}</view>
+                            </view>
+                            <view class="food-pn" hidden="{{refund_way==1||item.count==1}}" wx:if="{{support_part_refund==1}}">
+                                <view class="food-oprt">
+                                    <view>
+                                        <image class="refund-add-img" src="/img/icons/add-gray.png" wx:if="{{item.selected_count==item.count}}"></image>
+                                        <image class="refund-add-img" src="/img/icons/add.png" wx:if="{{item.selected_count!=item.count}}"></image>
+                                        <view bindtap="refundAdd" class="refund-add" data-index="{{index}}"></view>
+                                    </view>
+                                    <view class="refund-num" wx:if="{{item.selected_count}}">{{item.selected_count}}</view>
+                                    <view wx:if="{{item.selected_count}}">
+                                        <image class="refund-remove-img" src="/img/icons/remove.png"></image>
+                                        <view bindtap="refundRemove" class="refund-remove" data-index="{{index}}"></view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="food-refund-text" wx:if="{{support_part_refund==0&&item.refund_status_desc}}"> {{item.refund_status_desc}} </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="refund-insurance" wx:if="{{insurance_show}}">
+                    <view class="refund-insurance-top">
+                        <view class="refund-insurance-name">{{insurance.insurance_name}}</view>
+                        <view class="refund-insurance-fee">¥{{insurance.insurance_price}}</view>
+                    </view>
+                    <view class="refund-insurance-tip">{{insurance.insurance_tip}}</view>
+                </view>
+                <view class="refund-shipping" wx:if="{{shipping.shipping_title}}">
+                    <view class="refund-shipping-list">
+                        <view class="refund-shipping-name">{{shipping.shipping_title}}</view>
+                        <view class="refund-shipping-price {{refund_money_format!=refund_money?'delete':''}}">¥{{shipping.shipping_fee||0}}</view>
+                    </view>
+                    <view class="refund-shipping-tip" wx:if="{{refund_shipping_tip}}">{{refund_shipping_tip||''}}</view>
+                </view>
+                <view class="refund-fee-sec">
+                    <view bindtap="chooseAll" class="choose-all-check" data-test="{{select_all}}" hidden="{{refund_way==1}}">
+                        <image class="radio-pic" src="{{select_all?'/img/icons/select-refund.min.png':'/img/icons/un-select-refund.min.png'}}"></image>
+                    </view>
+                    <view class="choose-all-text" hidden="{{refund_way==1}}">全选</view>
+                    <view class="refund-fee-text">
+                        <view class="refund-tips" wx:if="{{box_desc}}">（{{box_desc}}）</view>
+                        <view class="refund-fee-text-word">退款金额 </view>
+                        <view class="refund-fee">¥{{refund_money}}</view>
+                    </view>
+                </view>
+                <view class="refund-fee-tip" wx:if="{{!(support_part_refund==1&&select_all||support_part_refund==0||food_selected==0)}}"> {{refund_rule_desc}} </view>
+            </view>
+            <view class="oprt-btn-placeholder"></view>
+            <view bindtap="toSubmit" class="oprt-btn">提交</view>
+        </block>
+    </scroll-view>
+</view>

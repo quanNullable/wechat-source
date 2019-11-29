@@ -1,0 +1,19 @@
+<template name="modal">
+    <view bindtap="onTapBackdrop" class="ui-modal-backdrop" wx:if="{{show}}">
+        <view catchtap="preventTapBubble" class="ui-modal">
+            <view class="ui-modal-content">
+                <view class="ui-modal-title" wx:if="{{title}}"> {{title}} </view>
+                <scroll-view class="ui-modal-message ui-modal-message-scroll" scrollY="1" wx:if="{{message&&message.length>120}}"> {{message}} </scroll-view>
+                <view class="ui-modal-message-list" wx:elif="{{messagelist}}">
+                    <view wx:for="{{messagelist}}" wx:key="index">{{item}}</view>
+                </view>
+                <view class="ui-modal-message" wx:else> {{message||'未知消息'}} </view>
+            </view>
+            <view class="ui-modal-controls">
+                <view bindtap="onClickBaseComponent" class="ui-modal-cancel" data-action="cancel" data-type="{{type}}" wx:if="{{textCancel}}"> {{textCancel}} </view>
+                <view bindtap="onClickBaseComponent" class="ui-modal-confirm ui-modal-confirm-border" data-action="ok" data-type="{{type}}"> {{textOK||'确认'}} </view>
+            </view>
+        </view>
+        <view bindtap="onClickCloseButton" class="ui-modal-close-button" wx:if="{{showCloseButton}}"></view>
+    </view>
+</template>

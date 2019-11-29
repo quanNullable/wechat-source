@@ -1,0 +1,125 @@
+<import src="../common/components/toast/toast.wxml"></import>
+<view>
+    <view class="date">
+        <view bindtap="chooseDate" class="item prev fl {{isPrevDisable?'disabled':''}}" data-type="prev">
+            前一天
+        </view>
+        <view bindtap="chooseDate" class="item now" data-type="calendar">
+            <view>
+                <view class="wrap">{{selectDateStr}}</view>
+            </view>
+        </view>
+        <view bindtap="chooseDate" class="item next fr {{isNextDisable?'disabled':''}}" data-type="next">
+            后一天
+        </view>
+    </view>
+    <view class="listgroup">
+        <view bindtap="clickItem" class="sel-box" data-index="{{index}}" wx:for="{{trainList}}" wx:for-item="train" wx:key="TrainNumber">
+            <view class="sel-bd">
+                <view class="sel-from">
+                    <view class="dstation">{{train.DepartStation}}</view>
+                    <text class="dtime">{{train.DepartTime}}</text>
+                </view>
+                <view class="sel-checi">
+                    <view class="text">{{train.TrainNumber}}</view>
+                    <view class="text">{{train.TimesCost}}<icon class="icon-card" wx:if="{{train.IsFastPass}}"></icon>
+                    </view>
+                    <view class="icon from {{train.IsStartStation?'shizhong':'guolu'}}"></view>
+                    <view class="icon to {{train.IsEndStation?'shizhong':'guolu'}}"></view>
+                </view>
+                <view class="sel-to">
+                    <view class="astation">{{train.ArriveStation}}</view>
+                    <view>{{train.ArriveTime}} <text class="small">{{train.TakeDays>0?'+'+train.TakeDays:''}}</text>
+                    </view>
+                </view>
+                <view class="sel-price">
+                    <view class="train-price">
+                        <text class="dfn">¥</text>
+                        <text class="price">{{train.SeatList[0].SeatPrice}}</text> 起</view>
+                    <view class="tag-blue bgcolor-primary" wx:if="{{train.isPreSale}}">去预约</view>
+                    <view class="tag-blue bgcolor-primary" wx:elif="{{!train.SeatCount}}">去抢票</view>
+                    <view class="suc-rate" wx:elif="{{train.SucRate}}">抢票成功率{{train.SucRate}}%</view>
+                </view>
+            </view>
+            <view class="sel-info">
+                <view class="color-note" wx:if="{{train.isPreSale}}">{{train.preSaleTimeStr}}</view>
+                <view class="color-note" wx:elif="{{!train.SeatCount&&train.SucRate}}">暂无余票，建议抢票，抢票成功率{{train.SucRate}}%</view>
+                <block wx:else>
+                    <view class="item {{!seat.SeatInventory?'disabled':''}}" hidden="{{index>3}}" wx:for="{{train.seats}}" wx:for-item="seat" wx:key="SeatName">
+                        {{seat.SeatName+seat.SeatInventory+'张'}}<text class="orange">{{seat.SeatInventory?'':'(抢)'}}</text>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <view class="sel-nomore" wx:if="{{trainList.length>0}}">
+            共为您找到 {{trainList.length}} 列符合条件的火车
+        </view>
+    </view>
+    <view class="sel-noresult" wx:if="{{filterNoTrain}}">
+        <view class="cpinkgray">没有找到符合筛选条件的火车</view>
+    </view>
+    <view class="train-ftbar">
+        <view bindtap="showFilterView" class="item {{!(filterTrainType==1&&filterTrainTime==1)?'selected':''}}">
+            <view class="dot-byfilter" hidden="{{filterTrainType==1&&filterTrainTime==1}}"></view>
+            <view class="txt">筛选</view>
+        </view>
+        <view bindtap="sortBy" class="item {{sortType=='DepartTimeStamp'?'selected':''}}" data-type="DepartTimeStamp">
+            <view class="txt" wx:if="{{sortType!=='DepartTimeStamp'}}">时间</view>
+            <view class="txt" wx:else>出发 {{sortAscending?'早-晚':'晚-早'}}</view>
+        </view>
+        <view bindtap="sortBy" class="item {{sortType=='RunTime'?'selected':''}}" data-type="RunTime">
+            <view class="txt">耗时 {{sortType=='RunTime'?sortAscending?'短-长':'长-短':''}}</view>
+        </view>
+        <view bindtap="sortBy" class="item {{sortType=='Price'?'selected':''}}" data-type="Price">
+            <view class="txt">价格 {{sortType=='Price'?sortAscending?'低-高':'高-低':''}}</view>
+        </view>
+    </view>
+    <view bindtap="hideFilterView" class="backmask {{isFilterViewAnimation?'active':''}}"></view>
+    <view class="tip-bot {{isFilterViewAnimation?'active':''}}">
+        <view class="cui-hd">
+            <view bindtap="cancelFilter" class="cell cancel-btn">取消</view>
+            <view class="cell center-tit">
+                <view bindtap="resetFilter" class="clean">清空筛选</view>
+            </view>
+            <view bindtap="confirmFilter" class="cell ok-btn">确定</view>
+        </view>
+        <view class="cui-bg filter-box">
+            <view class="tit">
+                <text>车型选择</text>
+            </view>
+            <view class="filter-list">
+                <view bindtap="selectType" class="item {{filterTrainType&2?'current':''}}" data-type="2">高铁（G/C）<icon class="checkbox"></icon>
+                </view>
+                <view bindtap="selectType" class="item {{filterTrainType&4?'current':''}}" data-type="4">动车（D）<icon class="checkbox"></icon>
+                </view>
+                <view bindtap="selectType" class="item {{filterTrainType&8?'current':''}}" data-type="8">普通（Z/T/K）<icon class="checkbox"></icon>
+                </view>
+                <view bindtap="selectType" class="item {{filterTrainType&16?'current':''}}" data-type="16">其他（Y/L等）<icon class="checkbox"></icon>
+                </view>
+            </view>
+            <view class="tit">
+                <text>出发时间</text>
+            </view>
+            <view class="filter-list">
+                <view catchtap="selectTime" class="item {{filterTrainTime&2?'current':''}}" data-time="2">00:00 - 06:00<icon class="checkbox"></icon>
+                </view>
+                <view catchtap="selectTime" class="item {{filterTrainTime&4?'current':''}}" data-time="4">06:00 - 12:00<icon class="checkbox"></icon>
+                </view>
+                <view catchtap="selectTime" class="item {{filterTrainTime&8?'current':''}}" data-time="8">12:00 - 18:00<icon class="checkbox"></icon>
+                </view>
+                <view catchtap="selectTime" class="item {{filterTrainTime&16?'current':''}}" data-time="16">18:00 - 24:00<icon class="checkbox"></icon>
+                </view>
+            </view>
+            <view class="tit">
+                <text>出发/到达车站</text>
+            </view>
+            <view class="filter-list">
+                <view bindtap="selectStation" class="item {{s.isSelected?'current':''}}" data-index="{{index}}" wx:for="{{stations}}" wx:for-item="s" wx:key="index">
+                    {{s.name}}
+                    <icon class="checkbox"></icon>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<template is="train-toast" data="{{trainToast:trainToast}}"></template>

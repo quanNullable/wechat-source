@@ -1,0 +1,448 @@
+<import src="../components/banklist/banklist.wxml"></import>
+<import src="../common/components/tip-bot/tip-bot-template.wxml"></import>
+<import src="../common/components/toast/toast.wxml"></import>
+<import src="../common/components/speed-slider/speed-slider.wxml"></import>
+<import src="../common/components/seatChoose/seatChoose.wxml"></import>
+<import src="../common/components/strideTrain/strideTrain.wxml"></import>
+<view class="{{isTieyou?'ty':'zx'}}">
+    <view class="bookinfo" hidden="{{currentStep!=0}}">
+        <view class="modify bgcolor-primary">
+            <view class="item from">
+                <view>{{train.DepartStation}}</view>
+                <view class="strong">{{train.DepartTime}}</view>
+                <view>{{departDateStr}}</view>
+            </view>
+            <view class="item to">
+                <view>{{train.ArriveStation}}</view>
+                <view class="strong">{{train.ArriveTime}}<text class="em" wx:if="{{train.TakeDays}}">{{train.day_diff>0?'+'+train.TakeDays:''}}</text>
+                </view>
+                <view>{{arriveDateStr}}</view>
+            </view>
+            <view class="item mid">
+                <view class="text">{{train.TrainNumber}}</view>
+                <view bindtap="goTT" class="jt-info bgcolor-primary">经停信息</view>
+            </view>
+        </view>
+        <view class="seatlist">
+            <view bindtap="clickSeat" class="item {{train.SeatName==item.SeatName?'current':''}}" data-index="{{index}}" wx:for="{{train.seats}}" wx:key="SeatName">
+                <view class="seat-name">{{item.SeatName}}</view>
+                <view class="seat-price">¥{{item.SeatPrice}}</view>
+                <view class="seat-num">{{item.SeatInventory?item.SeatInventory+'张':'抢票'}}</view>
+            </view>
+        </view>
+        <block wx:if="{{!isReschedule}}">
+            <view class="book-tips" wx:if="{{!isWorkTime}}">23:00--06:00为系统维护时间，该时段的订单将在次日工作时间处理。</view>
+            <view class="seat-info" wx:if="{{isBed}}">卧铺随机出票，卧铺暂收下铺票价，以实际出票退换差价。</view>
+            <view class="qiangpiao-tips mt5" wx:if="{{isPreSale}}">我们会在放票时帮您秒杀，成功率超高，放票之后还会持续为您捡漏，为您提供双重保障。</view>
+            <view class="qiangpiao-tips mt5" wx:elif="{{!train.isJianLou&&isSeatInventoryLow}}">当前所选座席<text class="orange">余票紧张</text>，我们将尽力为您购票，建议您尽早下单</view>
+            <block wx:else>
+                <view class="qiangpiao-tips mt5" wx:if="{{train.isJianLou&&qiangpiaoEndTime}}">我们会为您抢票至 <text class="orange">发车前1小时</text> ，抢票失败全额退款。
+            </view>
+            </block>
+            <view class="train-list" wx:if="{{train.isJianLou}}">
+                <view bindtap="chooseOtherTrain" class="item add-box greyarr">
+                    <text class="label">备选车次</text>
+                    <view style="text-overflow:ellipsis;overflow:hidden;width:100%;">{{otherTrainStr||'建议多选'}}</view>
+                </view>
+                <view bindtap="chooseOtherSeat" class="item add-box greyarr">
+                    <text class="label">备选座席</text>
+                    <view>{{otherSeatStr||'建议多选'}}</view>
+                </view>
+                <view bindtap="chooseOtherDate" class="item add-box greyarr" style="border-bottom: none;">
+                    <text class="label">备选日期</text>
+                    <view style="text-overflow:ellipsis;overflow:hidden;width:100%;white-space: nowrap">{{otherDateStr||'建议多选'}}</view>
+                </view>
+            </view>
+            <view bindtap="showLogin12306" class="train-list login-list mt5" wx:if="{{isWorkTime}}">
+                <view class="item add-box greyarr" wx:if="{{!logedin}}">
+                    <view class="icon-12306"></view>登录12306
+                <view class="fr cpinkgray">出票成功率更高</view>
+                </view>
+                <view class="item add-box greyarr" wx:else>
+                    <view class="icon-12306"></view>{{login12306Name}}
+                <view class="fr cpinkgray">已登录</view>
+                </view>
+            </view>
+            <view class="train-list pasg-list mt5" style="border-bottom-width: 0;">
+                <view bindtap="showPas" class="item btn-pasg color-primary">
+                    <view class="icon i-add bdcolor-primary"></view>添加乘客
+            </view>
+                <view class="item item2" wx:for="{{allPas}}" wx:for-item="pas">
+                    <view bindtap="deletePas" class="icon del" data-index="{{index}}"></view>
+                    <view class="strong">{{pas.pasName}}
+                    <text class="tag-grey" wx:if="{{pas.PassengerType==1||pas.PassengerType==3&&convertStu}}">成人票</text>
+                        <text class="tag-grey" wx:elif="{{pas.PassengerType==2}}">儿童票</text>
+                        <text class="tag-grey" wx:elif="{{pas.PassengerType==3&&!convertStu}}">学生票</text>
+                    </view>
+                    <view class="small">{{pas.idcard.no}}</view>
+                </view>
+            </view>
+            <view class="train-seat mt5" wx:if="{{isChooseSeatOnlineButtonVisible&&allPas.length}}">
+                <view class="book-tips book-tips--nocolor">优先按指定座席出票，若指定座席无票，将转购其他座席</view>
+                <template is="seat-choose-booking" data="{{seatPositionInfo:seatPositionInfo}}"></template>
+            </view>
+            <view class="train-list mt5">
+                <view class="item add-box" style="border-bottom-width: 0;">
+                    <text class="label">联系手机</text>
+                    <input bindinput="mobileInput" maxlength="11" placeholder="用于接收短信" style="height: 84rpx;" type="number" value="{{mobile}}"></input>
+                </view>
+            </view>
+            <view class="train-list mt5" wx:if="{{showAcceptNoSeat}}">
+                <view class="item add-box">
+                    <text class="label">接受无座</text>
+                    <view class="fr">
+                        <switch bindchange="toggleNoSeat" checked="{{isAcceptNoSeat}}" color="{{isTieyou?'#fc6e51':'#5495e6'}}"></switch>
+                    </view>
+                </view>
+            </view>
+            <view class="train-list mt5" wx:if="{{selectPackage&&packageList&&packageList.length&&!train.isJianLou}}">
+                <view bindtap="goInsurance" class="item add-box greyarr" style="border-bottom: 0;">
+                    <text class="label">套餐类型</text>
+                    <view class="fl">{{selectPackage.PackageTitle}}</view>
+                    <view class="fr" style="color:#929090">{{selectPackage.PackageRightTitle}}</view>
+                </view>
+            </view>
+            <view class="checkbox-wrapper">
+                <label bindtap="toggleReadActiveCardWeak" class="checkbox {{checkActiveCardWeak?'current':''}}" wx:if="{{showActivateCardWeakTick&&!train.isJianLou}}">
+                同意
+                <text catchtap="showTipsActiveCardWeak" class="color-primary">火车票购票服务协议</text>
+                </label>
+                <view bindtap="showTips" class="info-i">
+                    <view class="icon"></view>预订须知</view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="book-tips">每张票只能改签一次，改签成功后的车票不能再次改签</view>
+            <view class="train-list tip-gaiqian-list">
+                <view bindtap="selectReschedulePas" class="item {{p.isSelected?'current':''}} {{p.reScheduleFlag?'':'disabled'}}" data-index="{{index}}" wx:for="{{oldOrderInfo.ticketInfos}}" wx:for-item="p" wx:key="index">
+                    <icon class="tick" color="{{p.reScheduleFlag&&p.isSelected?isTieyou?'#fc6e51':'#5495e6':'#eee'}}" size="22" type="{{p.isSelected?'success':'circle'}}"></icon>
+                    <text class="name">{{p.passengerName}}</text>
+                    <text class="tag-grey">{{p.passengerType}}</text>
+                    <view class="identity">{{p.passportCode}}</view>
+                </view>
+            </view>
+        </block>
+        <view class="tip-bot {{showType=='otherSeats'?'active':''}}">
+            <view class="cui-hd">
+                <view bindtap="cancelChooseSeat" class="cell cancel-btn">取消</view>
+                <view bindtap="confirmChooseSeat" class="cell ok-btn">确定</view>
+            </view>
+            <view class="cui-bg">
+                <view class="book-tips">多选几个座席，抢票成功率更高。选择后暂收最高票价，出票后根据情况退还差额（最多两座席）</view>
+                <view class="train-list seat-list" style="border-bottom-width: 0;">
+                    <view bindtap="selectSeat" class="item {{s.SeatName==train.SeatName?'disabled':''}} {{s.selected||s.SeatName==train.SeatName?'current':''}}" data-index="{{index}}" wx:for="{{otherTrainsSeatsArr}}" wx:for-item="s" wx:key="index">
+                        <view style="margin-left:30rpx;">{{s.SeatName}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="tip-bot {{showType=='otherDates'?'active':''}}">
+            <view class="cui-hd">
+                <view bindtap="cancelChooseDate" class="cell cancel-btn">取消</view>
+                <view bindtap="confirmChooseDate" class="cell ok-btn">确定</view>
+            </view>
+            <view class="cui-bg">
+                <view class="book-tips">抢票高峰，多选几个日期，成功率更高</view>
+                <view class="train-list date-list" style="border-bottom-width: 0;">
+                    <view bindtap="selectDate" class="item {{item.monthDayStr==departDateStr?'disabled':''}} {{item.monthDayStr==departDateStr||item.selected?'current':''}}" data-index="{{index}}" wx:for="{{otherTrainDates}}" wx:key="{{index}}">
+                        <view style="margin-left:30rpx;">{{item.monthDayStr+'('+item.weekDay+')'}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="tip-bot {{showType=='pas'?'active':''}}">
+            <view class="cui-hd">
+                <view bindtap="cancelPasChoose" class="cell cancel-btn">取消</view>
+                <view bindtap="confirmPasChoose" class="cell ok-btn">确定</view>
+            </view>
+            <scroll-view bindscroll="scrollTipBot" class="cui-bg tip-addpas" scrollTop="{{scrollTipBotTop}}" scrollY="true">
+                <view class="train-list">
+                    <view class="ov-hid">
+                        <view bindtap="addNewPas" class="add-btn">新增乘客</view>
+                        <view bindtap="refresh12306pas" class="add-btn">导入12306联系人</view>
+                    </view>
+                </view>
+                <view class="train-list tip-pass-list mt5">
+                    <view class="item" wx:if="{{isTest&&''}}">
+                        <view class="edit"></view>
+                        <view bindtap="showChooseSelf" wx:if="{{selfInfo}}">
+                            <text class="name">{{selfInfo.pasName}}</text>
+                            <text class="tag-grey">成人票</text>
+                            <view class="identity">{{selfInfo.idcard.text+' '+selfInfo.idcard.no}}</view>
+                            <view class="tag-self">本人</view>
+                        </view>
+                        <view bindtap="showChooseSelf" wx:else>
+                            <text class="name red">未绑定</text>
+                            <text class="tag-grey">成人票</text>
+                            <view class="identity">请绑定该账户对应的本人身份信息</view>
+                            <view class="tag-self">本人</view>
+                        </view>
+                    </view>
+                    <view bindtap="choosePas" class="item {{item.chosen?'current':''}}" data-index="{{index}}" wx:for="{{memberPas}}">
+                        <view catchtap="editPas" class="edit" data-index="{{index}}"></view>
+                        <view class="choose"></view>
+                        <view>
+                            <text class="name">{{item.pasName}}</text>
+                            <text class="tag-grey" wx:if="{{item.PassengerType==1}}">成人票</text>
+                            <text class="tag-grey" wx:if="{{item.PassengerType==2}}">儿童票</text>
+                            <text class="tag-grey" wx:if="{{item.PassengerType==3}}">学生票</text>
+                            <view class="identity" wx:if="{{!item.isChild}}">{{!item.idcard.text||!item.idcard.no?'请补全证件信息':item.idcard.text+' '+item.idcard.no}}</view>
+                            <view class="identity" wx:else>使用同行成人的证件取票</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="tip-pass-none" wx:if="{{!memberPas.length}}">
+                    <view class="p">您还没有添加过乘客信息哦</view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="tip-bot {{showType=='bank'?'active':''}}">
+            <template is="banklist" data></template>
+        </view>
+        <view class="tip-mid choice-self {{showType=='self'?'active':''}}">
+            <view class="tit bgcolor-primary">勾选属于本人的乘客信息，以区分是自己买票还是帮人买票</view>
+            <view class="book-tips">如设置错误，可能导致无法出票！</view>
+            <view class="choice-list">
+                <view class="item none ">
+                    <icon class="choose"></icon>
+                以下都不是本人，我是帮人买票
+            </view>
+                <view wx:if="{{!item.isChild}}" wx:for="{{allPas}}">
+                    <view bindtap="chooseSelf" class="item {{item.ext.IsSelf?'current':''}}" data-index="{{index}}">
+                        <icon class="choose"></icon>
+                        <text class="name">{{item.pasName}}</text>
+                        <text class="num">{{!item.idcard.text||!item.idcard.no?'请补全证件信息':item.idcard.text+' '+item.idcard.no}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <template is="login-12306" data="{{showType:showType,login12306Name:login12306Name,login12306Pas:login12306Pas}}"></template>
+        <view bindtap="hideBackDrop" catchtouchmove="preventBackMove" class="backmask {{isFilterViewAnimation?'active':''}}" hidden="{{!showFilterView}}"></view>
+    </view>
+    <view class="bookqp" hidden="{{currentStep!=1}}" wx:if="{{train.isJianLou}}">
+        <view class="modify bgcolor-primary">
+            <view class="qiangpiao-sucrate">
+                <text class="strong" wx:if="{{computeJLSuccessRateing}}">正在计算中...</text>
+                <block wx:else>
+                    <text class="strong">{{jLSuccessRate||'94.3'}}</text>
+                    <text class="pre">%</text>
+                    <text class="txt">（预估）</text>
+                    <button bindtap="improveGrabSuccessRate" class="btn-tishen" hoverClass="btn-tishen_hover">一键提升</button>
+                </block>
+            </view>
+        </view>
+        <view class="train-list qiangpiao-list b0" wx:if="{{isAlternativeNumberVisible&&recommendTrainList.length>0}}">
+            <view class="item tit">备选车次</view>
+            <view bindtap="toggleRecommendTrain" class="item {{rcTrain.current?'current':''}} {{!rcTrain.RateText?'item-low-top':''}}" data-index="{{index}}" wx:for="{{recommendTrainList}}" wx:for-item="rcTrain">
+                <view class="qp-checi">
+                {{rcTrain.TrainNumber}}
+                <icon class="icon-zan" wx:if="{{rcTrain.RateText}}"></icon>
+                </view>
+                <view class="qp-info">
+                {{rcTrain.DepartTime}} {{rcTrain.DepStation}}
+                <icon class="icon-fromto"></icon>{{rcTrain.ArriveTime}} {{rcTrain.ArrStation}}
+                <view class="qp__rate_text" wx:if="{{rcTrain.RateText}}">{{rcTrain.RateText}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="train-list qiangpiao-linjin mt5" wx:if="{{isShowNearTrainFlag}}">
+            <view class="item">
+                <image class="i-img" src="http://images3.c-ctrip.com/zt/wechat/icon-linjin-zx.png"></image>
+                <switch bindchange="nearTrainSwitch" class="qiangpiao-linjin-switch"></switch>
+                <view class="tit">接受邻近车次<text bindtap="showNearTrainTips" class="icon icon-que color-primary bdcolor-primary" id="tieyou_wx_booking_neartip">?</text>
+                </view>
+                <view class="txt">出发到达时间邻近的车次，有票自动抢</view>
+            </view>
+        </view>
+        <view class="train-list qiangpiao-list mt5" wx:if="{{isAlternativeSeatVisible}}">
+            <view class="item tit">备选坐席</view>
+            <view class="item qp-seat">
+                <text bindtap="selectSeatInStep1" class="seat {{s.selected?'current':''}}" data-index="{{index}}" wx:if="{{s.SeatName!=='商务座'&&s.SeatName!=='高级软卧'&&s.SeatName!==train.SeatName}}" wx:for="{{otherTrainsSeatsArr}}" wx:for-item="s">{{s.SeatName}}<text class="seat-tag" wx:if="{{s.SeatName=='无座'}}">成功率高</text>
+                </text>
+            </view>
+        </view>
+        <view class="train-list mt5" wx:if="{{selectPackage&&packageList&&packageList.length}}">
+            <view bindtap="goInsurance" class="item add-box greyarr" style="border-bottom: 0;">
+                <text class="label">套餐类型</text>
+                <view class="fl">{{selectPackage.PackageTitle}}</view>
+                <view class="fr" style="color:#929090">{{selectPackage.PackageRightTitle}}</view>
+            </view>
+        </view>
+        <view class="train-list qp-speed mt5">
+            <view bindtap="toggleSpeedSlider" class="item add-box greyarr" wx:if="{{!isShowSpeedSlider}}">
+                <text class="label">抢票速度</text>
+                <view class="fr tgrey" wx:if="{{speedSlider.selectedItem}}">{{speedSlider.selectedItem.title}}抢票 {{speedSlider.selectedItem.speedPkgNums*speedSlider.costPrice}}元/人</view>
+            </view>
+            <template is="booking-speed-slider" data="{{...speedSlider}}" wx:else></template>
+        </view>
+        <view class="stride mt5" wx:if="{{isShowCrossStationFlag&&CrossStationGrabTicketInfoList.length}}">
+            <view class="tit">跨站抢票<text bindtap="showCrossTips" class="icon icon-que color-primary bdcolor-primary" id="tieyou_wx_booking_crosstip">?</text>
+            </view>
+            <template is="strideTrain" data="{{originalTrain:train,solution:crossStationGrabTicket,index:index}}" wx:for="{{CrossStationGrabTicketInfoList}}" wx:for-item="crossStationGrabTicket" wx:key="index"></template>
+        </view>
+    </view>
+    <template is="train-toast" data="{{trainToast:trainToast}}"></template>
+    <view class="pay-box {{train.isJianLou&&currentStep!==1?'pay-box--nopad':''}}" style="position: fixed;">
+        <block wx:if="{{!isReschedule}}">
+            <block wx:if="{{!train.isJianLou||currentStep==1}}">
+                <view bindtap="openPrice" class="fl">
+                    <text>订单总额</text>
+                    <view class="fr pay-price {{isOpenPrice?'open':''}}">¥<text class="total-price">{{totalPrice}}</text>
+                    </view>
+                </view>
+                <button bindtap="submit" class="btn-pay btn-primary bgcolor-primary" hoverClass="btn-primary_hover">
+                    <text wx:if="{{train.isJianLou&&currentStep==1}}">开始抢票</text>
+                    <text wx:else>立即预订</text>
+                </button>
+            </block>
+            <button bindtap="goNextStep" class="btn-primay btn-next" wx:else>下一步</button>
+        </block>
+        <block wx:else>
+            <view class="pay-tips" wx:if="{{isNeedRescheduePay}}">改签车次与原车次存在差价，我们将先收取改签车次的票价，改签成功后退还差价</view>
+            <view class="fl">
+                <text class="txt">订单总额</text>
+                <view class="fr pay-price pay-price_reschedule">¥<text class="total-price">{{reschedulePrice}}</text>
+                </view>
+            </view>
+            <button bindtap="payReschedule" class="btn-pay btn-primary" hoverClass="btn-primary_hover">改签</button>
+        </block>
+        <view bindtap="changePayWay" class="pay-tips-yellow" wx:if="{{train.isJianLou&&currentStep==1&&isOpenWeiXinCreditPay}}">
+            <text wx:if="{{defaultPayWay=='creditPay'}}">您已开通微信免密付，抢到票自动扣款</text>
+            <text wx:else>您已选择预付票款，抢到票自动出票</text>
+            <link class="gengai">更改</link>
+        </view>
+    </view>
+    <template is="select-pay-way" data="{{isOpenWeiXinCreditPay:isOpenWeiXinCreditPay}}" wx:if="{{isShowPayWay}}"></template>
+    <view bindtap="hidePrice" class="tip-black pay-detail-bd" hidden="{{!isOpenPrice}}">
+        <view class="pay-detail tip-bot {{isFilterViewAnimation?'active':''}}">
+            <view class="train-list">
+                <view class="item">
+                    <text class="label">火车票</text>
+                    <view class="fr cprice">
+                        <text class="dfn">¥</text>
+                        <text class="price">{{train.Price}}</text> x {{allPas.length}}张</view>
+                </view>
+                <view class="item" wx:if="{{selectPackage.PackagePrice}}">
+                    <text class="tpack">{{selectPackage.PackageTitle}}</text>
+                    <view class="fr cprice ">
+                        <text class="dfn">¥</text>
+                        <text class="price">{{selectPackage.PackagePrice}}</text> x {{allPas.length}}份
+                </view>
+                </view>
+                <view class="item" wx:if="{{speedSlider&&speedSlider.selectedItem}}">
+                    <text class="tpack">加速包</text>
+                    <view class="fr cprice">
+                        <text class="dfn">¥</text>
+                        <text class="price" wx:if="{{speedSlider.selectedItem}}">{{speedSlider.selectedItem.speedPkgNums*speedSlider.costPrice}}</text> x {{allPas.length}}份
+                </view>
+                </view>
+                <view class="item" wx:if="{{isShowCrossStationFlag&&CrossStationGrabTicketInfoList.length}}">
+                    <text class="tpack">跨站抢</text>
+                    <view class="fr cprice ">
+                        <text class="dfn">¥</text>
+                        <text class="price">{{CrossStationGrabTicketExtraAmount}}</text> x {{allPas.length}}份
+                </view>
+                </view>
+                <view class="item" wx:if="{{speedSlider&&speedSlider.selectedItem}}">
+                    <text class="tpack">抵扣（账户余额: <text class="price">{{availablePoint}}</text>个）</text>
+                    <view class="fr">- {{availablePoint>speedSlider.selectedItem.speedPkgNums*allPas.length?speedSlider.selectedItem.speedPkgNums*allPas.length:availablePoint}}个</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="hideTips" class="tip-txt {{isFilterViewAnimation?'active':''}}" wx:if="{{showType=='tips'}}">
+        <view hidden="{{showType!=='tips'}}" wx:for="{{bookingNotice}}" wx:key="title">
+            <view class="txt-blue color-primary">{{item.title}}</view>
+            <view class="s" wx:for="{{item.content}}" wx:for-item="c" wx:key="index">{{c}}</view>
+        </view>
+    </view>
+    <view bindtap="hideTips" class="tip-txt active" wx:if="{{showType=='tips-active-card-weak'}}">
+        <view class="s {{!p.noIndent?'txt-para-indent':''}}" wx:for="{{activeCardWeakNotice.paragraphs}}" wx:for-item="p">
+            <text class="{{s.bold?'txt-bold':''}}" wx:for="{{p.sentences}}" wx:for-item="s">{{s.content}}</text>
+        </view>
+    </view>
+</view>
+<view class="pop-mid {{showType=='cross-tips'?'active':''}}">
+    <view class="pop-mid-bd">
+        <view class="pop-white modal-box">
+            <view class="pop-content">
+                <view class="tit">跨站抢票说明</view>
+                <view class="pop-content-list">
+                    <view class="item">多抢几站或者少抢几站，均可保证您先上车</view>
+                    <view class="item">不同区间的放票张数不一致，跨站抢可明显提升抢票成功率</view>
+                    <view class="item">抢到跨站的车票后，您仍有机会去APP改签或改签抢您更满意的车次</view>
+                </view>
+            </view>
+            <view class="pop-btn">
+                <button bindtap="hideBackDrop" class="btn-white" hoverClass="btn-white_hover">确定</button>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="pop-mid {{showType=='near-train-tips'?'active':''}}">
+    <view class="pop-mid-bd">
+        <view class="pop-white modal-box">
+            <view class="pop-content">
+                <view class="tit">临近车次说明</view>
+                <view class="pop-content-list">
+                    <view class="item">开启后，系统会自动扫描出发到达时间与所选车次临近的的同类型车次车</view>
+                    <view class="item">抢到邻近车票后，您仍有机会改签您更满意的车次</view>
+                    <view class="item">临近车次功能开启后，在抢票中不可关闭，需要取消抢票任务方可关闭</view>
+                </view>
+            </view>
+            <view class="pop-btn">
+                <button bindtap="hideBackDrop" class="btn-white" hoverClass="btn-white_hover">确定</button>
+            </view>
+        </view>
+    </view>
+</view>
+<view bindtap="hideBackDrop" catchtouchmove="preventBackMove" class="backmask {{isFilterViewAnimation?'active':''}}" hidden="{{!showFilterView}}"></view>
+<view class="pop-mid active" wx:if="{{showType=='prehold'}}">
+    <view class="pop-mid-bd">
+        <view class="backmask {{showType=='prehold'?'active':''}}" style="z-index:0"></view>
+        <view class="pop-white modal-box">
+            <view class="qianzhi-list">
+                <view class="item">
+                    <view class="tit">请确认车次信息</view>
+                    <view class="txt">{{train.DepartStation||train.DepartureStationName}} - {{train.ArriveStation||train.ArrivalStationName}}</view>
+                    <view class="txt">{{train.TrainNumber}}</view>
+                    <icon class="ok {{preholdDisplayStep>=1?'active':'inactive'}}"></icon>
+                </view>
+                <view class="item">
+                    <view class="tit">出发时间</view>
+                    <view class="info">{{train.DepartureDate}} {{train.dayOfweek}}</view>
+                    <view class="txt">{{train.DepartTime}} 发车</view>
+                    <icon class="ok {{preholdDisplayStep>=2?'active':'inactive'}}"></icon>
+                </view>
+                <view class="item">
+                    <view class="tit">乘车人</view>
+                    <view class="txt">{{allPas[0].pasName}} {{allPas.length>1?'等':''}}</view>
+                    <icon class="ok {{preholdDisplayStep>=3?'active':'inactive'}}" wx:if="{{submitOrderStep>=1}}"></icon>
+                    <icon class="rotate {{preholdDisplayStep>=3?'active':'inactive'}}" wx:else></icon>
+                </view>
+                <view class="item">
+                    <view class="tit">座位信息</view>
+                    <block wx:if="{{!orderInfo}}">
+                        <view class="txt" wx:if="{{preholdDisplayStep==4}}">拼命获取中</view>
+                        <view class="txt" wx:else>等待获取</view>
+                    </block>
+                    <block wx:else>
+                        <view class="txt {{preholdDisplayStep>=4?'active':'inactive'}}" wx:if="{{orderInfo.ticketInfos}}">{{orderInfo.ticketInfos[0].seatNo}} {{orderInfo.ticketInfos.length>1?'等':''}}</view>
+                    </block>
+                    <icon class="ok {{preholdDisplayStep>=4?'active':'inactive'}}" wx:if="{{orderInfo}}"></icon>
+                    <icon class="rotate {{preholdDisplayStep>=4?'active':'inactive'}}" wx:else></icon>
+                </view>
+            </view>
+            <view class="qianzhi-loading">
+                <text wx:if="{{preholdDisplayStep==4}}">正在为您占座，请耐心等候</text>
+                <text wx:elif="{{preholdDisplayStep>=5}}">占座完成，即将跳转支付</text>
+                <text wx:else>正在核验乘车人，请耐心等候</text>
+                <text class="fr">{{preHoldPercent}}%</text>
+                <view class="loading-bar">
+                    <view class="pros" style="width:{{preHoldPercent}}%;"></view>
+                </view>
+            </view>
+            <view bindtap="hideBackDrop" class="icon-closed" wx:if="{{isShowPreholdCloseIcon}}"></view>
+        </view>
+    </view>
+</view>

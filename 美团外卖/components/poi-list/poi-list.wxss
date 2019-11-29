@@ -1,0 +1,261 @@
+.poi-item {
+    display: flex;
+    padding: 30rpx 20rpx 0 0;
+}
+
+.poi-item.no-actvs {
+    padding-bottom: 30rpx;
+}
+
+.poi-item.poi-item-closed {
+    color: #999;
+}
+
+.poi-item.poi-item-closed .poi-img {
+    opacity: 0.5;
+}
+
+.poi-item.poi-item-closed .poi-name {
+    opacity: 0.5;
+}
+
+.poi-img {
+    position: relative;
+    width: 152rpx;
+    height: 114rpx;
+    top: 1rpx;
+    left: 1rpx;
+    margin-top: 5rpx;
+    border-radius: 4rpx;
+    margin-right: 16rpx;
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+.poi-img::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    border: 1px solid #e4e4e4;
+    transform-origin: -1px -1px;
+    transform: scale(0.5,0.5);
+    border-radius: 8rpx;
+}
+
+.poi-num {
+    position: absolute;
+    right: -12rpx;
+    bottom: -12rpx;
+    min-width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    background: #FB4E44;
+    border-radius: 100%;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    font-size: 20rpx;
+    z-index: 1;
+}
+
+.poi-num.ellipse {
+    padding: 0 5rpx;
+    border-radius: 100rpx;
+}
+
+.poi-icon {
+    width: 52rpx;
+    height: 52rpx;
+    float: right;
+    background-size: contain;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+.poi-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.poi-line {
+    width: 2rpx;
+    height: 14rpx;
+    background-color: #e4e4e4;
+    margin: 0 12rpx;
+}
+
+.poi-row {
+    height: 30rpx;
+    display: flex;
+    align-items: center;
+}
+
+.poi-row-head {
+    height: 45rpx;
+}
+
+.poi-name {
+    color: #333;
+    font-size: 32rpx;
+    width: 100%;
+    line-height: 45rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.poi-estimate {
+    margin-left: auto;
+}
+
+.poi-row-sales {
+    margin-top: 6rpx;
+    margin-bottom: 10rpx;
+}
+
+.poi-ship {
+    flex: 1;
+}
+
+.poi-deliver {
+    width: 100rpx;
+    height: 30rpx;
+}
+
+.poi-recommend {
+    color: #666;
+    height: 30rpx;
+    padding: 0 8rpx;
+    color: #666;
+    font-size: 20rpx;
+    display: inline-flex;
+    margin-top: 16rpx;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    vertical-align: top;
+}
+
+.poi-recommend::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid #E4E4E4;
+    width: 200%;
+    height: 200%;
+    transform-origin: 0 0;
+    transform: scale(0.5,0.5);
+    box-sizing: border-box;
+}
+
+.poi-recommend.with-icon {
+    padding-left: 0;
+}
+
+.poi-recommend .icon {
+    width: 30rpx;
+    height: 30rpx;
+    flex-shrink: 0;
+}
+
+.poi-recommend-txt {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.poi-recommend-dp {
+    color: #FF9900;
+}
+
+.poi-recommend-dp::after {
+    border: 1px solid rgba(255,153,0,0.3);
+}
+
+.poi-sales {
+    margin-left: 20rpx;
+}
+
+.poi-score {
+    margin-left: 8rpx;
+}
+
+.poi-actvs {
+    padding-bottom: 30rpx;
+    position: relative;
+}
+
+.poi-arrow {
+    position: absolute;
+    top: 13rpx;
+    right: 0;
+}
+
+.poi-actvs-item {
+    width: 500rpx;
+    line-height: 30rpx;
+    margin-top: 16rpx;
+    color: #666;
+}
+
+.poi-actvs-icon {
+    float: left;
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.poi-actvs-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 40rpx;
+}
+
+.poi-actvs-expanded .poi-actvs-text {
+    overflow: visible;
+    white-space: normal;
+}
+
+.poi-status-closed {
+    color: #fafafa;
+    background: #ccc;
+    padding: 0 8rpx;
+}
+
+.poi-price-tip {
+    flex: 1;
+}
+
+.poi-row-star-and-sales {
+    margin: 10rpx 0;
+}
+
+.poi-refund-tag {
+    font-size: 20rpx;
+    display: inline-flex;
+    padding: 0 10rpx;
+    height: 30rpx;
+    position: relative;
+    margin-top: 16rpx;
+    box-sizing: border-box;
+    margin-right: 10rpx;
+    line-height: 30rpx;
+}
+
+.poi-refund-tag::after {
+    content: '';
+    position: absolute;
+    border: 1px solid;
+    width: 200%;
+    height: 200%;
+    left: 0;
+    top: 0;
+    transform-origin: 0 0;
+    transform: scale(0.5,0.5);
+    box-sizing: border-box;
+    opacity: 0.3;
+}

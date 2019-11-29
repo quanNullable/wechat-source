@@ -1,0 +1,16 @@
+<template name="privacy-modal">
+    <view class="privacy-service-introduce" wx:if="{{show}}">
+        <view class="wrap">
+            <view class="content">
+                <view class="header">号码保护服务介绍</view>
+                <image class="img" src="/img/icons/privacy-introduce.png"></image>
+                <view class="rules">
+                    <text class="rule">1. 对骑手、商家隐藏您的真实号码，保护您的隐私</text>
+                    <text class="rule">2.号码保护不会向您额外收费，费用由美团外卖承担</text>
+                    <text class="rule">3.当号码保护服务提供商出现服务故障时，您的真实手机号将展示给商家和骑手，以确保商家和骑手能为您送餐</text>
+                </view>
+            </view>
+            <view bindtap="onTapClosePrivacyServiceHelp" class="agree-btn">知道了</view>
+        </view>
+    </view>
+</template>

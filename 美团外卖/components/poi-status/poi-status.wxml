@@ -1,0 +1,4 @@
+<template name="poi-status">
+    <view class="poi-status-tag {{reservation_status===1?'poi-status-tag-orderonly':'poi-status-tag-order'}}">{{status_content}}</view>
+    <view class="poi-status-tag poi-status-desc {{reservation_status===1?'poi-status-text-orderonly':'poi-status-text-order'}}">{{desc_content}}</view>
+</template>

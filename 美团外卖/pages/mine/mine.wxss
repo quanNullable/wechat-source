@@ -1,0 +1,135 @@
+page {
+    font-size: 32rpx;
+    color: #333;
+}
+
+.user-header {
+    position: relative;
+    background: #FFD161;
+    display: flex;
+    align-items: center;
+    height: 170rpx;
+    padding-bottom: 20rpx;
+}
+
+.user-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.user-img {
+    display: block;
+    margin: 0 30rpx;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+}
+
+.my-list-group {
+    margin: 20rpx 0;
+    background-color: #fff;
+}
+
+.my-list-item {
+    position: relative;
+    height: 90rpx;
+    display: flex;
+    align-items: center;
+    padding-left: 20rpx;
+    color: #333333;
+}
+
+.my-list-item-nav {
+    position: relative;
+}
+
+.my-list-item-border {
+    border-bottom: 1rpx solid #eee;
+}
+
+.my-list-item-icon {
+    flex: 0 0 auto;
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+}
+
+.my-list-item-text {
+    flex: 0 0 auto;
+    font-size: 28rpx;
+    font-family: PingFang-SC-Regular;
+    color: #333333;
+}
+
+.my-list-item-nav.no-login .my-list-item-text {
+    color: #999;
+}
+
+.my-list-item-subtext {
+    flex: 0 0 auto;
+    font-family: PingFang-SC-Regular;
+    font-size: 24rpx;
+    color: #FFB000;
+    margin-left: 5rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+
+.my-list-item-desc {
+    position: absolute;
+    right: 50rpx;
+    top: 26rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-family: PingFang-SC-Regular;
+    flex: 0 1 auto;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.my-list-item-jump {
+    flex: 0 0 auto;
+    width: 10rpx;
+    height: 18rpx;
+    margin: 0 20rpx 0 auto;
+}
+
+.user-name {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #333333;
+    max-width: 400rpx;
+}
+
+.user-mobile {
+    max-width: 400rpx;
+}
+
+.my-coupons-num {
+    position: absolute;
+    top: 0;
+    left: 205rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-family: PingFang-SC-Medium;
+    font-size: 40rpx;
+    color: #FB4E44;
+}
+
+.my-coupons-num:after {
+    content: "张";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -25rpx;
+    width: 20rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-family: PingFang-SC-Regular;
+    font-size: 24rpx;
+    color: #666666;
+    text-align: center;
+}

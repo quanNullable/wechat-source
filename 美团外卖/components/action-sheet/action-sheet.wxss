@@ -1,0 +1,22 @@
+.action-sheet-container {
+    position: fixed;
+    bottom: 0;
+    color: #000;
+    font-size: 30rpx;
+    z-index: 10001;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+.action-sheet-item {
+    border-bottom: 1rpx solid #eee;
+}
+
+.action-sheet-item,.action-sheet-cancel {
+    height: 90rpx;
+    background: #fff;
+}
+
+.action-sheet-cancel {
+    margin-top: 11rpx;
+}

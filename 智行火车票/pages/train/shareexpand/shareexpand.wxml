@@ -1,0 +1,6 @@
+<view>
+    <view class="qpcg-bg">
+        <image src="http://images3.c-ctrip.com/zt/expand-zx.jpg"></image>
+        <button bindtap="freeJL" class="btn-share zx" hoverClass="btn-share_hover">我要免费抢票</button>
+    </view>
+</view>

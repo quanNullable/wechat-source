@@ -1,0 +1,39 @@
+<view class="share-box">
+    <view class="share-top" wx:if="{{isRobing&&!isAccelerated}}">
+        <text class="tit">去<text>{{toStation}}</text>的火车票</text>
+        <image class="img-top1" src="https://images3.c-ctrip.com/zt/sharenew/tit1.png"></image>
+    </view>
+    <view class="share-top" wx:if="{{isRobing&&isAccelerated}}">
+        <image class="img-top2" src="https://images3.c-ctrip.com/zt/sharenew/tit2.png"></image>
+    </view>
+    <view class="share-top" wx:if="{{isRobFail}}">
+        <image class="img-top3" src="https://images3.c-ctrip.com/zt/sharenew/tit3.png"></image>
+    </view>
+    <view class="share-top" wx:if="{{isRobSuccess}}">
+        <image class="img-top3" src="https://images3.c-ctrip.com/zt/sharenew/tit4.png"></image>
+    </view>
+    <view class="share-chip loading" wx:if="{{isRobing}}">
+        <view>抢票速度超越</view>
+        <view class="strong">{{successRate}}%</view>
+        <view>抢票用户</view>
+        <view class="loading-box">
+            <view class="loading-bar" style="width:{{successRate}}%"></view>
+        </view>
+        <view class="total">已有<text>{{accelerateNum}}</text>位好友为他加速</view>
+    </view>
+    <view class="share-chip finish" wx:if="{{!isRobing}}">
+        <view>下载<text class="tyellew">抢票神器</text>
+        </view>
+        <view class="box">
+            <image class="logo" src="https://images3.c-ctrip.com/zt/sharenew/logo-{{isTieyou?'ty':'zx'}}.png"></image>{{isTieyou?'铁友':'智行'}}火车票</view>
+        <view>app内抢票免费加速</view>
+        <view class="total">已有<text>{{accelerateNum}}</text>位好友为他加速</view>
+    </view>
+    <view class="share-btn">
+        <button bindtap="accelerate" class="btn1" hoverClass="btn_hover" id="tieyou_wx_shareacce_help" wx:if="{{isRobing&&!isAccelerated}}">好！助TA一臂之力</button>
+        <button class="btn1" hoverClass="btn_hover" id="tieyou_wx_shareacce_inviteother" openType="share" wx:if="{{isRobing&&isAccelerated}}">召集他人帮TA抢票</button>
+        <button bindtap="buy" class="btn2" hoverClass="btn_hover" id="tieyou_wx_shareacce_buyagain">我也要抢票</button>
+    </view>
+    <view class="share-botm">
+        <image class="logo" src="https://images3.c-ctrip.com/zt/sharenew/logo-{{isTieyou?'ty':'zx'}}.png"></image>下载{{isTieyou?'铁友':'智行'}}APP，新人抢票免费加速、机票立减</view>
+</view>

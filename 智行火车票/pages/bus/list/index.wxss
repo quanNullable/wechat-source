@@ -1,0 +1,349 @@
+@import "../../../__wuBaseWxss__/0.wxss";
+
+.bus-listdate {
+    height: 80rpx;
+    background-color: #5495e6;
+    color: #FFF;
+    line-height: 80rpx;
+}
+
+.prev {
+    padding-left: 30rpx;
+}
+
+.next {
+    text-align: right;
+    padding-right: 30rpx;
+}
+
+.icon-shi,.icon-zhong {
+    width: 14rpx;
+    height: 14rpx;
+    border-radius: 50%;
+    content: "";
+    left: 4rpx;
+    top: 50%;
+    margin-top: -7rpx;
+    z-index: 5;
+    display: inline-block;
+}
+
+.icon-shi {
+    background-color: #1EC088;
+}
+
+.icon-zhong {
+    background-color: #FF5959;
+}
+
+.prev.disabled,.next.disabled,.prev.disabled:active,.next.disabled:active {
+    color: rgba(255,255,255,0.4);
+}
+
+.prev:active,.next:active {
+    color: #999;
+}
+
+.taday {
+    margin-top: 10rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background-color: #FFF;
+    color: #5495e6;
+    border-radius: 8rpx;
+    text-align: center;
+}
+
+.taday:after {
+    position: relative;
+    content: "";
+    display: inline-block;
+    width: 12rpx;
+    height: 12rpx;
+    border-top: 4rpx solid #5495e6;
+    border-right: 4rpx solid #5495e6;
+    transform: rotate(135deg);
+    vertical-align: middle;
+    margin: -12rpx 0 0 10rpx;
+}
+
+.bus-list-view {
+    position: fixed;
+    top: 80rpx;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.bus-list {
+    padding: 0 0 160rpx;
+}
+
+.bus-list .row {
+    padding: 40rpx 30rpx 32rpx;
+    line-height: 44rpx;
+    background-color: #FFF;
+    border-bottom-width: 2rpx;
+}
+
+.bus-list .row:active {
+    background-color: #f4f4f4;
+}
+
+.bus-list .list-message {
+    padding: 40rpx 30rpx 32rpx;
+    line-height: 44rpx;
+    border-bottom-width: 2rpx;
+    font-weight: bold;
+    text-align: center;
+}
+
+.time {
+    font-size: 42rpx;
+    height: 48rpx;
+}
+
+.line50 {
+    height: 88rpx;
+    line-height: 88rpx;
+}
+
+.line40 {
+    height: 48rpx;
+    line-height: 48rpx;
+    font-size: 34rpx;
+}
+
+.dds {
+    width: 120rpx;
+    height: 28rpx;
+}
+
+.line30 {
+    height: 44rpx;
+    line-height: 44rpx;
+    font-size: 28rpx;
+    color: #1EC088;
+}
+
+.bus-list icon {
+    margin: 0 26rpx 0 6rpx;
+}
+
+.bustype,.tgrey,.torange,.tred,.cost,.icon-bustype,.tagmodels {
+    font-size: 24rpx;
+}
+
+.price {
+    font-size: 40rpx;
+    color: #ff9a14;
+    font-weight: 400;
+    vertical-align: baseline;
+}
+
+.price .dfn {
+    font-size: 28rpx;
+    margin-right: 4rpx;
+    color: #ff9a14;
+}
+
+.from,.to {
+    overflow: hidden;
+}
+
+.station,.bustype {
+    padding-right: 20rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 500rpx;
+}
+
+.bustype {
+    transform: translate(-8rpx,-15%);
+}
+
+.icon-bustype,.icon-other {
+    color: #ccc;
+    margin-right: 16rpx;
+}
+
+.bustype .em {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 50%;
+    margin-right: 8rpx;
+    padding-right: 10rpx;
+    position: relative;
+    vertical-align: middle;
+}
+
+.bustype .em:after {
+    width: 2rpx;
+    height: 24rpx;
+    background: #F3F3F3;
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 50%;
+    margin-top: -12rpx;
+}
+
+.bustype .icon-bus {
+    font-size: 30rpx;
+    margin-right: 12rpx;
+    vertical-align: bottom;
+    background-color: transparent;
+}
+
+.disabled icon {
+    background-color: #e2e2e2;
+}
+
+.tag-blue {
+    line-height: 30rpx;
+    padding: 0 10rpx;
+    border: 2rpx solid #52bce8;
+    color: #52bce8;
+    background: #fff;
+    border-radius: 4rpx;
+    font-size: 20rpx;
+    margin-top: 6rpx;
+    vertical-align: middle;
+    line-height: 28rpx;
+    padding: 0 4rpx;
+    display: inline-block;
+}
+
+.tag-orange {
+    color: #fff;
+    border-radius: 4rpx;
+    padding: 0 4rpx 0;
+    font-size: 20rpx;
+    margin: 0 6rpx;
+    line-height: 30rpx;
+    vertical-align: middle;
+    margin-top: -8rpx;
+    display: inline-block;
+    background: #FF7143;
+}
+
+.disabled,.disabled .dfn,.disabled text,.disabled .tag-blue {
+    color: #ccc;
+}
+
+.disabled .tag-blue {
+    border-color: #CCC;
+}
+
+.disabled .tag-orange {
+    background-color: #F3F3F3;
+}
+
+.bus-list .disabled:active {
+    background-color: #FFF;
+}
+
+.list-end {
+    text-align: center;
+    font-size: 24rpx;
+    color: #b2b2b2;
+    margin: 20rpx 0 10rpx;
+}
+
+.iconfont {
+    display: inline-block;
+    width: 32rpx;
+}
+
+.bar-pay {
+    position: fixed;
+    background-color: #5495e6;
+    line-height: 100rpx;
+    color: #FFF;
+    padding: 0 30rpx;
+    height: 100rpx;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.filtrate {
+    width: 375rpx;
+    height: 100rpx;
+    text-align: center;
+}
+
+.filtratetext {
+    line-height: 100rpx;
+    margin-top: 14rpx;
+    font-size: 30rpx;
+    color: #fefefe;
+}
+
+.bus-filtrate-body {
+    position: fixed;
+    background-color: #ffffff;
+    height: 380rpx;
+    z-index: 1002;
+    bottom: 0rpx;
+    left: 0;
+    right: 0;
+}
+
+.rowtext {
+    font-size: 30rpx;
+    color: #333333;
+}
+
+.item {
+    border-bottom-width: 2rpx;
+    padding-left: 30rpx;
+}
+
+.check-view {
+    text-align: right;
+    padding-right: 30rpx;
+}
+
+.coupons-cancel {
+    position: absolute;
+    z-index: 999;
+    left: 30rpx;
+    top: 0;
+    line-height: 60rpx;
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.coupons-done {
+    position: absolute;
+    z-index: 999;
+    right: 30rpx;
+    top: 0;
+    line-height: 60rpx;
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.circlemark {
+    position: absolute;
+    left: 260rpx;
+    top: 20rpx;
+    width: 12rpx;
+    height: 12rpx;
+    background-color: #ff9a14;
+    border-radius: 50%;
+}
+
+.circlemarkright {
+    position: absolute;
+    left: 610rpx;
+    top: 20rpx;
+    width: 12rpx;
+    height: 12rpx;
+    background-color: #ff9a14;
+    border-radius: 50%;
+}

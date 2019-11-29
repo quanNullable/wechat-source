@@ -1,0 +1,26 @@
+<template name="coupon-poi">
+    <view bindtap="{{selected||disabled?'':'onSelectPoiCoupon'}}" class="coupon coupon-poi {{disabled?'coupon-disabled':''}}" data-couponid="{{coupon.poicoupon_view_id}}">
+        <image class="coupon-selected" src="/img/coupon/icon-selected.png" wx:if="{{selected}}"></image>
+        <view class="coupon-top">
+            <view class="coupon-left">
+                <view class="coupon-poi-img-box">
+                    <image class="coupon-poi-img" src="{{coupon.poi_url}}"></image>
+                </view>
+                <view class="coupon-name coupon-poi-name ellipsis"> {{coupon.title}} </view>
+                <view class="coupon-poi-rule ellipsis"> {{coupon.use_rule}} </view>
+                <view class="coupon-deadline coupon-poi-deadline ellipsis"> 有效期至: {{coupon.deadline}} </view>
+            </view>
+            <view class="coupon-right flex-center">
+                <view class="coupon-money ellipsis">
+                    <view class="ui-inline-block coupon-money-small">¥</view>
+                    <view class="ui-inline coupon-money-text">{{coupon.money}}</view>
+                </view>
+                <view class="coupon-price-limit ellipsis"> {{coupon.price_limit}} </view>
+            </view>
+        </view>
+        <view class="coupon-bottom" wx:if="{{coupon.disable_descriptions&&coupon.disable_descriptions.length>0}}">
+            <view class="coupon-bottom-title"> 不可用原因 </view>
+            <view class="coupon-bottom-item ellipsis" wx:for="{{coupon.disable_descriptions}}" wx:for-item="reason" wx:key="{{index}}"> ·{{reason}} </view>
+        </view>
+    </view>
+</template>

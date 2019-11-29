@@ -1,0 +1,6 @@
+<navigator bindtap="lxSearchClick" class="index-search-container flex-left" data-recommend="{{recommended_search_keyword}}" url="../search/search?keyword={{recommended_search_keyword.search_keyword||''}}">
+    <view class="index-search-bg flex-left" style="height:{{searchHeight||60}}rpx">
+        <image class="index-search-icon" src="/img/icons/search.png"></image>
+        <view class="index-search-placeholder ellipsis">{{recommended_search_keyword.view_keyword||'请输入商家或商品名称'}}</view>
+    </view>
+</navigator>

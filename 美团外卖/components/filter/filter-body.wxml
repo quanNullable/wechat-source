@@ -1,0 +1,42 @@
+<template name="filter-body">
+    <view bindtap="filterHiddenSelectTab" class="filter-backdrop" wx:if="{{activeTab}}"></view>
+    <view class="filter-sort-wrap" style="margin-top:{{scrollTop?-scrollTop+'px':''}};" wx:if="{{activeTab==='sort'}}">
+        <view bindtap="filterOnClickSortType" class="filter-sort-item" data-id="{{item.code}}" data-name="{{item.name}}" wx:if="{{item.code!==1&&item.code!==2}}" wx:for="{{sortTypeList}}" wx:key="{{item.code}}">
+            <view class="filter-sort-item-txt">
+                <view class="{{sortTypeCode===item.code?'filter-select-active':''}}"> {{item.name}} </view>
+            </view>
+        </view>
+    </view>
+    <view class="filter-select-wrap" style="margin-top:{{scrollTop?-scrollTop+'px':''}};" wx:if="{{activeTab==='filter'}}">
+        <scroll-view class="filter-select-scroll {{isIndex?'filter-select-scroll-index':''}}" scrollY="1">
+            <view class="filter-select-item" wx:for="{{activityFilterList}}" wx:for-index="parentIndex" wx:key="{{parentIndex}}">
+                <view class="filter-item-header" wx:if="{{item.group_title}}">
+                    <view> {{item.group_title}} </view>
+                </view>
+                <view class="filter-item-tab {{item.display_style?'':'filter-btn-tab'}}">
+                    <view bindtap="{{selectBtn.empty?'':'filterOnClickSelectItem'}}" class="{{item.display_style?'filter-item-list-style':'filter-item-btn-style flex-center'}} {{selectedShowCode[selectBtn.code]&&!item.display_style?'filter-btn-active':''}} {{selectBtn._filterMeituan?'filter-meituan':''}} {{item.display_style?'filter-list-txt':''}}" data-code="{{selectBtn.code}}" data-index="{{parentIndex}}" wx:for="{{item.items}}" wx:for-item="selectBtn" wx:key="{{selectBtn.code}}">
+                        <image class="{{item.display_style?'filter-list-icon':'filter-btn-icon'}}" src="{{selectBtn.icon}}" wx:if="{{selectBtn.icon}}"></image>
+                        <view class="{{selectedShowCode[selectBtn.code]?'filter-select-active':''}}"> {{selectBtn.name}} </view>
+                        <view wx:if="{{selectedShowCode[selectBtn.code]}}"></view>
+                    </view>
+                </view>
+                <view class="filter-price-range-item" wx:if="{{parentIndex===0&&priceRangeFilterList.length>0}}">
+                    <view class="filter-item-header">
+                        <view> 人均价 </view>
+                    </view>
+                    <view class="filter-item-tab filter-btn-tab">
+                        <view bindtap="filterOnClickPriceRange" class="filter-item-btn-style flex-center {{selectedShowPriceRange.length>0&&priceRangeItem.min===selectedShowPriceRange[0]&&priceRangeItem.max===selectedShowPriceRange[1]?'filter-btn-active filter-select-active':''}}" data-max="{{priceRangeItem.max}}" data-min="{{priceRangeItem.min}}" wx:for="{{priceRangeFilterList}}" wx:for-item="priceRangeItem" wx:key="{{priceRangeItem.show_text}}">
+                            <view> {{priceRangeItem.show_text}} </view>
+                            <view wx:if="{{selectedShowPriceRange.length>0&&priceRangeItem.min===selectedShowPriceRange[0]&&priceRangeItem.max===selectedShowPriceRange[1]}}"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="filter-select-footer">
+            <view bindtap="filterOnClickClearSelect" class="filter-clear-btn"> 清空 </view>
+            <view bindtap="filterClickSubmitSelectItem" class="filter-submit-btn flex-center"> 完成 <view class="filter-select-count filter-submit-count flex-center" wx:if="{{selectShowCount>0}}"> {{selectShowCount}} </view>
+            </view>
+        </view>
+    </view>
+</template>

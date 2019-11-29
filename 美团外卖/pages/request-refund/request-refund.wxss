@@ -1,0 +1,98 @@
+page {
+    font-size: 28rpx;
+    color: #333;
+}
+
+.request-header {
+    height: 70rpx;
+    background-color: #fff8e9;
+    color: #666;
+    margin-bottom: 20rpx;
+}
+
+.refund-reason,.request-header,.request-item {
+    display: flex;
+    align-items: center;
+}
+
+.refund-icon {
+    width: 28rpx;
+    height: 28rpx;
+    margin: 0 10rpx 0 20rpx;
+}
+
+.right-item {
+    margin-right: 20rpx;
+}
+
+.left-item {
+    margin-left: 20rpx;
+}
+
+.reason-list,.request-item,.detail-input {
+    background: #fff;
+}
+
+.reason-list {
+    margin-bottom: 20rpx;
+}
+
+.request-item {
+    justify-content: flex-end;
+}
+
+.request-title {
+    flex: 1;
+}
+
+.refund-price {
+    height: 81rpx;
+}
+
+.price-txt {
+    color: #fb4e44;
+}
+
+.refund-reason {
+    height: 80rpx;
+    color: #666;
+}
+
+.reason-item {
+    border-bottom: 1rpx solid #e4e4e4;
+    height: 88rpx;
+}
+
+.radio-img {
+    width: 36rpx;
+    height: 36rpx;
+}
+
+.detail-input {
+    height: 200rpx;
+    margin: 20rpx 0 40rpx 0;
+}
+
+.detail-input input {
+    margin: 20rpx;
+    width: 710rpx;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.submit-btn {
+    font-size: 36rpx;
+    width: 670rpx;
+    height: 94rpx;
+    background-color: #ffd161;
+    border-radius: 4rpx;
+    margin-left: 40rpx;
+}
+
+.last-item {
+    border-bottom: 0;
+}
+
+.no-active-submit-btn {
+    color: rgba(51,51,51,.4);
+}

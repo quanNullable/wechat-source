@@ -1,0 +1,77 @@
+@import "../../train/common/components/toast/toast.wxss";
+
+.wx_unlimit_qrcode_wrap {
+    font-family: "Source Han Sans CN","Hiragino Sans GB","Microsoft Yahei",sans-serif;
+    text-align: center;
+}
+
+.wx_unlimit_qrcode_wrap image {
+    display: block;
+    width: 140px;
+    margin: 0 auto;
+    margin-top: 45%;
+    margin-bottom: 20px;
+}
+
+.ani_dot {
+    font-family: simsun;
+}
+
+.ani_dot {
+    display: inline-block;
+    width: 1.5em;
+    vertical-align: bottom;
+    overflow: hidden;
+}
+
+@-webkit-keyframes dot {
+    0% {
+        width: 0;
+        margin-right: 1.5em;
+    }
+
+    33% {
+        width: .5em;
+        margin-right: 1em;
+    }
+
+    66% {
+        width: 1em;
+        margin-right: .5em;
+    }
+
+    100% {
+        width: 1.5em;
+        margin-right: 0;
+    }
+}
+
+.ani_dot {
+    animation: dot 2s infinite step-start;
+}
+
+@keyframes dot {
+    0% {
+        width: 0;
+        margin-right: 1.5em;
+    }
+
+    33% {
+        width: .5em;
+        margin-right: 1em;
+    }
+
+    66% {
+        width: 1em;
+        margin-right: .5em;
+    }
+
+    100% {
+        width: 1.5em;
+        margin-right: 0;
+    }
+}
+
+.train-toast text {
+    font-size: 22rpx;
+}

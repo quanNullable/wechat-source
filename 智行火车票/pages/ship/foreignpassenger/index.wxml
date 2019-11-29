@@ -1,0 +1,111 @@
+<view class="tips_top" hidden="{{!isError}}">{{mError}}</view>
+<view class="passenger-list">
+    <view class="b_border bottom-border-1">
+        <picker bindchange="onPickPassengerType" range="{{mPRange}}" value="{{mRIndex}}" wx:if="{{mPRange.length>1}}">
+            <view class="picker row">
+                <label class="column-2">乘客类型：</label>
+                <view class="column-4 right-arrow">{{mPRange[mRIndex]}}</view>
+            </view>
+        </picker>
+        <view class="row" wx:if="{{mPRange.length<=1}}">
+            <label class="column-2">乘客类型：</label>
+            <lable class="column-4">{{mPRange[0]}}</lable>
+        </view>
+    </view>
+    <view class="b_border bottom-border-1" wx:if="{{hasforeign}}">
+        <picker bindchange="onPickcountryType" range="{{country}}" value="{{country[mPIndex]}}" wx:if="{{country.length>1}}">
+            <view class="picker row">
+                <label class="column-2">国籍：</label>
+                <view class="column-4 right-arrow">{{country[mPIndex]}}</view>
+            </view>
+        </picker>
+        <view class="row" wx:if="{{country.length<=1}}">
+            <label class="column-2">国籍：</label>
+            <lable class="column-4">{{country[0]}}</lable>
+        </view>
+    </view>
+    <view class="b_border bottom-border-1" wx:if="{{hasforeign}}">
+        <view bindtap="selectcountry" wx:if="{{foreign}}">
+            <view class="picker row">
+                <label class="column-2">具体国籍：</label>
+                <view class="column-4 right-arrow">{{foreigncountrycn}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="row b_border bottom-border-1" style="vertical-align: middle;" wx:if="{{passengerselectdic.cname}}">
+        <label class="column-2">姓名</label>
+        <view class="column-4">
+            <input bindinput="onmname" class="align-center" placeholder="" style="height: 100%;" type="text" value="{{passengerName}}"></input>
+        </view>
+    </view>
+    <view class="row b_border bottom-border-1" style="vertical-align: middle;" wx:if="{{passengerselectdic.ename}}">
+        <label class="column-2">姓(拼音)</label>
+        <view class="column-4">
+            <input bindinput="onsurname" class="align-center" placeholder="Surname, 如：LI" style="height: 100%;" type="text" value="{{surname}}"></input>
+        </view>
+    </view>
+    <view class="row b_border bottom-border-1" style="vertical-align: middle;" wx:if="{{passengerselectdic.ename}}">
+        <label class="column-2">名(拼音)</label>
+        <view class="column-4">
+            <input bindinput="ongivenname" class="align-center" placeholder="Given name, 如：XIAOLEI" style="height: 100%;" type="text" value="{{givenname}}"></input>
+        </view>
+    </view>
+    <view class="row b_border bottom-border-1" style="vertical-align: middle;" wx:if="{{passengerselectdic.gender}}">
+        <label class="column-2">性别</label>
+        <view bindtap="selectgender" class="column-2" data-mgender="M">
+            <icon class="{{male?'icon-checked':'icon-check'}}" data-type="check"></icon>
+            <text>男</text>
+        </view>
+        <view bindtap="selectgender" class="column-2" data-mgender="W">
+            <icon class="{{!male?'icon-checked':'icon-check'}}" data-type="check"></icon>
+            <text>女</text>
+        </view>
+    </view>
+    <view class="b_border bottom-border-1" wx:if="{{passengerselectdic.birth}}">
+        <picker bindchange="bindDateChange" end="2019-01-01" mode="date" start="1945-01-01" value="{{mBirth}}">
+            <view class="picker row">
+                <label class="column-2">出生日期</label>
+                <view class="column-4 right-arrow">{{mBirth}}</view>
+            </view>
+        </picker>
+    </view>
+    <view class="row b_border bottom-border-1" style="vertical-align: middle;" wx:if="{{passengerselectdic.frequency}}">
+        <label class="column-2">签发次数</label>
+        <view class="column-4">
+            <input bindinput="onfrequencydes" class="align-center" placeholder="{{passengerselectdic.frequency_des}}" style="height: 100%;" type="text" value="{{mfrequency}}"></input>
+        </view>
+    </view>
+    <view class="row b_border bottom-border-1" style="vertical-align: middle;" wx:if="{{passengerselectdic.stay_days}}">
+        <label class="column-2">入境停留天数</label>
+        <view class="column-4">
+            <input bindinput="onmstay_days" class="align-center" placeholder="" style="height: 100%;" type="text" value="{{mstay_days}}"></input>
+        </view>
+    </view>
+    <view class="b_border bottom-border-1" wx:if="{{passengerselectdic.visa_date}}">
+        <picker bindchange="bindvisadate" end="2019-01-01" mode="date" start="1945-01-01" value="{{birthdate}}">
+            <view class="picker row">
+                <label class="column-2">证件有效期</label>
+                <view class="column-4 right-arrow">{{mvisa_date}}</view>
+            </view>
+        </picker>
+    </view>
+    <view wx:for="{{mCardNoarray}}" wx:key="index">
+        <view class="row b_border bottom-border-1">
+            <label class="column-2">{{item.id_type}}</label>
+            <view class="column-4">
+                <input bindinput="onUpdCode" class="align-center" data-key="{{item.id_type}}" placeholder="请填写证件号" style="height: 100%;" type="text" value="{{item.id_num}}"></input>
+            </view>
+        </view>
+        <view wx:if="{{item.date}}" wx:for="{{item.date}}" wx:for-index="index0" wx:for-item="item0" wx:key="index">
+            <view class="b_border bottom-border-1">
+                <picker bindchange="onUpdDate" data-index="{{index}}" data-key="{{item0.name}}" end="2099-01-01" mode="date" start="1945-01-01">
+                    <view class="picker row">
+                        <label class="column-2">{{item0.name}}</label>
+                        <view class="column-4 right-arrow">{{item0.value}}</view>
+                    </view>
+                </picker>
+            </view>
+        </view>
+    </view>
+</view>
+<button bindtap="onConfirm" class="btn_primary btn-confirm" hoverClass="btn_primary_hover">确 定</button>

@@ -1,0 +1,48 @@
+page {
+    background: #fff;
+}
+
+.content {
+    padding: 30rpx;
+    box-sizing: border-box;
+}
+
+.list {
+    margin-bottom: 30rpx;
+}
+
+.list .title {
+    font-weight: 600;
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
+}
+
+.list .txt {
+    line-height: 36rpx;
+    font-size: 28rpx;
+}
+
+.list .txt text {
+    display: block;
+    margin-bottom: 10rpx;
+    color: #333;
+}
+
+.bottomTxt {
+    font-weight: 600;
+    font-size: 32rpx;
+}
+
+.bottomTxt text {
+    display: block;
+    margin-bottom: 10rpx;
+}
+
+.codeImg {
+    text-align: center;
+}
+
+.codeImg image {
+    width: 300rpx;
+    height: 300rpx;
+}

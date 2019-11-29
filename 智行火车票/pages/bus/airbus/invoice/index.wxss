@@ -1,0 +1,68 @@
+@import "../../../../__wuBaseWxss__/0.wxss";
+
+.mt10 {
+    margin-top: 20rpx;
+}
+
+.b-b-phonenum {
+    padding-left: 30rpx;
+    min-height: 100rpx;
+    line-height: 100rpx;
+    border-top-width: 2rpx;
+}
+
+.b-b-phonenum input {
+    height: 100rpx;
+    padding: 0;
+    display: block;
+}
+
+.gray-text {
+    color: #999;
+}
+
+.airbus-phone-num .column-4 input,.airbus-phone-num .column-4 text,.airbus-phone-num .column-4 label {
+    padding-left: 30rpx;
+    position: relative;
+}
+
+.airbus-use-info {
+    font-size: 28rpx;
+}
+
+.airbus-phone-num .right-arrow:after {
+    border-color: #ccc;
+}
+
+.airbus-invoice-msg {
+    padding: 40rpx 30rpx 20rpx;
+    font-size: 28rpx;
+    color: #999;
+}
+
+.ticket-price {
+    color: #ff9a14;
+}
+
+.btn-invoice {
+    padding: 20rpx 30rpx;
+}
+
+.btn-invoice button {
+    width: 100%;
+    background-color: #5495e6;
+    color: #fff;
+}
+
+.checked-arrow:after {
+    position: absolute;
+    width: 32rpx;
+    height: 16rpx;
+    border-top: 2rpx solid #5495e6;
+    border-right: 2rpx solid #5495e6;
+    transform: rotate(135deg);
+    content: "";
+    right: 30rpx;
+    top: 50%;
+    margin-top: -8rpx;
+}

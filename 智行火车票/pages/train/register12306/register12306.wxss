@@ -1,0 +1,126 @@
+@import "../../../__wuBaseWxss__/2.wxss";
+
+text,view {
+    font-family: -apple-system,Helvetica,'Hiragino Sans GB W3','Microsoft YaHei',arial,sans-serif;
+}
+
+.train-list .item {
+    padding-right: 36rpx;
+}
+
+.train-list .add-box {
+    position: relative;
+    padding-left: 160rpx;
+    min-height: 88rpx;
+    font-size: 30rpx;
+}
+
+.train-list .label {
+    margin-left: 36rpx;
+    width: 160rpx;
+    left: 0;
+    top: 0;
+    position: absolute;
+    color: #333;
+    font-size: 30rpx;
+}
+
+input {
+    width: 100%;
+    height: 90rpx;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    box-sizing: border-box;
+    outline: 0;
+    font-size: 28rpx;
+}
+
+.input-placeholder {
+    color: #bbb;
+}
+
+.train-list {
+    line-height: 86rpx;
+}
+
+.train-list .item input {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0;
+    border-bottom-width: 1px;
+}
+
+page {
+    background-color: #fff;
+}
+
+.step-account .btns,.step-mobile .btns,.step-success .btns {
+    margin-top: 35rpx;
+    padding: 0 36rpx;
+}
+
+.step-account {
+    border-radius: 20rpx;
+    margin: 10rpx 0 0;
+}
+
+.tips-sms {
+    background: #fff7dc;
+    padding: 21rpx 36rpx;
+    line-height: 1.5em;
+    font-size: 26rpx;
+}
+
+.box-account {
+    margin: 42rpx 35rpx 0;
+    border: 1rpx dotted rgba(0,0,0,0.20);
+    border-radius: 6rpx;
+    padding: 24rpx 40rpx;
+    line-height: 2em;
+    font-size: 28rpx;
+}
+
+.box-account .label {
+    color: #999;
+    margin-right: 40rpx;
+}
+
+.box-account.account-copied {
+    background-color: rgba(0,0,0,0.06);
+}
+
+.tips-account {
+    margin: 30rpx auto;
+    width: 450rpx;
+    font-size: 26rpx;
+    color: #999;
+}
+
+.css-tick-wrapper {
+    height: 100rpx;
+    width: 100rpx;
+    margin: 80rpx auto 26rpx;
+}
+
+.css-tick {
+    width: 80rpx;
+    height: 40rpx;
+    border-left-width: 20rpx;
+    border-bottom-width: 20rpx;
+}
+
+[class^="tips-success_"] {
+    width: 200rpx;
+    margin: 0 auto;
+    line-height: 1.45em;
+}
+
+.tips-success_row1 {
+    font-size: 26rpx;
+    color: #999;
+}
+
+.tips-success_row2 {
+    font-size: 36rpx;
+}

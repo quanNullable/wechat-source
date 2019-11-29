@@ -1,0 +1,238 @@
+.shipline-content .line {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+
+.shipline-content .line .city {
+    border: 1px solid #e5e5e5;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.search-module {
+    position: relative;
+    display: block;
+    border-bottom: 2rpx solid rgba(0,0,0,0.1);
+    background-color: #EFEFEF;
+    z-index: 99;
+}
+
+.search-module_input {
+    height: 70rpx;
+    font-size: 30rpx;
+    line-height: 70rpx;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 10rpx;
+    padding-left: 50rpx;
+    margin: 16rpx;
+}
+
+.search-module_input_focus {
+    font-size: 26rpx;
+    color: #B2B2B2;
+    padding-left: 50%;
+    text-indent: -4em;
+    width: 300rpx;
+}
+
+.search-module_input-f {
+    margin-right: 100rpx;
+    border-right: 60rpx solid #fff;
+}
+
+.search-module_clear {
+    position: absolute;
+    top: 14rpx;
+    right: 120rpx;
+}
+
+.search-module_cancel {
+    position: absolute;
+    top: 12rpx;
+    right: 16rpx;
+    font-size: 32rpx;
+    color: #5495e6;
+}
+
+.search-module_ico_focus {
+    left: 24rpx;
+    transform: translateX(0);
+}
+
+.stationline {
+    padding-left: 30rpx;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    line-height: 80rpx;
+    font-size: 32rpx;
+    background-color: #fff;
+}
+
+.city-module_type {
+    clear: both;
+    position: relative;
+    z-index: 5;
+    height: 56rpx;
+    overflow: hidden;
+    line-height: 60rpx;
+    text-indent: 30rpx;
+    font-size: 26rpx;
+    color: #666;
+    background-color: #EFEFEF;
+}
+
+.city-module_items {
+    display: block;
+    margin-bottom: -2rpx;
+    overflow: hidden;
+    padding: 20rpx 0 0 30rpx;
+}
+
+.city-module_name {
+    display: block;
+    width: 100%;
+    height: 88rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 88rpx;
+    font-size: 32rpx;
+    color: #333;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.city-module_letter {
+    position: fixed;
+    top: 0rpx;
+    right: 0;
+    bottom: 0;
+    width: 40rpx;
+    padding-top: 130rpx;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.city-module_letter-item1,.city-module_letter-item {
+    display: block;
+    height: 28rpx;
+    overflow: hidden;
+    line-height: 28rpx;
+    white-space: nowrap;
+    font-size: 22rpx;
+    color: #353439;
+    text-align: center;
+}
+
+.city-module_letter-item1 {
+    font-size: 20rpx;
+}
+
+.city-module_list {
+    position: fixed;
+    top: 0rpx;
+    left: 0;
+    right: 40rpx;
+    bottom: 0;
+    background-color: #fff;
+}
+
+.city-module_type {
+    clear: both;
+    position: relative;
+    z-index: 5;
+    height: 56rpx;
+    overflow: hidden;
+    line-height: 60rpx;
+    text-indent: 30rpx;
+    font-size: 26rpx;
+    color: #666;
+    background-color: #EFEFEF;
+}
+
+.city-module_items {
+    display: block;
+    margin-bottom: -2rpx;
+    overflow: hidden;
+    padding: 20rpx 0 0 30rpx;
+}
+
+.city-module_name1 {
+    float: left;
+    width: 150rpx;
+    height: 60rpx;
+    overflow: hidden;
+    margin: 0 20rpx 20rpx 0;
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    color: #666;
+    border: 1px solid #DBDBDB;
+    border-radius: 8rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.city-module_name {
+    display: block;
+    width: 100%;
+    height: 88rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 88rpx;
+    font-size: 32rpx;
+    color: #333;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.current,.current text {
+    border-color: #5495e6;
+    color: #5495e6;
+}
+
+.margin_r100 {
+    margin-right: 100rpx;
+}
+
+.scrollview-for {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    margin: 5rpx;
+}
+
+.product {
+    margin: 5rpx;
+    width: 355rpx;
+    height: 600rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 80rpx;
+    background-color: #fff;
+    white-space: nowrap;
+}
+
+.tagsitem {
+    margin-top: 15rpx;
+    margin-left: 10rpx;
+    border: 1px solid #DBDBDB;
+    border-radius: 25rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    padding-left: 15rpx;
+    padding-right: 15rpx;
+    font-size: 30rpx;
+    background-color: #efefef;
+}

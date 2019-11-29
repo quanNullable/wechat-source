@@ -1,0 +1,91 @@
+<import src="../order/template/tpl_order.wxml"></import>
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<view>
+    <view class="b-b-note info-panel row">
+        <view class="column-4 airbus-overflow">{{mLine['Route']['BusLineName']}}</view>
+        <view bindtap="" class="airbus-stops-inf">
+            <text>{{'经停信息'}}</text>
+            <text class="right-arrow"></text>
+        </view>
+    </view>
+    <view class="white_bg airbus-top-pannel">
+        <view class="row airbus-from-to-ext b-b-note b_border">
+            <view class="column-1 info-left-panel airbus-overflow">
+                <text class="city from-city">{{mLine['Route']['FromStopName']}}</text>
+            </view>
+            <view class="column-1 info-right-panel airbus-overflow">
+                <text class="city to-city">{{mLine['Route']['ToStopName']}}</text>
+            </view>
+            <view class="airbus-from-to">
+                <text>{{mLine['Route']['DepartDate']}}</text>
+            </view>
+        </view>
+        <view class="row b-b-note b_border">
+            <view class="column-1 gray-text">{{'车票信息'}}</view>
+            <view class="column-1">{{mTicket['type']||'普通票'}}</view>
+            <view class="column-1">
+                <text class="ticket-price">¥{{mTicket['price']||0}}</text> x <text>{{mTicket['count']||0}}张</text>
+            </view>
+            <view bindtap="onShowDeclaration" class="column-2 airbus-ticket-upd right-arrow">{{'上车/退改签说明'}}</view>
+        </view>
+    </view>
+    <view class="row b-b-note b_border airbus-price-inf">
+        <view class="column-1 gray-text">{{'订单信息'}}</view>
+        <view class="column-1" style="text-align:right;">订单总额:<text class="ticket-price">¥{{mTicket['mount']||0}}</text>
+        </view>
+    </view>
+    <view class="white_bg airbus-item-pannel b_border">
+        <view class="row airbus-item">
+            <view class="column-2 gray-text">订单状态</view>
+            <view class="column-4" style="text-align:left;">{{mLine['OrderStateCN']||mTicket['status']||'待出票'}}</view>
+        </view>
+        <view class="row airbus-item">
+            <view class="column-2 gray-text">订单编号</view>
+            <view class="column-4" style="text-align:left;">{{mLine['OrderID']||''}}</view>
+        </view>
+        <view class="row airbus-item">
+            <view class="column-2 gray-text">订单日期</view>
+            <view class="column-4" style="text-align:left;">{{mLine['Route']['DepartDate']}}</view>
+        </view>
+    </view>
+    <view class="white_bg airbus-item-pannel b_border" wx:if="{{mMarks.length>0}}">
+        <view class="row airbus-item" wx:for="{{mMarks}}" wx:key="index">
+            <view class="column-2 gray-text">{{item['desc']||''}}</view>
+            <view class="column-4" style="text-align:left;">{{item['value']||''}}</view>
+        </view>
+    </view>
+    <view class="white_bg airbus-item-pannel b_border">
+        <view class="row airbus-item">
+            <view class="column-2 gray-text">联系人</view>
+            <view class="column-4" style="text-align:left;">{{mLine['Contact']['ContactName']||''}}</view>
+        </view>
+        <view class="row airbus-item">
+            <view class="column-2 gray-text">联系手机</view>
+            <view class="column-4" style="text-align:left;">{{mLine['Contact']['ContactMobile']||''}}</view>
+        </view>
+    </view>
+    <view class="row b-b-note b_border airbus-price-inf" wx:if="{{mInvoice&&!!mInvoice['code']}}">
+        <view class="column-1 gray-text">发票信息</view>
+    </view>
+    <view class="white_bg airbus-item-pannel b_border mb30" wx:if="{{mInvoice&&!!mInvoice['code']}}">
+        <view class="row airbus-item">
+            <view class="column-2 gray-text">收件人</view>
+            <view class="column-4" style="text-align:left;">{{mInvoice['name']||''}}</view>
+        </view>
+        <view class="row airbus-item">
+            <view class="column-2 gray-text">邮编</view>
+            <view class="column-4" style="text-align:left;">{{mInvoice['code']||''}}</view>
+        </view>
+        <view class="row airbus-item">
+            <view class="column-2 gray-text">地址</view>
+            <view class="column-4" style="text-align:left;">{{mInvoice['address']||''}}</view>
+        </view>
+    </view>
+</view>
+<mask bindtap="onHideMask" hidden="{{!isShowMask}}" hoverStyle="none" style="background-color: rgba(0,0,0,0.8);"></mask>
+<view bindtap="onHideDeclaration" hidden="{{!isShowDeclar}}">
+    <template is="declaration" data="{{mList:mInfomations}}"></template>
+</view>

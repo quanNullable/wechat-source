@@ -1,0 +1,347 @@
+page {
+    height: 100%;
+}
+
+.user-info {
+    position: relative;
+    background: #7401aa;
+}
+
+.user-info .base {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20rpx;
+}
+
+.user-info .avatar {
+    margin: 20rpx;
+    width: 168rpx;
+    height: 168rpx;
+    border-radius: 50%;
+}
+
+.user-info .nickname {
+    text-align: center;
+    font-size: 36rpx;
+    color: #fff;
+}
+
+.user-info .nickname button {
+    height: 72rpx;
+    line-height: 72rpx;
+}
+
+.user-info .info {
+    display: flex;
+    flex-flow: row;
+    padding: 50rpx 0;
+}
+
+.user-info .info-item {
+    box-sizing: border-box;
+    flex: 1;
+    border-right: 1px solid rgba(255,255,255,.1);
+}
+
+.user-info .info-item:last-child {
+    border-right: none;
+}
+
+.user-info .item-txt {
+    font-size: 28rpx;
+    text-align: center;
+    color: #fff;
+}
+
+.user-info .item-num {
+    font-size: 28rpx;
+    text-align: center;
+    color: #fff;
+}
+
+.user-info .item-num text {
+    font-size: 72rpx;
+}
+
+.user-info .actions {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 40rpx 0;
+}
+
+.user-info .button-flaunt {
+    margin: 0 15rpx;
+    width: 330rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: #fff;
+    background: linear-gradient(to bottom,#ffffff,#fbeeed);
+    border-radius: 40rpx;
+    font-size: 32rpx;
+    color: #7c479f;
+}
+
+.user-info .button-flaunt .icon {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20rpx;
+    margin-right: 20rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.user-info .button-chance {
+    margin: 0 18rpx;
+    width: 320rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: #fff;
+    background: linear-gradient(to bottom,#ffffff,#fbeeed);
+    border-radius: 40rpx;
+    font-size: 32rpx;
+    color: #7c479f;
+}
+
+.user-info .service {
+    position: absolute;
+    top: 46rpx;
+    right: 0;
+}
+
+.user-info .service button {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 140rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    background: rgba(255,255,255,.2);
+    border: none;
+    border-top-left-radius: 36rpx;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 36rpx;
+    border-bottom-right-radius: 0;
+    color: #fbefee;
+    font-size: 28rpx;
+}
+
+.user-info .service button::after {
+    border: none;
+}
+
+.user-info .service .icon {
+    margin-right: 10rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.user-info .complaint {
+    position: absolute;
+    top: 87rpx;
+    right: 0;
+}
+
+.user-info .complaint button {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 140rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    background: rgba(255,255,255,.2);
+    border: none;
+    border-top-left-radius: 36rpx;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 36rpx;
+    border-bottom-right-radius: 0;
+    color: #fbefee;
+    font-size: 28rpx;
+}
+
+.user-info .complaint button::after {
+    border: none;
+}
+
+.user-info .complaint .icon {
+    margin-right: 10rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.online-service {
+    padding: 40rpx 30rpx 30rpx 30rpx;
+}
+
+.online-service button {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    height: 88rpx;
+    line-height: 88rpx;
+    background: linear-gradient(to right,#f26fd3,#e45cd7);
+    border-radius: 44rpx;
+    font-size: 36rpx;
+    color: #fff;
+}
+
+.online-service button::after {
+    border: 0;
+    border-radius: 0;
+}
+
+.online-service button .icon {
+    margin-right: 20rpx;
+    width: 56rpx;
+    height: 56rpx;
+}
+
+.app-list {
+    padding: 0 30rpx 124rpx 30rpx;
+}
+
+.app-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 120rpx;
+    font-size: 32rpx;
+    color: #d491f3;
+}
+
+.app-head::before {
+    content: "";
+    margin-right: 20rpx;
+    width: 120rpx;
+    height: 1px;
+    background: #d491f3;
+}
+
+.app-head::after {
+    content: "";
+    margin-left: 20rpx;
+    width: 120rpx;
+    height: 1px;
+    background: #d491f3;
+}
+
+.app-item {
+    padding: 20rpx 0;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    overflow: hidden;
+}
+
+.app-item:last-child {
+    border-bottom: none;
+}
+
+.app-item .num {
+    float: left;
+    margin-top: 16rpx;
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    background: #bfbfbf;
+    border-radius: 100%;
+    color: #fff;
+}
+
+.app-item .item-img {
+    float: left;
+    width: 112rpx;
+    height: 112rpx;
+}
+
+.app-item .item-info {
+    float: left;
+    width: 400rpx;
+    margin-left: 20rpx;
+    line-height: 56rpx;
+    font-size: 28rpx;
+    color: #d491f3;
+}
+
+.app-item .item-name {
+    display: block;
+    width: 400rpx;
+    font-size: 36rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.app-item .item-intro {
+    display: block;
+    width: 400rpx;
+    font-size: 24rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.app-item .item-button {
+    float: right;
+    margin-top: 20rpx;
+    width: 158rpx;
+    height: 72rpx;
+}
+
+.app-item .button-play {
+    width: 158rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    background: #8134a6;
+    border-radius: 36rpx;
+    border: 0;
+    font-size: 28rpx;
+    color: #fff;
+    text-align: center;
+}
+
+.app-item .button-play::after {
+    border: 0;
+    border-radius: 0;
+}
+
+.app-item.size1 .item-name {
+    font-size: 36rpx;
+}
+
+.app-item.size1 .item-intro {
+    font-size: 24rpx;
+}
+
+.app-item.size2 .item-name {
+    font-size: 40rpx;
+}
+
+.app-item.size2 .item-intro {
+    font-size: 24rpx;
+}
+
+.app-item.size3 .item-name {
+    font-size: 44rpx;
+}
+
+.app-item.size3 .item-intro {
+    font-size: 24rpx;
+}
+
+.app-item.style1 .item-img {
+    border-radius: 0;
+}
+
+.app-item.style2 .item-img {
+    border-radius: 50%;
+}

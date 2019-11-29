@@ -1,0 +1,184 @@
+.login-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #333;
+    background-color: #fff;
+}
+
+.login-head {
+    padding: 80rpx 60rpx;
+    font-size: 24rpx;
+    box-sizing: border-box;
+}
+
+.head-logo,.loading-logo {
+    margin: auto;
+    display: block;
+}
+
+.head-logo {
+    width: 132rpx;
+    height: 132rpx;
+    border-radius: 28.5%;
+    border: 1rpx solid #eee;
+}
+
+.head-name {
+    font-family: PingFangSC-Medium;
+    font-size: 37rpx;
+    text-align: center;
+    color: #333;
+    margin-top: 20rpx;
+}
+
+@-webkit-keyframes loginrotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loginrotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-logo {
+    width: 98rpx;
+    height: 98rpx;
+    margin-top: 96rpx;
+    animation: loginrotate 2s infinite;
+}
+
+.loading-title {
+    font-size: 28rpx;
+    text-align: center;
+    color: #AEAEAE;
+    margin-top: 30rpx;
+}
+
+.login-auth,.login-iptphone {
+    padding: 0 80rpx;
+}
+
+.auth-tip-sub {
+    width: 590rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #AEAEAE;
+    text-align: center;
+    margin-top: 20rpx;
+}
+
+.login-auth-btn {
+    width: 590rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    background: #FFD161;
+    border-radius: 4rpx;
+    font-size: 34rpx;
+    color: #333333;
+    font-family: PingFangSC-Regular;
+}
+
+.login-auth-btn {
+    background: #FFD161;
+    border-radius: 4rpx;
+    font-size: 34rpx;
+    color: #333333;
+    margin-top: 50rpx;
+}
+
+.login-auth-btn:after {
+    border: 0;
+}
+
+.auth-btn:active {
+    background-color: #FFB000;
+}
+
+.iptphone-ipt {
+    position: relative;
+    width: 590rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    padding: 0 20rpx;
+    border: 1px solid #C4C4C4;
+    border-radius: 4rpx;
+    box-sizing: border-box;
+}
+
+.iptphone-number {
+    position: relative;
+    height: 100rpx;
+    width: 480rpx;
+    font-size: 32rpx;
+    color: #333333;
+    line-height: 100rpx;
+    box-sizing: border-box;
+}
+
+.iptphone-ipt.number-error {
+    border: 1px solid #FF3300;
+}
+
+.iptphone-ipt-placeholder {
+    height: 100rpx;
+    width: 480rpx;
+    font-size: 32rpx;
+    color: #AEAEAE;
+    line-height: 100rpx;
+}
+
+.iptphone-tip {
+    font-size: 24rpx;
+    color: #AEAEAE;
+    letter-spacing: 0;
+    text-align: justify;
+    margin-top: 10rpx;
+}
+
+.iptphone-controls {
+    width: 590rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    margin-top: 24rpx;
+    font-size: 34rpx;
+    color: #FFFFFF;
+    background: #C4C4C4;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.iptphone-controls.iptphone-isright {
+    color: #333333;
+    background: #FFD161;
+}
+
+.iptphone-controls.iptphone-isright:active {
+    background-color: #fb9700;
+}
+
+.iptphone-error-tip {
+    color: #FF3300;
+    margin-bottom: 57rpx;
+}
+
+.login-container .ui-loading-backdrop,.page-container-flex .ui-loading-backdrop {
+    display: none;
+}

@@ -1,0 +1,6 @@
+<template name="score-internal">
+    <view class="score-star {{num===4?'score-star-last':''}} ui-star {{num<score?num+1>score?'ui-star-half':'':'ui-star-grey'}}" wx:for="{{[0,1,2,3,4]}}" wx:for-item="num" wx:key="{{item}}"></view>
+</template>
+<template name="score">
+    <template is="score-internal" data="{{score:score%1>0.78?(score|0)+1:score%1>0.28?(score|0)+0.5:score|0}}"></template>
+</template>

@@ -1,0 +1,345 @@
+@import "../common/components/toast/toast.wxss";
+
+.wrap1 {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/bg-ty.jpg") no-repeat #f05558;
+    background-size: 100% 1172rpx;
+    padding: 552rpx 75rpx 40rpx 75rpx;
+    box-sizing: border-box;
+}
+
+.wrap1.offline {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/bg3-ty.jpg") no-repeat #f05558;
+    background-size: 100% 1172rpx;
+}
+
+.zx .wrap1 {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/bg-zx.jpg") no-repeat #3e8afb;
+    background-size: 100% 1172rpx;
+}
+
+.zx .wrap1.offline {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/bg3-zx.jpg") no-repeat #3e8afb;
+    background-size: 100% 1172rpx;
+}
+
+.wrap1 .Discount {
+    background: #fff;
+    padding: 44rpx 56rpx;
+    border-radius: 10rpx;
+}
+
+.wrap1 .Discount .h3 {
+    font-size: 32rpx;
+    line-height: 32rpx;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 4rpx;
+    color: #333;
+}
+
+.wrap1 .Discount .h3 span {
+    position: relative;
+}
+
+.wrap1 .Discount .h3 span:after,.wrap1 .Discount .h3 span:before {
+    width: 30rpx;
+    height: 1px;
+    background: #999;
+    content: "";
+    position: absolute;
+    top: 24rpx;
+}
+
+.wrap1 .Discount .h3 span:after {
+    left: -40rpx;
+}
+
+.wrap1 .Discount .h3 span:before {
+    right: -40rpx;
+}
+
+.wrap1 .Discount .Price-list {
+    padding-top: 48rpx;
+}
+
+.wrap1 .Discount .Price-list:after,.wrap1 .Discount .Price-list:before {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.wrap1 .Discount .Price-list .li {
+    float: left;
+    text-align: center;
+    width: 30%;
+}
+
+.wrap1 .Discount .Price-list .li .price strong {
+    font-size: 46rpx;
+}
+
+.wrap1 .Discount .Price-list .li .price span {
+    font-size: 28rpx;
+}
+
+.wrap1 .Discount .Price-list .li .price.red {
+    color: #f25d5d;
+}
+
+.wrap1 .Discount .Price-list .li .price.Light-blue {
+    color: #64a8f9;
+}
+
+.wrap1 .Discount .Price-list .li .price.Deep-blue {
+    color: #4065cf;
+}
+
+.wrap1 .Discount .Price-list .li p {
+    font-size: 26rpx;
+    color: #666;
+    line-height: 26rpx;
+    padding-top: 12rpx;
+}
+
+.wrap1 .Discount .Price-list .li:nth-of-type(2) {
+    width: 40%;
+    position: relative;
+}
+
+.wrap1 .Discount .Price-list .li:nth-of-type(2):after,.wrap1 .Discount .Price-list .li:nth-of-type(2):before {
+    position: absolute;
+    height: 58rpx;
+    content: "";
+    width: 1px;
+    background: #ccc;
+    opacity: .4;
+    top: 32rpx;
+}
+
+.wrap1 .Discount .Price-list .li:nth-of-type(2):after {
+    left: 12rpx;
+}
+
+.wrap1 .Discount .Price-list .li:nth-of-type(2):before {
+    right: 12rpx;
+}
+
+.wrap1 .Discount .button-box {
+    height: 90rpx;
+    padding-top: 52rpx;
+}
+
+.wrap1 .Discount .button-box button {
+    display: block;
+    width: 100%;
+    height: 90rpx;
+    background: linear-gradient(left,#ff5d74,#e55d46);
+    text-align: center;
+    line-height: 90rpx;
+    color: #fff;
+    border-radius: 200rpx;
+    font-size: 34rpx;
+    font-weight: bold;
+}
+
+.wrap2 {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/bg2-ty.jpg") no-repeat #f05558;
+    background-size: 100% 997rpx;
+    padding: 372rpx 74rpx 40rpx 74rpx;
+    box-sizing: border-box;
+}
+
+.zx .wrap2 {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/bg2-zx.jpg") no-repeat #3e8afb;
+    background-size: 100% 997rpx;
+}
+
+.wrap2 .voucher-wrap {
+    padding: 22rpx;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.56);
+    border-radius: 10rpx;
+}
+
+.wrap2 .voucher-wrap .voucher {
+    height: 130rpx;
+    background: #fff;
+    border-radius: 10rpx;
+    margin-top: 22rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .left,.wrap2 .voucher-wrap .voucher .right {
+    height: 130rpx;
+    float: left;
+}
+
+.wrap2 .voucher-wrap .voucher .left {
+    width: 28%;
+    position: relative;
+    text-align: center;
+    color: #fa6b3f;
+}
+
+.wrap2 .voucher-wrap .voucher .left:after,.wrap2 .voucher-wrap .voucher .left:before {
+    position: absolute;
+    width: 12rpx;
+    height: 12rpx;
+    right: 0;
+    content: "";
+    background: #fbc2b6;
+    border-radius: 12rpx;
+    opacity: .8;
+}
+
+.zx .wrap2 .voucher-wrap .voucher .left:after,.zx .wrap2 .voucher-wrap .voucher .left:before {
+    background: #aaccfd;
+}
+
+.wrap2 .voucher-wrap .voucher .left:after {
+    top: -6rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .left:before {
+    bottom: -6rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .left span {
+    font-family: PingFang-SC-Heavy,sans-serif;
+    font-size: 28rpx;
+    float: left;
+    line-height: 28rpx;
+    padding: 64rpx 0 0 30rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .left strong {
+    font-size: 50rpx;
+    margin-left: -12rpx;
+    float: left;
+    line-height: 50rpx;
+    padding: 46rpx 0 0 18rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .right {
+    width: 72%;
+    position: relative;
+}
+
+.wrap2 .voucher-wrap .voucher .right:after {
+    width: 1px;
+    height: 130rpx;
+    border-left: 1px dashed #ffb098;
+    position: absolute;
+    left: -6.8rpx;
+    content: "";
+    top: 0;
+}
+
+.zx .wrap2 .voucher-wrap .voucher .right:after {
+    border-left: 1px dashed #b8d6fd;
+}
+
+.wrap2 .voucher-wrap .voucher .right .h3 {
+    font-size: 32rpx;
+    line-height: 32rpx;
+    font-weight: normal;
+    padding: 30rpx 0 0 40rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .right .tag {
+    padding: 4rpx 0 0 40rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .right .tag span {
+    display: inline-block;
+    height: 30rpx;
+    line-height: 30rpx;
+    padding: 0 8rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 20rpx;
+    background: #fa6b3f;
+    border-radius: 4rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .right .shiyong,.wrap2 .voucher-wrap .voucher .right .qiangwan,.wrap2 .voucher-wrap .voucher .right .lingqu,.wrap2 .voucher-wrap .voucher .right .chenggong {
+    position: absolute;
+    width: 142rpx;
+    height: 81rpx;
+    left: 226rpx;
+    top: 28rpx;
+}
+
+.wrap2 .voucher-wrap .voucher .right .shiyong {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/shiyong.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.wrap2 .voucher-wrap .voucher .right .qiangwan {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/qiangwan.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.wrap2 .voucher-wrap .voucher .right .chenggong {
+    width: 157rpx;
+    height: 83rpx;
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/chenggong.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.wrap2 .voucher-wrap .voucher .right .lingqu {
+    background: url("https://images3.c-ctrip.com/train/wechat/ztripwxapp/newguestgifts/lingqu.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.wrap2 .voucher-wrap .voucher:nth-of-type(1) {
+    margin-top: 0;
+}
+
+.wrap2 .voucher-wrap .gray .left,.wrap2 .voucher-wrap .gray .right {
+    color: #ccc;
+}
+
+.wrap2 .voucher-wrap .gray .right .tag span {
+    background: #ccc;
+}
+
+.text-list {
+    color: #fff;
+    padding-top: 56rpx;
+}
+
+.text-list .dt {
+    font-size: 30rpx;
+    line-height: 30rpx;
+    text-align: center;
+}
+
+.text-list .dt span {
+    position: relative;
+}
+
+.text-list .dt span:after,.text-list .dt span:before {
+    height: 1px;
+    width: 20rpx;
+    background: #fff;
+    content: "";
+    position: absolute;
+    top: 20rpx;
+}
+
+.text-list .dt span:after {
+    left: -40rpx;
+}
+
+.text-list .dt span:before {
+    right: -40rpx;
+}
+
+.text-list .dd {
+    line-height: 44rpx;
+    font-size: 24rpx;
+}
+
+.text-list .dd view {
+    margin-top: 16rpx;
+}

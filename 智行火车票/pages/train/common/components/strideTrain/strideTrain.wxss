@@ -1,0 +1,206 @@
+.stride-box {
+    position: relative;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAIAAAODg4P///yH5BAAHAP8ALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0;
+    border-bottom-width: 1px;
+    padding: 24rpx 0;
+}
+
+.stride-box:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.stride-box .txt {
+    font-size: 26rpx;
+    color: #333;
+}
+
+.stride-box .txt .tgrey {
+    font-size: 26rpx;
+    color: #999;
+    margin-left: 12rpx;
+}
+
+.stride-box .txt .tgrey text {
+    color: #5495E6;
+    font-weight: normal;
+}
+
+.stride-box .txt .checi {
+    font-size: 30rpx;
+    font-weight: 600;
+    margin-right: 20rpx;
+}
+
+.stride-box .txt .haoshi,.stride-box .txt .zuoxi {
+    font-size: 28rpx;
+    margin-right: 20rpx;
+}
+
+.stride-box .txt .price {
+    float: right;
+    font-size: 28rpx;
+    color: #5495E6;
+}
+
+.stride-bd {
+    padding-top: 20rpx;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    padding-right: 100rpx;
+}
+
+.stride-bd .item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.stride-bd .item::before {
+    width: 16rpx;
+    height: 16rpx;
+    border: 4rpx solid #5495E6;
+    box-sizing: border-box;
+    background: #fff;
+    position: absolute;
+    content: "";
+    border-radius: 16rpx;
+    top: 10%;
+    left: 50%;
+    margin: -8rpx 0 0 -8rpx;
+    z-index: 5;
+}
+
+.stride-bd .item-original::before {
+    background: #5495E6;
+}
+
+.stride-bd .item::after {
+    width: 100%;
+    height: 4rpx;
+    background: #5495E6;
+    position: absolute;
+    content: "";
+    top: 10%;
+    margin-top: -2rpx;
+    right: 50%;
+    z-index: 2;
+}
+
+.stride-bd .item.bu::after {
+    height: 1px;
+    background: #fff;
+    border-top: 4rpx dashed #5495E6;
+}
+
+.stride-bd .item:first-child {
+    text-align: left;
+}
+
+.stride-bd .item:first-child::before {
+    left: 0;
+    margin: -8rpx 0 0 0;
+}
+
+.stride-bd .item:first-child::after {
+    right: 0;
+}
+
+.stride-bd .item:last-child {
+    text-align: right;
+}
+
+.stride-bd .item:last-child::before {
+    left: auto;
+    right: 0;
+    margin: -8rpx 0 0 0;
+}
+
+.stride-bd .item:last-child::after {
+    width: 150%;
+    z-index: 1;
+    right: 0;
+}
+
+.stride-bd .item .station {
+    font-size: 26rpx;
+    margin-top: 30rpx;
+}
+
+.stride-bd .item .info {
+    width: 100rpx;
+    height: 32rpx;
+    position: absolute;
+    border: 3rpx solid #FFDBD4;
+    background: #fff;
+    top: 10%;
+    box-sizing: border-box;
+    border-radius: 32rpx;
+    margin-top: -16rpx;
+    font-size: 22rpx;
+    text-align: center;
+    color: #5495E6;
+    z-index: 10;
+    line-height: 28rpx;
+}
+
+.stride-bd .item:first-child .info {
+    right: -8rpx;
+}
+
+.stride-bd .item:last-child .info {
+    left: -8rpx;
+}
+
+.stride-box .icon-checkbox {
+    width: 40rpx;
+    height: 40rpx;
+    border: 1px solid #CDCDCD;
+    background: #fff;
+    box-sizing: border-box;
+    position: absolute;
+    right: 5rpx;
+    bottom: 44rpx;
+    border-radius: 4rpx;
+}
+
+.ty .stride-box.current .icon-checkbox {
+    border-color: #FC6E51;
+}
+
+.zx .stride-box.current .icon-checkbox {
+    border-color: #5495E6;
+}
+
+.stride-box.current .icon-checkbox::after,.stride-box.disabled .icon-checkbox::after {
+    width: 20rpx;
+    height: 8rpx;
+    border-left: 1px solid #5495E6;
+    border-bottom: 1px solid #5495E6;
+    position: absolute;
+    content: "";
+    transform: rotate(-45deg);
+    top: 50%;
+    left: 50%;
+    margin: -10rpx 0 0 -10rpx;
+}
+
+.zx .stride-box.current .icon-checkbox::after {
+    border-left: 1px solid #5495E6;
+    border-bottom: 1px solid #5495E6;
+}
+
+.stride-box.disabled .icon-checkbox {
+    border-color: #ccc;
+}
+
+.stride-box.disabled .icon-checkbox::after {
+    border-color: #ccc;
+}
+
+.station-original {
+    color: #5495E6;
+}

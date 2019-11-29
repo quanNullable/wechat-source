@@ -1,0 +1,115 @@
+.modal-cover {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.modal-container .box {
+    display: flex;
+    flex-direction: column;
+    min-width: 60%;
+    max-width: 80%;
+    background-color: white;
+    padding: 0.5rem;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    min-height: 40%;
+    max-height: 70%;
+}
+
+.modal-container .box .context {
+    overflow: auto;
+}
+
+.modal-container .box .title {
+    position: relative;
+    font-size: 18px;
+    color: #111;
+    text-align: center;
+    line-height: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-container .box .content {
+    color: #666;
+    font-size: 16px;
+    margin: 0.5rem;
+}
+
+.modal-container .box .detail {
+    color: #666;
+    font-size: 14px;
+    margin: 0.5rem;
+}
+
+.modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    margin-top: -7.5px;
+    margin-right: -7.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clos-container {
+    background: #333;
+    height: 20px;
+    width: 20px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    transform: scaleX(0.75) scaleY(0.75);
+}
+
+.modal-triangle {
+    width: 0;
+    height: 0;
+    border-width: 20px;
+    border-style: solid;
+    position: absolute;
+}
+
+.modal-triangle-top {
+    top: -11px;
+    left: -10px;
+    border-color: white transparent transparent transparent;
+}
+
+.modal-triangle-right {
+    top: -10px;
+    right: -11px;
+    border-color: transparent white transparent transparent;
+}
+
+.modal-triangle-bottom {
+    bottom: -11px;
+    left: -10px;
+    border-color: transparent transparent white transparent;
+}
+
+.modal-triangle-left {
+    top: -10px;
+    left: -11px;
+    border-color: transparent transparent transparent white;
+}

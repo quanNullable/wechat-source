@@ -1,0 +1,19 @@
+<template name="popsbuy">
+    <view class="popsbuy" style="background-color:{{bgColor}}" wx:if="{{show}}">
+        <view class="titleBar">
+            <text space="emsp">{{hint}}</text>
+        </view>
+        <scroll-view class="lbsWrapper" enableBackToTop="true" scrollY="true">
+            <radio-group bindchange="bindRadioChange" class="radio-group">
+                <label class="radios" wx:for="{{items}}" wx:key="key">
+                    <radio checked="{{item.checked}}" class="radio" value="{{item.dealid}}"></radio>
+                    <image class="image" mode="scaleToFill" src="{{item.imageUrl}}"></image>
+                    <text class="centent">{{item.couponTitle}}</text>
+                </label>
+            </radio-group>
+        </scroll-view>
+        <view class="btnWrapper">
+            <button bindtap="bindVerify" class="verify" disabled="{{verifyDisa}}" style="color:{{verifyButColor}}; background-color: {{verifyButBgColor}}; opacity: {{opacity}}" type="default">{{verifyButText}}</button>
+        </view>
+    </view>
+</template>

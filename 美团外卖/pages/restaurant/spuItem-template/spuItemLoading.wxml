@@ -1,0 +1,3 @@
+<template name="spuItemLoading">
+    <view class="food-item-loading"></view>
+</template>

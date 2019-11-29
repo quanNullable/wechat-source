@@ -1,0 +1,40 @@
+<view>
+    <view class="headbg">
+        <image class="bg-avatar" src="{{userInfo.avatarUrl||'https://images4.c-ctrip.com/target/t1/headphoto/441/333/730/ffac788ed0594b848a0771564fe6a2ee_C_180_180.jpg'}}"></image>
+    </view>
+    <view class="tick-box">
+        <view class="tick-hd">
+            <image class="img-avatar" src="{{userInfo.avatarUrl||'https://images4.c-ctrip.com/target/t1/headphoto/441/333/730/ffac788ed0594b848a0771564fe6a2ee_C_180_180.jpg'}}"></image>
+            <view class="name">{{userInfo.nickName}}</view>
+            <view class="txt">购买了一张车票</view>
+        </view>
+        <view class="tick-bd">
+            <view class="modify">
+                <view class="item from">
+                    <view class="station">{{oInfo.DepartStation}}</view>
+                    <view class="strong">{{oInfo.DepartTime}}</view>
+                    <view class="date">{{oInfo.DepartDate}}</view>
+                </view>
+                <view class="mid">{{oInfo.TrainNumber}}</view>
+                <view class="item to">
+                    <view class="station">{{oInfo.ArriveStation}}</view>
+                    <view class="strong">{{oInfo.ArriveTime}}</view>
+                    <view class="date">{{oInfo.ArriveDate}}</view>
+                </view>
+            </view>
+            <view class="note">{{sentence}}</view>
+            <view class="frd-change-wrapper" wx:if="{{isMe}}">
+                <image bindtap="changeSentenceHandler" src="http://images3.c-ctrip.com/zt/img-huan.png"></image>
+            </view>
+        </view>
+        <button bindtap="share" class="btn-buy" hoverClass="btn-buy_hover" id="c_train_wx_friend_share" openType="share" wx:if="{{isMe}}">分享行程</button>
+        <button bindtap="buy" class="btn-buy" hoverClass="btn-buy_hover" id="c_train_wx_friend_buyticket0908" wx:else>我要购票</button>
+    </view>
+    <view bindtap="hideMask" class="qp-share-tips" wx:if="{{mask}}">
+        <view class="qp-share-txt">
+            <text wx:if="{{isOrderE}}">点击右上角...将订单分享给你的好友或截图分享至朋友圈</text>
+            <text wx:if="{{isOrderJL}}">点击右上角...分享给你的好友、微信群或者截图发至朋友圈，把好运分享给更多的朋友</text>
+            <button class="btn-know" hoverClass="btn-know_hover">知道啦</button>
+        </view>
+    </view>
+</view>

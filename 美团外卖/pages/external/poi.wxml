@@ -1,0 +1,109 @@
+<scroll-view class="poi-container" scrollY="1">
+    <view class="share-wrap">
+        <include src="../base.wxml"></include>
+        <view class="section-1-wrap">
+            <view wx:if="{{user_id!=0}}">
+                <image class="section-1-pic" src="{{food_comment.user_pic_url||'/img/icons/my-image.png'}}"></image>
+                <view class="section-1-txt">
+                    <view class="section-1-txt-0">您的好友推荐{{poi_share.poi_info.poi_name}}给你</view>
+                    <view class="section-1-txt-1">{{food_comment.comments[0].comment}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="section-2-wrap">
+            <view class="poi-logo-wrap">
+                <view class="poi-logo-bg">
+                    <view class="poi-logo" style="background-image:url('{{poi_share.poi_info.poi_logo}}')"></view>
+                </view>
+            </view>
+            <view class="section-2-main">
+                <view class="poi-name"> {{poi_share.poi_info.poi_name}} </view>
+                <view class="poi-score-view">
+                    <image class="poi-score-star {{score===4?'poi-score-star-last':''}}" mode="scaleToFill" src="{{score<poi_share.poi_info.poi_score?score+0.8>=poi_share.poi_info.poi_score?'/img/icons/bighalfscore.png':'/img/icons/bigscore.png':'/img/icons/bignoscore.png'}}" wx:for="{{[0,1,2,3,4]}}" wx:for-item="score" wx:key="{{item}}"></image>
+                </view>
+                <view class="business-fee">起送价￥{{poi_share.poi_info.poi_min_price}} | 配送费￥{{poi_share.poi_info.poi_shipping_fee}} | {{poi_share.poi_info.poi_avg_delivery_time}}分钟</view>
+                <view class="business-fee dp-score" wx:if="{{food_comment.comments_dp.comment_score!=0}}">大众点评: {{food_comment.comments_dp.comment_score}}</view>
+                <view bindtap="showDiscount" class="business-privilege" wx:if="{{poi_share.poi_info.discount_info.length>0}}">
+                    <view class="discount-item" hidden="{{!discount_info_show&&index>0}}" wx:for="{{poi_share.poi_info.discount_info}}" wx:key="{{index}}">
+                        <image src="{{item.icon_url}}"></image>{{item.info}} </view>
+                    <view class="discount-show-button" wx:if="{{poi_share.poi_info.discount_info.length>1}}">
+                        <view class="ui-arrow-down discount-show-ui" wx:if="{{poi_share.poi_info.discount_info.length>0&&!discount_info_show}}"></view>
+                        <view class="ui-arrow-up discount-show-ui" wx:if="{{poi_share.poi_info.discount_info.length>0&&discount_info_show}}"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="business-graph">
+            <view class="business-circle circle-left"></view>
+            <view class="business-graph-middle">
+                <view class="gray-line"></view>
+            </view>
+            <view class="business-circle circle-right"></view>
+        </view>
+        <view class="section-coupon-wrap coupon-wrap" wx:if="{{!!poi_share.poi_info.couponActVo&&poi_share.poi_info.couponActVo.credit!=0&&poi_coupons.coupons==null}}">
+            <view class="coupon-show">
+                <view class="coupon-credit">{{poi_share.poi_info.couponActVo.credit}}</view>
+            </view>
+            <view class="coupon-grab-right">
+                <view class="coupon-limit" wx:if="{{!!poi_share.poi_info.couponActVo.limitNewCustom}}">本店新用户专享<view bindtap="openTip" class="icon-exclaO rule-icon j-rule-icon"></view>
+                </view>
+                <view class="coupon-limit" wx:else>本店专享<view bindtap="openTip" class="rule-icon"></view>
+                </view>
+                <view class="coupon-grab">
+                    <input bindinput="onUserphoneInput" class="coupon-grab-phone" maxlength="11" placeholder="请输入手机号码" type="number" value="{{userphoneInput}}"></input>
+                    <view bindtap="grabButton" class="grab-btn j-grab-btn">领取</view>
+                </view>
+            </view>
+        </view>
+        <view class="section-coupon-wrap coupon-wrap" wx:if="{{poi_coupons.coupons!=null}}">
+            <view class="coupon-suc-title">{{poi_coupons.tip}}<view bindtap="openTip" class="rule-icon"></view>
+            </view>
+            <view class="coupon-suc-sub-title">快去下单吧～</view>
+            <view class="coupon-item" wx:for="{{poi_coupons.coupons}}" wx:key="{{index}}">
+                <view class="coupon-item-left">
+                    <text class="coupon-item-left-1">¥</text>
+                    <text class="coupon-item-left-2">{{item.price}}</text>
+                </view>
+                <view class="coupon-item-right">
+                    <view class="coupon-item-right-1">满{{item.limitPrice}}可用</view>
+                    <view class="coupon-item-right-2">{{item.validity}}</view>
+                </view>
+            </view>
+            <view class="coupon-result">
+                <text class="coupon-result-left">已发至账号: {{poi_coupons.phone}}</text>
+            </view>
+            <view bindtap="onShareButton" class="coupon-share">送好友{{poi_coupons.credit}}元大礼包</view>
+        </view>
+        <view class="section-coupon-wrap section-coupon-wraplast">
+            <view class="food-wrap-title">热销菜品</view>
+            <view class="food-subject-container">
+                <view class="food-subject-wrap {{(index+1)%3==0?'food-subject-wraplast':''}}" wx:for="{{poi_food.food_spu_tags[0].spus}}" wx:key="{{index}}">
+                    <navigator bindtap="onClickPoiFood" url="../restaurant/restaurant?poi_id={{poi_id}}&spu_id={{item.id}}&tag={{item.tag}}&cat_id=0">
+                        <view class="sale-info">{{item.promotion_info}}</view>
+                        <image class="fodd-subject-img" mode="aspectFill" src="{{item.picture||'/img/icons/shoploading.png'}}"></image>
+                        <view class="food-subject-name">{{item.name}}</view>
+                        <view class="food-subject-subname">{{item.month_saled_content}}</view>
+                        <view class="food-subject-price">
+                            <text class="food-subject-dollar">¥</text>
+                            <text class="food-price">{{item.skus[0].price}}</text>
+                            <text class="food-original-price" wx:if="{{item.skus[0].origin_price!=item.skus[0].price}}">{{item.skus[0].origin_price}}</text>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+        <view catchtap="closeTip" class="poi-tip-wrap" id="poi-tip-wrap" wx:if="{{tip_show}}">
+            <view class="poi-tip">
+                <view catchtap="closeTip" class="poi-close" id="poi-close"></view>
+                <view class="poi-tip-title">活动详情</view>
+                <view class="poi-tip-text">1.店铺新用户是指未曾在该商家有成功消费记录的用户;</view>
+                <view class="poi-tip-text">2.商家代金券仅限在美团外卖与美团客户端最新版使用，下单时需选择在线支付方式;</view>
+                <view class="poi-tip-text">3.商家代金券仅限该商家使用，不可用于其他商家</view>
+                <view class="poi-tip-text">4.商家代金券可以与其他活动叠加使用</view>
+            </view>
+        </view>
+    </view>
+    <view class="bottom-wrap">
+        <navigator bindtap="onClickRestaurant" class="gotoPoi" url="../restaurant/restaurant?poi_id={{poi_id}}&cat_id=0" wx:if="{{!error.show}}">进店购买</navigator>
+    </view>
+</scroll-view>

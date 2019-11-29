@@ -1,0 +1,36 @@
+<template name="picker-coupon">
+    <import src="coupon-title.wxml"></import>
+    <import src="../../../components/coupon/coupon.wxml"></import>
+    <view class="picker-container" wx:if="{{show}}">
+        <view bindtap="changeCoupon" class="picker-mask"></view>
+        <view class="picker-content">
+            <view class="picker-header flex-center"> 美团红包 </view>
+            <block wx:if="{{valid&&valid.length>0||invalid&&invalid.length>0||expires&&expires.length>0}}">
+                <view class="picker-body picker-coupon">
+                    <scroll-view class="picker-scroll" scrollY="true">
+                        <block wx:if="{{valid&&valid.length>0}}">
+                            <template is="coupon-title" data="{{text:'可用优惠券（'+valid.length+'张）'}}"></template>
+                            <template is="coupon" data="{{coupon:item,disabled:false,selected:activeID===item.coupon_view_id}}" wx:for="{{valid}}" wx:key="{{item.coupon_view_id}}"></template>
+                        </block>
+                        <block wx:if="{{invalid&&invalid.length>0}}">
+                            <template is="coupon-title" data="{{text:'不可用优惠券（'+invalid.length+'张）'}}"></template>
+                            <template is="coupon" data="{{coupon:item,requestReason:true,reasons:disableReasons[index],reasonKey:index,disabled:true}}" wx:for="{{invalid}}" wx:key="{{item.coupon_view_id}}"></template>
+                        </block>
+                        <block wx:if="{{expires&&expires.length>0}}">
+                            <template is="coupon-title" data="{{text:'无效优惠券（'+expiresCount+'张）'}}"></template>
+                            <template is="coupon" data="{{coupon:item,disabled:true}}" wx:for="{{expires}}" wx:key="{{item.coupon_view_id}}"></template>
+                        </block>
+                        <view class="coupon-end"> 没有更多红包了 <view bindtap="onClickExpireCoupons" class="ui-inline-block" wx:if="{{!expires}}"> | 查看无效券 >> </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bindtap="onSelectCoupon" class="flex-center picker-footer"> 不使用美团红包 </view>
+            </block>
+            <view class="picker-body coupon-empty" wx:else>
+                <view class="ui-error ui-error-no-coupon coupon-empty-img"></view> 暂无可用红包 <view class="coupon-end">
+                    <view bindtap="onClickExpireCoupons" class="ui-inline-block"> 查看无效券 >> </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

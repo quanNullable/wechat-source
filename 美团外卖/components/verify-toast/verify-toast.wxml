@@ -1,0 +1,14 @@
+<template name="verify">
+    <view class="verify-toast-bg" wx:if="{{show}}">
+        <view class="verify-toast-container">
+            <view bindtap="verifyClose" class="verify-close"></view>
+            <view class="verify-title">请输入图片中的内容</view>
+            <image bindtap="verifyChange" class="verify-image" src="{{imageUrlRequest}}"></image>
+            <view class="verify-input-box">
+                <input bindinput="onVerifyInput" class="verify-input" name="verify-input" placeholder="请输入4位验证码" placeholderClass="verify-input-placeholder" type="text" value="{{verify_input}}"></input>
+                <view bindtap="verifyClear" class="verify-clear"></view>
+            </view>
+            <view bindtap="verifyRequest" class="verify-button">验证</view>
+        </view>
+    </view>
+</template>

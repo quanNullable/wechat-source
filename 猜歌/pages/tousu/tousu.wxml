@@ -1,0 +1,6 @@
+<radio-group bindchange="radioChange" class="radio-group">
+    <label class="radio" wx:for="{{items}}">
+        <radio value="{{item}}"></radio>{{item}}
+  </label>
+</radio-group>
+<button bindtap="submit" class="button-ts">投诉</button>

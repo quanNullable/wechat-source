@@ -1,0 +1,48 @@
+<template name="airdrop-coupon">
+    <view class="airdrop-coupon-mask {{showHideAnimate?'airdrop-animate-hide':''}}">
+        <view class="airdrop-coupon airdrop-animate-show">
+            <view class="entrance-open" wx:if="{{needLogin}}">
+                <image catchtap="onClickAirdropLogin" class="entrance-pic" src="{{tianJiangUi.tjUnloginPicUrl}}"></image>
+                <view catchtap="closeLayer" class="close-btn"></view>
+            </view>
+            <view class="airdrop-layer" wx:if="{{hasCoupon&&!needLogin}}">
+                <view class="top-bg">
+                    <image class="top-img" src="{{tianJiangUi.tjSuccessHeadPicUrl}}"></image>
+                </view>
+                <view class="coupon-list" style="background:{{tianJiangUi.tjBgColor}}">
+                    <view bindtap="onClickUseCoupon" class="coupon-item" data-url="{{item.couponDirectLink}}" wx:for="{{coupons}}" wx:key="{{index}}">
+                        <view class="item-left" wx:if="{{index<3}}">
+                            <image class="item-pic" src="{{item.brandCouponLogoUrl}}" wx:if="{{item.wmCouponSource=='POI'&&item.brandCouponLogoUrl}}"></image>
+                            <view class="left-content" style="{{item.brandCouponLogoUrl?'margin-left: 20rpx':''}}">
+                                <view class="item-title">
+                                    <view class="title-limit" style="{{item.brandCouponLogoUrl||item.wmCouponLimitShippingType=='MEITUAN_SHIPPING'?'max-width: 240rpx':''}}; ">{{item.couponDisplayName}}</view>
+                                    <view class="trans-tag" wx:if="{{item.wmCouponLimitShippingType=='MEITUAN_SHIPPING'}}"> 美团专送 </view>
+                                </view>
+                                <view class="valid-time"> {{item.couponValidTimeDoc}} <view class="coupon-type-tip" wx:if="{{item.mutexType}}">
+                                        <text wx:if="{{item.mutexType==1}}">互斥券</text>
+                                        <text wx:if="{{item.mutexType==2}}">同享券</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="item-line"></view>
+                        <view class="item-right">
+                            <view class="money-area">
+                                <view class="money-num" wx:if="{{item.wmCouponType=='MONEY'}}"> ￥<view class="big-num">{{item.intMoney}}</view>
+                                    <text wx:if="{{item.pointMoney}}">{{item.pointMoney}}</text>
+                                </view>
+                                <view class="money-num" wx:if="{{item.wmCouponType=='DISCOUNT'}}">
+                                    <view class="big-num">{{item.intMoney}}</view>
+                                    <text wx:if="{{item.pointMoney}}">{{item.pointMoney}}</text> 折 </view>
+                                <view class="sale-tip" wx:if="{{item.orderAmountLimitDoc}}">{{item.orderAmountLimitDoc}}</view>
+                            </view>
+                            <view class="use-btn">去使用</view>
+                        </view>
+                    </view>
+                    <view bindtap="goToUse" class="coupon-goto-btn" style="color:{{tianJiangUi.tjButtonTextColor}}; background: {{tianJiangUi.tjButtonColor}}" wx:if="{{tianJiangUi.tjButtonTextColor&&tianJiangUi.tjButtonColor&&tianJiangUi.tjButtonText&&tianJiangUi.tjButtonDirectLink}}"> {{tianJiangUi.tjButtonText}} </view>
+                </view>
+                <view bindtap="closeLayer" class="close-btn"></view>
+            </view>
+        </view>
+    </view>
+</template>

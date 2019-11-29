@@ -1,0 +1,210 @@
+.icon.icon-radio,.icon.icon-que {
+    width: 36rpx;
+    height: 36rpx;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #5495E6;
+    position: absolute;
+    text-align: center;
+    line-height: 36rpx;
+}
+
+.current .icon-radio {
+    background: #099fde;
+}
+
+.current .icon-radio::after {
+    width: 20rpx;
+    height: 10rpx;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    transform: rotate(-45deg);
+    position: absolute;
+    content: "";
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 18rpx solid transparent;
+    border-right: 18rpx solid transparent;
+    border-top: 18rpx solid #fff;
+    margin-left: 25%;
+}
+
+.css-tick {
+    width: 20rpx;
+    height: 10rpx;
+    border-left: 2rpx solid #A1D737;
+    border-bottom: 2rpx solid #A1D737;
+    transform: rotate(-45deg);
+    content: "";
+}
+
+.red {
+    color: #F25306;
+}
+
+.arrow-right {
+    width: 12rpx;
+    height: 12rpx;
+    border-top: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    transform: rotate(45deg);
+}
+
+.qiangpiao-linjin .item {
+    padding: 24rpx 30rpx;
+}
+
+.qiangpiao-linjin .item .i-img {
+    width: 60rpx;
+    height: 60rpx;
+    float: left;
+    margin: 10rpx 25rpx 0 0;
+}
+
+.qiangpiao-linjin .item .tit {
+    font-size: 32rpx;
+    overflow: hidden;
+    line-height: 48rpx;
+}
+
+.qiangpiao-linjin .item .txt {
+    font-size: 26rpx;
+    color: #999;
+    overflow: hidden;
+    line-height: 30rpx;
+}
+
+.qiangpiao-linjin-switch {
+    float: right;
+    margin-top: -10rpx;
+}
+
+.pop-mid {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    z-index: 3002;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.pop-mid.active {
+    display: table;
+}
+
+.pop-mid-bd {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.pop-white {
+    background: #fff;
+    margin: 0 80rpx;
+    border-radius: 20rpx;
+    position: relative;
+    padding: 30rpx 35rpx;
+}
+
+.pop-white.modal-box {
+    padding: 0;
+}
+
+.pop-content {
+    padding: 40rpx;
+}
+
+.pop-content .tit {
+    text-align: center;
+    font-size: 36rpx;
+}
+
+.pop-content-list {
+    color: #999;
+}
+
+.pop-content-list .item {
+    padding-left: 30rpx;
+    position: relative;
+    font-size: 26rpx;
+    line-height: 36rpx;
+    margin-bottom: 10rpx;
+}
+
+.pop-content-list .item::before {
+    width: 12rpx;
+    height: 12rpx;
+    background: #ccc;
+    border-radius: 12rpx;
+    position: absolute;
+    left: 0;
+    top: 12rpx;
+    content: "";
+}
+
+.pop-btn {
+    display: flex;
+    border-radius: 0 0 20rpx 20rpx;
+    overflow: hidden;
+}
+
+.pop-btn button {
+    flex: 1;
+}
+
+.pop-btn .btn-white {
+    background: #fff;
+    color: #19a0f0;
+    font-size: 32rpx;
+}
+
+.pop-btn .btn-white::after {
+    border: 0;
+}
+
+.pop-btn .btn-white_hover::after {
+    background: rgba(0,0,0,.1);
+}
+
+.jt-info {
+    position: relative;
+    font-size: 12px;
+    padding: 6rpx;
+    display: inline-block;
+    margin-top: 4rpx;
+    z-index: 5;
+}
+
+.jt-info::before {
+    width: 30rpx;
+    height: 1px;
+    margin-top: -1px;
+    background: rgba(255,255,255,0.6);
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: -40rpx;
+    margin-left: 0;
+}
+
+.jt-info::after {
+    width: 30rpx;
+    height: 1px;
+    margin-top: -1px;
+    background: rgba(255,255,255,0.6);
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    content: "";
+    top: 50%;
+    right: -40rpx;
+    margin-left: 0;
+    z-index: -1;
+}

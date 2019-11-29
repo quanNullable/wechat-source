@@ -1,0 +1,182 @@
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}
+
+.share-box {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.share-top {
+    position: relative;
+}
+
+.share-top image {
+    width: 750rpx;
+}
+
+.share-top .share-ticket {
+    margin: -30.5% 1rem 0;
+    background: url("//images3.c-ctrip.com/zt/share/ticket.png") no-repeat;
+    background-size: 100% auto;
+    padding: .5rem 1.5rem 2rem;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.share-top .share-ticket .i-qiang {
+    font-size: .5rem;
+    border: 1px solid #666;
+    display: inline-block;
+    border-radius: 50%;
+    width: .75rem;
+    height: .75rem;
+    vertical-align: middle;
+    margin: -2px 0 0 0.5rem;
+    text-align: center;
+    line-height: 0.75rem;
+}
+
+.share-top .share-ticket .station {
+    margin-top: -0.2rem;
+}
+
+.share-top .share-ticket .from,.share-top .share-ticket .to {
+    width: 35%;
+}
+
+.share-top .share-ticket .from {
+    float: left;
+}
+
+.share-top .share-ticket .to {
+    float: right;
+    text-align: right;
+}
+
+.share-top .share-ticket .strong {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.share-top .share-ticket p {
+    font-size: 0.55rem;
+}
+
+.share-top .share-ticket .checi {
+    width: 30%;
+    display: block;
+    margin: .5rem auto 0;
+    text-align: center;
+    padding-top: 1rem;
+    font-size: .8rem;
+    position: relative;
+}
+
+.share-top .share-ticket .checi:after {
+    width: 3.1rem;
+    height: .3rem;
+    position: absolute;
+    content: "";
+    top: .5rem;
+    left: 50%;
+    margin-left: -1.55rem;
+    background: url("//images3.c-ctrip.com/zt/share/unicon.png") no-repeat;
+    background-position: -1.75rem 0;
+    background-size: 5rem;
+}
+
+.share-bd {
+    background: #fff;
+    position: relative;
+    text-align: center;
+}
+
+.share-bd:before {
+    height: 1.7rem;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: -1.5rem;
+    right: 0;
+    background: url("//images3.c-ctrip.com/zt/share/wave.png") no-repeat;
+    background-size: 100% 1.7rem;
+    z-index: 20;
+}
+
+.share-bd .share-coef {
+    padding-top: 4rem;
+    line-height: 1.6rem;
+}
+
+.share-bd .share-coef .h2 {
+    font-size: .85rem;
+    color: #333;
+}
+
+.share-bd .share-coef .h2 .strong {
+    font-size: 1.25rem;
+    color: #FD6D4B;
+    font-weight: 400;
+    margin: 0 0.1rem;
+}
+
+.share-bd .share-coef .h3 {
+    font-size: .7rem;
+    color: #666;
+}
+
+.share-bd .share-coef .h3 .strong {
+    font-size: 1rem;
+    color: #FD6D4B;
+    font-weight: 400;
+    margin: 0 0.1rem;
+}
+
+.share-bd .share-coef i {
+    width: .75rem;
+    height: .75rem;
+    background: url("//images3.c-ctrip.com/zt/share/unicon.png") no-repeat;
+    background-size: 5rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -3px 2px 0;
+}
+
+.share-bd .share-coef .star-grey {
+    background-position: -0.9rem 0;
+}
+
+.share-bd .btn-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.share-bd .btn-qiangpiao {
+    width: 10.5rem;
+    font-size: 1.1rem;
+    color: #fff;
+    background: #FD6D4B;
+    border-radius: 6px;
+    margin-top: 2rem;
+    box-shadow: 0 3px 0 #D75338;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.topimg-wrapper {
+}

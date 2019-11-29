@@ -1,0 +1,48 @@
+.tip-bank {
+    background: #fff;
+    max-height: 730rpx;
+}
+
+.tip-bank .tit {
+    text-align: center;
+    line-height: 100rpx;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px 0;
+    box-sizing: border-box;
+}
+
+.tip-bank .bank-list {
+    max-height: 630rpx;
+    overflow-y: auto;
+}
+
+.tip-bank .bank-list .item {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px 0;
+    margin: 0 40rpx;
+    line-height: 96rpx;
+    position: relative;
+    font-size: 32rpx;
+}
+
+.tip-bank .bank-list .item::after {
+    width: 12rpx;
+    height: 12rpx;
+    position: absolute;
+    content: "";
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    transform: rotate(-135deg);
+    right: 10rpx;
+    top: 50%;
+}
+
+.tip-bank .bank-list .item .image {
+    vertical-align: middle;
+    display: inline-block;
+    width: 50rpx;
+    height: 46rpx;
+    margin: -2px 28rpx 0 0;
+}

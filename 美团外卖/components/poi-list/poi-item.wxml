@@ -1,0 +1,56 @@
+<template name="poi-item">
+    <import src="../score/score.wxml"></import>
+    <import src="../poi-status/poi-status.wxml"></import>
+    <view class="poi-item {{item.status===3?'poi-item-closed':''}} {{item.discounts2.length?'':'no-actvs'}}">
+        <view class="poi-img" style="background-image:url({{item.pic_url?item.pic_url:'/img/icons/no-shopImg.png'}})">
+            <view class="poi-icon" style="background-image:{{'url('+item.poi_type_icon+')'}}" wx:if="{{item.poi_type_icon}}"></view>
+            <view class="poi-num {{cartKeys[item.id]>99?'ellipse':''}}" wx:if="{{cartKeys[item.id]}}">{{cartKeys[item.id]>99?'99+':cartKeys[item.id]}}</view>
+        </view>
+        <view class="poi-info">
+            <view class="poi-row poi-row-head">
+                <view class="poi-name"> {{item.name}} </view>
+            </view>
+            <view class="poi-row poi-row-sales">
+                <view class="poi-status-closed" wx:if="{{item.status===3}}"> {{item.status_desc}} </view>
+                <block wx:else>
+                    <template is="poi-status" data="{{...item.shipping_time_info}}" wx:if="{{item.shipping_time_info}}"></template>
+                    <block wx:else>
+                        <template is="score" data="{{score:item.wm_poi_score}}"></template>
+                        <view class="poi-score" wx:if="{{item.wm_poi_score>0}}">{{item.wm_poi_score===(item.wm_poi_score|0)?item.wm_poi_score+'.0':item.wm_poi_score}}</view>
+                        <view class="poi-sales"> {{item.month_sales_tip}} </view>
+                    </block>
+                </block>
+                <view class="poi-estimate"> {{item.delivery_time_tip}} </view>
+                <view class="poi-line" wx:if="{{item.delivery_time_tip&&item.distance}}"></view>
+                <view class="poi-distance"> {{item.distance}} </view>
+            </view>
+            <view class="poi-row poi-row-star-and-sales" wx:if="{{item.status===3||item.shipping_time_info}}">
+                <template is="score" data="{{score:item.wm_poi_score}}"></template>
+                <view class="poi-score" wx:if="{{item.wm_poi_score>0}}">{{item.wm_poi_score===(item.wm_poi_score|0)?item.wm_poi_score+'.0':item.wm_poi_score}}</view>
+                <view class="poi-sales"> {{item.month_sales_tip}} </view>
+            </view>
+            <view class="poi-row poi-row-ship">
+                <view class="poi-price"> {{item.min_price_tip}} </view>
+                <view class="poi-line"></view>
+                <view class="{{item.average_price_tip?'':'poi-ship'}}"> {{item.shipping_fee_tip}} </view>
+                <block wx:if="{{item.average_price_tip}}">
+                    <view class="poi-line"></view>
+                    <view class="poi-price-tip"> {{item.average_price_tip}} </view>
+                </block>
+                <image class="poi-deliver flex-center" src="/img/icons/deliver.png" wx:if="{{item.delivery_type===1}}"></image>
+            </view>
+            <view class="poi-refund-tag flex-center" style="color:{{item.label_info.content_color}};border-color:{{item.label_info.label_frame_color}};" wx:if="{{item.label_info}}"> {{item.label_info.content}} </view>
+            <view class="poi-recommend flex-center {{item.recommend_info.type===3?'poi-recommend-dp':''}} {{item.recommend_info.type===2?'poi-recommend-starvisit':''}} {{item.recommend_info.icon?'with-icon':''}}" wx:if="{{item.recommend_info&&(item.recommend_info.icon||item.recommend_info.recommend_reason)}}">
+                <image class="icon" src="{{item.recommend_info.icon}}" wx:if="{{item.recommend_info.icon}}"></image>
+                <view class="poi-recommend-txt">{{item.recommend_info.recommend_reason}}</view>
+            </view>
+            <view catchtap="onClickPoilistActvs" class="poi-actvs {{item._actvs_expand?'poi-actvs-expanded':''}}" data-index="{{index}}" wx:if="{{item.discounts2.length}}">
+                <view class="poi-arrow {{item._actvs_expand?'ui-arrow ui-arrow-up':'ui-arrow ui-arrow-down'}}" wx:if="{{item.discounts2.length>2}}"></view>
+                <view class="poi-actvs-item" hidden="{{idx>1&&!item._actvs_expand}}" wx:for="{{item.discounts2}}" wx:for-index="idx" wx:for-item="actv" wx:key="{{actv.activity_id}}">
+                    <image class="poi-actvs-icon" src="{{actv.icon_url}}" wx:if="{{actv.icon_url}}"></image>
+                    <view class="poi-actvs-text">{{actv.info}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

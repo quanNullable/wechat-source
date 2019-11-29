@@ -1,0 +1,1119 @@
+.book_modify {
+    padding: 20rpx 30rpx;
+    background: #5495e6;
+    font-size: 28rpx;
+}
+
+.book_modify_white {
+    background: #fff;
+    padding: 30rpx;
+    border-radius: 8rpx;
+}
+
+.book_modify_tick {
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 30rpx;
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
+}
+
+.book_modify_city {
+    float: right;
+}
+
+.book_modify_city::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    transform: rotate(-135deg);
+    margin: -6rpx 0 0 10rpx;
+}
+
+.book_modify_total {
+    font-size: 28rpx;
+}
+
+.flt_price {
+    font-size: 36rpx;
+    color: #fe6b5b;
+}
+
+.flt_price::before {
+    content: "\00A5";
+    font-size: 22rpx;
+    padding-right: 7rpx;
+    color: #fe6b5b;
+}
+
+.book_modify_info {
+    font-size: 28rpx;
+    color: #666;
+    margin: 15rpx 0;
+    line-height: 50rpx;
+}
+
+.book_modify_info text {
+    display: block;
+}
+
+.book_modify_rule {
+    font-size: 28rpx;
+    color: #5495e6;
+}
+
+.book_modify_rule::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    transform: rotate(-135deg);
+    margin: -6rpx 0 0 10rpx;
+}
+
+.book_box {
+    padding-bottom: 150rpx;
+}
+
+.book-section {
+    background: #fff;
+    margin-top: 22rpx;
+}
+
+.book-section-hd {
+    margin-left: 30rpx;
+    position: relative;
+    line-height: 100rpx;
+    font-size: 32rpx;
+    color: #666;
+    border-style: solid;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQImWN88ODBfwY0wMLAwMAgLy/PCBN4+PDhfyZ0VQwMDAxYBVlgWpAFAbVJC08j6LRdAAAAAElFTkSuQmCC) 2 stretch;
+    border-width: 0;
+    border-bottom-width: 1rpx;
+}
+
+.book-section-hd text {
+    font-size: 24rpx;
+    color: #999;
+    margin-left: 30rpx;
+}
+
+.btn_add_pasg {
+    position: absolute;
+    width: 180rpx;
+    height: 60rpx;
+    top: 50%;
+    right: 30rpx;
+    margin-top: -30rpx;
+    font-size: 30rpx;
+    line-height: 60rpx;
+    padding: 0;
+}
+
+.btn_add_pasg::after {
+    border: 0;
+}
+
+.book-section .book_item {
+    margin-left: 30rpx;
+    border-style: solid;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQImWN88ODBfwY0wMLAwMAgLy/PCBN4+PDhfyZ0VQwMDAxYBVlgWpAFAbVJC08j6LRdAAAAAElFTkSuQmCC) 2 stretch;
+    border-width: 0;
+    border-bottom-width: 1rpx;
+}
+
+.book-section .book_item:last-child {
+    border-bottom-width: 0;
+}
+
+.pasg_list {
+    padding: 30rpx 30rpx 20rpx 80rpx;
+    position: relative;
+}
+
+.pasg_list .icon_del {
+    position: absolute;
+    left: 7rpx;
+    top: 46rpx;
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+}
+
+.pasg_list .icon_del::after {
+    width: 24rpx;
+    height: 2rpx;
+    background: #5495e6;
+    position: relative;
+    left: 16rpx;
+    top: 28rpx;
+    bottom: 28rpx;
+    content: "";
+}
+
+.pasg_list .name,.pasg_list .cert {
+    display: block;
+    line-height: 50rpx;
+}
+
+.pasg_list .name {
+    font: 34rpx;
+}
+
+.pasg_list .cert {
+    font-size: 24rpx;
+    color: #999;
+}
+
+.pasg_list .notice {
+    background: #fefad7;
+    line-height: 60rpx;
+    padding: 0 15rpx;
+    font-size: 26rpx;
+    position: relative;
+    margin-top: 10rpx;
+}
+
+.pasg_list .icon_checkbox {
+    position: absolute;
+    right: 15rpx;
+    top: 10rpx;
+}
+
+.pasg_list .icon_edit {
+    position: absolute;
+    width: 120rpx;
+    height: 100%;
+    right: 0;
+    top: 0;
+}
+
+.pasg_list .icon_edit::after {
+    width: 42rpx;
+    height: 42rpx;
+    background: url(http://images3.c-ctrip.com/tieyou/wechat/wechat_zx.png?v=1123) no-repeat;
+    background-size: 400rpx 400rpx;
+    background-position: -310rpx -40rpx;
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    margin: -21rpx 0 0 -21rpx;
+}
+
+.txt_warn {
+    color: #5495e6;
+    display: inline-block;
+}
+
+.phone_add {
+    position: relative;
+    padding: 0 30rpx 0 160rpx;
+}
+
+.phone_add text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 104rpx;
+}
+
+.book_input {
+    height: 104rpx;
+    width: 100%;
+}
+
+.extra_add {
+    line-height: 104rpx;
+    font-size: 32rpx;
+    position: relative;
+}
+
+.extra_add .txt_warn {
+    font-size: 30rpx;
+}
+
+.book_switch {
+    position: absolute;
+    top: 0rpx;
+    right: 30rpx;
+}
+
+.icon_info {
+    display: inline-block;
+    vertical-align: middle;
+    margin: -4rpx 30rpx 0 15rpx;
+    line-height: 0;
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 400rpx;
+    background-position: -238rpx -78rpx;
+    vertical-align: middle;
+    margin: -4rpx -10rpx 0 0;
+}
+
+.del {
+    width: 80rpx;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0;
+}
+
+.del::before {
+    width: 44rpx;
+    height: 44rpx;
+    position: absolute;
+    content: "";
+    border: 1px solid #ff5b45;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    margin: -24rpx 0 0 -24rpx;
+}
+
+.del::after {
+    width: 20rpx;
+    height: 1px;
+    position: absolute;
+    content: "";
+    background: #ff5b45;
+    top: 50%;
+    left: 50%;
+    margin-left: -10rpx;
+}
+
+.invoice_type {
+    white-space: nowrap;
+    width: 100%;
+    padding: 30rpx 0rpx 10rpx 0rpx;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.invoice_type .item {
+    width: 190rpx;
+    display: inline-block;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    background: #fff;
+    text-align: center;
+    padding: 12rpx 0 8rpx;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 1px;
+    line-height: 36rpx;
+}
+
+.invoice_type .current {
+    background: #FFFFFF;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #333333;
+    border-image: none;
+}
+
+.invoice_type .invoice_name {
+    font-size: 28rpx;
+}
+
+.bill_add {
+    padding: 30rpx 0 30rpx 160rpx;
+    position: relative;
+    line-height: 45rpx;
+    min-height: 45rpx;
+    font-size: 32rpx;
+}
+
+.bill_add .book_switch {
+    top: 24rpx;
+}
+
+.bill_add .book_input {
+    margin: -30rpx 0;
+}
+
+.bill_label {
+    color: #666;
+    position: absolute;
+    left: 0;
+    top: 30rpx;
+    font-size: 32rpx;
+}
+
+.txt_grey {
+    font-size: 24rpx;
+    margin-left: 20rpx;
+    color: #999;
+}
+
+.bill_arr {
+    padding-right: 120rpx;
+}
+
+.bill_arr::after {
+    width: 16rpx;
+    height: 16rpx;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    position: absolute;
+    content: "";
+    transform: rotate(-135deg);
+    top: 50%;
+    right: 40rpx;
+    margin-top: -8rpx;
+}
+
+.bill_arr .adr {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+.pay_box {
+    height: 124rpx;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: 960;
+    background: rgba(255,255,255,.95);
+    border-style: solid;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAALUlEQVQImWN88ODBfwY0wMLAwMAgLy/PCBN4+PDhfyZ0VQwMDAxYBVlgWpAFAbVJC08j6LRdAAAAAElFTkSuQmCC) 2 stretch;
+    border-width: 0;
+    border-top-width: 1rpx;
+    padding: 0 40rpx;
+    line-height: 124rpx;
+    font-size: 34rpx;
+    color: #666;
+}
+
+.pay_price {
+    font-size: 40rpx;
+    color: #fe6b5b;
+    font-weight: 800;
+}
+
+.pay_price::before {
+    content: "\00A5";
+    font-size: 24rpx;
+    padding-right: 7rpx;
+    color: #fe6b5b;
+}
+
+.pay_closed::after,.pay_open::after {
+    width: 16rpx;
+    height: 16rpx;
+    border-left: 2px solid #fe6b5b;
+    border-bottom: 2px solid #fe6b5b;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+}
+
+.pay_closed::after {
+    transform: rotate(-45deg);
+    margin: -15rpx 0 0 25rpx;
+}
+
+.pay_open::after {
+    transform: rotate(135deg);
+    margin: 0 0 0 25rpx;
+}
+
+.btn_pay {
+    width: 306rpx;
+    height: 78rpx;
+    position: absolute;
+    top: 23rpx;
+    right: 40rpx;
+    line-height: 78rpx;
+    padding: 0;
+    background: #5495e6;
+    color: #fff;
+}
+
+.btn_pay::after {
+    border: 0;
+}
+
+.btn_pay_hover::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: rgba(0,0,0,.1);
+}
+
+.mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.pop_price {
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+.pop_price_list {
+    vertical-align: middle;
+    display: table-cell;
+    color: #fff;
+    padding: 0 35rpx;
+}
+
+.pop_price_total {
+    font-size: 36rpx;
+    line-height: 50rpx;
+}
+
+.pop_price_total .flt_price {
+    float: right;
+}
+
+.pop_price_tit {
+    color: #5495e6;
+    font-size: 32rpx;
+    margin: 30rpx 0 15rpx;
+}
+
+.pop_price_item {
+    line-height: 65rpx;
+}
+
+.pop_price_item .price {
+    float: right;
+    font-size: 32rpx;
+}
+
+.pop_insurance_item {
+    line-height: 45rpx;
+    font-size: 24rpx;
+    word-break: break-all;
+}
+
+.tip-txt {
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    padding: 40rpx 50rpx;
+    overflow-y: auto;
+    color: #dbdbdb;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.tip-txt.active {
+    opacity: 1;
+}
+
+.tip-txt .txt-blue {
+    margin-top: 30rpx;
+    color: #5495e6;
+    font-weight: bold;
+    padding: 0.5em 0;
+}
+
+.tip-txt .p {
+    padding: 0.5em 0;
+}
+
+.tip-txt .s {
+    font-size: 28rpx;
+}
+
+.tip-bot {
+    position: fixed;
+    left: 0;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    z-index: 3001;
+    transition: all ease-in-out 150ms;
+    transform: translate3d(0,100%,0);
+}
+
+.tip-bot.active {
+    transform: translate3d(0,0,0);
+}
+
+.cui-hd {
+    background: #5495e6;
+    color: #fff;
+    font-size: 34rpx;
+    display: table;
+    width: 100%;
+    padding: 16rpx 0;
+    height: 56rpx;
+    overflow: hidden;
+    min-width: 640rpx;
+}
+
+.cui-hd .cell {
+    display: table-cell;
+    line-height: 60rpx;
+    text-align: center;
+}
+
+.cui-hd .cancel-btn,.cui-hd .ok-btn {
+    width: 20%;
+}
+
+.cui-hd .cancel-btn {
+    padding-left: 30rpx;
+    text-align: left;
+}
+
+.cui-hd .ok-btn {
+    padding-right: 30rpx;
+    text-align: right;
+}
+
+.cui-bg {
+    background: #f4f4f4;
+    overflow: hidden;
+    height: 22rem;
+}
+
+.backmask {
+    transition: background-color 150ms ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+}
+
+.backmask.active {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.tip-addpas {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.add-btn {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    color: #5495e6;
+    margin-top: 30rpx;
+}
+
+.tip-pass-list .item {
+    padding: 8px 50px;
+    line-height: 22px;
+    position: relative;
+    margin-left: 0;
+    height: 44px;
+}
+
+.tip-pass-list .current .name,.tip-pass-list .current .tag-grey,.tip-pass-list .current .identity {
+    color: #5495e6;
+}
+
+.edit {
+    width: 48px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: 0;
+}
+
+.edit::after {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    content: "";
+    background-image: url(//pic.c-ctrip.com/h5/train/train-icon.png?v=20160629);
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: -100px -40px;
+    left: 50%;
+    top: 50%;
+    margin: -9px 0 0 -9px;
+}
+
+.choose {
+    width: 46px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.choose::after {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    content: "";
+    border: 1px solid #b2b2b2;
+    left: 50%;
+    top: 50%;
+    margin: -8px 0 0 -8px;
+}
+
+.tip-pass-list .current .choose::after {
+    width: 18px;
+    height: 16px;
+    border: 0;
+    background-image: url(//pic.c-ctrip.com/h5/train/train-icon.png?v=20160629);
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: -81px -42px;
+}
+
+.tag-grey {
+    color: #666;
+    font-size: 20rpx;
+    margin: -2px 6px 0;
+}
+
+.identity {
+    font-size: 24rpx;
+    color: #666;
+}
+
+.tip-pass-none {
+    height: 10rem;
+}
+
+.tip-pass-none .p {
+    text-align: center;
+    color: #ccc;
+    padding-top: 5.5rem;
+    position: relative;
+}
+
+.flt_modify_intro {
+    display: flex;
+    width: 100%;
+}
+
+.flt_depart,.flt_arrival,.separator {
+    flex: 1;
+}
+
+.flt_depart {
+    text-align: left;
+}
+
+.flt_arrival {
+    text-align: right;
+}
+
+.flt_time {
+    font-size: 60rpx;
+    color: #333;
+}
+
+.flt_adday {
+    font-size: 30rpx;
+}
+
+.flt_airport {
+    display: block;
+    font-size: 32rpx;
+    color: #666;
+}
+
+.separator {
+    text-align: center;
+    flex: .8;
+    position: relative;
+    line-height: 60rpx;
+}
+
+.spt_arr {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -73rpx;
+    width: 146rpx;
+    height: 1px;
+    background: #ccc;
+}
+
+.spt_arr::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 5rpx;
+    width: 10rpx;
+    height: 1px;
+    background: #ccc;
+    transform: rotate(45deg);
+}
+
+.spt_type {
+    font-size: 24rpx;
+    color: #666;
+}
+
+.spt_time {
+    font-size: 24rpx;
+    color: #666;
+}
+
+.airline_info {
+    position: relative;
+    padding-top: 15rpx;
+    color: #999;
+    line-height: 1;
+    font-size: 28rpx;
+    margin-bottom: 30rpx;
+}
+
+.airline_logo {
+    margin-right: 8rpx;
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+.airline_arr {
+    width: 24rpx;
+    height: 2rpx;
+    background: #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -2px 20rpx 0 20rpx;
+    position: relative;
+}
+
+.airline_arr::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    content: "";
+    transform: rotate(45deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    right: 0;
+    top: 50%;
+    margin-top: -7rpx;
+}
+
+.airline_share {
+    border-bottom: 1px dashed #ccc;
+    margin-right: 20rpx;
+    padding-bottom: 5rpx;
+}
+
+.flt_modify_info {
+    color: #999;
+    font-size: 24rpx;
+    margin-top: 30rpx;
+}
+
+.flt-zh-date {
+    margin-bottom: 30rpx;
+}
+
+.flt-zh-date .time {
+    float: right;
+}
+
+.airline_info .time icon {
+    margin-right: 6rpx;
+}
+
+.flt-zh-dt {
+    height: 150rpx;
+    position: relative;
+    display: flex;
+    width: 100%;
+    line-height: 50rpx;
+    color: #666;
+}
+
+.flt-zh-txt {
+    font-size: 28rpx;
+    border-top: 1px dashed #ccc;
+    padding-top: 25rpx;
+    margin-top: 30rpx;
+    color: #999;
+}
+
+.flt-zh-time {
+    width: 20%;
+    text-align: right;
+    font-size: 36rpx;
+}
+
+.flt-zh-time .tbig {
+    font-size: 48rpx;
+    color: #333;
+}
+
+.flt-zh-time .to {
+    margin-top: 50rpx;
+}
+
+.flt-zh-city {
+    padding-left: 70rpx;
+    width: 42%;
+    position: relative;
+}
+
+.flt-zh-city::before {
+    width: 4rpx;
+    position: absolute;
+    content: "";
+    background: #ccc;
+    top: 25rpx;
+    bottom: 25rpx;
+    left: 33rpx;
+}
+
+.flt-zh-city .from,.flt-zh-city .to {
+    position: relative;
+    font-size: 32rpx;
+}
+
+.flt-zh-city .from::before,.flt-zh-city .to::before {
+    width: 14rpx;
+    height: 14rpx;
+    position: absolute;
+    content: "";
+    background: #fff;
+    top: 50%;
+    margin-top: -7rpx;
+    border-radius: 50%;
+    left: -42rpx;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.flt-zh-city .tbig {
+    font-size: 36rpx;
+    color: #333;
+}
+
+.flt-zh-city .from.tbig::before,.flt-zh-city .to.tbig::before {
+    background: #ccc;
+}
+
+.flt-zh-city .time {
+    font-size: 28rpx;
+}
+
+.flt-zh-info {
+    text-align: right;
+    font-size: 28rpx;
+}
+
+.flt-zh-dd {
+    margin: 40rpx 0;
+    font-size: 28rpx;
+    color: #999;
+}
+
+.flt-zh-dd text {
+    color: #5495e6;
+    width: 44rpx;
+    height: 44rpx;
+    border-radius: 50%;
+    border: 1px solid #5495e6;
+    display: inline-block;
+    line-height: 44rpx;
+    text-align: center;
+    margin: -4rpx 20rpx 0;
+}
+
+.flt-pop-box {
+    position: fixed;
+    left: 0rpx;
+    right: 0rpx;
+    z-index: 10000;
+    top: 0;
+    bottom: 0;
+    display: table;
+    width: 100%;
+    height: 85%;
+    padding-bottom: 15%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.flt-pop-mid {
+    vertical-align: middle;
+    display: table-cell;
+    padding: 0 30rpx;
+}
+
+.flt-pop-tit {
+    color: #fff;
+    margin: 20rpx 0;
+}
+
+.flight_trans {
+    background: #fff;
+    padding: 40rpx 30rpx;
+    margin-bottom: 20rpx;
+}
+
+.flight_trans .info {
+    font-size: 32rpx;
+    color: #666;
+    margin-bottom: 40rpx;
+}
+
+.flight_trans .info .haoshi {
+    margin-left: 30rpx;
+}
+
+.flight_trans .range {
+}
+
+.flight_trans .from,.flight_trans .to {
+    padding-left: 180rpx;
+    position: relative;
+    font-size: 32rpx;
+    color: #333;
+    line-height: 44rpx;
+}
+
+.flight_trans .from::after,.flight_trans .to::after {
+    width: 12rpx;
+    height: 12rpx;
+    background: #E5E5E5;
+    border-radius: 12rpx;
+    position: absolute;
+    content: "";
+    top: 16rpx;
+    left: 144rpx;
+}
+
+.flight_trans .from::before,.flight_trans .to::before {
+    width: 2rpx;
+    background: #E5E5E5;
+    position: absolute;
+    content: "";
+    left: 148rpx;
+    height: 16rpx;
+}
+
+.flight_trans .from::before {
+    top: 28rpx;
+}
+
+.flight_trans .to::before {
+    top: 0;
+}
+
+.flight_trans .time {
+    width: 120rpx;
+    text-align: right;
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 44rpx;
+}
+
+.flight_trans .strong {
+    font-size: 42rpx;
+}
+
+.flight_trans .hangban {
+    padding: 44rpx 0 44rpx 180rpx;
+    font-size: 24rpx;
+    color: #999;
+    position: relative;
+}
+
+.flight_trans .hangban .jingting {
+    position: absolute;
+    left: 0;
+    width: 120rpx;
+    text-align: right;
+}
+
+.flight_trans .hangban::before {
+    width: 2rpx;
+    background: #E5E5E5;
+    position: absolute;
+    content: "";
+    left: 149rpx;
+    top: 0;
+    bottom: 0;
+}
+
+.flight_trans .flight_logo {
+    width: 32rpx;
+    height: 32rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -3px;
+}
+
+.flight_trans .trans {
+    padding: 20rpx 0 20rpx 180rpx;
+    font-size: 24rpx;
+    color: #999;
+    position: relative;
+    line-height: 40rpx;
+}
+
+.flight_trans .xuzhi {
+    float: right;
+    color: #5495E6;
+}
+
+.flight_trans .zhuan {
+    width: 40rpx;
+    height: 40rpx;
+    border: 1px solid #E5E5E5;
+    border-radius: 40rpx;
+    box-sizing: border-box;
+    position: absolute;
+    top: 20rpx;
+    left: 130rpx;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.flight_notice {
+    margin: -20rpx 0 20rpx;
+    background: #FFF6D4;
+    padding: 24rpx 28rpx;
+    font-size: 24rpx;
+    color: #666;
+}
+
+.flight_notice text {
+    color: #FC6E51;
+}

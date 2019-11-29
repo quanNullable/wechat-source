@@ -1,0 +1,94 @@
+<view class="loading {{loading}}">
+    <view class="loading-center-absolute">
+        <view class="object"></view>
+        <view class="object"></view>
+        <view class="object"></view>
+        <view class="object"></view>
+        <view class="object"></view>
+        <view class="object"></view>
+        <view class="object"></view>
+        <view class="object"></view>
+        <view class="object"></view>
+        <view class="object"></view>
+    </view>
+</view>
+<scroll-view class="body {{is_index_middle_ad?'mt':''}}" scrollY="true">
+    <view class="welcome">
+        <view class="banner {{index_more_games.length>0?'hasmore':''}}">
+            <image src="../../image/banner.png"></image>
+        </view>
+        <view bindtap="goTxtPage" class="numtxt">{{index_toubu_guize_txt}}</view>
+        <view class="buttons {{index_more_games.length>0?'hasmore':''}}">
+            <button bindtap="go_url" class="start" hoverClass="hover-class">
+                <image src="../../image/start.png"></image>
+            </button>
+        </view>
+    </view>
+    <view class="bottom-container" wx:if="{{moreGames.length>0}}">
+        <view class="more_games">
+            <view class="app-item" wx:for="{{moreGames}}">
+                <image bindtap="more_games" class="item-img" data-appid="{{item.appid}}" data-extardata="{{item.extardata}}" data-path="{{item.link_path}}" data-toid="{{item.app_id}}" data-type="2" data-version="{{item.version}}" src="{{item.app_icon}}"></image>
+            </view>
+        </view>
+    </view>
+    <view class="actions">
+        <navigator class="list rank" hoverClass="hover-class" url="../rank/rank">
+            <image src="../../image/icon-rank.png"></image>
+            <text>排行榜</text>
+        </navigator>
+        <navigator class="list gift" hoverClass="hover-class" url="../gift/gift" wx:if="{{is_send_goods}}">
+            <image src="../../image/icon-gift.png"></image>
+            <text>奖品兑换</text>
+        </navigator>
+        <navigator class="list user" hoverClass="hover-class" url="../user/user">
+            <image src="../../image/icon-user.png"></image>
+            <text>更多好玩</text>
+        </navigator>
+    </view>
+</scroll-view>
+<button class="share" openType="share">
+    <image src="/image/btn-share.png"></image>
+</button>
+<view bindtap="openRule" class="rule">规则</view>
+<view class="popup-rule" wx:if="{{ruleShow}}">
+    <view class="popup-mask"></view>
+    <view class="popup-panel">
+        <view class="popup-main">
+            <view class="rule-list">
+                <view class="rule-item" wx:for="{{guize_list}}" wx:key="guize_{{index}}">
+                    <view class="item-num">{{item.number}}</view>
+                    <view class="item-info">{{item.txt}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="popup-close">
+            <icon bindtap="closeRule" color="white" size="30" type="clear"></icon>
+        </view>
+    </view>
+</view>
+<view class="banner-ad" wx:if="{{bannerAd.length>0}}" wx:for="{{bannerAd}}" wx:key="appid">
+    <block wx:if="{{item.open_ad==1}}">
+        <ad unitId="adunit-24df01354f2ace31" wx:if="{{item.type==1}}"></ad>
+        <image bindtap="more_games" data-appid="{{item.appid}}" data-path="{{item.link_path}}" data-toid="{{item.app_id}}" data-type="{{item.type}}" data-version="{{item.version}}" mode="widthFix" src="{{item.app_icon}}" wx:else></image>
+    </block>
+</view>
+<view class="float-ad" wx:if="{{floatAd.length}}" wx:for="{{floatAd}}">
+    <image bindtap="more_games" data-appid="{{item.appid}}" data-path="{{item.link_path}}" data-toid="{{item.app_id}}" data-type="{{item.type}}" data-version="{{item.version}}" mode="widthFix" src="{{item.app_icon}}" style="width:100%;" wx:if="{{item.open_ad==1}}"></image>
+</view>
+<view class="popup-share {{share_status}}">
+    <view class="popup-mask"></view>
+    <view class="popup-panel">
+        <view class="popup-main">
+            <button openType="share">
+                <image src="../../image/invite.png"></image>
+                <text>邀请好友一起挑战</text>
+            </button>
+        </view>
+        <view class="popup-close">
+            <icon bindtap="closePopupShare" color="white" size="30" type="clear"></icon>
+        </view>
+        <view bindtap="closePopupShare" class="popup-skip">
+      跳过>>
+    </view>
+    </view>
+</view>

@@ -1,0 +1,105 @@
+<view class="page-container-flex">
+    <include src="../base.wxml"></include>
+    <view class="loc-search-container">
+        <view bindtap="onClickCitySelect" class="flex-left select-type" wx:if="{{!!locSearch.city}}">
+            <image class="position-icon" src="/img/icons/position3.png"></image>
+            <view class="loc-address-text">{{locSearch.city}}</view>
+            <image class="select-icon {{locSearch.activeTab?'select-icon-down':'select-icon-up'}}" src="/img/icons/arrow-down2.png"></image>
+        </view>
+        <view class="loc-search flex1">
+            <image class="loc-search-icon" src="../../img/icons/search2.png"></image>
+            <input bindconfirm="{{searchText?'onSearchSubmit':''}}" bindinput="onSearchInput" class="loc-search-input" focus="{{inputFocus}}" name="loc-search" placeholder="请输入收货地址" placeholderClass="loc-search-placeholder" type="text" value="{{searchTextInput}}"></input>
+            <view bindtap="onSearchClear" class="loc-search-icon-del" hidden="{{searchText==''}}">
+                <image class="loc-search-icon" src="../../img/icons/delete.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="main-container" wx:if="{{locSearch.cityShow}}">
+        <view class="loc-city-container">
+            <image class="position-icon" src="/img/icons/position.png"></image> 当前定位城市 <view bindtap="bindCity" class="loc-city" data-city="{{locCity}}"> {{locCity}} </view>
+        </view>
+        <view class="searchLetter touchClass" style="height:{{locSearch.sideBarHeight}}px; top: {{locSearch.sideBarTop}}px">
+            <view catchtouchend="searchEnd" catchtouchmove="searchMove" catchtouchstart="searchStart" data-index="{{index}}" data-letter="{{item.name}}" style="height:{{locSearch.itemH}}px" wx:for="{{locSearch.searchLetter}}" wx:key="index">
+                <view class="{{locSearch.showLetter==item.name||locSearch.scrollLetter==item.name?'selected-side-letter':''}}">{{item.name}}</view>
+            </view>
+        </view>
+        <view class="showSlectedLetter" style="top:{{locSearch.waterTop}}px" wx:if="{{locSearch.isShowLetter}}">
+            <view class="selectedLetterInner"> {{locSearch.showLetter}} </view>
+        </view>
+        <scroll-view scrollY bindscroll="cityScroll" scrollIntoView="{{locSearch.showLetter}}" scrollTop="{{locSearch.scrollTop}}" style="height:{{locSearch.winHeight}}px">
+            <view class="selection" wx:for="{{locSearch.cityList}}" wx:key="{{item.index}}">
+                <view class="item_letter" id="{{item.index}}">{{item.index}}</view>
+                <view bindtap="bindCity" class="item_city" data-city="{{ct.cityName}}" wx:for="{{item.cities}}" wx:for-item="ct" wx:key="{{ct.cityId}}"> {{ct.cityName}} </view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="main-container pb_90" wx:else>
+        <view class="main">
+            <scroll-view scrollY class="main-scroll top0">
+                <view hidden="{{searchText&&searchResults.length!==0}}">
+                    <view class="loc-container">
+                        <view class="loc-address">{{locState==='loading'?'定位中...':locState==='fail'?'无法获取您的地理位置':locState==='failLoc'?'需要开启地理位置权限':locName}}</view>
+                        <view bindtap="onClickLocAuto" class="loc-auto">
+                            <image class="search-input-icon" src="../../img/icons/loc-auto.png"></image>
+                            <image class="search-input-icon {{locState==='loading'?'blingbling':''}}" src="../../img/icons/loc-auto2.png"></image>
+                            <view class="ml-46"> {{autoState===0?'重新定位':autoState===1?'正在定位':'定位失败'}} </view>
+                        </view>
+                    </view>
+                    <view class="addr-block addr-block-my" hidden="{{!addresses.length}}" wx:if="{{hasLogin}}">
+                        <view class="addr-block-title">
+                            <image class="add-block-icon" src="../../img/icons/home2.png"></image> 我的收货地址 </view>
+                        <view class="addr-list" hidden="">
+                            <view class="{{hasMoreBtn?'addr-items':''}}" style="max-height:{{hasMoreBtn&&showMore?addresses.length*130+'rpx':''}}">
+                                <view bindtap="onTapAddr" class="addr-item addr-item-my" data-address="{{item.address}}" data-id="{{item.id}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" wx:for="{{addresses}}" wx:key="{{item.id}}">
+                                    <view class="addr-item-addr"> {{item.address}} {{item.house_number}} </view>
+                                    <view class="addr-item-desc addr-item-desc-my">
+                                        <view class="addr-item-name" hidden="{{!item.name}}"> {{item.name}} </view>
+                                        <view class="addr-item-gender" hidden="{{!item.name}}"> {{item.gender}} </view>
+                                        <view class="addr-item-tel"> {{item.phone}} </view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view bindtap="onClickMore" class="addr-last addr-list-more" hidden="{{!hasMoreBtn}}"> {{showMore?'收起全部地址':'展开全部'+addresses.length+'个地址'}} <image class="addr-list-more-icon {{showMore?'add-list-more-icon-rotate':''}}" src="../../img/icons/arrow-down2.png"></image>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="split-line" hidden="{{!addresses.length&&near.length}}"></view>
+                    <view class="addr-block">
+                        <view class="addr-block-title" hidden="{{!near.length}}">
+                            <image class="add-block-near" src="../../img/icons/near2.png"></image> 附近地址 </view>
+                        <view class="addr-list">
+                            <view bindtap="onTapAddr" class="addr-item addr-item-near {{index===near.length-1?'addr-item-last':''}}" data-address="{{item.name}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" wx:for="{{near}}" wx:key="{{item.name}}">
+                                <view class="addr-item-addr">{{item.name}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="footer" wx:if="{{hasLogin}}">
+            <navigator class="nav-footer flex-center" url="../addr-add/addr-add">
+                <view class="address-add-bar">
+                    <image class="address-icon" src="/img/icons/add-light.png"></image>
+                    <view class="footer-address-txt">新增收货地址</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <scroll-view scrollY class="main-scroll zindex30" wx:if="{{searchText&&searchResults.length!==0}}">
+        <view class="addr-list pb-90">
+            <view bindtap="onTapAddr" class="addr-item addr-item-address {{index===searchResults.length-1?'addr-item-last':''}}" data-address="{{item.name}}" data-latitude="{{item.wm_latitude}}" data-longitude="{{item.wm_longitude}}" wx:for="{{searchResults}}" wx:key="{{item.location+item.name}}">
+                <view class="addr-item-addr flex-left">
+                    <view class="addr-name">{{item.prename}}<span class="search-text-color">{{item.poiName}}</span>{{item.leftName}}</view>
+                    <view class="addr-item-distance" hidden="{{item.distance==0}}">{{item.distance}}</view>
+                </view>
+                <view class="addr-item-desc addr-item-desc-search"> {{item.address}} </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="search-empty flex-center {{locSearch.cityShow?'search-empty2':''}}" hidden="{{searching||!searchText||searchResults.length!==0}}">
+        <view>
+            <view class="search-empty-icon ui-error ui-error-no-pos"></view>
+            <view>没发现这个地址，换个关键词试试吧~</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,28 @@
+<template name="newuser-redpack-entry">
+    <view class="redpack-entry-container full-background-image" wx:if="{{islogin&&hasNewUserRedPack}}">
+        <view bind:tap="onUsingcoupon" class="redpack-container">
+            <view class="redpack-content full-background-image">
+                <view class="redpack-left-tag">
+                    <view class="redpack-value {{isCouponValueTooLong?'redpack-value-toolong':''}}">{{coupon.couponValue}}</view>
+                    <view class="redpack-condition margin-left-36">满{{coupon.priceLimit}}可用</view>
+                </view>
+                <view class="redpack-right-tag">
+                    <view class="redpack-title">{{coupon.couponTitle}}</view>
+                    <view class="redpack-condition margin-left-34">{{coupon.validPeriod}}</view>
+                </view>
+            </view>
+            <view class="redpack-red-cover full-background-image">
+                <view class="redpack-button-area">
+                    <image class="redpack-down-arrow" src="../../img/icons/down-arrow.png"></image>
+                    <view class="redpack-button">立即使用</view>
+                </view>
+            </view>
+        </view>
+        <view bind:tap="onCheckAllRedpack" class="checkAll"> 查看全部红包<image class="right-arrow-icon" src="../../img/icons/red-arrow.png"></image>
+        </view>
+    </view>
+    <view bind:tap="onRedpackImgClick" class="redpack-img-container" data-islogin="{{islogin}}" wx:else>
+        <image class="redpack-img" mode="aspectFit" src="{{picUrl}}"></image>
+        <view class="redpack-img-title" wx:if="{{title}}">{{title}}</view>
+    </view>
+</template>

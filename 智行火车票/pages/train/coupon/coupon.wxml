@@ -1,0 +1,35 @@
+<view class="coupon-btn">
+    <button bindtap="chooseNoCoupon" class="btn-unused" hoverClass="btn-unused_hover">不使用优惠券</button>
+</view>
+<view class="coupon-box" wx:for="{{validCouponList}}" wx:for-item="coupon">
+    <view class="item">
+        <view class="coupon-price">
+            <text class="strong">{{coupon.deductionStrategyTypeID==2?coupon.couponDiscount:coupon.couponPrice}}</text>
+            <text class="yuan">{{coupon.deductionStrategyTypeID==2?'折':'元'}}</text>
+            <view class="price-tag">{{coupon.deductionStrategyTypeID==2?'折扣券':'立减券'}}</view>
+        </view>
+        <view class="coupon-bd">
+            <view class="tit">{{coupon.couponDisplayName}}</view>
+            <view class="txt">有效期至{{coupon.couponEndDate}}</view>
+        </view>
+        <view class="coupon-hd">
+            <button bindtap="chooseCoupon" class="btn-use" data-index="{{index}}" hoverClass="btn-use_hover">立即使用</button>
+        </view>
+    </view>
+</view>
+<view class="coupon-tit" hidden="{{invalidCouponList}}">不可用优惠劵</view>
+<view class="coupon-box disabled" wx:for="{{invalidCouponList}}" wx:for-item="coupon">
+    <view class="item">
+        <view class="coupon-price">
+            <text class="strong">{{coupon.deductionStrategyTypeID==2?coupon.couponDiscount:coupon.couponPrice}}</text>
+            <text class="yuan">{{coupon.deductionStrategyTypeID==2?'折':'元'}}</text>
+        </view>
+        <view class="coupon-bd">
+            <view class="tit">{{coupon.couponDisplayName}}</view>
+            <view class="txt">有效期至{{coupon.couponEndDate}}</view>
+        </view>
+        <view class="coupon-hd">
+      不可用原因:{{coupon.remark}}
+    </view>
+    </view>
+</view>

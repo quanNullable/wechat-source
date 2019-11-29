@@ -1,0 +1,19 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/game/game",
+        "pages/rank/rank",
+        "pages/gift/gift",
+        "pages/user/user",
+        "pages/tousu/tousu",
+        "pages/txtpage/txtpage",
+        "pages/group/index"
+    ],
+    "window": {
+        "backgroundColor": "#56017f",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#7401aa",
+        "navigationBarTitleText": "猜歌小超人",
+        "navigationBarTextStyle": "#fff"
+    }
+}

@@ -1,0 +1,125 @@
+<page>
+    <view class="fltlist">
+        <view class="datePicker">
+            <view bindtap="chooseDate" class="datePicker_prev" data-type="prev">
+                <text>前一天</text>
+                <view class="datePicker_price">{{preLowPrice}}</view>
+            </view>
+            <view bindtap="chooseDate" class="datePicker_mid" data-type="calendar">
+                <view class="{{chooseDateType}}">
+                    <view class="now_prev">
+                        <text>{{selectDateStr}}</text>
+                        <view class="datePicker_price"></view>
+                    </view>
+                    <view class="now">
+                        <text>{{selectDateStr}}</text>
+                        <view class="datePicker_price">{{currentLowPrice}}</view>
+                    </view>
+                    <view class="now_next">
+                        <text>{{selectDateStr}}</text>
+                        <view class="datePicker_price"></view>
+                    </view>
+                </view>
+            </view>
+            <view bindtap="chooseDate" class="datePicker_next" data-type="next">
+                <text>后一天</text>
+                <view class="datePicker_price">{{nextLowPrice}}</view>
+            </view>
+        </view>
+        <view bindtap="clickToNearby" class="list-recomd" wx:if="{{showNearby===1}}">
+            <view class="label">邻近机场</view>
+            <view class="rbox">
+                <view class="train-price">
+                    <text class="price">{{flightLowestPrice}}</text>
+                </view>
+            </view>
+            <view class="cont">
+                <view class="station">{{departureCityName}}-{{arrivalCityName}}</view>
+                <view class="time">{{trainDescription}}</view>
+            </view>
+        </view>
+        <view class="fltlist_group">
+            <view bindtap="clickItem" class="fltlist_item" data-index="{{index}}" wx:for="{{flightList}}" wx:for-item="flight">
+                <view class="flt_intro">
+                    <view class="flt_col">
+                        <view class="flt_depart">
+                            <text class="flt_time">{{flight.departTimeDes}}</text>
+                            <text class="flt_airport">{{flight.departAirportShortName}}{{flight.departTerminal}}</text>
+                        </view>
+                        <view class="separator">
+                            <view class="spt_type">{{flight.stopTypeDes}}</view>
+                            <view class="spt_arr"></view>
+                            <view class="spt_time">{{flight.costTime}}</view>
+                        </view>
+                        <view class="flt_arrival">
+                            <text class="flt_time">{{flight.arriveTimeDes}}</text>
+                            <text class="flt_airport">{{flight.arriveAirportShortName}}{{flight.arriveTerminal}}</text>
+                        </view>
+                    </view>
+                    <view class="price_col">
+                        <text class="flt_price">{{flight.adultPrice-(couponInfo&&showCouponDiscountPrice?couponInfo.couponPrice:0)}}</text>
+                        <text class="flt_discount">{{flight.adRemark1}}</text>
+                    </view>
+                </view>
+                <view class="airline_info">
+                    <image class="airline_logo" src="{{flight.airlineIcon}}"></image>
+                    <text class="airline_num">{{flight.airlineFullName}}{{flight.flightNumber}}</text>
+                    <text class="airline_type">{{flight.aircraftType.typeName}}({{flight.aircraftType.typeSize}})</text>
+                    <text class="airline_share">{{flight.isCodeShared?'（共享）':''}}</text>
+                    <text class="airline_tips" hidden="{{couponInfo}}">{{flight.adRemark2}}</text>
+                    <text class="airline_coupon" hidden="{{!couponInfo}}">{{showCouponDiscountPrice?'已减':'可减'}}{{couponInfo.couponPrice}}元</text>
+                </view>
+            </view>
+            <view class="transfer_separate" wx:if="{{hasTransferGroup}}">
+                <text>中转航班推荐</text>
+            </view>
+            <view bindtap="clickItem" class="fltlist_item" data-index="{{index}}" data-type="transfer" wx:for="{{transferList}}" wx:for-item="flight">
+                <view class="flt_intro">
+                    <view class="flt_col">
+                        <view class="flt_depart">
+                            <text class="flt_time">{{flight.departTimeDes}}</text>
+                            <text class="flt_airport">{{flight.departAirportShortName}}{{flight.departTerminal}}</text>
+                        </view>
+                        <view class="separator">
+                            <view class="spt_type">{{flight.subsegments[0].arriveCityName}}{{flight.stopTypeDes}}</view>
+                            <view class="spt_arr"></view>
+                            <view class="spt_time">{{flight.costTime}}</view>
+                        </view>
+                        <view class="flt_arrival">
+                            <text class="flt_time">{{flight.arriveTimeDes}}</text>
+                            <text class="flt_airport">{{flight.arriveAirportShortName}}{{flight.arriveTerminal}}</text>
+                        </view>
+                    </view>
+                    <view class="price_col">
+                        <text class="flt_price">{{flight.adultPrice-(couponInfo&&showCouponDiscountPrice?couponInfo.couponPrice:0)}}</text>
+                        <text class="flt_discount">{{flight.adRemark1}}</text>
+                    </view>
+                </view>
+                <view class="airline_info">
+                    <image class="airline_logo" src="{{flight.airlineIcon}}"></image>
+                    <text class="airline_num">{{flight.airlineFullName}}{{flight.flightNumber}}...等</text>
+                    <text class="airline_type">{{flight.aircraftType.typeName}}({{flight.aircraftType.typeSize}})...等</text>
+                    <text class="airline_share">{{flight.isCodeShared?'（共享）':''}}</text>
+                    <text class="airline_tips" hidden="{{couponInfo}}">{{flight.adRemark2}}</text>
+                    <text class="airline_coupon" hidden="{{!couponInfo}}">{{showCouponDiscountPrice?'已减':'可减'}}{{couponInfo.couponPrice}}元</text>
+                </view>
+            </view>
+            <view class="fltlist_end" wx:if="{{flightList.length>0}}">共为您找到 {{flightList.length+transferList.length}} 次符合条件的航班</view>
+            <view wx:if="{{filterNoFlight}}">
+                <view class="fltlist_none">很遗憾！没有找到航班，换个条件试试吧~</view>
+            </view>
+        </view>
+    </view>
+    <view class="fltlist_filter">
+        <view bindtap="sortBy" class="filter_item {{sortType=='DepartTimeStamp'?'filter_item-active':''}}" data-type="DepartTimeStamp">
+            <text class="icon_time"></text>
+            <view wx:if="{{sortType=='DepartTimeStamp'}}">时间从早到晚</view>
+            <view wx:else>时间</view>
+        </view>
+        <view bindtap="sortBy" class="filter_item {{sortType=='Price'?'filter_item-active':''}}" data-type="Price">
+            <text class="icon_price"></text>
+            <view wx:if="{{sortType=='Price'}}">价格从低到高</view>
+            <view wx:else>价格</view>
+        </view>
+    </view>
+</page>

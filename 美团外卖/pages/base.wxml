@@ -1,0 +1,17 @@
+<import src="../components/loading/loading.wxml"></import>
+<import src="../components/toast/toast.wxml"></import>
+<import src="../components/modal/modal.wxml"></import>
+<import src="../components/error/error.wxml"></import>
+<import src="../components/action-sheet/action-sheet.wxml"></import>
+<import src="../components/verify-toast/verify-toast.wxml"></import>
+<import src="../components/error/spider-error.wxml"></import>
+<import src="../components/login/iptPhone.wxml"></import>
+<template is="error" data="{{...error}}"></template>
+<template is="modal" data="{{...confirm}}"></template>
+<template is="modal" data="{{...alert}}"></template>
+<template is="loading" data="{{...loading}}"></template>
+<template is="toast" data="{{...toast}}"></template>
+<template is="action-sheet" data="{{...actionSheet}}"></template>
+<template is="verify" data="{{...verify}}"></template>
+<template is="spider-error" data="{{...spiderError}}"></template>
+<template is="iptPhone" data="{{...iptPhone}}"></template>

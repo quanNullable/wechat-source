@@ -1,0 +1,320 @@
+@import "../../components/no-net/no-net.wxss";
+
+@import "../../components/header-index/header/loc.wxss";
+
+@import "../../components/index-search/search.wxss";
+
+page {
+    font-size: 22rpx;
+    color: #666;
+}
+
+.page-container {
+    padding-top: 100rpx;
+}
+
+.header-index {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    background: #FFFFFF;
+    height: 100rpx;
+    z-index: 1;
+}
+
+.header-loc {
+    max-width: 350rpx;
+}
+
+.header-loc-text {
+    min-width: 80rpx;
+}
+
+.header-brand-split {
+    position: relative;
+    font-size: 24rpx;
+    height: 80rpx;
+    color: #666;
+}
+
+.header-brand-split-img {
+    flex: 0 0 auto;
+    margin: 0 16rpx 0 0;
+    width: 68rpx;
+    height: 12rpx;
+}
+
+.header-brand-split-right {
+    margin: 0 0 0 16rpx;
+    transform: scaleX(-1);
+}
+
+.brand-poi {
+    background: #fff;
+    padding-left: 30rpx;
+    margin-bottom: 20rpx;
+}
+
+.brand-poi:last-of-type {
+    margin-bottom: 0;
+}
+
+.brand-poi-header {
+    position: relative;
+    height: 140rpx;
+    padding: 30rpx 0 30rpx 206rpx;
+}
+
+.brand-poi-img {
+    position: absolute;
+    left: 0;
+    top: 30rpx;
+    width: 186rpx;
+    height: 140rpx;
+    border: 1rpx solid #e4e4e4;
+}
+
+.brand-poi-name {
+    font-weight: bold;
+    font-size: 32rpx;
+    line-height: 45rpx;
+    color: #333;
+    margin-bottom: 20rpx;
+}
+
+.brand-poi-info {
+    margin-top: 20rpx;
+    font-size: 22rpx;
+    line-height: 30rpx;
+    color: #666;
+}
+
+.brand-poi-info-split {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 12rpx;
+    height: 12rpx;
+    width: 2rpx;
+    background: #ccc;
+}
+
+.brand-score-dp,.brand-score-star {
+    display: inline-block;
+    text-align: middle;
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 4rpx;
+}
+
+.brand-score-dp {
+    margin-right: 9rpx;
+}
+
+.brand-poi-rec {
+    height: 295rpx;
+    border-top: 1rpx solid #f0f0f0;
+}
+
+.brand-poi-rec-content {
+    white-space: nowrap;
+}
+
+.brand-poi-product {
+    width: 150rpx;
+    display: inline-block;
+    position: relative;
+    padding: 30rpx 30rpx 10rpx 0;
+}
+
+.brand-poi-product:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.brand-poi-product-dp {
+    position: absolute;
+    top: 40rpx;
+    left: 10rpx;
+    background: #ff6633;
+    color: #fff;
+    font-size: 22rpx;
+    height: 30rpx;
+    width: 80rpx;
+    font-weight: bold;
+}
+
+.brand-poi-product-dp-icon {
+    width: 24rpx;
+    height: 24rpx;
+    filter: brightness(0) invert(1);
+}
+
+.brand-poi-product-img {
+    border: 1rpx solid #e4e4e4;
+    width: 150rpx;
+    height: 150rpx;
+    margin-right: 3rpx;
+}
+
+.brand-poi-product-name {
+    width: 100%;
+    margin: 10rpx 0;
+    font-size: 24rpx;
+    line-height: 33rpx;
+    color: #333;
+}
+
+.brand-poi-product-price {
+    font-size: 24rpx;
+    line-height: 33rpx;
+    color: #fb4e44;
+    font-weight: bold;
+}
+
+.poi-actvs {
+    font-size: 22rpx;
+    color: #999;
+    border-top: 1rpx solid #f0f0f0;
+    padding-top: 18rpx;
+    padding-bottom: 30rpx;
+    position: relative;
+}
+
+.poi-arrow {
+    position: absolute;
+    width: 16rpx;
+    height: 8rpx;
+    top: 30rpx;
+    right: 20rpx;
+}
+
+.poi-actvs-item {
+    width: 500rpx;
+    line-height: 30rpx;
+    margin-top: 10rpx;
+    color: #999;
+}
+
+.poi-actvs-icon {
+    float: left;
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.poi-actvs-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 40rpx;
+}
+
+.poi-actvs-expanded .poi-actvs-text {
+    overflow: visible;
+    white-space: normal;
+}
+
+.brand-poi-biz-center {
+    border-top: 1rpx solid #f0f0f0;
+    height: 72rpx;
+    font-size: 24rpx;
+    color: #666;
+    line-height: 76rpx;
+}
+
+.brand-poi-biz-center-icon {
+    vertical-align: middle;
+    transform: translateY(-2rpx);
+    width: 20rpx;
+    height: 24rpx;
+    margin-right: 10rpx;
+}
+
+.poi-status-tag {
+    display: inline-block;
+    height: 30rpx;
+    line-height: 30rpx;
+    border: 1rpx solid #666;
+    padding: 0 10rpx;
+    border-radius: 5rpx;
+    transform: translateY(-2rpx);
+    margin-right: 10rpx;
+}
+
+.poi-status-tag-preorder {
+    color: #37A2EE;
+    border-color: #37A2EE;
+}
+
+.poi-status-tag-special {
+    border-color: #FF5959;
+    color: #FF5959;
+}
+
+.brand-end {
+    font-size: 28rpx;
+    color: #333333;
+    text-align: center;
+    line-height: 80rpx;
+    padding: 30rpx 0;
+}
+
+.brand-end-arrow {
+    width: 11rpx;
+    height: 20rpx;
+}
+
+.brand-no-result {
+    padding: 20% 0;
+}
+
+.brand-banner,.brand-banner-img {
+    width: 690rpx;
+    height: 300rpx;
+    margin: 0 auto;
+    box-shadow: 4rpx 4rpx 20rpx rgba(153,153,153,0.6);
+    display: block;
+}
+
+.poi-list-header {
+    position: relative;
+    height: 88rpx;
+    font-weight: bold;
+    font-size: 32rpx;
+    color: #333;
+    border-bottom: 1rpx solid #e4e4e4;
+    background: #fff;
+    margin-top: 20rpx;
+}
+
+.poi-list-header::before,.poi-list-header::after {
+    position: absolute;
+    top: 44rpx;
+    content: '';
+    width: 60rpx;
+    height: 1rpx;
+    background: #333;
+    transform: scaleY(0.5);
+}
+
+.poi-list-header::before {
+    left: 235rpx;
+}
+
+.poi-list-header::after {
+    right: 235rpx;
+}
+
+.brand-bannder-container {
+    background: #FFFFFF;
+    padding-top: 10rpx;
+    padding-bottom: 30rpx;
+}

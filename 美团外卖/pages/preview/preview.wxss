@@ -1,0 +1,911 @@
+@import "../../components/coupon/coupon.wxss";
+
+@import "../../components/coupon/coupon-poi.wxss";
+
+.picker-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 100;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.picker-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.picker-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 71%;
+    background-color: #fff;
+    display: flex;
+    flex-flow: column nowrap;
+    transform: translateY(100%);
+    animation: picker-appear 0.3s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes picker-appear {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes picker-appear {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.picker-header {
+    height: 85rpx;
+    padding: 0 20rpx;
+    border-bottom: 1rpx solid #e4e4e4;
+    position: relative;
+}
+
+.picker-cancel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 96rpx;
+    height: 100%;
+}
+
+.picker-confirm {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-left: 100rpx;
+    width: 96rpx;
+    height: 100%;
+}
+
+.picker-body {
+    flex: 1 1;
+    height: 400rpx;
+    position: relative;
+    overflow: hidden;
+}
+
+.picker-scroll {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.picker-footer {
+    border-top: 1rpx solid #e4e4e4;
+    height: 100rpx;
+    position: relative;
+}
+
+@import "picker/arrival-time.wxss";
+
+.picker-coupon {
+    background: #F4F4F4;
+}
+
+.coupon-empty {
+    height: 100%;
+    background: #F4F4F4;
+    text-align: center;
+    font-size: 30rpx;
+    padding-top: 85rpx;
+    box-sizing: border-box;
+}
+
+.coupon-empty-img {
+    width: 230rpx;
+    height: 262rpx;
+    display: block;
+    margin: auto;
+}
+
+.coupon-title {
+    height: 0;
+    margin: 46rpx 30rpx;
+    color: #666666;
+    letter-spacing: 0.34rpx;
+    border-bottom: 1rpx solid #666;
+}
+
+.coupon-title-text {
+    background: #f4f4f4;
+    font-size: 24rpx;
+    color: #666666;
+    padding: 0 8rpx;
+}
+
+.coupon-end {
+    font-size: 20rpx;
+    text-align: center;
+    margin-bottom: 20rpx;
+    line-height: 60rpx;
+}
+
+@import "picker/option-picker.wxss";
+
+@import "privacy/privacy.wxss";
+
+@import "privacy/privacy-modal.wxss";
+
+page {
+    height: 100%;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.page-container-flex {
+    visibility: hidden;
+}
+
+.page-container-flex.show {
+    visibility: visible;
+}
+
+.preview-block {
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+
+.preview-row {
+    margin-left: 20rpx;
+    display: flex;
+    align-items: center;
+    height: 88rpx;
+}
+
+.preview-row-border {
+    border-bottom: 1rpx solid #e4e4e4;
+}
+
+.preview-row-text-right {
+    margin-left: auto;
+    margin-right: 20rpx;
+    flex: 0 1 auto;
+    max-width: 500rpx;
+}
+
+.scroll-container {
+    flex: 1 1 auto;
+    height: 100rpx;
+    position: relative;
+    margin: 0 20rpx;
+    margin-bottom: 1rpx;
+}
+
+.scroll-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.separate_line {
+    height: 20rpx;
+    width: 100%;
+    position: relative;
+}
+
+.info-box {
+    margin-top: 19rpx;
+}
+
+.info-box,.pay-type-area,.footer {
+    background-color: #fff;
+}
+
+.have-address {
+    height: 144rpx;
+}
+
+.arrive-info {
+    height: 88rpx;
+}
+
+.shop-name {
+    flex: 1;
+}
+
+.arrive-time,.user-info-content,.fee-name,.choose-address-content {
+    flex: 1;
+}
+
+.user-info {
+    border-bottom: 1rpx solid #e4e4e4;
+}
+
+.arrive-info,.have-address,.order-header,.pay-type,.fee-list-item,.order-shop,.address,.error-tip {
+    display: flex;
+    align-items: center;
+}
+
+.user-info-basic {
+    display: flex;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.user-address {
+    font-weight: 500;
+    margin-bottom: 10rpx;
+    font-size: 32rpx;
+}
+
+.user-gender {
+    margin-right: 30rpx;
+}
+
+.user-name-txt {
+    max-width: 280rpx;
+}
+
+.user-name-txt,.shop-name,.user-address {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10rpx;
+}
+
+.mt-shipping {
+    width: 100rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    background: #FFD161;
+    text-align: center;
+    font-size: 20rpx;
+    position: relative;
+    color: #333;
+    margin-right: 20rpx;
+}
+
+.mt-shipping::before,.mt-shipping::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 3px solid #fff;
+}
+
+.mt-shipping::before {
+    left: 0;
+    top: 0;
+    border-color: #fff transparent transparent #fff;
+}
+
+.mt-shipping::after {
+    right: 0;
+    bottom: 0;
+    border-color: transparent #fff #fff transparent;
+}
+
+.shop-shipping {
+    width: 100rpx;
+    height: 30rpx;
+    line-height: 28rpx;
+    text-align: center;
+    font-size: 20rpx;
+    color: #333;
+    border: 1rpx solid #333;
+    margin-right: 20rpx;
+    box-sizing: border-box;
+}
+
+.jump-btn {
+    width: 12rpx;
+    height: 22rpx;
+}
+
+.pay-type {
+    height: 88rpx;
+    margin-top: 20rpx;
+}
+
+.jump-btn,.shop-icon,.fee-price,.total-pay-price,.arrive-estimate {
+    margin-right: 20rpx;
+}
+
+.preview-row-text-right.disabled {
+    color: #999;
+}
+
+.preview-row-text-right.selected {
+    color: #fb4e44;
+}
+
+.user-info,.arrive-info,.order-header,.fee-list,.pay-type,.total-price {
+    margin-left: 20rpx;
+}
+
+.total-price {
+    color: #898989;
+}
+
+.total-pref {
+    margin-left: 20rpx;
+}
+
+.order-header {
+    height: 88rpx;
+}
+
+.shop-icon {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+}
+
+.order-header {
+    color: #666;
+}
+
+.fee-list-item,.total-pay {
+    width: 100%;
+    height: 70rpx;
+}
+
+.total-pay-pricetxt {
+    color: #fb4e44;
+}
+
+.total-pay-pricetxt {
+    font-weight: bold;
+}
+
+.footer {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 34rpx;
+    text-align: center;
+    color: #fff;
+    background: #07AE00;
+}
+
+.footer.footer-ipx {
+    height: 169rpx;
+}
+
+.footer.footer-ipx::after {
+    content: '';
+    display: block;
+    height: 68rpx!important;
+    width: 100%;
+    background: #07AE00;
+}
+
+.footer .pay-save {
+    opacity: 0.8;
+}
+
+.address {
+    font-size: 32rpx;
+}
+
+.pay-save {
+    margin-left: 26rpx;
+    font-size: 26rpx;
+}
+
+.wait-to-pay {
+    float: right;
+}
+
+.wait-pay-price {
+    margin-left: 12rpx;
+    font-size: 38rpx;
+    font-weight: bold;
+}
+
+.address-icon {
+    width: 40rpx;
+}
+
+.choose-address-icon,.address-icon {
+    height: 40rpx;
+    margin-right: 20rpx;
+}
+
+.choose-address-icon {
+    width: 40rpx;
+}
+
+.add-address-icon {
+    height: 30rpx;
+    width: 30rpx;
+    margin-bottom: -2rpx;
+}
+
+.address {
+    height: 106rpx;
+}
+
+.add-address {
+    color: #ffb000;
+    background: #fff;
+    border: 2rpx solid #FFB000;
+    border-radius: 100rpx;
+    width: 400rpx;
+    height: 80rpx;
+    font-size: 34rpx;
+    text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    margin-top: 37rpx;
+}
+
+.choose-address {
+    color: #FFB000;
+    justify-content: flex-end;
+}
+
+.add-address-txt {
+    line-height: 80rpx;
+}
+
+.add-address-txt {
+    top: 2rpx;
+}
+
+.add-address-txt,.choose-address-txt,.info-box {
+    position: relative;
+}
+
+.choose-address-txt {
+    top: -4rpx;
+}
+
+.error-tip {
+    flex: 0 0 auto;
+    justify-content: center;
+    color: #fff;
+    background-color: #e64340;
+    height: 70rpx;
+}
+
+.address-list-item {
+    position: relative;
+    border-bottom: 1rpx solid #e4e4e4;
+    font-size: 28rpx;
+    padding: 20rpx 94rpx 20rpx 80rpx;
+}
+
+.address-list-item-last {
+    border-bottom: 0 none;
+}
+
+.address-info {
+    color: #999;
+    display: flex;
+    align-items: center;
+    height: 40rpx;
+}
+
+.address-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 0 1 auto;
+}
+
+.address-gender,.address-phone {
+    flex: 0 0 auto;
+}
+
+.address-gender {
+    margin: 0 20rpx;
+}
+
+.unuse999 {
+    color: #999!important;
+}
+
+.address-addr {
+    color: #333;
+    line-height: 1.36;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 400rpx;
+}
+
+.address-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 102rpx;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrive-estimate {
+    display: inline;
+    color: #348BED;
+    font-size: 28rpx;
+    font-weight: normal;
+}
+
+.address-edit-icon {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.address-check {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80rpx;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.address-check-icon {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.discounts {
+    margin-left: 20rpx;
+    padding: 10rpx 0;
+}
+
+.discounts-item {
+    padding: 10rpx 0;
+    display: flex;
+    align-items: center;
+}
+
+.discounts-item-img {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+    vertical-align: -4rpx;
+}
+
+.discounts-item-text {
+    color: #999;
+}
+
+.discounts-item-price {
+    margin-left: auto;
+    margin-right: 20rpx;
+    color: #FB4E44;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 336rpx;
+    text-align: right;
+}
+
+.tip-sec {
+    min-height: 60rpx;
+    max-height: 100rpx;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    padding: 0 26rpx;
+    background: #fff8e3;
+    color: #6a450c;
+}
+
+.tip-sec.two-line {
+    min-height: 100rpx;
+}
+
+.tip-sec2 {
+    flex: 0 0 auto;
+    padding: 0 26rpx;
+    height: 59rpx;
+    background: #FFF1CF;
+    color: #666;
+    font-size: 22rpx;
+}
+
+.tip-icon {
+    height: 32rpx;
+    width: 32rpx;
+}
+
+.tip-text {
+    display: block;
+    max-width: 654rpx;
+    min-height: 40rpx;
+    max-height: 80rpx;
+    line-height: 40rpx;
+    margin-left: 14rpx;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.tip-sec.two-line .tip-text {
+    min-height: 38rpx;
+    line-height: 38rpx;
+}
+
+.loc-icon,.time-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+}
+
+.user-info-content {
+    overflow: hidden;
+}
+
+.arrive-time {
+    font-size: 32rpx;
+    font-weight: 500;
+}
+
+.food-list-item {
+    display: flex;
+    background: #F8F8F8;
+    height: 110rpx;
+    margin-bottom: 10rpx;
+    padding: 20rpx 0;
+}
+
+.food-list-item-img {
+    width: 110rpx;
+    height: 110rpx;
+    margin: 0 20rpx 0 20rpx;
+}
+
+.food-list-item-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.food-name {
+    line-height: 40rpx;
+    margin-bottom: 4rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.food-img {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+    vertical-align: -4rpx;
+}
+
+.cart-food-subdtl {
+    line-height: 33rpx;
+    margin-bottom: 4rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.food-number {
+    width: 100rpx;
+    color: #999;
+}
+
+.food-price,.food-origin-price {
+    width: 130rpx;
+    margin-right: 20rpx;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.food-price {
+    line-height: 40rpx;
+    margin-bottom: 4rpx;
+}
+
+.food-origin-price {
+    line-height: 33rpx;
+    color: #999;
+    visibility: hidden;
+    text-decoration: line-through;
+}
+
+.food-origin-price-show {
+    visibility: visible;
+}
+
+.dvd-line {
+    position: relative;
+    margin: 0 20rpx;
+    height: 12rpx;
+    font-size: 0;
+    border-bottom: 1rpx dashed #e4e4e4;
+}
+
+.dvd-line::before,.dvd-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 24rpx;
+    height: 24rpx;
+    background: #f4f4f4;
+    border-radius: 50%;
+}
+
+.dvd-line::before {
+    left: -32rpx;
+}
+
+.dvd-line::after {
+    right: -32rpx;
+}
+
+.total-pay-price {
+    float: right;
+    line-height: 70rpx;
+}
+
+.total-price {
+    float: right;
+    line-height: 70rpx;
+    margin-right: 20rpx;
+    font-size: 24rpx;
+}
+
+.eco-icon {
+    width: 30rpx;
+    height: 24rpx;
+    margin-right: 10rpx;
+}
+
+.eco-icon-pure {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 10rpx;
+}
+
+.default_tableware_tip {
+    line-height: 50rpx;
+    background: #F5FFFB;
+    font-size: 24rpx;
+    color: #4DC6A5;
+    padding: 0 10rpx;
+    border-radius: 25rpx;
+    margin-right: 20rpx;
+    display: flex;
+    align-items: center;
+}
+
+.preview-row-dinner-option {
+    display: flex;
+    align-items: center;
+}
+
+.show_more_food {
+    width: 146rpx;
+    height: 50rpx;
+    border: 1rpx solid #ccc;
+    display: inline-block;
+    line-height: 50rpx;
+    text-align: center;
+    color: #666;
+    border-radius: 4rpx;
+    margin-left: 50%;
+    margin-top: 30rpx;
+    transform: translateX(-50%);
+}
+
+.show_more_food_text {
+    font-size: 24rpx;
+}
+
+.show_more_food_img {
+    height: 20rpx;
+    width: 20rpx;
+    margin-left: 6rpx;
+    margin-bottom: 0;
+    transform: rotate(180deg);
+}
+
+.show_more_food_img.trans {
+    transform: rotate(0deg);
+}
+
+.submiting {
+    background-color: #ccc;
+}
+
+.preview-row-border {
+    margin-right: 20rpx;
+}
+
+.preview-row-border .jump-btn {
+    margin-right: 0;
+}
+
+.preview-addr-info {
+    margin-right: 20rpx;
+}
+
+.preview-addr-info .jump-btn {
+    margin-right: 0;
+}
+
+.preview-addr-add {
+    height: 155rpx;
+}
+
+.no-bottom-dist {
+    margin-bottom: 0;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+:-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.scroll-content:webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.addr-need-edit {
+    color: #FB4E44;
+    flex: 1;
+}
+
+.modify-addr-icon {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 6rpx;
+}
+
+.address-list-title {
+    padding: 20rpx 94rpx 0rpx 40rpx;
+    color: #666;
+}
+
+.position-icon {
+    display: inline-block;
+    width: 26rpx;
+    height: 26rpx;
+    margin-right: 12rpx;
+}
+
+.position-icon2 {
+    display: inline-block;
+    width: 20rpx;
+    height: 26rpx;
+    margin-right: 6rpx;
+}

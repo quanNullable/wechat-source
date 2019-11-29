@@ -1,0 +1,65 @@
+<view class="container">
+    <view class="header">
+        <view class="nav-items">
+            <view class="nav-item">
+                <view>多人</view>
+            </view>
+            <view class="nav-item">
+                <view bindtap="bind2Game">单人</view>
+            </view>
+        </view>
+        <view class="notification">
+            <block wx:if="{{isMatching}}">
+                <block wx:if="{{isRand}}">
+          玩家{{randUser.nick_name}}进来了
+        </block>
+                <block wx:else>
+          已匹配到玩家
+        </block>
+            </block>
+            <block wx:else>
+        等待玩家进入...
+      </block>
+        </view>
+    </view>
+    <view class="content">
+        <view class="person-item rt">
+            <view class="info">
+                <button bindgetuserinfo="getWxUserInfo" openType="getUserInfo">
+                    <image class="me" src="{{userInfo.avatarUrl}}" wx:if="{{isAuthorize&&userInfo.avatarUrl}}"></image>
+                    <image class="me" src="/image/user_logo.jpg" wx:else></image>
+                </button>
+                <view class="username">
+          {{userInfo.nickName?userInfo.nickName:'我'}}
+        </view>
+            </view>
+        </view>
+        <view class="vs">VS</view>
+        <view class="person-item lf">
+            <view class="info">
+                <image class="other {{!isMatching&&endTime<WAIT_SECOND?'scan':''}} " src="/image/leida.png" wx:if="{{!isMatching}}"></image>
+                <image class="other " src="{{randUser.avatar_url}}" wx:else></image>
+                <view class="username">
+          {{isMatching?randUser.nick_name:'--'}}
+        </view>
+            </view>
+        </view>
+    </view>
+    <view class="footer">
+        <view class="timeout" wx:if="{{timeout}}">
+            <image src="/image/icon-said.png"></image>
+      {{pk_not_match_tishi}}
+    </view>
+        <view class="share" wx:if="{{isMatching&&isReady}}">
+      准备开始{{readyTime}}″
+    </view>
+        <button class="share" openType="share" wx:elif="{{!isMatching&&!isReady&&(endTime==WAIT_SECOND||endTime==0)}}">{{reShare?'继续邀请玩家':'邀请玩家'}}</button>
+        <view class="share" wx:else>
+      00:{{endTime<=9?'0'+endTime:endTime}} </view>
+    </view>
+    <view class="share btn-home">
+        <navigator hoverClass="none" openType="reLaunch" url="/pages/index/index">
+        回到首页
+      </navigator>
+    </view>
+</view>

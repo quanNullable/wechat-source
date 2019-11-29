@@ -1,0 +1,19 @@
+<view class="order-info">
+    <view class="order-info-item">
+        <view class="order-info-name">商家名称</view>
+        <view class="order-info-dtl">眉州东坡酒楼</view>
+    </view>
+    <view class="order-info-item">
+        <view class="order-info-name">订单号码</view>
+        <view class="order-info-dtl">5592 3501 6063 7540</view>
+    </view>
+    <view class="order-info-item">
+        <view class="order-info-name">退款金额</view>
+        <view class="order-info-dtl red">￥55</view>
+    </view>
+</view>
+<view class="complain-sec">
+    <view class="complain">
+        <textarea class="complain-text" placeholder="请输入您的投诉内容："></textarea>
+    </view>
+</view>

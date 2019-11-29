@@ -1,0 +1,320 @@
+.delivery-card {
+    margin: 30rpx;
+    padding: 36rpx 20rpx 20rpx 20rpx;
+    background: #fff;
+}
+
+.delivery-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 0 20rpx;
+    border-radius: 50%;
+}
+
+.delivery-card-middle {
+    display: inline-block;
+}
+
+.delivery-card-title1 {
+    color: #2f2f2f;
+    font-size: 36rpx;
+    line-height: 50rpx;
+}
+
+.delivery-card-title2 {
+    color: #2f2f2f;
+    font-size: 28rpx;
+    line-height: 40rpx;
+}
+
+.delivery-card-icon {
+    width: 26rpx;
+    height: 26rpx;
+    margin-left: 10rpx;
+    vertical-align: middle;
+}
+
+.delivery-card-right {
+    color: #348BED;
+    font-size: 26rpx;
+    line-height: 37rpx;
+    float: right;
+    margin-top: 50rpx;
+}
+
+.delivery-card-top {
+    border-bottom: 1px solid #e4e4e4;
+    padding-bottom: 20rpx;
+}
+
+.delivery-card-center {
+    font-size: 28rpx;
+    color: #666;
+    margin: 30rpx auto;
+    text-align: center;
+}
+
+.poi-score-view {
+    margin-bottom: 30rpx;
+    text-align: center;
+}
+
+.poi-score-view image {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 12rpx;
+    margin-right: 20rpx;
+}
+
+.indicator-wrap {
+    text-align: center;
+}
+
+.indicator {
+    display: inline-block;
+    border-radius: 50%;
+    width: 10rpx;
+    height: 10rpx;
+    margin-right: 12rpx;
+    background: #e4e4e4;
+}
+
+.indicator-on {
+    background: #ffd161;
+    width: 14rpx;
+    height: 14rpx;
+}
+
+.tip-tags {
+    font-size: 26rpx;
+    height: 58rpx;
+    line-height: 58rpx;
+    padding: 0 20rpx;
+    border-radius: 29rpx;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    display: inline-block;
+    border: 1rpx solid #ccc;
+}
+
+.tip-tags-on {
+    color: #FFB000;
+    background: #FFF8E9;
+}
+
+.tip-swiper {
+    height: 144rpx;
+    padding-bottom: 20rpx;
+}
+
+.delivery-card-title3 {
+    line-height: 80rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.poi-comment-content {
+    width: 610rpx;
+    height: 110rpx;
+    font-size: 30rpx;
+    color: #333;
+}
+
+.poi-comment-warn {
+    font-size: 24rpx;
+    color: #CCC;
+    position: absolute;
+    bottom: 20rpx;
+    right: 20rpx;
+    line-height: 33rpx;
+}
+
+.textarea-wrap {
+    margin: 30rpx auto;
+    padding: 20rpx 20rpx 60rpx 20rpx;
+    border: 1px solid #c4c4c4;
+    position: relative;
+}
+
+.poi-food-wrap {
+    boder-top: 1rpx solid #e4e4e4;
+}
+
+.poi-food-tab {
+    margin-top: 30rpx;
+    line-height: 47rpx;
+    overflow: hidden;
+    color: #333;
+    font-size: 32rpx;
+}
+
+.poi-food-button {
+    border: 1px solid #ccc;
+    font-size: 24rpx;
+    line-height: 47rpx;
+    padding: 0 20rpx 0 47rpx;
+    border-radius: 24rpx;
+    width: 24rpx;
+    float: right;
+    margin-left: 9px;
+    position: relative;
+}
+
+.poi-food-button-icon {
+    width: 24rpx;
+    height: 24rpx;
+    vertical-align: middle;
+    position: absolute;
+    left: 13rpx;
+    top: 13rpx;
+}
+
+.poi-food-likeon {
+    background: #FFF8E9;
+    border: 1rpx solid #FFB000;
+    color: #FFB000;
+}
+
+.poi-food-dislikeon {
+    background: #f4f4f4;
+    border: 1rpx solid #CCCCCC;
+}
+
+.poi-comment-send {
+    margin: 0 auto;
+    width: 520rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 34rpx;
+    color: #fff;
+    background: #ccc;
+    border-radius: 50rpx;
+}
+
+.poi-comment-send-on {
+    color: #333;
+    background: #FFD161;
+}
+
+.poi-comment-send-wrap {
+    padding: 30rpx 0;
+}
+
+.picker-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+.main-picker {
+    width: 100%;
+    height: 560rpx;
+    z-index: 10;
+    position: absolute;
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
+
+.picker-cancle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: #333;
+    border-top: 1rpx solid #e0e0e0;
+    background: #fff;
+}
+
+.picker-left-scroll {
+    flex: 220;
+    height: 560rpx;
+}
+
+.picker-right-scroll {
+    flex: 530;
+    height: 500rpx;
+}
+
+.poi-container,.wrap,page {
+    height: 100%;
+}
+
+.date-tab {
+    height: 100rpx;
+    line-height: 100rpx;
+    background: #f4f4f4;
+    font-size: 28rpx;
+    color: #666;
+    border-bottom: 1rpx solid #e4e4e4;
+    text-align: center;
+}
+
+.date-tab-on {
+    background: #fff;
+    color: #333;
+}
+
+.hour-tab {
+    height: 100rpx;
+    line-height: 100rpx;
+    background: #fff;
+    font-size: 28rpx;
+    color: #666;
+    text-align: left;
+    padding: 0 30rpx;
+}
+
+.hour-tab:last-child {
+    padding-bottom: 70rpx;
+}
+
+.hour-tab-on {
+    color: #348BED;
+}
+
+.check-icon {
+    width: 30rpx;
+    float: right;
+    display: none;
+    height: 20rpx;
+    margin-top: 35rpx;
+}
+
+.hour-tab-on .check-icon {
+    display: inline-block;
+}
+
+.delivery-card-flex {
+    display: flex;
+}
+
+.delivery-card-flex .delivery-avatar {
+    flex: 80;
+}
+
+.delivery-card-flex .delivery-card-middle {
+    flex: 520;
+    overflow: hidden;
+    text-align: left;
+}
+
+.poi-food-name {
+    float: left;
+    width: 320rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 47rpx;
+}

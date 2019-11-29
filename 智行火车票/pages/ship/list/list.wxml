@@ -1,0 +1,44 @@
+<view class="">
+    <view class="ship-list-date flex-row f-white p5 bg-blue">
+        <view class="flex-2 txt-l p5">
+            <text bindtap="onChangeDayTap" class="prev {{prevEnable?'':'disabled'}}" data-day="-1">前一天</text>
+        </view>
+        <view bindtap="onDateTap" class="flex-3 bg-white f-black p5 txt-c date">
+            <text>{{date}} {{week}}</text>
+        </view>
+        <view class="flex-2 txt-r p5">
+            <text bindtap="onChangeDayTap" class="next {{nextEnable?'':'disabled'}}" data-day="1">后一天</text>
+        </view>
+    </view>
+    <scroll-view scrollY="true">
+        <view class="ship-list">
+            <view bindtap="onListTap" class="ship-list-item bg-white b_border p10 {{item.is_bookable==1?'':'disabled'}}" data-index="{{index}}" wx:for="{{list}}" wx:key="{{index}}">
+                <view class="flex-row time mt10">
+                    <view class="flex-row flex-2">
+                        <view class="flex-1 f-time txt-l">{{item.from_time}}</view>
+                        <view class="flex-1 use-time txt-c f-gray">
+                            ---
+                        </view>
+                        <view class="flex-1 t-time txt-r">{{item.to_time}}</view>
+                    </view>
+                    <view class="flex-1 price price-tag f-orange txt-r">
+                        {{item.seat_info[0].seat_price}}
+                        <text class="f-gray tag">起</text>
+                    </view>
+                </view>
+                <view class="flex-row ship f-gray mt10">
+                    <view class="flex-row flex-2 station">
+                        <view class="flex-1 f-station txt-l">{{item.from_station_name}}</view>
+                        <view class="flex-1 t-station txt-r">{{item.to_station_name}}</view>
+                    </view>
+                    <view class="flex-1 ship-name txt-r">
+                        {{item.ship_name}}
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="flex-row m10" wx:if="{{querylod}}">
+            <view class="flex-1 txt-c">共查询到{{list.length}}条航次</view>
+        </view>
+    </scroll-view>
+</view>

@@ -1,0 +1,58 @@
+<template name="seat-choose-booking">
+    <view bindtap="{{seatPositionInfo.toggleSeatPositionFn}}">
+        <view class="train-seat-bd">
+            <view class="txt">靠窗</view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row0['A']?'cur':''}}" data-p="A" data-row="0">
+                <text data-p="A" data-row="0">A</text>
+            </view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row0['B']?'cur':''}}" data-p="B" data-row="0" wx:if="{{util.isClass2(seatPositionInfo.currentSeatName)}}">
+                <text data-p="B" data-row="0">B</text>
+            </view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row0['C']?'cur':''}}" data-p="C" data-row="0">
+                <text data-p="C" data-row="0">C</text>
+            </view>
+            <view class="txt">过道</view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row0['D']?'cur':''}}" data-p="D" data-row="0" wx:if="{{util.isClass12(seatPositionInfo.currentSeatName)}}">
+                <text data-p="D" data-row="0">D</text>
+            </view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row0['F']?'cur':''}}" data-p="F" data-row="0">
+                <text data-p="F" data-row="0">F</text>
+            </view>
+            <view class="txt">靠窗</view>
+        </view>
+        <view class="train-seat-bd" wx:if="{{seatPositionInfo.isSecondRowVisible}}">
+            <view class="txt">靠窗</view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row1['A']?'cur':''}}" data-p="A" data-row="1">
+                <text data-p="A" data-row="1">A</text>
+            </view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row1['B']?'cur':''}}" data-p="B" data-row="1" wx:if="{{util.isClass2(seatPositionInfo.currentSeatName)}}">
+                <text data-p="B" data-row="1">B</text>
+            </view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row1['C']?'cur':''}}" data-p="C" data-row="1">
+                <text data-p="C" data-row="1">C</text>
+            </view>
+            <view class="txt">过道</view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row1['D']?'cur':''}}" data-p="D" data-row="1" wx:if="{{util.isClass12(seatPositionInfo.currentSeatName)}}">
+                <text data-p="D" data-row="1">D</text>
+            </view>
+            <view class="seat {{seatPositionInfo.selectedSeats.row1['F']?'cur':''}}" data-p="F" data-row="1">
+                <text data-p="F" data-row="1">F</text>
+            </view>
+            <view class="txt">靠窗</view>
+        </view>
+    </view>
+</template>
+<wxs module="util">
+var isClass12 = function(seatName) {
+    return seatName.indexOf("一等") !== -1 || seatName.indexOf("二等") !== -1;
+};
+
+var isClass2 = function(seatName) {
+    return seatName.indexOf("二等") !== -1;
+};
+
+module.exports = {
+    isClass12: isClass12,
+    isClass2: isClass2
+};
+</wxs>

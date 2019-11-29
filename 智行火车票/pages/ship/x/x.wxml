@@ -1,0 +1,34 @@
+<view class="ship-x-title bg-blue f-white p15">
+    <view class="flex-row time">
+        <view class="flex-1">
+            {{shipInfo.from_time}}
+        </view>
+        <view class="flex-1 txt-c">
+            -----
+        </view>
+        <view class="flex-1 txt-r">
+            {{shipInfo.to_time}}
+        </view>
+    </view>
+    <view class="flex-row station mt10">
+        <view class="flex-1">
+            {{shipInfo.from_station_name}}
+        </view>
+        <view class="flex-1 txt-r">
+            {{shipInfo.to_station_name}}
+        </view>
+    </view>
+</view>
+<scroll-view scrollY="true">
+    <view class="bg-white ship-x-list" wx:for="{{shipInfo.seat_info}}" wx:key="{{index}}">
+        <view class="flex-row b_border ship-x-item txt-l">
+            <view class="flex-2 seat">{{item.seat_name}}</view>
+            <view class="flex-2 price price-tag f-orange"> {{item.seat_price}}</view>
+            <view class="flex-1 number">{{item.seat_num}} 张</view>
+            <view class="flex-1 txt-r">
+                <button bindtap="bookingClick" class="btn-primary btn-x" data-params="{{item}}" wx:if="{{item.seat_num!=0}}">预 订</button>
+                <button class="btn-primary btn-x" wx:if="{{item.seat_num==0}}">售完</button>
+            </view>
+        </view>
+    </view>
+</scroll-view>

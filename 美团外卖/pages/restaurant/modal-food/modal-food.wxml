@@ -1,0 +1,40 @@
+<template name="modal-food">
+    <view class="ui-fixed-container flex-center modal-food-container" wx:if="{{show}}">
+        <view bindtap="hideModalFood" class="ui-modal-backdrop modal-food-backdrop"></view>
+        <view class="ui-modal modal-food">
+            <view class="modal-food-title ellipsis"> {{spu.name}} </view>
+            <scroll-view class="modal-food-scroll {{spu.attrs.length>2?'modal-food-scroll-y':''}}" scrollY="1">
+                <view class="ui-modal-content modal-food-content">
+                    <block wx:if="{{spu.skus.length>1||spu.skus[0].spec}}">
+                        <view class="modal-food-label"> {{spu.sku_label}}: </view>
+                        <view bindtap="{{item._enabled?'onClickModalFoodBtn':''}}" class="modal-food-btn ellipsis {{activeSku===item.id?'modal-food-btn-active':''}} {{!item._enabled?'modal-food-btn-disabled':''}}" data-id="{{item.id}}" data-index="{{index}}" data-type="sku" wx:for="{{spu.skus}}" wx:key="{{item.id}}"> {{item.spec}} </view>
+                    </block>
+                    <block wx:if="{{spu.attrs}}" wx:for="{{spu.attrs}}" wx:for-item="attr" wx:key="{{index}}">
+                        <view class="modal-food-label"> {{attr.name}}: </view>
+                        <view bindtap="{{activeSku!==null?'onClickModalFoodBtn':''}}" class="modal-food-btn ellipsis {{activeAttrs[index].id===item.id?'modal-food-btn-active':''}} {{activeSku===null?'modal-food-btn-disabled':''}}" data-attr="{{item}}" data-id="{{item.id}}" data-index="{{index}}" data-type="attr" wx:for="{{attr.values}}" wx:for-index="i" wx:key="{{item.id}}"> {{item.value}} </view>
+                    </block>
+                </view>
+            </scroll-view>
+            <view class="modal-food-footer">
+                <view class="modal-food-price"> ￥{{price}} </view>
+                <view class="modal-food-price-origin" wx:if="{{priceOrigin}}"> ￥{{priceOrigin}} </view>
+                <view class="modal-food-footer-attr ellipsis"> （ <view class="modal-food-footer-attr-text ui-inline"> {{attrText}} </view> ） </view>
+                <block wx:if="{{activeSku!==null}}">
+                    <block wx:if="{{activeCount===0}}">
+                        <view class="modal-food-cart">
+                            <view class="cart-img cart-img-normal-active ui-inline-block"></view> 加入购物车 </view>
+                        <view bindtap="onClickModalFoodAdd" class="modal-food-cart-click" data-attrs="{{activeAttrs}}" data-foodid="{{id}}" data-id="{{activeSku}}" data-item="{{modalFood}}"></view>
+                    </block>
+                    <block wx:else>
+                        <image class="remove-food" src="/img/icons/remove.png"></image>
+                        <view class="food-num"> {{activeCount}} </view>
+                        <image class="add-food" src="/img/icons/add.png"></image>
+                        <view bindtap="onClickModalFoodDel" class="remove-food-box" data-attrs="{{activeAttrs}}" data-foodid="{{id}}" data-id="{{activeSku}}"></view>
+                        <view bindtap="onClickModalFoodAdd" class="add-food-box" data-attrs="{{activeAttrs}}" data-foodid="{{id}}" data-id="{{activeSku}}" data-item="{{modalFood}}"></view>
+                    </block>
+                </block>
+            </view>
+        </view>
+        <view bindtap="hideModalFood" class="ui-close-icon close-icon zindex-1400 black-close"></view>
+    </view>
+</template>

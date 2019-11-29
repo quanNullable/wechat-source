@@ -1,0 +1,220 @@
+.headbg {
+    width: 100%;
+    height: 420rpx;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.headbg .bg-avatar {
+    width: 120%;
+    height: 750rpx;
+    margin: -165rpx -10%;
+    filter: blur(29px);
+}
+
+.headbg .bg-avatar::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.2);
+}
+
+.tick-box {
+    margin: 0 40rpx;
+}
+
+.tick-hd {
+    text-align: center;
+    color: #fff;
+    padding: 50rpx 0 30rpx;
+}
+
+.tick-hd .img-avatar {
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 90rpx;
+}
+
+.tick-hd .name {
+    font-size: 32rpx;
+    line-height: 48rpx;
+    margin-top: 15rpx;
+}
+
+.tick-hd .txt {
+    font-size: 26rpx;
+    color: rgba(255,255,255,.7);
+}
+
+.tick-bd {
+    background: #fff;
+    border-radius: 10rpx;
+    box-shadow: 0 5rpx 10rpx rgba(0,0,0,.06);
+    padding: 40rpx 40rpx 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.tick-bd::before,.tick-bd::after {
+    width: 16rpx;
+    height: 16rpx;
+    background: #EFEFEF;
+    border-radius: 16rpx;
+    position: absolute;
+    content: "";
+    bottom: 72rpx;
+    z-index: 5;
+}
+
+.tick-bd::before {
+    left: -8rpx;
+}
+
+.tick-bd::after {
+    right: -8rpx;
+}
+
+.tick-bd .modify {
+    position: relative;
+    overflow: hidden;
+}
+
+.tick-bd .modify .item {
+    width: 35%;
+    line-height: 50rpx;
+}
+
+.tick-bd .modify .item.from {
+    float: left;
+    text-align: left;
+}
+
+.tick-bd .modify .item.to {
+    float: right;
+    text-align: right;
+}
+
+.tick-bd .modify .station {
+    font-size: 30rpx;
+}
+
+.tick-bd .modify .strong {
+    font-size: 40rpx;
+    font-weight: 500;
+}
+
+.tick-bd .modify .date {
+    font-size: 26rpx;
+}
+
+.tick-bd .modify .mid {
+    width: 110rpx;
+    height: 40rpx;
+    text-align: center;
+    line-height: 40rpx;
+    position: absolute;
+    left: 50%;
+    top: 50rpx;
+    margin-left: -55rpx;
+    font-size: 26rpx;
+    border: 1px solid #E5E5E5;
+    color: #888;
+    box-sizing: border-box;
+    border-radius: 6rpx;
+}
+
+.tick-bd .modify .mid::before,.tick-bd .modify .mid::after {
+    width: 60rpx;
+    height: 2rpx;
+    background: #E5E5E5;
+    position: absolute;
+    content: "";
+    top: 19rpx;
+}
+
+.tick-bd .modify .mid::before {
+    left: -60rpx;
+}
+
+.tick-bd .modify .mid::after {
+    right: -60rpx;
+}
+
+.tick-bd .note {
+    margin-top: 30rpx;
+    height: 80rpx;
+    overflow: hidden;
+    line-height: 80rpx;
+    border-top: 1px dashed #E5E5E5;
+    font-size: 28rpx;
+}
+
+.btn-buy {
+    background: #3c8eff;
+    color: #fff;
+    font-size: 34rpx;
+    margin-top: 35rpx;
+}
+
+.btn-buy::after {
+    border: 0;
+}
+
+.btn-buy_hover::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    background: rgba(0,0,0,.1);
+}
+
+.qp-share-tips {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.75);
+    z-index: 1000;
+}
+
+.qp-share-tips .qp-share-txt {
+    color: #fff;
+    margin: 40rpx 40rpx 20rpx 30%;
+    font-size: 30rpx;
+    line-height: 50rpx;
+}
+
+.qp-share-tips .btn-know {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    margin-top: 40rpx;
+    width: 320rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.qp-share-tips .btn-know_hover::after {
+    background: rgba(0,0,0,.1);
+}
+
+.frd-change-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 35rpx;
+    margin-bottom: 30rpx;
+}
+
+.frd-change-wrapper image {
+    height: 28rpx;
+    width: 126rpx;
+}

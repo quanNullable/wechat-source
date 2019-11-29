@@ -1,0 +1,17 @@
+<template name="iptPhone">
+    <view class="ui-iptphone-wrap" wx:if="{{show}}">
+        <view class="ui-iptphone ui-ipt-focus">
+            <view class="ui-iptphone-title">登录美团</view>
+            <view class="ui-iptphone-ipt {{error?'number-error':''}}">
+                <input autoFocus="true" bindinput="onCheckPhoneNumber" class="ui-iptphone-number" confirmType="done" focus="true" maxlength="13" placeholder="请输入您的手机号" placeholderClass="ui-iptphone-ipt-placeholder" type="number" value="{{inputValue}}"></input>
+                <view catchtap="onClearIpt" class="ui-clear-ipt" wx:if="{{hasValue}}"></view>
+            </view>
+            <view class="ui-iptphone-tip" wx:if="{{!error}}">如果您还没有用这个手机号注册过美团，我们将为您创建美团账号。</view>
+            <view class="ui-iptphone-tip ui-iptphone-error-tip" wx:else>请输入正确的11位手机号码</view>
+            <view class="ui-iptphone-controls">
+                <view bindtap="onClickBaseComponent" class="ui-iptphone-cancel" data-action="cancel" data-type="{{type}}"> 取消 </view>
+                <view bindtap="onClickBaseComponent" class="ui-iptphone-next ui-iptphone-next-border {{isRight?'ui-iptphone-isright':''}}" data-action="ok" data-persist="1" data-type="{{type}}"> 下一步 </view>
+            </view>
+        </view>
+    </view>
+</template>

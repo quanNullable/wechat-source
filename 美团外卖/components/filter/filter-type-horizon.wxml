@@ -1,0 +1,29 @@
+<template name="filter-type-horizon">
+    <view bindtap="filterHiddenSelectTab" catchtouchmove="onTouchMove" class="filter-backdrop" wx:if="{{filterTypeShow}}"></view>
+    <view class="filter-type-horizon-container" wx:if="{{horizonTypeShow}}">
+        <scroll-view scrollX class="filter-type-horizon" scrollIntoView="{{'type-'+(secondTypeIndex===null?0:secondTypeIndex)}}" wx:if="{{!filterTypeShow}}">
+            <view bindtap="onFilterHorizonClick" class="filter-horizon-item {{secondTypeIndex===null&&categoryFilterList[firstTypeIndex].name?'filter-horizon-item-active':''}}" data-code="{{categoryFilterList[firstTypeIndex].code}}" data-index="{{0}}" data-name="{{categoryFilterList[firstTypeIndex].name}}" id="type-0">{{categoryFilterList[firstTypeIndex].name}}</view>
+            <view bindtap="onFilterHorizonClick" class="filter-horizon-item {{secondTypeIndex===index?'filter-horizon-item-active':''}}" data-code="{{item.code}}" data-index="{{index}}" data-name="{{item.name}}" id="type-{{index+1}}" wx:if="{{index}}" wx:for="{{categoryFilterList[firstTypeIndex].sub_category_list}}" wx:key="{{item.code}}">{{item.name}}</view>
+        </scroll-view>
+        <view class="filter-notype-horizon" wx:if="{{filterTypeShow}}">请选择分类</view>
+        <view bindtap="onFilterTypeDropClick" class="filter-type-drop">
+            <image class="drop-image" mode="aspectFit" src="../../img/icons/filter-down.png"></image>
+        </view>
+    </view>
+    <view catchtouchmove="onTouchMove" class="filter-type-wrap" style="margin-top:{{scrollTop?-scrollTop+'px':''}};" wx:if="{{filterTypeShow}}">
+        <scroll-view class="filter-type-first-list" scrollIntoView="{{'type-'+firstTypeIndex}}" scrollY="1">
+            <view bindtap="filterOnClickFirstType" class="filter-type-item {{firstTypeShowIndex===index?'filter-type-item-active':''}}" data-code="{{item.code}}" data-index="{{index}}" data-name="{{item.name}}" id="type-{{index}}" wx:for="{{categoryFilterList}}" wx:key="{{item.code}}">
+                <view class="filter-type-name filter-type-txt {{firstTypeShowIndex===index&&item.sub_category_list.length===0?'filter-select-active':''}}"> {{item.name}} </view>
+                <view class="filter-type-number flex-center">
+                    <view> {{item.quantity}} </view>
+                </view>
+            </view>
+        </scroll-view>
+        <scroll-view catchtouchmove="onTouchMove" class="filter-type-second-list" scrollIntoView="{{'filter-sub-type-'+firstTypeIndex}}" scrollY="1">
+            <view bindtap="filterOnClickSecondType" class="filter-type-item filter-type-txt flex-center {{firstTypeShowIndex===firstTypeIndex&&(secondTypeIndex||0)===index?'filter-select-active':''}}" data-code="{{item.code}}" data-index="{{index}}" data-name="{{item.code!==0?item.name:categoryFilterList[firstTypeShowIndex].name}}" id="sub-type-{{index}}" wx:for="{{categoryFilterList[firstTypeShowIndex].sub_category_list}}" wx:key="{{item.code}}">
+                <view class="filter-type-name"> {{item.name}} </view>
+                <view class="filter-type-number"> {{item.quantity}} </view>
+            </view>
+        </scroll-view>
+    </view>
+</template>

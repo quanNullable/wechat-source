@@ -1,0 +1,126 @@
+<import src="../common/components/toast/toast.wxml"></import>
+<view class="{{isTieyou?'ty':'zx'}}">
+    <view class="wrap1 {{isOnline?'online':'offline'}}" wx:if="{{!isLogin}}">
+        <view class="Discount">
+            <view class="h3">
+                <span>礼包内含以下超值优惠</span>
+            </view>
+            <view class="ul Price-list">
+                <view class="li">
+                    <view class="price red">
+                        <strong wx:if="{{isOnline}}">70</strong>
+                        <strong wx:else>60</strong>
+                        <span>元</span>
+                    </view>
+                    <p>机票优惠</p>
+                </view>
+                <view class="li">
+                    <view class="price Light-blue">
+                        <strong wx:if="{{isOnline}}">20</strong>
+                        <strong wx:else>10</strong>
+                        <span>元</span>
+                    </view>
+                    <p>火车票优惠</p>
+                </view>
+                <view class="li">
+                    <view class="price Deep-blue">
+                        <strong wx:if="{{isOnline}}">50</strong>
+                        <strong wx:else>25</strong>
+                        <span>元</span>
+                    </view>
+                    <p>酒店优惠</p>
+                </view>
+            </view>
+            <view bindtap="toLogin" class="button-box">
+                <button>立即领取</button>
+            </view>
+        </view>
+        <view class="dl text-list">
+            <view class="dt">
+                <span>活动说明</span>
+            </view>
+            <view class="dd">
+                <view>1. 每位用户仅限领取一次新客大礼包，如您已领取过部分新客优惠，则该部分优惠不可重复领取；</view>
+                <view>2. 领取新客礼包后，您可至小程序或APP查看并使用您的新客优惠；</view>
+                <view>3. 活动时间：2018年5月13日-2018年11月13日；</view>
+                <view>4. 如果出现恶意盗刷行为，将取消用户的活动资格，同时撤销违规交易，收回相关优惠券，必要时将追究违规用户的法律责任。</view>
+            </view>
+        </view>
+    </view>
+    <view class="wrap2" wx:if="{{isLogin}}">
+        <view class="voucher-wrap">
+            <view bindtap="clickCoupon" class="voucher {{flight===0?'gray':''}}" data-type="flight">
+                <view class="left">
+                    <span>¥</span>
+                    <strong wx:if="{{isOnline}}">20</strong>
+                    <strong wx:else>15</strong>
+                </view>
+                <view class="right">
+                    <view class="h3">国内机票优惠券</view>
+                    <view class="tag">
+                        <span wx:if="{{isOnline}}">立减20元</span>
+                        <span wx:else>立减15元</span>
+                    </view>
+                    <i class="{{classList[flight]}}"></i>
+                </view>
+            </view>
+            <view bindtap="clickCoupon" class="voucher {{train===0?'gray':''}}" data-type="train">
+                <view class="left">
+                    <span>¥</span>
+                    <strong wx:if="{{isOnline}}">20</strong>
+                    <strong wx:else>10</strong>
+                </view>
+                <view class="right">
+                    <view class="h3">火车票抢票加速包</view>
+                    <view class="tag">
+                        <span wx:if="{{isOnline}}">可抵快速抢票</span>
+                        <span wx:else>可抵中速抢票</span>
+                    </view>
+                    <i class="{{classList[train]}}"></i>
+                </view>
+            </view>
+            <view bindtap="clickCoupon" class="voucher {{intelFlight===0?'gray':''}}" data-type="intelFlight">
+                <view class="left">
+                    <span>¥</span>
+                    <strong wx:if="{{isOnline}}">50</strong>
+                    <strong wx:else>45</strong>
+                </view>
+                <view class="right">
+                    <view class="h3">国际机票优惠券</view>
+                    <view class="tag">
+                        <span wx:if="{{isOnline}}">立减50元</span>
+                        <span wx:else>立减45元</span>
+                    </view>
+                    <i class="{{classList[intelFlight]}}"></i>
+                </view>
+            </view>
+            <view bindtap="clickCoupon" class="voucher {{hotel===0?'gray':''}}" data-type="hotel">
+                <view class="left">
+                    <span>¥</span>
+                    <strong wx:if="{{isOnline}}">50</strong>
+                    <strong wx:else>25</strong>
+                </view>
+                <view class="right">
+                    <view class="h3">酒店优惠券</view>
+                    <view class="tag">
+                        <span wx:if="{{isOnline}}">最高立减50元</span>
+                        <span wx:else>最高立减25元</span>
+                    </view>
+                    <i class="{{classList[hotel]}}"></i>
+                </view>
+            </view>
+        </view>
+        <view class="text-list">
+            <view class="dt">
+                <span>活动说明</span>
+            </view>
+            <view class="dd">
+                <view>1. 每位用户仅限领取一次新客大礼包，如您已领取过部分新客优惠，则该部分优惠不可重复领取；</view>
+                <view>2. 领取新客礼包后，您可至小程序或APP查看并使用您的新客优惠；</view>
+                <view>3. 活动时间：2018年5月13日-2018年11月13日；</view>
+                <view>4. 如果出现恶意盗刷行为，将取消用户的活动资格，同时撤销违规交易，收回相关优惠券，必要时将追究违规用户的法律责任。</view>
+            </view>
+        </view>
+    </view>
+</view>
+<template is="train-toast" data="{{trainToast:trainToast}}"></template>

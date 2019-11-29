@@ -1,0 +1,6 @@
+<template name="poi-list-deactive">
+    <view class="poi-nav" wx:for="{{poilist}}" wx:key="{{item.id}}">
+        <template is="poi-item" data="{{item:item,index:index}}"></template>
+    </view>
+</template>
+<import src="poi-item.wxml"></import>

@@ -1,0 +1,17 @@
+<view class="mt-tabs-wrap" wx:if="{{mtTopShow}}">
+    <view class="flex-item">
+        <view bindtap="navgaiToMT" class="mt-tab-item" data-tag="food">吃美食</view>
+    </view>
+    <view class="flex-item active">
+        <view class="mt-tab-item">点外卖</view>
+    </view>
+    <view class="flex-item">
+        <view bindtap="navgaiToMT" class="mt-tab-item" data-tag="movie">看电影</view>
+    </view>
+    <view class="flex-item">
+        <view bindtap="navgaiToMT" class="mt-tab-item" data-tag="hotel">住酒店</view>
+    </view>
+    <view class="flex-item">
+        <view bindtap="navgaiToMT" class="mt-tab-item" data-tag="ticket">买门票</view>
+    </view>
+</view>

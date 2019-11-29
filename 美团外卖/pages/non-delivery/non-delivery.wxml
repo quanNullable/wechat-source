@@ -1,0 +1,9 @@
+<import src="../../components/poi-list/poi-list-deactive.wxml"></import>
+<view class="wrap">
+    <include src="../base.wxml"></include>
+    <scroll-view scrollY class="non-list-container">
+        <view class="poi-list" hidden="{{!poilist.length}}">
+            <template is="poi-list-deactive" data="{{poilist:poilist}}"></template>
+        </view>
+    </scroll-view>
+</view>

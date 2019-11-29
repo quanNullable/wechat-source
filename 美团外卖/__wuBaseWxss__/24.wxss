@@ -1,0 +1,35 @@
+.page-container {
+    font-size: 28rpx;
+}
+
+.coupon {
+    margin: 22rpx 30rpx;
+}
+
+.coupon-list-end {
+    text-align: center;
+    padding: 10rpx 0 20rpx;
+}
+
+.coupon-list-end text {
+    color: #898989;
+    font-size: 26rpx;
+}
+
+.coupon-list-end .coupon-slash {
+    padding: 0 10rpx;
+}
+
+.coupon-jump-icon {
+    width: 10rpx;
+    height: 18rpx;
+    margin-left: 15rpx;
+}
+
+.coupon-link-nav {
+    display: inline-block;
+}
+
+.coupon-arraw {
+    margin-left: 10rpx;
+}

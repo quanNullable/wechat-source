@@ -1,0 +1,41 @@
+<import src="../tpl/payToast.wxml"></import>
+<view class="pay-index-container" wx:if="{{toggleFlag}}">
+    <view class="pay-order-detail">
+        <view class="title">{{payData.orderDetail.title}}</view>
+        <view class="other" wx:if="{{!!payData.orderDetail.subtitle}}">{{payData.orderDetail.subtitle}}</view>
+        <view class="price">
+            <text class="price-title">应付金额：</text>
+            <text class="price-content">{{payData.orderDetailInfo.currAmount}}</text>
+        </view>
+    </view>
+    <view wx:if="{{!payHidden}}">
+        <view class="pay-order-method">
+            <view class="pay-order-item wechat-pay">
+                <view class="icon"></view>
+                <view class="info">
+                    <view class="name">微信支付</view>
+                </view>
+            </view>
+        </view>
+        <view class="pay-button-full">
+            <button bindtap="weicatPaysubmit" hoverClass="hover" loading="{{submitButtonLoading}}">
+          {{payNameText}}
+        </button>
+        </view>
+    </view>
+</view>
+<modal noCancel bindconfirm="modalConfirm" hidden="{{modalHidden}}">
+    <view class="modalview"> {{modalContent}} </view>
+</modal>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>
+<template is="payToast" data="{{text:toastContent,hidden:toastHidden}}"></template>
+<view class="pay-mask" wx:if="{{submitButtonLoading}}"></view>
+<view class="pay-error-container" wx:if="{{!toggleFlag}}">
+    <view class="pay-error-icon"></view>
+    <text class="pay-error-content">您预订的{{payData.orderDetail.title}}无法进行预订，请至网站订购</text>
+    <view bindtap="backEnter" class="pay-button-back">
+        返回
+    </view>
+</view>

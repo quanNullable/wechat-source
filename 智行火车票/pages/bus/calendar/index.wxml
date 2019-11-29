@@ -1,0 +1,16 @@
+<view class="calendar-week ">
+    <view class="calendar-week_item {{item=='六'||item=='日'?'calendar-week_sun':''}}" wx:for="{{mWeek}}" wx:key="{{index}}">{{item}}</view>
+</view>
+<scroll-view class="body" scrollY="">
+    <block wx:for="{{mData}}" wx:for-item="mItem" wx:key="{{index}}">
+        <view class="calendar-month " id="{{mItem['ID']}}">{{mItem['Name']}}</view>
+        <view class="calendar-month_items">
+            <view bindtap="onSelect" class="calendar-day" data-alias="{{item['isToday']?'今天':item['holiday']||''}}" data-enable="{{!item['isDisable']}}" data-value="{{item['value']}}" wx:for="{{mItem.Dates}}" wx:for-index="index2" wx:key="{{index2}}">
+                <view class=" calendar-bg "></view>
+                <view class="calendar-info_box">
+                    <text class="calendar-txt {{item['isDisable']?'out-of-range':''}}">{{item['isToday']?'今天':item['holiday']||item['date']||''}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+</scroll-view>

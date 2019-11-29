@@ -1,0 +1,41 @@
+<import src="../order/template/tpl_order.wxml"></import>
+<view class="tips_top warn_tips_top" hidden="{{!isError}}">
+    <icon class="icon-warn"></icon>
+    <text>{{mMessage}}</text>
+</view>
+<block wx:if="{{isLoaded}}">
+    <template is="ticket" data="{{data:mOrder}}"></template>
+    <template is="line" data="{{data:mOrder}}"></template>
+    <view class="order-btn" wx:if="{{mOrder.canPay||mOrder.canCancel||mOrder.refundTicketType}}">
+        <view class="row">
+            <view bindtap="onPay" class="column-3" wx:if="{{mOrder.canPay}}">
+                <button class="btn_default" hoverClass="btn-default_hover">去支付</button>
+            </view>
+            <view class="column-1" wx:if="{{mOrder.canPay&&mOrder.canCancel}}"></view>
+            <view bindtap="onCancel" class="column-3" wx:if="{{mOrder.canCancel}}">
+                <button class="btn_default" hoverClass="btn-default_hover">取消订单</button>
+            </view>
+            <view class="column-1" wx:if="{{mOrder.canCancel&&mOrder.refundTicketType}}"></view>
+            <view bindtap="onRefund" class="column-3" wx:if="{{mOrder.refundTicketType}}">
+                <button class="btn_default" hoverClass="btn-default_hover">申请退票</button>
+            </view>
+        </view>
+    </view>
+    <template is="picker-info-extend" data="{{data:mOrder,onClick:onTestClick}}"></template>
+    <template is="ticket-picker" data="{{data:mOrder}}"></template>
+    <view catchtap="hidePriceDetail" class="shadow" wx:if="{{showPriceDetail}}">
+        <view class="priceDetail">
+            <view class="flex" wx:for="{{mOrder.priceList}}" wx:key="{{price}}">
+                <view class="text_white">{{item.name}}</view>
+                <view class="column-1"></view>
+                <view class="text_white">{{item.desc}}</view>
+            </view>
+        </view>
+    </view>
+</block>
+<view bindtap="onHideQr" class="qrcode-float" wx:if="{{mQRinfo}}">
+    <template is="qr-code" data="{{data:mQRinfo}}"></template>
+</view>
+<view>
+    <loading wx:if="{{mLoading['isLoading']}}">{{mLoading['message']}}</loading>
+</view>

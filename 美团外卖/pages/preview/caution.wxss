@@ -1,0 +1,71 @@
+page {
+    font-size: 28rpx;
+    color: #333;
+    background: #f4f4f4;
+}
+
+.caution-area {
+    padding: 20rpx 0 30rpx 30rpx;
+    background: #fff;
+}
+
+.caution-textarea-bg {
+    margin-right: 30rpx;
+    height: 260rpx;
+    border: 1rpx solid #dadada;
+    background: #fafafa;
+    box-sizing: border-box;
+}
+
+.textarea-placeholder {
+    color: #999;
+}
+
+.caution-textarea {
+    position: absolute;
+    top: 46rpx;
+    left: 50rpx;
+    width: 660rpx;
+    height: 140rpx;
+    font-size: 32rpx;
+}
+
+.caution-textarea-count {
+    position: absolute;
+    top: 226rpx;
+    right: 50rpx;
+    color: #999;
+}
+
+.caution-select {
+    margin: 28rpx 28rpx 0 0;
+    float: left;
+    height: 58rpx;
+    line-height: 58rpx;
+    padding: 0 20rpx;
+    font-size: 24rpx;
+    border-radius: 4rpx;
+    border: 1rpx solid #d7d7d7;
+    color: #666;
+    max-width: 690rpx;
+    box-sizing: border-box;
+}
+
+.btn-caution {
+    margin: 40rpx 40rpx 0;
+    font-size: 36rpx;
+    line-height: 92rpx;
+    border-radius: 4rpx;
+}
+
+.btn-caution::after {
+    border: none;
+}
+
+.pick-caution {
+    height: 80%;
+}
+
+.toast-caution {
+    top: 40%;
+}

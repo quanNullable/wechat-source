@@ -1,0 +1,114 @@
+.train-toast {
+    width: 240rpx;
+    height: 240rpx;
+    background: rgba(0,0,0,.7);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10rpx;
+    text-align: center;
+    z-index: 3020;
+}
+
+.train-toast icon {
+    width: 100rpx;
+    height: 100rpx;
+    display: block;
+    margin: 45rpx auto 20rpx;
+    background: url(http://images3.c-ctrip.com/train/wxapp/toast.png) no-repeat;
+    background-size: 300rpx 100rpx;
+}
+
+.train-toast .loading {
+    background-position: 0 0;
+    animation: loading 1s infinite linear;
+}
+
+@-webkit-keyframes loading {
+    0% {
+        transform: rotateZ(0);
+    }
+
+    25% {
+        transform: rotateZ(-90deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-270deg);
+    }
+
+    100% {
+        transform: rotateZ(-360deg);
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: rotateZ(0);
+    }
+
+    25% {
+        transform: rotateZ(-90deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-270deg);
+    }
+
+    100% {
+        transform: rotateZ(-360deg);
+    }
+}
+
+.train-toast .ok {
+    background-position: -100rpx 0;
+}
+
+.train-toast .fail {
+    background-position: -200rpx 0;
+}
+
+.train-toast text {
+    font-size: 26rpx;
+    color: #fff;
+    display: inline-block;
+    padding: 0 22rpx;
+}
+
+.train-toast-txt {
+    height: 60rpx;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: -30rpx;
+    text-align: center;
+}
+
+.train-toast-txt text {
+    background: rgba(0,0,0,.7);
+    line-height: 60rpx;
+    font-size: 26rpx;
+    color: #fff;
+    padding: 0 22rpx;
+    border-radius: 10rpx;
+    display: inline-block;
+}
+
+.train-toast-mask {
+    z-index: 3010;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}

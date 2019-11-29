@@ -1,0 +1,30 @@
+.picker-title {
+    color: #4DC6A5;
+    font-size: 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F5FFFB;
+    border-radius: 25rpx;
+    height: 50rpx;
+    margin: 20rpx auto;
+}
+
+.diner-option-item {
+    font-size: 28rpx;
+    color: #333333;
+    margin-bottom: 60rpx;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.diner-option-item:last-child {
+    padding-bottom: 30rpx;
+}
+
+.picker-body .scroll-content-diner {
+    top: 90rpx;
+    height: 370rpx;
+}

@@ -1,0 +1,73 @@
+@import "../../../__wuBaseWxss__/0.wxss";
+
+page {
+    background-color: white;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image-banner {
+    position: absolute;
+    bottom: 0;
+    width: 750rpx;
+    height: 159rpx;
+}
+
+.image-success {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80rpx;
+}
+
+.view-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40rpx;
+}
+
+.text1 {
+    color: rgb(255,152,0);
+}
+
+.text2 {
+    color: rgb(99,206,255);
+}
+
+.image-jizi {
+    width: 476rpx;
+    height: 745rpx;
+    margin-left: 210rpx;
+}
+
+.image-header {
+    position: absolute;
+    width: 100%;
+    height: 200rpx;
+    background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,.95),rgba(255,255,255,0));
+    top: 0;
+}
+
+.image-bottom {
+    position: absolute;
+    width: 100%;
+    height: 200rpx;
+    background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.95),rgba(255,255,255,1));
+    bottom: 0;
+}
+
+text {
+    font-size: 40rpx;
+}
+
+.image-container {
+    margin-top: 40rpx;
+    width: 100%;
+    position: relative;
+}

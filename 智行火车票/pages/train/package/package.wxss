@@ -1,0 +1,226 @@
+@import "../../../__wuBaseWxss__/7.wxss";
+
+@import "../../../__wuBaseWxss__/6.wxss";
+
+@import "../common/components/toast/toast.wxss";
+
+.cpinkgray {
+    color: #999;
+}
+
+.train-list {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 1px 0 0 0;
+    background: #fff;
+    line-height: 86rpx;
+    margin-top: -1px;
+}
+
+.train-list .item {
+    margin-left: 30rpx;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px 0;
+    padding-right: 30rpx;
+}
+
+.train-list .add-box {
+    position: relative;
+    padding-left: 160rpx;
+    min-height: 88rpx;
+    font-size: 30rpx;
+}
+
+.train-list .add-box .label {
+    width: 160rpx;
+    float: left;
+    margin-left: -160rpx;
+    position: relative;
+    color: #666;
+    font-size: 26rpx;
+}
+
+.train-pinktxt {
+    margin: 20rpx 30rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.package .item {
+    padding: 20rpx 0 16rpx 50rpx;
+    line-height: 40rpx;
+    position: relative;
+}
+
+.package .current {
+    color: #5495e6;
+}
+
+.package .icon {
+    width: 36rpx;
+    height: 36rpx;
+    background: #fff;
+    border: 1px solid #5495e6;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.package .icon-radio {
+    left: 0;
+    top: 20rpx;
+}
+
+.package .icon-que {
+    right: 30rpx;
+    top: 20rpx;
+    text-align: center;
+    line-height: 36rpx;
+    color: #5495e6;
+}
+
+.package .current .icon-radio {
+    background: #5495e6;
+}
+
+.package .current .icon-radio::after {
+    width: 20rpx;
+    height: 10rpx;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    transform: rotate(-45deg);
+    position: absolute;
+    content: "";
+    left: 6rpx;
+    top: 8rpx;
+}
+
+.package .jian {
+    display: inline-block;
+    background-color: #ff4646;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: middle;
+    margin: -2px 0 0 4px;
+    padding: 0 2px;
+    border-radius: 3px;
+}
+
+.train-price {
+    display: inline-block;
+    margin-left: 10rpx;
+}
+
+.train-price .dfn {
+    font-size: 24rpx;
+    color: #ff9a14;
+    margin-right: 5rpx;
+}
+
+.train-price .price {
+    font-size: 32rpx;
+    color: #ff9a14;
+}
+
+.train-price .pricesmall {
+    font-size: 28rpx;
+    color: #ff9a14;
+}
+
+.package.package-price {
+    margin-left: 40rpx;
+    font-size: 24rpx;
+    color: #666;
+}
+
+.package .current .cpinkgray,.package .current .package-price {
+    color: #5495e6;
+}
+
+.package .cpinkgray {
+    display: block;
+    font-size: 24rpx;
+    position: relative;
+    margin-top: 10rpx;
+}
+
+.package .cpinkgray::before {
+    width: 12rpx;
+    height: 12rpx;
+    position: absolute;
+    content: "";
+    background: #ccc;
+    border-radius: 50%;
+    left: -40rpx;
+    top: 50%;
+    margin-top: -6rpx;
+}
+
+.package .current .cpinkgray::before {
+    background: #5495e6;
+}
+
+.train-list .item switch {
+    position: absolute;
+    right: 30rpx;
+    top: 50%;
+    margin-top: -32rpx;
+}
+
+.add-price {
+    color: #ff9a14;
+}
+
+.add-price .dfn {
+    font-size: 24rpx;
+    margin-right: 3rpx;
+}
+
+.add-price .price {
+    font-size: 28rpx;
+}
+
+.btn-box {
+    margin-top: 60rpx;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+}
+
+.mt10 {
+    margin-top: 20rpx;
+}
+
+.tip-txt {
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    padding: 40rpx 50rpx;
+    overflow-y: auto;
+    color: #dbdbdb;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.tip-txt.active {
+    opacity: 1;
+}
+
+.tip-txt .cblue {
+    margin-top: 30rpx;
+    color: #5495e6;
+    font-weight: bold;
+    padding: 0.5em 0;
+    font-size: 30rpx;
+}
+
+.tip-txt .p {
+    padding: 0.5em 0;
+}
+
+.tip-txt .s {
+    font-size: 28rpx;
+}

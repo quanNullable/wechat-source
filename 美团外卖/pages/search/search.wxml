@@ -1,0 +1,150 @@
+<template name="search-poi-list">
+    <navigator bindtap="onClickPoilistItem" class="poi-nav {{index===poilist.length-1?'poi-nav-last':''}}" data-id="{{item.id}}" data-index="{{index}}" data-logid="{{item.search_log_Id}}" data-poi="{{item}}" data-stid="{{item.tgt_stids}}" url="../restaurant/restaurant?poi_id={{item.id}}" wx:for="{{poilist}}" wx:key="{{item.id}}">
+        <view class="poi-item {{item.product_list.length===1?'poi-item-products-1':item.product_list.length>1?'poi-item-more':''}}">
+            <view class="poi-img" style="background-image:url({{item.pic_url?item.pic_url:'/img/icons/no-shopImg.png'}})">
+                <view class="poi-icon" style="background-image:{{'url('+item.poi_type_icon+')'}}" wx:if="{{item.poi_type_icon}}"></view>
+            </view>
+            <view class="poi-info">
+                <view class="poi-row poi-row-head">
+                    <view class="poi-name">
+                        <text class="{{item.highLight===true?'poi-name-highlight':''}}" wx:for="{{item.name}}" wx:key="{{index}}">{{item.name}}</text>
+                    </view>
+                    <view class="poi-distance"> {{item.distance}} </view>
+                </view>
+                <view class="poi-row poi-row-sales">
+                    <block wx:if="{{item.shipping_time_info.in_shipping_time===0}}">
+                        <view class="poi-status-tag {{item.shipping_time_info.reservation_status===1?'poi-status-tag-special':'poi-status-tag-preorder'}}"> {{item.shipping_time_info.status_content}} </view>
+                        <view class="poi-status-text {{item.shipping_time_info.reservation_status===1?'poi-status-text-special':'poi-status-text-preorder'}}"> {{item.shipping_time_info.desc_content}} </view>
+                    </block>
+                    <block wx:else>
+                        <template is="score" data="{{score:item.wm_poi_score}}" wx:if="{{item.status===1}}"></template>
+                        <view class="poi-status-tag poi-status-tag-closed" wx:else> {{item.status_desc}} </view>
+                    </block>
+                    <view class="poi-estimate"> {{item.delivery_time_tip}} </view>
+                </view>
+                <view class="poi-row poi-row-ship">
+                    <view class="poi-price"> {{item.min_price_tip}} </view>
+                    <view class="poi-line"></view>
+                    <view class="poi-ship"> {{item.shipping_fee_tip}} </view>
+                    <image class="poi-deliver" src="/img/icons/deliver.png" wx:if="{{item.delivery_type===1}}"></image>
+                </view>
+                <view catchtap="{{item.discounts2.length<3?'':'onClickPoilistActvs'}}" class="poi-actvs {{poilistActvsShown[item.id]?'poi-actvs-expanded':''}}" data-id="{{item.id}}" wx:if="{{item.discounts2.length}}">
+                    <view class="poi-arrow {{poilistActvsShown[item.id]?'ui-arrow ui-arrow-up':'ui-arrow ui-arrow-down'}}" wx:if="{{item.discounts2.length>2}}"></view>
+                    <view class="poi-actvs-item" hidden="{{idx>1&&!poilistActvsShown[item.id]}}" wx:for="{{item.discounts2}}" wx:for-index="idx" wx:for-item="actv" wx:key="{{actv.type}}">
+                        <image class="poi-actvs-icon" src="{{actv.icon_url}}" wx:if="{{actv.icon_url}}"></image>
+                        <view class="poi-actvs-text">{{actv.info}}</view>
+                    </view>
+                </view>
+                <view class="poi-products-wrap" wx:if="{{item.product_list.length>0}}">
+                    <view catchtap="onClickPoiProduct" class="poi-products" data-index="{{index}}" data-poi="{{item}}" data-product="{{productitem}}" hidden="{{productIndex>0&&!productShown[item.id]}}" wx:for="{{item.product_list}}" wx:for-index="productIndex" wx:for-item="productitem" wx:key="{{item.product_spu_id}}">
+                        <view class="poi-prodcut-price">￥{{productitem.original_price}}</view>
+                        <view class="poi-product-left">
+                            <text class="poi-product-name">
+                                <text class="{{productNameitem.highLight===true?'poi-name-highlight':''}}" wx:for="{{productitem.product_name}}" wx:for-item="productNameitem" wx:key="{{index}}">{{productNameitem.name}}</text>
+                            </text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view catchtap="onClickMoreProduct" class="poi-products-more flex-center" data-id="{{item.id}}" wx:if="{{item.product_list.length>1}}"> {{productShown[item.id]?'收起':'展开其他'+item.product_list.length-1+'个商品'}} <view class="ui-arrow {{productShown[item.id]?'ui-arrow-up':'ui-arrow-down'}}"></view>
+        </view>
+    </navigator>
+</template>
+<template name="search-suggest-poi-status">
+    <view class="search-poi-status-content" wx:if="{{status}}">
+        <view class="search-poi-status {{status}}">
+            <block wx:if="{{status=='deliverying'}}"> {{min_price_tip}} <text class="deliverying-sep-line">|</text> {{shipping_fee_tip}} <text class="deliverying-sep-line">|</text> {{distance}} </block>
+            <block wx:else>
+                <text class="search-poi-status-title">{{status_content}}</text>
+                <text class="search-poi-status-description">{{desc_content}}</text>
+            </block>
+        </view>
+    </view>
+</template>
+<template name="search-suggest-card">
+    <view bindtap="onClickHot" class="search-suggest-card {{item.label_type===12004?'search-suggest-card-hot':''}}" data-history="{{isHistory}}" data-item="{{item}}" wx:for="{{hotLabels}}" wx:key="{{item.label_name}} ">
+        <image class="icon-label-shop " src="/img/icons/shop.png" wx:if="{{item.label_type===12000||item.label_type===12003}}"></image> {{item.label_name}} </view>
+</template>
+<import src="../../components/score/score.wxml"></import>
+<view class="page-container">
+    <include src="../base.wxml"></include>
+    <view class="search-container">
+        <view class="index-search-bg">
+            <image class="search-icon" src="/img/icons/search.png"></image>
+            <input bindconfirm="onClickSearch" bindinput="onSearchInput" class="index-search-input" focus="{{inputFocus}}" name="loc-search" placeholder="{{keywordLabel||'请输入商家或商品名称'}}" placeholderClass="shop-search-placeholder" type="text" value="{{keywordValue}}"></input>
+            <view bindtap="onDeleteKey" class="search-delete-wrap" hidden="{{!inputShowClear}}">
+                <image class="search-delete-icon" src="/img/icons/clear.png"></image>
+            </view>
+        </view>
+        <button bindtap="onClickSearch" class="ui-btn ui-btn-no-border btn-search {{!inputShowClear&&!keywordLabel?'search-btn-disabled':''}}">搜索</button>
+    </view>
+    <view wx:if="{{pageState==='hot'}}">
+        <view class="search-hot-container" wx:if="{{hotLabels.length}}">
+            <view class="search-title">热门搜索</view>
+            <view class="search-suggest-container search-suggestHot-container">
+                <template is="search-suggest-card" data="{{hotLabels:hotLabels}}"></template>
+            </view>
+        </view>
+        <view class="search-hot-container" wx:if="{{historyLabels.length}}">
+            <view class="search-title"> 历史搜索 <image bindtap="onClickDelete" class="delete-search" src="/img/icons/delete-search.png"></image>
+            </view>
+            <view class="search-suggest-container">
+                <template is="search-suggest-card" data="{{hotLabels:historyLabels,isHistory:true}}"></template>
+            </view>
+        </view>
+    </view>
+    <scroll-view class="search-list-container" scrollY="true" wx:if="{{pageState==='suggest'}}">
+        <view class="search-suggest-wrap">
+            <block wx:for="{{suggest}}" wx:for-index="idx" wx:key="{{idx}}">
+                <view bindtap="onClickSuggestShop" class="search-poi" data-id="{{item.wm_poi_id}}" data-index="{{idx}}" data-item="{{item.orign}}" data-suggest="{{item}}" wx:if="{{item.type==0}}">
+                    <view class="search-poi-content">
+                        <image class="search-poi-pic" mode="aspectFill" src="/img/icons/shop.png"></image>
+                        <view class="search-poi-info">
+                            <view class="search-poi-name" style="max-width:{{item.wm_poi_name_width_percent_style}}">
+                                <text class="{{contextItem.highLight===true?'search-poi-highlight':''}}" wx:for="{{item.wm_poi_name}}" wx:for-item="contextItem" wx:key="{{index}}">{{contextItem.name}}</text>
+                            </view>
+                            <image class="search-poi-mt-deliver" src="/img/icons/deliver.png" wx:if="{{item.delivery_type==1}}"></image>
+                            <text class="search-poi-discount" wx:if="{{item.wm_poi_discount}}">{{item.wm_poi_discount}}</text>
+                            <template is="search-suggest-poi-status" data="{{...item.wm_poi_business_status}}"></template>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="onClickSuggestWord" class="search-poi" data-index="{{idx}}" data-item="{{item.orign}}" data-suggest="{{item}}" wx:else>
+                    <image class="search-query-pic" src="/img/icons/magnify-glass.png"></image>
+                    <view class="search-poi-query-content">
+                        <view class="search-poi-info search-poi-query" style="max-width:{{item.wm_poi_query_width_percent_style}}">
+                            <text class="{{contextItem.highLight===true?'search-poi-highlight':''}}" wx:for="{{item.query}}" wx:for-item="contextItem" wx:key="{{index}}">{{contextItem.name}}</text>
+                        </view>
+                    </view>
+                    <view class="search-query-count">{{item.result_num}}</view>
+                </view>
+            </block>
+        </view>
+    </scroll-view>
+    <scroll-view bindscrolltolower="onScrollBottom" class="search-list-container" scrollY="true" wx:if="{{pageState==='search'}}">
+        <view class="poi-wrap">
+            <navigator class="non-delivery-wrap" url="../non-delivery/non-delivery?keyword={{keywordValue||keywordLabel}}" wx:if="{{non_delivery_poi_info.is_show_nondelivery}}">
+                <image class="non-delivery" src="{{non_delivery_poi_info.poi_nondelivery_picture}}"></image>
+                <view class="non-delivery-text">
+                    <text class="{{contextItem.highLight===true?'poi-non-highlight':''}}" wx:for="{{non_delivery_poi_info.poi_nondelivery_context}}" wx:for-item="contextItem" wx:key="{{index}}">{{contextItem.name}}</text>
+                </view>
+                <view class="non-delivery-arrow ui-arrow ui-arrow-right"></view>
+            </navigator>
+            <view class="non-delivery-wrap" wx:if="{{!non_delivery_poi_info.is_show_nondelivery&&search_poi_list.length===0}}">
+                <image class="non-delivery" src="/img/icons/null-search.png"></image>
+                <text>抱歉，未能找到您搜索的商家或商品</text>
+            </view>
+            <template is="search-poi-list" data="{{poilist:search_poi_list,productShown:productShown,poilistActvsShown:poilistActvsShown}}" wx:if="{{search_poi_list.length>0}}"></template>
+            <view class="poi-guess-tab" wx:if="{{recommend_poi_list.length>0}}">
+                <view class="poi-guess-title">
+                    <view class="poi-guess-leftline"></view>
+                    <image class="poi-guess-heart" src="/img/icons/guess_like.png"></image> 猜你喜欢 <view class="poi-guess-rightline"></view>
+                </view>
+            </view>
+            <template is="search-poi-list" data="{{poilist:recommend_poi_list,productShown:productShown,poilistActvsShown:poilistActvsShown}}" wx:if="{{recommend_poi_list.length>0}}"></template>
+            <view class="loading-data flex-center" wx:if="{{has_next_page}}">
+                <view class="ui-loading-logo ui-loading-logo-animate"></view> 努力加载中... </view>
+        </view>
+    </scroll-view>
+</view>

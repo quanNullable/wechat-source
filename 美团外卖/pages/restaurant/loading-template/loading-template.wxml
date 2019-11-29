@@ -1,0 +1,107 @@
+<template name="loading-template">
+    <view class="content">
+        <view class="main-header">
+            <view class="header-info">
+                <view class="header-info-poi loading-default-backup-img" style="opacity: 0.2"></view>
+                <view class="header-info-txt" style="justify-content: space-between">
+                    <view class="header-info-row" style="margin: 0; height: 30rpx">
+                        <view class="loading-default-backup" style="opacity: 0.2;width: 218rpx; height: 30rpx"></view>
+                    </view>
+                    <view class="header-info-ad loading-default-backup" style="margin: 0;opacity: 0.2;width: 157rpx;height: 30rpx;"></view>
+                    <view class="header-announce header-carousel loading-default-backup" style="opacity: 0.2;width: 410rpx; height: 30rpx"></view>
+                </view>
+            </view>
+        </view>
+        <view class="main" style="top: 164rpx;height: 100%">
+            <view class="panel-headers">
+                <view class="panel-header">
+                    <view class="panel-header-txt">
+                        <view class="loading-default-backup"></view>
+                    </view>
+                </view>
+                <view class="panel-header">
+                    <view class="panel-header-txt">
+                        <view class="loading-default-backup"></view>
+                    </view>
+                </view>
+                <view class="panel-header">
+                    <view class="panel-header-txt">
+                        <view class="loading-default-backup"></view>
+                    </view>
+                </view>
+            </view>
+            <swiper class="main-swiper" current="0">
+                <swiper-item class="panel panel-food">
+                    <view class="panel-food-content">
+                        <view class="hidding-scrollbar hidding-fix">
+                            <view class="type-tab">
+                                <view class="cat-box">
+                                    <view class="cat-item flex-center">
+                                        <view class="cat-item-name">
+                                            <view class="cat-item-text loading-default-backup"></view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="cat-box">
+                                    <view class="cat-item flex-center">
+                                        <view class="cat-item-name">
+                                            <view class="cat-item-text loading-default-backup"></view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="cat-box">
+                                    <view class="cat-item flex-center">
+                                        <view class="cat-item-name">
+                                            <view class="cat-item-text loading-default-backup"></view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="cat-box">
+                                    <view class="cat-item flex-center">
+                                        <view class="cat-item-name">
+                                            <view class="cat-item-text loading-default-backup"></view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="cat-box">
+                                    <view class="cat-item flex-center">
+                                        <view class="cat-item-name">
+                                            <view class="cat-item-text loading-default-backup"></view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="cat-box">
+                                    <view class="cat-item flex-center">
+                                        <view class="cat-item-name">
+                                            <view class="cat-item-text loading-default-backup"></view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="cat-box">
+                                    <view class="cat-item flex-center">
+                                        <view class="cat-item-name">
+                                            <view class="cat-item-text loading-default-backup"></view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="cat-box">
+                                    <view class="cat-item flex-center">
+                                        <view class="cat-item-name">
+                                            <view class="cat-item-text loading-default-backup"></view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="hidding-scrollbar">
+                            <view class="tab-header" style="height: 72rpx; align-items: flex-center">
+                                <view class="loading-default-backup"></view>
+                            </view>
+                            <view class="food-item-loading"></view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+</template>

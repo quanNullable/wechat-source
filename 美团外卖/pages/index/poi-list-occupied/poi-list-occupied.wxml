@@ -1,0 +1,18 @@
+<template name="poi-list-occupied">
+    <view class="poi-item-occupied" wx:for="{{[0,1,2,3,4]}}" wx:key="{{item}}">
+        <view class="poi-img-occupied occupied-color"></view>
+        <view class="poi-rows-occupied">
+            <view class="poi-row-occupied">
+                <view class="row-left-occupied occupied-color"></view>
+                <view class="row-right-occupied occupied-color"></view>
+            </view>
+            <view class="poi-row-occupied">
+                <view class="row-left-occupied occupied-color"></view>
+                <view class="row-right-occupied occupied-color"></view>
+            </view>
+            <view class="poi-row-occupied">
+                <view class="poi-act-occupied occupied-color"></view>
+            </view>
+        </view>
+    </view>
+</template>

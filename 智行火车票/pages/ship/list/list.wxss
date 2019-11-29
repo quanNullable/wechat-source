@@ -1,0 +1,41 @@
+@import "../../../__wuBaseWxss__/1.wxss";
+
+.ship-list-date .date {
+    border-radius: 5px;
+}
+
+.ship-list-item {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom-width: 2px;
+}
+
+.ship-list-date .disabled {
+    opacity: 0.4;
+}
+
+.ship-list-item.disabled,.ship-list-item.disabled .price,.ship-list-item.disabled .price-tag::before {
+    color: #999;
+}
+
+.ship-list-item:last-child {
+    border-bottom-width: 0px;
+}
+
+.ship-list-item .time {
+    font-size: 1.20rem;
+}
+
+.ship-list-item .time .price {
+    font-size: 1rem;
+}
+
+.ship-list-item .time .price .tag,.ship-list-item .ship {
+    font-size: 0.70rem;
+}
+
+.ship-list-item .station,.ship-list-item .f-station,.ship-list-item .t-station,.ship-list-item .ship-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

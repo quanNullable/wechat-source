@@ -1,0 +1,61 @@
+.login-12306 .item {
+    position: relative;
+    margin-left: 30rpx;
+    padding-left: 50rpx;
+}
+
+.login-12306 .icon {
+    width: 36rpx;
+    height: 36rpx;
+    position: absolute;
+    background-image: url(//pic.c-ctrip.com/train/h5/train/train-icon.png);
+    background-repeat: no-repeat;
+    background-size: 400rpx;
+    left: 0;
+    top: 50%;
+    margin-top: -18rpx;
+}
+
+.login-12306 input {
+    width: 100%;
+    height: 92rpx;
+    border: 0;
+    background: transparent;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.login-12306 .icon-user {
+    background-position: 0 -200rpx;
+}
+
+.login-12306 .icon-pasd {
+    background-position: -40rpx -200rpx;
+}
+
+.login-12306-tips {
+    margin: 40rpx 0 40rpx 20rpx;
+    line-height: 44rpx;
+    font-size: 28rpx;
+    font-family: -apple-system,Helvetica,'Hiragino Sans GB W3','Microsoft YaHei',arial,sans-serif;
+}
+
+.login-12306-btn {
+    margin: 20rpx;
+    margin-top: 40rpx;
+}
+
+.login-12306-btn .btn-secondary {
+    background: #fff;
+    color: #000;
+}
+
+.tip-12306 .btn-tips {
+    margin-left: 20rpx;
+    font-size: 28rpx;
+    font-family: -apple-system,Helvetica,'Hiragino Sans GB W3','Microsoft YaHei',arial,sans-serif;
+}
+
+.register-12306-link {
+    color: #099FDE;
+}

@@ -1,0 +1,108 @@
+page {
+    background-color: #fff;
+}
+
+.book-tips {
+    background: #EDF8FC;
+    padding: 22rpx 40rpx;
+    line-height: 37rpx;
+    color: #099FDE;
+    font-size: 26rpx;
+}
+
+.pay-info {
+    padding: 35rpx 40rpx;
+    font-size: 28rpx;
+    color: #999;
+    border-bottom: 20rpx solid #f7f7f7;
+}
+
+.pay-info .station {
+    font-size: 30rpx;
+    margin-bottom: 15rpx;
+    color: #333;
+}
+
+.pay-info .price {
+    color: #ff9a14;
+    margin-left: 12rpx;
+    font-size: 32rpx;
+}
+
+.pay-list {
+    padding: 0 40rpx;
+}
+
+.pay-list .item {
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAPABANra2v///yH5BAUHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 0 0 1px 0;
+    position: relative;
+    line-height: 96rpx;
+    padding-left: 140rpx;
+}
+
+.pay-list .item label {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.pay-list .item .input-pay {
+    height: 96rpx;
+}
+
+.pay-list .item .input-pay.disabled {
+    color: #ccc;
+}
+
+.pay-list .item .input-pay::-webkit-input-placeholder {
+    color: #ccc!important;
+}
+
+.pay-list .item .image {
+    width: 50rpx;
+    height: 46rpx;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -23rpx;
+    z-index: 10;
+}
+
+.pay-list .btn-primary {
+    margin-top: 32rpx;
+}
+
+.pay-list .btn-code {
+    width: 160rpx;
+    height: 50rpx;
+    position: absolute;
+    color: #099FDE;
+    border: none;
+    font-size: 26rpx;
+    right: 0;
+    top: 50%;
+    margin-top: -25rpx;
+    box-sizing: border-box;
+    line-height: 50rpx;
+    background: #fff;
+    padding: 0;
+    z-index: 20;
+}
+
+.pay-list .btn-code.disabled {
+    color: #999;
+}
+
+.pay-list .btn-code::after {
+    border-color: #099FDE;
+}
+
+.pay-list .btn-code.disabled::after {
+    border-color: #999;
+}
+
+.pay-list .btn-code_hover {
+    background: rgba(0,0,0,.1);
+}

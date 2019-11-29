@@ -1,0 +1,12 @@
+<template name="banklist">
+    <view class="cui-hd">
+        <view bindtap="cancelChooseBank" class="cell cancel-btn">取消</view>
+    </view>
+    <view class="cui-bg tip-bank">
+        <view class="item tit">请选择支付方式</view>
+        <view class="bank-list">
+            <view bindtap="goUnionPay" class="item">
+                <image class="image" src="http://images3.c-ctrip.com/train/wxapp/bank/cup.png"></image>中国银联</view>
+        </view>
+    </view>
+</template>

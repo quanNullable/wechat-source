@@ -1,0 +1,480 @@
+@import "../../../__wuBaseWxss__/1.wxss";
+
+.bookhead {
+    align-items: center;
+}
+
+.mt10 {
+    margin-top: 20rpx;
+}
+
+.font16 {
+    font-size: 32rpx;
+}
+
+.bus-coupons-tics {
+    position: relative;
+    width: 120rpx;
+    height: 100rpx;
+    float: left;
+    text-align: center;
+    margin-left: 15rpx;
+    margin-right: 10rpx;
+    color: #fff;
+    background-color: #FD8712;
+    border-radius: 4px;
+    background-image: linear-gradient(to top left,#fd8712 45%,#fd912a 55%);
+}
+
+.bus-coupons-tics .discount {
+    line-height: 85rpx;
+    font-size: 28rpx;
+    color: #FFFFFF;
+}
+
+.bus-coupons-tics .discount {
+    line-height: 85rpx;
+    font-size: 28rpx;
+    color: #FFFFFF;
+}
+
+.bus-coupons-tics:before,.bus-coupons-tics:after {
+    position: absolute;
+    content: "";
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    background-color: #ffffff;
+    top: 76rpx;
+}
+
+.bus-coupons-tics:before {
+    left: -12rpx;
+}
+
+.bus-coupons-tics:after {
+    right: -12rpx;
+}
+
+.font14 {
+    font-size: 28rpx;
+}
+
+.color1 {
+    color: #111111;
+}
+
+.color2 {
+    color: #666666;
+}
+
+.line25 {
+    line-height: 100rpx;
+}
+
+.ml15 {
+    margin-left: 30rpx;
+}
+
+.icon-center {
+    align-items: center;
+}
+
+.biggo {
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+    width: 180rpx;
+    height: 4rpx;
+}
+
+.bluecolor {
+    color: #5495e6;
+}
+
+.writecolor {
+    background-color: #ffffff;
+}
+
+.right-view {
+    position: absolute;
+    right: 30rpx;
+}
+
+.bar-pay {
+    position: fixed;
+    background-color: #31404F;
+    line-height: 120rpx;
+    color: #FFF;
+    padding: 0 30rpx;
+    height: 120rpx;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1111;
+}
+
+.zindex {
+    z-index: 2222;
+}
+
+.btn_primary {
+    color: #fff;
+    background-color: #FF9A14;
+}
+
+.btn_primary_hover {
+    color: rgba(255,255,255,0.6);
+    background-color: #FF9A14;
+}
+
+.btn-pay {
+    height: 72rpx;
+    line-height: 72rpx;
+    margin-top: 24rpx;
+}
+
+.b-b-phonenum {
+    border-top-width: 2rpx;
+}
+
+.mt10 {
+    margin-top: 20rpx;
+}
+
+.pl75 {
+    padding-left: 30rpx;
+}
+
+.invoice .row {
+    border-top: 1px solid #F3F3F3;
+    line-height: 85rpx;
+    padding-left: 20rpx;
+}
+
+.b-b-phonenum input {
+    height: 100rpx;
+    padding: 0;
+    display: block;
+}
+
+.pass-title,.b-b-phonenum {
+    padding-left: 30rpx;
+    min-height: 100rpx;
+    line-height: 100rpx;
+}
+
+.bus-coupons-warp {
+    position: fixed;
+    top: 30rpx;
+    bottom: 30rpx;
+    left: 30rpx;
+    right: 30rpx;
+    z-index: 9999;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 6rpx;
+    overflow: hidden;
+}
+
+.bus-coupons-cancel {
+    position: absolute;
+    z-index: 999;
+    left: 30rpx;
+    top: 0;
+    line-height: 88rpx;
+    color: #333;
+    font-size: 32rpx;
+}
+
+.bus-coupons-done {
+    position: absolute;
+    z-index: 999;
+    right: 30rpx;
+    top: 0;
+    line-height: 88rpx;
+    font-size: 32rpx;
+}
+
+.bus-coupons-title {
+    text-align: center;
+    line-height: 88rpx;
+    height: 88rpx;
+    font-size: 34rpx;
+    font-weight: bold;
+}
+
+.bus-coupons-close {
+    position: absolute;
+    right: 15rpx;
+    top: 10rpx;
+    line-height: 100rpx;
+    font-size: 32rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.bus-coupons-close:before,.bus-coupons-close:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40rpx;
+    height: 2rpx;
+    background-color: #888;
+}
+
+.bus-coupons-close:before {
+    transform: rotate(45deg);
+}
+
+.bus-coupons-close:after {
+    transform: rotate(-45deg);
+}
+
+.bus-coupons-body {
+    position: absolute;
+    top: 88rpx;
+    bottom: 0;
+    background: #EFEFEF;
+}
+
+.bus-coupons-item {
+    background-color: #fff;
+    margin: 15rpx;
+    padding: 10rpx 0;
+    overflow: hidden;
+    font-size: 24rpx;
+}
+
+.disabled .bus-coupons-tics {
+    background-color: #D6D6D6;
+    background-image: none;
+}
+
+.bus-coupons-btn-unused {
+    width: 90%;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 8rpx;
+    background: #ffffff;
+    border: 1px solid #dbdbdb;
+    text-align: center;
+    padding: 5rpx 0;
+    margin: 15rpx auto 0rpx;
+}
+
+.justifyContentcenter {
+    text-align: center;
+    justify-content: center;
+}
+
+.add-txt-view {
+    padding-left: 20rpx;
+    text-align: left;
+}
+
+.bus-ins-info {
+    position: absolute;
+    right: 30%;
+}
+
+.line25 {
+    line-height: 100rpx;
+}
+
+.line26 {
+    line-height: 104rpx;
+}
+
+.line14 {
+    line-height: 64rpx;
+}
+
+.line12 {
+    line-height: 48rpx;
+}
+
+.line08 {
+    line-height: 32rpx;
+}
+
+.smallfont {
+    font: 12rpx;
+}
+
+.edit-view {
+    text-align: left;
+    padding-left: 30rpx;
+}
+
+.check-view {
+    text-align: right;
+    padding-right: 30rpx;
+}
+
+.b-b-passlist .iconfont {
+    padding: 0 0 0 48rpx;
+    line-height: 128rpx;
+}
+
+.b-b-passlist .info {
+    padding: 24rpx 0 20rpx;
+}
+
+.b-b-passlist .card,.b-t-picker .card {
+    font-size: 24rpx;
+    color: #999;
+    line-height: 48rpx;
+}
+
+.b-t-picker,.bus-package,.b-b-insurance {
+    position: relative;
+    padding-left: 30rpx;
+    line-height: 100rpx;
+}
+
+.b-t-picker .name {
+    line-height: 48rpx;
+    margin-top: 8rpx;
+}
+
+.b-t-picker .card {
+    line-height: 48rpx;
+}
+
+.b-b-passlist .item {
+    border-top-width: 2rpx;
+    padding-left: 30rpx;
+}
+
+.b-b-passlist .label {
+    background-color: #dbdbdb;
+    color: #FFF;
+    font-size: 24rpx;
+    padding: 0 6rpx;
+    margin-left: 12rpx;
+    border-radius: 6rpx;
+}
+
+.row .label {
+    background-color: #dbdbdb;
+    color: #FFF;
+    font-size: 24rpx;
+    padding: 0 6rpx;
+    margin-left: 12rpx;
+    border-radius: 6rpx;
+}
+
+.del-view {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.btn_default {
+    color: #fff;
+    background-color: #5495e6;
+}
+
+.btn_default_hover {
+    color: rgba(255,255,255,0.6);
+    background-color: rgb(9,187,7);
+}
+
+.btn-add {
+    height: 60rpx;
+    line-height: 60rpx;
+    float: right;
+    margin: 20rpx 10rpx 0 0;
+    font-size: 30rpx;
+}
+
+.bar-pay .detail {
+    margin-top: 14rpx;
+    margin-left: 10rpx;
+    color: #5495e6;
+    font-size: 26rpx;
+    background-color: rgba(255,255,255,0);
+}
+
+.price-detail {
+    line-height: 88rpx;
+    color: #999;
+    position: fixed;
+    z-index: 1002;
+    bottom: 100rpx;
+    background-color: #FFF;
+    width: 100%;
+}
+
+.price-detail view {
+    margin-left: 30rpx;
+    padding-right: 30rpx;
+    border-top: 2rpx solid #F3F3F3;
+}
+
+.price-detail .nobr {
+    border-bottom: none;
+}
+
+.bar-pay .orange {
+    font-size: 40rpx;
+}
+
+.bus-desc .t {
+    color: #5495e6;
+}
+
+.bus-desc {
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    bottom: 100rpx;
+    overflow: auto;
+    padding: 40rpx 40rpx 80rpx;
+    color: #FFF;
+    z-index: 1011;
+    line-height: 60rpx;
+}
+
+.ship-book .ship-book-title .time {
+    font-size: 1.4rem;
+}
+
+.scrollview-for {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    margin: 5rpx;
+}
+
+.newline {
+    display: flex;
+    flex-direction: row;
+}
+
+.shipinfo {
+    padding-bottom: 100rpx;
+    background-color: #353439;
+}
+
+.fill {
+    margin-bottom: 20rpx;
+}
+
+.blank {
+    width: 750rpx;
+    height: 200rpx;
+}
+
+.coupon-sec {
+    color: #999;
+    text-align: right;
+    padding-right: 55rpx;
+    font-size: 26rpx;
+}
+
+.right-text {
+    color: #999;
+}

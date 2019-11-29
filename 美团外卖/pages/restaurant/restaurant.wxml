@@ -1,0 +1,443 @@
+<import src="../../components/score/score.wxml"></import>
+<import src="modal-food/modal-food.wxml"></import>
+<import src="loading-template/loading-template.wxml"></import>
+<import src="product-info/product-info.wxml"></import>
+<import src="spuItem-template/spuItem.wxml"></import>
+<import src="spuItem-template/spuItemLoading.wxml"></import>
+<view bindtap="onTap" catchtouchmove="onTouchMove" class="page-container-flex">
+    <include src="../base.wxml"></include>
+    <block wx:if="{{poiData}}">
+        <template is="loading-template" data wx:if="{{!dataIsLoaded}}"></template>
+        <view class="content" wx:if="{{dataIsLoaded}}">
+            <view class="main-header">
+                <view class="header-info">
+                    <image bindtap="modalChange" class="header-info-poi" mode="aspectFill" src="{{poiData.poi_info.pic_url?poiData.poi_info.pic_url:'/img/icons/no-shopImg.png'}}"></image>
+                    <view class="header-info-txt">
+                        <view bindtap="modalChange" class="header-info-row">
+                            <view class="header-info-row-text"> {{poiData.poi_info.min_price_tip}} <view class="header-info-line" wx:if="{{poiData.poi_info.delivery_time_tip}}"></view> {{poiData.poi_info.delivery_time_tip}} <view class="header-info-line" wx:if="{{poiData.poi_info.distance}}"></view> {{poiData.poi_info.distance}} </view>
+                            <image class="poi-deliver" src="/img/icons/deliver.png" wx:if="{{poiData.poi_info.delivery_type===1}}"></image>
+                        </view>
+                        <view bindtap="modalChange" class="header-info-ad">公告：{{poiData.poi_info.bulletin?poiData.poi_info.bulletin:'欢迎光临，很高兴为您服务'}}</view>
+                        <view bindtap="modalChange" class="header-announce header-carousel" data-isDiscount="true" wx:if="{{poiData.poi_info.discounts2.length>0}}">
+                            <swiper autoplay="true" circular="true" class="header-carousel-content header-carousel-content-animate {{headerDiscountTransition?'header-carousel-content-transition':''}}" style="transform:{{'translateY(-'+discountIndex+'00%) translateZ(0)'}}" vertical="true" wx:if="{{poiData.poi_info.discounts2.length>1}}">
+                                <swiper-item class="discount-item header-discount-item" wx:for="{{poiData.poi_info.discounts2}}" wx:key="{{item.type}}">
+                                    <image class="discount-icon" src="{{item.icon_url}}"></image>
+                                    <view class="header-discount-text"> {{item.info}} </view>
+                                </swiper-item>
+                            </swiper>
+                            <view class="header-carousel-content" wx:else>
+                                <view class="discount-item header-discount-item" wx:for="{{poiData.poi_info.discounts2}}" wx:key="{{item.type}}">
+                                    <image class="discount-icon" src="{{item.icon_url}}"></image>
+                                    <view class="header-discount-text"> {{item.info}} </view>
+                                </view>
+                            </view>
+                            <view class="header-carouse-tip">
+                                <image class="header-carouse-tip-arrow ui-inline-block" src="/img/icons/restaurant-arrow.png"></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="toggleCouponLayer" class="poi-coupon-list" wx:if="{{poi_coupon.length!==0}}">
+                    <view class="poi-coupons">
+                        <view class="poi-coupon-block" wx:for="{{poi_coupon}}" wx:key="{{item.id}}">
+                            <view class="poi-coupon-item flexCenter" wx:if="{{item.coupon_status===0}}">
+                                <view class="poi-coupon-get-left"></view>
+                                <view class="poi-coupon-get-middle">
+                                    <image class="coupon-text coupon-get-text" src="/img/shopCoupon/getText.png"></image>
+                                    <image class="coupon-unit" src="/img/shopCoupon/coupon-unit.png"></image>
+                                    <view class="coupon-number">{{item.coupon_value}}</view>
+                                </view>
+                                <view class="poi-coupon-get-right"></view>
+                            </view>
+                            <view class="poi-coupon-item flexCenter" wx:elif="{{item.coupon_status===1}}">
+                                <view class="poi-coupon-got-left"></view>
+                                <view class="poi-coupon-got-middle">
+                                    <image class="coupon-text coupon-got-text" src="/img/shopCoupon/gotText.png"></image> {{item.isMutiple?item.mutipleCount+'张'+item.coupon_value+'元券':''}} <image class="coupon-unit" src="/img/shopCoupon/coupon-unit.png" wx:if="{{!item.isMutiple}}"></image>
+                                    <view class="coupon-number" wx:if="{{!item.isMutiple}}">{{item.coupon_value}}</view>
+                                </view>
+                                <view class="poi-coupon-got-right"></view>
+                            </view>
+                        </view>
+                    </view>
+                    <image class="poi-coupon-arrow" src="/img/icons/search-suggest-right.png"></image>
+                </view>
+            </view>
+            <view class="main" style="top:{{mainScrollTop}};height: calc(100% - {{mainScrollTop}})">
+                <view class="panel-headers">
+                    <view bindtap="onClickPanelHeader" class="panel-header {{activePanel===0?'panel-header-active':''}}" data-index="0">
+                        <view class="panel-header-txt">{{poiData.poi_info.buz_menu_tip||'点菜'}}</view>
+                    </view>
+                    <view bindtap="onClickPanelHeader" class="panel-header {{activePanel===1?'panel-header-active':''}}" data-index="1">
+                        <view class="panel-header-txt">评价</view>
+                    </view>
+                    <view bindtap="onClickPanelHeader" class="panel-header {{activePanel===2?'panel-header-active':''}}" data-index="2">
+                        <view class="panel-header-txt">商家</view>
+                    </view>
+                </view>
+                <swiper bindchange="onChangeSwiper" class="main-swiper" current="{{activePanel}}" id="spuSwiper">
+                    <swiper-item class="panel panel-food">
+                        <view class="panel-food-content {{isIpx?'panel-food-content-iphoneX':''}}">
+                            <view class="hidding-scrollbar hidding-fix">
+                                <scroll-view bind:scroll="scrollLeft" class="type-tab" id="leftTab" scrollIntoView="{{onLoadTagIndex&&onLoadTagIndex>3?'tag-'+onLoadTagIndex:'tag-'+activeTypeIndex}}" scrollX="" scrollY="scroll-y">
+                                    <view bindtap="chooseType" class="{{activeTypeIndex===index?'cat-box active-type':'cat-box'}}" data-index="{{index}}" id="tag-{{index}}" wx:for="{{menuTabs}}" wx:key="{{index}}">
+                                        <view class="cat-item flex-center">
+                                            <view class="cat-item-name">
+                                                <image class="hot-icon" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                                                <text class="cat-item-text">{{item.name}}</text>
+                                            </view>
+                                        </view>
+                                        <view class="cat-item-spu-count flex-center" wx:if="{{alreadySelecCount[item.tag]&&item.name!=='热销'}}">{{alreadySelecCount[item.tag]>99?'99+':alreadySelecCount[item.tag]}}</view>
+                                    </view>
+                                    <view class="empty-solt fixed-empty-solt"></view>
+                                </scroll-view>
+                            </view>
+                            <view class="hidding-scrollbar">
+                                <block wx:if="{{isUnderSpuMaxNumber}}">
+                                    <view class="tab-header" id="fixed-header" wx:if="{{isUnderSpuMaxNumber}}"> {{tagViewName}} <text class="tab-header-desc" wx:if="{{tagViewDes}}">({{tagViewDes}})</text>
+                                    </view>
+                                    <scroll-view bind:scroll="scroll" bind:touchend="touchEnd" bind:touchstart="touchStart" bindscrolltolower="onScrollBottomProducts" bindscrolltoupper="onScrollToupperProducts" class="product-tab space-for-solt" id="spuScroll" lowerThreshold="0" scrollIntoView="{{onLoadFocusSpu&&onLoadSpuIndex>=0?'spu-'+onLoadFocusTag+'-'+onLoadFocusSpu:tagView}}" scrollX="" scrollY="{{ableToScroll}}" upperThreshold="0">
+                                        <block wx:for="{{food_spu_tags}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{itemName.tag}}">
+                                            <view class="tag-{{itemName.tag}}" id="real-spu-tag-container-{{itemName.tag}}" style="visibility: {{spuTagShouldShow[idx]?'visible':'hidden'}};position: {{spuTagShouldShow[idx]?'relative':'absolute'}}">
+                                                <view class="tab-header" id="spuTag-{{itemName.tag}}" wx:if="{{idx!==0}}"> {{itemName.name}} <text class="tab-header-desc" wx:if="{{itemName.description}}">({{itemName.description}})</text>
+                                                </view>
+                                                <template is="spuItem" data="{{item:item,poiData:poiData,cartCountMap:cartCountMap,activeTypeIndex:activeTypeIndex,onLoadTagIndex:onLoadTagIndex,onLoadFocusSpu:onLoadFocusSpu,tag:itemName.tag}}" wx:for="{{itemName.spus}}" wx:key="{{itemName.id}}"></template>
+                                            </view>
+                                            <view class="tag-{{itemName.tag}}" hidden="{{spuTagShouldShow[idx]}}" style="height:{{spuTagEachHeight[idx]||500}}px; overflow: hidden">
+                                                <view class="tab-header" id="spuTag-{{itemName.tag}}" wx:if="{{idx!==0}}"> {{itemName.name}} </view>
+                                                <template is="spuItemLoading" data></template>
+                                            </view>
+                                        </block>
+                                        <view class="fixed-empty-solt"></view>
+                                    </scroll-view>
+                                </block>
+                                <block wx:else>
+                                    <view class="tab-header"> {{menuData.name}} <text class="tab-header-desc" wx:if="{{menuData.description}}">({{menuData.description}})</text>
+                                    </view>
+                                    <scroll-view bind:scroll="scroll" bindscrolltolower="onScrollBottomProducts" bindscrolltoupper="onScrollToupperProducts" bindtouchend="touchEnd" bindtouchstart="touchStart" class="product-tab space-for-solt" lowerThreshold="0" scrollIntoView="{{onLoadFocusSpu&&onLoadSpuIndex>=0?'spu-'+onLoadFocusTag+'-'+onLoadFocusSpu:tagView}}" scrollX="" scrollY="{{ableToScroll}}" upperThreshold="0">
+                                        <template is="spuItem" data="{{item:item,poiData:poiData,cartCountMap:cartCountMap,activeTypeIndex:activeTypeIndex,onLoadTagIndex:onLoadTagIndex,onLoadFocusSpu:onLoadFocusSpu,tag:menuData.tag}}" wx:for="{{menuData.spus}}" wx:key="{{item.id}}"></template>
+                                        <view class="fixed-empty-solt"></view>
+                                    </scroll-view>
+                                </block>
+                            </view>
+                        </view>
+                    </swiper-item>
+                    <swiper-item class="panel panel-food">
+                        <block wx:if="{{activePanel===1}}">
+                            <block wx:if="{{loadingLogo&&commentInfo===null}}"></block>
+                            <view wx:elif="{{commentInfo.comment_score==0&&commentInfo.comments.length==0}}">
+                                <view class="mcenter">
+                                    <image class="null-comment-icon" src="http://p1.meituan.net/codeman/ab157bb9c570288618ca53022ea845dd12860.png"></image>
+                                    <view class="null-comment-txt"> 暂时还没有评价哦~ </view>
+                                </view>
+                            </view>
+                            <view class="pannel-comment" wx:else>
+                                <scroll-view bindscrolltolower="onScrollBottom" class="page-scroll-comment" scrollY="true">
+                                    <view class="comment-score-total" wx:if="{{commentInfo.comment_score>0}}">
+                                        <view class="comment-score-left">
+                                            <view class="comment-score-left-big">
+                                                <view class="comment-score-big">{{commentInfo.comment_score}}</view>
+                                                <view class="comment-score-txt">商家评分</view>
+                                            </view>
+                                            <view class="comment-score-left-middle">
+                                                <view class="comment-score-right-sub"> 口味 <view class="score-star-container">
+                                                        <template is="score" data="{{score:commentInfo.food_score}}"></template>
+                                                    </view>
+                                                    <view class="comment-scroe-small">{{commentInfo.food_score}}</view>
+                                                </view>
+                                                <view class="comment-score-right-sub"> 包装 <view class="score-star-container">
+                                                        <template is="score" data="{{score:commentInfo.pack_score}}"></template>
+                                                    </view>
+                                                    <view class="comment-scroe-small">{{commentInfo.pack_score}}</view>
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="comment-score-right">
+                                            <view class="delivery_score">{{commentInfo.delivery_score}}</view>
+                                            <view class="delivery_title">配送评分</view>
+                                        </view>
+                                    </view>
+                                    <view class="comment-noscore-total" wx:else>
+                                        <image src="/img/icons/refund-tip.png"></image> 商家近期评价不足，暂无综合评分 </view>
+                                    <view class="comment-tags-wrap">
+                                        <block wx:for="{{commentInfo.comment_categories}}" wx:for-index="idx" wx:key="{{item}}">
+                                            <view catchtap="onClickCommentTag" class="comment-tag {{item.type==6?'comment-tag-friend':''}} {{currentCategorieType==0&&label_id==0?'comment-tag-selected':''}}" data-index="{{idx}}" wx:if="{{idx===0}}">{{item.content}}</view>
+                                            <view catchtap="onClickCommentTag" class="comment-tag {{item.type==6?'comment-tag-friend':''}} {{currentCategorieType==commentInfo.comment_score_type_infos[idx].comment_score_type?'comment-tag-selected':''}}" data-index="{{idx}}" wx:elif="{{item.type!=3}}">{{item.content}}</view>
+                                            <view catchtap="onClickCommentTag" class="comment-tag-bad {{currentCategorieType==commentInfo.comment_score_type_infos[idx].comment_score_type?'comment-tag-bad-selected':''}}" data-index="{{idx}}" wx:elif="{{item.type==3}}">{{item.content}}</view>
+                                        </block>
+                                        <block wx:for="{{commentInfo.labels}}" wx:for-index="idx" wx:key="{{item.label_id}}">
+                                            <view catchtap="onClickLabelCommentTag" class="comment-tag-bad {{item.label_id==label_id?'comment-tag-bad-selected':''}}" data-labelid="{{item.label_id}}" wx:if="{{item.label_star<=3}}">{{item.content}}({{item.label_count}})</view>
+                                            <view catchtap="onClickLabelCommentTag" class="comment-tag {{item.label_id==label_id?'comment-tag-selected':''}}" data-labelid="{{item.label_id}}" wx:elif="{{item.label_star>3}}">{{item.content}}({{item.label_count}})</view>
+                                        </block>
+                                    </view>
+                                    <view class="comment-info-wrap">
+                                        <view class="comment-info-tab" wx:for="{{commentInfo.comments}}" wx:key="{{item.wm_comment_id}}">
+                                            <image class="comment-avatar" src="{{item.user_pic_url==''?'/img/icons/my-image.png':item.user_pic_url}}"></image>
+                                            <view class="f59">
+                                                <view class="comment-info-username ellipsis">{{item.user_name}}</view>
+                                                <view class="comment-info-date">{{item.comment_time}}</view>
+                                                <view class="comment-info-sub">
+                                                    <template is="score" data="{{score:item.order_comment_score}}"></template>
+                                                    <view class="comment-info-shiptime">{{item.ship_time}}分钟送达</view>
+                                                    <view class="{{item.comment_source_type==1?'comment-source-me':'comment-source-friend'}}" wx:if="{{item.comment_source_tip!=''}}">{{item.comment_source_tip}}</view>
+                                                </view>
+                                                <view class="comment-info-comment">{{item.comment}}</view>
+                                                <view class="comment-pics clearfix {{item.comment_pics_thumbnail.length==4?'comment-pics-four':''}}">
+                                                    <image bindtap="onClickPhotos" class="{{item.comment_pics_thumbnail.length>1?'comment-info-multipic':'comment-info-singlepic'}}" data-picarry="{{item.comment_pics_preview}}" data-picnow="{{index}}" mode="aspectFill" src="{{foodpic}}" wx:for="{{item.comment_pics_thumbnail}}" wx:for-item="foodpic" wx:key="{{index}}"></image>
+                                                </view>
+                                                <view class="comment-favor-bar" wx:if="{{item.praise_food_list.length>0}}">
+                                                    <image class="favor-icons" src="/img/icons/favor.png"></image>
+                                                    <view class="comment-usertags-wrap lblue">
+                                                        <view wx:for="{{item.praise_food_list}}" wx:for-item="foodlist" wx:key="{{index}}">{{foodlist.name}}</view>
+                                                        <view wx:if="{{foodindex<item.praise_food_list.length-1}}">,</view>
+                                                    </view>
+                                                </view>
+                                                <view class="comment-tags-bar" wx:if="{{item.comment_labels.length>0}}">
+                                                    <image class="favor-icons" src="/img/icons/tag.png"></image>
+                                                    <view class="comment-usertags-wrap">
+                                                        <view wx:for="{{item.comment_labels}}" wx:for-item="commentlable" wx:key="{{index}}">{{commentlable.content}}</view> {{labelindex}} <view wx:if="{{commentindex<item.comment_labels.length-1}}">,</view>
+                                                    </view>
+                                                </view>
+                                                <view class="add-comments" wx:for="{{item.add_comment_list}}" wx:for-item="addcomment" wx:key="{{index}}"> {{addcomment.desc}}:{{addcomment.content}} </view>
+                                            </view>
+                                        </view>
+                                        <view class="loading-data flex-center" wx:if="{{commentInfo.comments.length&&poiCommentOffset+20<commentInfo.filter_type_num}}">
+                                            <view class="ui-loading-logo {{loadingLogo?'ui-loading-logo-animate':''}}"></view> 努力加载中... </view>
+                                    </view>
+                                </scroll-view>
+                            </view>
+                        </block>
+                    </swiper-item>
+                    <swiper-item class="panel panel-info">
+                        <block wx:if="{{activePanel===2}}">
+                            <scroll-view class="scroll-info" scrollY="true" wx:if="{{poiInfo}}">
+                                <view class="poi-info-row">
+                                    <view class="shop-info-address">
+                                        <image class="address-icon mr20" src="/img/icons/near.png"></image>
+                                        <view class="address-txt"> {{poiInfo.address}} </view>
+                                        <image bindtap="onClickCall" class="call-icon mr20" src="/img/icons/order_info_phone.png"></image>
+                                    </view>
+                                </view>
+                                <view class="poi-info-row" wx:if="{{poiInfo.poi_qualify_info&&poiInfo.poi_qualify_info.show}}">
+                                    <navigator class="qualification-main" url="../qualification/qualification?poi_id={{poiInfo.id}}">
+                                        <image class="mr20 qualification-icon" src="/img/icons/qualification.png"></image>
+                                        <view class="qual-text">{{poiInfo.poi_qualify_info.content}}</view>
+                                        <image class="mr20 arrow-right" src="/img/icons/jump.png"></image>
+                                    </navigator>
+                                </view>
+                                <view class="poi-info-row">
+                                    <view class="shipping-service">
+                                        <view class="shipping-service-inner">
+                                            <image class="service-icon mr20" src="/img/icons/service.png"></image>
+                                            <view class="service-txt"> 配送服务： <view class="shipping-tip">
+                                                    <view class="flex-center" wx:if="{{poiInfo.delivery_type===1}}">
+                                                        <image class="deliver-icon" src="/img/icons/deliver.png"></image>
+                                                        <view> {{poiInfo.mt_delivery_info.mt_delivery_tip}} </view>
+                                                    </view>
+                                                    <view> {{poiInfo.app_delivery_tip}} </view>
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="deliver-icons" wx:if="{{poiInfo.delivery_type===1}}">
+                                            <image class="fast-icon" src="/img/icons/fast.png"></image>
+                                            <image class="timely-icon" src="/img/icons/timely.png"></image>
+                                        </view>
+                                    </view>
+                                    <view class="shipping-time">
+                                        <image class="clock-icon mr20" src="/img/icons/clock.png"></image>
+                                        <view> 配送时间：{{poiInfo.shipping_time}} </view>
+                                    </view>
+                                </view>
+                                <view class="poi-info-row">
+                                    <view class="poi-service" wx:if="{{poiInfo.poi_service&&poiInfo.poi_service.length>0}}">
+                                        <image class="poi-service-icon mr20" src="/img/icons/tick.png"></image>
+                                        <view class="service-txt"> 商家服务： <view class="poi_service_item" wx:for="{{poiInfo.poi_service}}">
+                                                <image class="discount-icon poi-service-icon" src="{{item.icon}}"></image> {{item.content}} </view>
+                                        </view>
+                                    </view>
+                                    <view class="discount" wx:if="{{poiInfo.discounts2}}">
+                                        <view class="discount-list">
+                                            <view class="discount-item {{poiInfo.discounts2.length-1===index?'':'mb25'}}" wx:if="{{item.id!==-1}}" wx:for="{{poiInfo.discounts2}}" wx:key="{{item.type}}">
+                                                <image class="discount-icon" src="{{item.icon_url}}"></image>
+                                                <view> {{item.info}} </view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </scroll-view>
+                        </block>
+                    </swiper-item>
+                </swiper>
+            </view>
+        </view>
+        <view wx:if="{{modalShown}}">
+            <view bindtap="modalChange" class="modal-backdrop announce-backdrop"></view>
+            <view bindtap="modalChange" class="shop-layer {{headerInfoAnimation}}">
+                <view class="layer-section shop-layer-activity" wx:if="{{poiData.poi_info.discounts2.length}}">
+                    <view class="poi-actvs-item" wx:for="{{poiData.poi_info.discounts2}}" wx:key="{{item.type}}">
+                        <image class="poi-actvs-icon" src="{{item.icon_url}}" wx:if="{{item.icon_url}}"></image>
+                        <view class="poi-actvs-text">{{item.info}}</view>
+                    </view>
+                </view>
+                <view class="layer-section" wx:if="{{poiData.poi_info.poi_service_label}}">
+                    <view class="shop-layer-title">{{poiData.poi_info.poi_service_label.title}}</view>
+                    <view catchtap="onClickPoiService" wx:for="{{poiData.poi_info.poi_service_label.service_label}}" wx:key="index">
+                        <block wx:if="{{item.label_type===2}}">
+                            <view class="poi_service_label">{{item.label_text}}</view>
+                            <view class="poi_service_content">{{item.label_desc_text}} <image class="question-mark-icon" data-type="{{item.label_type}}" src="../../img/icons/question-mark.png"></image>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+                <view class="layer-section shop-layer-delivery">
+                    <view class="shop-layer-title">配送</view>
+                    <view class="shop-layer-flex"> {{poiData.poi_info.min_price_tip}} <view class="item-line"></view> {{poiData.poi_info.shipping_fee_tip}} <view class="item-line"></view> {{poiData.poi_info.delivery_time_tip}} </view>
+                    <view> 配送时间：{{poiData.poi_info.shipping_time}} </view>
+                </view>
+                <view class="layer-section shop-layer-announcement">
+                    <view class="shop-layer-title">公告</view>
+                    <view> {{poiData.poi_info.bulletin?poiData.poi_info.bulletin:'欢迎光临，很高兴为您服务'}} </view>
+                </view>
+            </view>
+        </view>
+        <view class="coupon-view" wx:if="{{ifCouponModalShouldShow}}">
+            <view bindtap="toggleCouponLayer" class="modal-backdrop coupon-backdrop" hidden="{{!ifCouponModalShouldShow}}"></view>
+            <view bingtap="noneEvent" class="coupons-big {{couponAnimation}}" hidden="{{!ifCouponModalShouldShow}}">
+                <view class="coupon-big-item flexCenter" wx:for="{{poi_coupon_big}}" wx:key="{{item.id}}">
+                    <view class="coupon-big-left-left backgroundWithFullImg"></view>
+                    <view class="coupon-big-left backgroundWithFullImg">
+                        <image class="coupon-unit-big" src="/img/shopCoupon/coupon-unit.png"></image>
+                        <view class="coupon-number-big">{{item.coupon_value}}</view>
+                        <view class="coupon-description">
+                            <view>{{item.coupon_condition_text}}</view>
+                            <view>{{item.coupon_valid_time_text}}</view>
+                        </view>
+                    </view>
+                    <view class="coupon-big-middle backgroundWithFullImg"></view>
+                    <button bindgetuserinfo="getCoupon" class="backgroundWithFullImg flexCenter {{item.coupon_status===0?'coupon-big-right-get':'coupon-big-right-got'}}" data-index="{{index}}" data-item="{{item}}" openType="getUserInfo" wx:if="{{hasUserInfo}}"> {{item.coupon_status===0?'领取':'已领取'}} </button>
+                    <view bindtap="getCoupon" class="backgroundWithFullImg flexCenter {{item.coupon_status===0?'coupon-big-right-get':'coupon-big-right-got'}}" data-index="{{index}}" data-item="{{item}}" wx:else> {{item.coupon_status===0?'领取':'已领取'}} </view>
+                    <view class="backgroundWithFullImg {{item.coupon_status===0?'coupon-big-right-right-get':'coupon-big-right-right-got'}}"></view>
+                </view>
+            </view>
+        </view>
+        <view class="cart-view">
+            <view bindtap="changeCart" class="modal-backdrop footer-backdrop {{isIpx?'cart-backdropOnIphoneX':'cart-backdrop'}}" hidden="{{isHiddenCart}}"></view>
+            <view bindtap="closeAddMore" class="modal-backdrop footer-backdrop {{isIpx?'cart-backdropOnIphoneX':'cart-backdrop'}}" hidden="{{isHiddenGetMore}}"></view>
+            <view class="cart {{cartAnimation}} {{isIpx?'cart-iphoneX':''}}" hidden="{{isHiddenCart}}">
+                <view class="cart-tip-container tipInAnimation {{isIpx?'cart-tip-container-iphoneX':''}}">
+                    <view class="cart-tip" hidden="{{activePanel||!cartTip}}"> {{cartTip[0]&&cartTip[0]}}<text class="cart-highlight">{{cartTip[1]&&cartTip[1]}}</text>{{cartTip[2]&&cartTip[2]}}<text class="cart-highlight">{{cartTip[3]&&cartTip[3]}}</text>{{cartTip[4]&&cartTip[4]}} <text bindtap="onAddMoreClick" class="get-more-btn" wx:if="{{addMoreShow}}">[去凑单]</text>
+                    </view>
+                </view>
+                <view>
+                    <view class="cart-head">
+                        <view class="box-fee" hidden="{{cartBoxPrice==0}}">包装费{{cartBoxPrice}}元</view>
+                        <view bindtap="onClickClearCart" class="cart-bin">
+                            <image class="bin-icon" src="/img/icons/bin.png"></image>
+                            <text class="clear-cart">清空购物车</text>
+                        </view>
+                    </view>
+                    <scroll-view class="cart-list" scrollY="true" style="height:{{cart.length>4?'488rpx':''}}">
+                        <view class="cart-food-item" wx:for="{{cart}}" wx:key="{{item.id}}">
+                            <view class="cart-food-item-left">
+                                <view class="cart-food-name"> {{item.name}} </view>
+                                <view class="cart-food-subdtl" wx:if="{{item.activity_type===1&&item.count>item.actvCount}}"> 含{{item.count-item.actvCount}}份原价商品 </view>
+                                <view class="cart-food-subdtl" wx:if="{{item.activity_type===2&&item.actvCount>0}}"> 含{{item.actvCount}}份半价商品 </view>
+                                <view class="cart-food-subdtl" wx:if="{{(item.activity_type==0||item.activity_type==3)&&item.attrName}}"> {{item.attrName}} </view>
+                            </view>
+                            <view class="cart-food-price"> ￥{{item.priceTotal}} </view>
+                            <view class="cart-choose-num flex-center">
+                                <image bindtap="onClickDelFood" class="cart-remove-food" data-attrs="{{item.attrs}}" data-foodid="{{item.foodid}}" data-id="{{item.id}}" src="/img/icons/remove.png"></image>
+                                <text class="food-num">{{item.count}}</text>
+                                <image bindtap="onClickAddFood" class="cart-add-food" data-attrs="{{item.attrs}}" data-foodid="{{item.foodid}}" data-id="{{item.id}}" data-item="{{item}}" src="/img/icons/add.png"></image>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+            <view class="cart-tip-container {{isIpx?'cart-tip-container-iphoneX':''}}" wx:if="{{activePanel===0&&isHiddenCart&&cartTipShow}}">
+                <view class="cart-tip" hidden="{{activePanel||!cartTip}}"> {{cartTip[0]&&cartTip[0]}}<text class="cart-highlight">{{cartTip[1]&&cartTip[1]}}</text>{{cartTip[2]&&cartTip[2]}}<text class="cart-highlight">{{cartTip[3]&&cartTip[3]}}</text>{{cartTip[4]&&cartTip[4]}} <text bindtap="onAddMoreClick" class="get-more-btn" wx:if="{{addMoreShow&&!addMoreScrollShow}}">[去凑单]</text>
+                </view>
+                <scroll-view class="add-more-list" scrollY="true" wx:if="{{addMoreScrollShow}}">
+                    <view class="cart-food-item" wx:for="{{addMoreSpuList}}" wx:key="{{item.skuid}}">
+                        <view class="cart-food-item-left">
+                            <view class="cart-food-name"> {{item.name}} </view>
+                        </view>
+                        <view class="cart-food-price"> ￥{{item.totalPrice=='0'?item.price:item.totalPrice}} </view>
+                        <view class="cart-choose-num flex-center">
+                            <image bindtap="onClickDelFood" class="cart-remove-food" data-attrs="{{item.attrs}}" data-foodid="{{item.spuid}}" data-id="{{item.skuid}}" src="/img/icons/remove.png" wx:if="{{item.count}}"></image>
+                            <text class="food-num" wx:if="{{item.count}}">{{item.count}}</text>
+                            <image bindtap="onClickAddFood" class="cart-add-food" data-attrs="{{item.attrs}}" data-foodid="{{item.spuid}}" data-id="{{item.skuid}}" data-item="{{item}}" src="/img/icons/add.png"></image>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="footer {{isIpx?'footer-ipx':''}}" fixed="{{true}}" hidden="{{activePanel}}" wx:if="{{poiData.poi_info.status===1}}">
+                <view bindtap="onClickCartFooter" class="cart-icon">
+                    <view class="cart-img cart-img-{{poiData.poi_info.delivery_type===1?'special':'normal'}}-{{cartFoodCount?'active':'empty'}}"></view>
+                    <view class="cart-num flex-center" wx:if="{{cartFoodCount>0}}">{{cartFoodCount>99?'99+':cartFoodCount}}</view>
+                </view>
+                <button bindgetuserinfo="onClickCartFooter" class="bill-btn flex-center" data-action="{{priceToGo||cartFoodCount===0?'notsubmit':'submit'}}" openType="getUserInfo" wx:if="{{hasUserInfo&&!priceToGo&&cartFoodCount!==0}}"> 去结算 </button>
+                <view bindtap="onClickCartFooter" class="bill-btn flex-center {{priceToGo||cartFoodCount===0?'unavail-btn':''}}" data-action="{{priceToGo||cartFoodCount===0?'notsubmit':'submit'}}" wx:else> {{priceToGo||cartFoodCount===0?cartFoodCount?'还差'+priceToGo+'元':poiData.poi_info.min_price+'元起送':'去结算'}} </view>
+                <view bindtap="onClickCartFooter" class="spend" wx:if="{{cartFoodCount}}">
+                    <view class="food-count">￥{{cartFoodPrice}}</view>
+                    <view class="fee-count"> {{poiData.shopping_cart.shipping_fee_cart_tip}} </view>
+                </view>
+                <view class="cart-empty" wx:else>
+                    <view class="cart-empty-txt">{{poiData.shopping_cart.shipping_fee_cart_tip}}</view>
+                </view>
+            </view>
+            <view class="footer flexCenter colorWhite" wx:if="{{poiData.poi_info.status===3}}"> {{offlineMessage}} </view>
+        </view>
+        <view wx:if="{{couponModalShown}}">
+            <view bindtap="changeCoupon" class="modal-backdrop footer-backdrop"></view>
+            <view class="couponlist-modal">
+                <view class="grab-normal" wx:if="{{couponlist.status===0||couponlist.status===1}}">
+                    <view class="grab-result-wrap">
+                        <view class="grab-result">
+                            <text class="none-customer-tip">{{couponlist.newCustom?'本店新用户专享':'本店专享'}}</text>
+                            <view class="result-tip3" wx:if="{{couponlist.status===0}}"> 成功领取 <text class="result-tip-money">{{couponlist.statusText}}</text> 元代金券 </view>
+                            <view class="result-tip" wx:if="{{couponlist.status===1}}">{{couponlist.statusText}}</view>
+                            <view class="result-tip2">{{couponlist.statusText2}}</view>
+                        </view>
+                    </view>
+                    <view class="coupon-list-wrap">
+                        <view class="coupon-list {{couponlist.wmEPoiCouponInfos&&couponlist.wmEPoiCouponInfos.length>3?'coupon-list-long':''}}">
+                            <scroll-view class="coupon-list-scroll" scrollY="true">
+                                <view class="coupon-item flex-center" wx:if="{{couponlist.couponCount>=1}}" wx:for="{{couponlist.wmEPoiCouponInfos}}" wx:key="{{item.id}}">
+                                    <view class="coupon-item-price"> ¥ <text class="coupon-item-price-text">{{item.price}}</text>
+                                    </view>
+                                    <view class="coupon-item-right">
+                                        <view class="coupon-item-limit">满{{item.limitPrice}}元可用</view>
+                                        <view class="coupon-item-date">{{item.validity}}</view>
+                                    </view>
+                                </view>
+                            </scroll-view>
+                        </view>
+                        <view class="discount-share">可与其他优惠同享</view>
+                    </view>
+                    <view bindtap="changeCoupon" class="ui-close-icon close-icon coupon-close"></view>
+                </view>
+                <view class="grab-normal" wx:if="{{couponlist.status!==0&&couponlist.status!==1}}">
+                    <view class="coupon-list-wrap-valid">
+                        <view class="coupon-result-valid">
+                            <view class="grab-result" wx:if="{{couponlist.status==2}}">
+                                <view class="result-tip-status-2">{{couponlist.statusText}}</view>
+                                <view class="result-tip2">{{couponlist.statusText2}}</view>
+                            </view>
+                            <view class="grab-result" wx:if="{{couponlist.status!=2}}">
+                                <view class="result-tip">{{couponlist.statusText}}</view>
+                                <view class="result-tip2">{{couponlist.statusText2}}</view>
+                            </view>
+                        </view>
+                        <view class="discount-share">可与其他优惠同享</view>
+                    </view>
+                    <view bindtap="changeCoupon" class="ui-close-icon close-icon coupon-close"></view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="ui-loading" wx:else>
+        <view class="ui-loading-logo ui-loading-logo-animate"></view>
+    </view>
+    <template is="modal-food" data="{{...modalFood,modalFood:modalFood}}"></template>
+    <template is="product-info" data="{{...productInfo,productInfo:productInfo,cartCountMap:cartCountMap}}"></template>
+</view>

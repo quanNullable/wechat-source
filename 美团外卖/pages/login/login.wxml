@@ -1,0 +1,59 @@
+<view class="page-container-abs">
+    <view class="auth" wx:if="{{pageState==='auth'}}">
+        <image class="auth-logo" src="/img/icons/logo.png"></image>
+        <view class="auth-name">美团外卖</view>
+        <view class="auth-company">北京三快在线科技有限公司</view>
+        <view class="auth-priv">该程序将获取以下授权：</view>
+        <view class="auth-priv-content">获得您的公开信息（昵称、头像等）</view>
+        <view class="auth-btns">
+            <button bindtap="onClickAuth" class="ui-btn ui-btn-disabled flex-center auth-btn" data-action="reject"> 拒绝 </button>
+            <button bindtap="onClickAuth" class="ui-btn flex-center auth-btn" data-action="accept"> 允许 </button>
+        </view>
+    </view>
+    <view class="auth" wx:elif="{{pageState==='binded'}}">
+        <view class="ui-modal-title">登录成功</view>
+        <view class="auth-company">您已经成功使用微信授权登录美团外卖</view>
+        <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <view class="auth-name"> {{userInfo.nickName}} </view>
+        <button bindtap="onClickAuth" class="ui-btn flex-center auth-btn" data-action="return"> 返回 </button>
+    </view>
+    <view class="wrap" wx:else>
+        <view class="ui-modal-title">绑定手机号</view>
+        <view class="login-info">
+            <view class="login-phone">
+                <image class="phone-number-icon" src="/img/icons/phone-number.png"></image>
+                <input bindconfirm="onClickGetCodeBtn" bindinput="onInput" data-key="inputPhoneNumber" focus="{{focusedInput==='phone'}}" maxlength="11" placeholder="请输入您的手机号" type="number" value="{{inputPhoneNumberVal}}"></input>
+                <view bindtap="onClickClearInput" class="delete-area {{inputPhoneNumber?'delete-area-show':''}}" data-key="inputPhoneNumber">
+                    <image class="delete-icon" src="/img/icons/delete.png"></image>
+                </view>
+                <view bindtap="onClickGetCodeBtn" class="get-code-btn flex-center {{inputPhoneNumber.length===11&&!countdown?'active-code-btn':''}}"> {{hasClickCodeBtn?(seconds?'('+seconds+')':'')+'重新获取':'获取验证码'}} </view>
+            </view>
+            <view class="login-code">
+                <image class="code-icon" src="/img/icons/code.png"></image>
+                <input bindconfirm="onClickLogin" bindinput="onInput" data-key="inputCode" focus="{{focusedInput==='code'}}" placeholder="请输入收到的验证码" type="number" value="{{inputCodeVal}}"></input>
+                <view bindtap="onClickClearInput" class="delete-area {{inputCode?'delete-area-show':''}}" data-key="inputCode">
+                    <image class="delete-icon" src="/img/icons/delete.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="login-txt flex-center"> 如果您是第一次绑定手机号, 我们将为您创建美团账户 </view>
+        <button bindtap="onClickLogin" class="login-btn ui-btn flex-center {{inputPhoneNumber&&inputCode?'':'ui-btn-disabled'}}" disabled="{{!inputPhoneNumber||!inputCode}}" type="primary"> 绑定 </button>
+    </view>
+    <view class="ui-modal-backdrop modal-captcha-backdrop" wx:if="{{modalCaptchaShow}}">
+        <view class="ui-modal modal-captcha">
+            <view class="ui-modal-content modal-content-captcha">
+                <view class="ui-modal-title">验证码</view>
+                <view class="input-captcha-row">
+                    <view class="input-captcha-container">
+                        <input bindinput="onInput" class="ui-form-input input-captcha" data-key="inputCaptcha" focus="{{focusedInput==='captcha'}}" maxlength="6" placeholder="请输入图片验证码" value="{{inputCaptchaVal}}"></input>
+                        <view bindtap="onClickClearInput" class="ui-form-input-clear {{inputCaptcha?'':'ui-form-input-clear-disabled'}}" data-key="inputCaptcha"></view>
+                    </view>
+                    <image bindtap="onClickCaptchaImage" class="image-captcha" src="{{modalCaptchaUrl}}"></image>
+                </view>
+                <button bindtap="onClickCatpchaSubmit" class="btn-captcha-check ui-btn flex-center {{inputCaptcha&&inputPhoneNumber&&!modalCaptchaLoading?'':'ui-btn-deactive'}}" disabled="{{!(inputCaptcha&&inputPhoneNumber&&!modalCaptchaLoading)}}"> 提交 </button>
+            </view>
+        </view>
+        <view bindtap="onClickModalCaptchaClose" class="ui-modal-close-out"></view>
+    </view>
+    <include src="../base.wxml"></include>
+</view>

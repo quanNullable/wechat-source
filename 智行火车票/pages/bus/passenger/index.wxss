@@ -1,0 +1,7 @@
+@import "../../../__wuBaseWxss__/0.wxss";
+
+.passenger-list {
+    background-color: #FFF;
+    padding-left: 30rpx;
+    line-height: 112rpx;
+}

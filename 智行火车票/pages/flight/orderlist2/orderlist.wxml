@@ -1,0 +1,48 @@
+<page>
+    <view class="order_tab">
+        <view class="order_tab_item current">火车票订单</view>
+        <view class="order_tab_item">机票订单</view>
+        <view class="scrollbar tabnum2"></view>
+    </view>
+    <view class="order_list">
+        <view class="order_list_item">
+            <view class="order_list_hd">
+                <view class="airport">上海虹桥</view>
+                <view class="separator">
+                    <view class="spt_arr"></view>
+                </view>
+                <view class="airport">首都T1</view>
+                <text class="flt_price">560</text>
+            </view>
+            <view class="order_list_bd">
+                <view class="order_list_tic">
+                    <text class="date">2016-08-04 星期四 出发</text>
+                    <text class="airplane">东航 MU5107 经济舱B</text>
+                </view>
+                <view class="order_list_state">
+                    <button class="btn_pay">待支付</button>
+                </view>
+            </view>
+        </view>
+        <view class="order_list_item">
+            <view class="order_list_hd">
+                <view class="airport">上海虹桥</view>
+                <view class="separator">
+                    <view class="spt_arr"></view>
+                </view>
+                <view class="airport">首都T1</view>
+                <text class="flt_price">560</text>
+            </view>
+            <view class="order_list_bd">
+                <view class="order_list_tic">
+                    <text class="date">2016-08-04 星期四 出发</text>
+                    <text class="airplane">东航 MU5107 经济舱B</text>
+                </view>
+                <view class="order_list_state">
+                    <text class="txt_state">已出票</text>
+                </view>
+            </view>
+        </view>
+        <view class="flt_none">还没有订单，快取下一个吧~</view>
+    </view>
+</page>

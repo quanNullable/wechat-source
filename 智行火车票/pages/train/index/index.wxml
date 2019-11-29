@@ -1,0 +1,131 @@
+<import src="../common/components/toast/toast.wxml"></import>
+<view class="{{isTieyou?'ty':'zx'}}">
+    <view class="index">
+        <view class="index_tab">
+            <view bindtap="trainOrFlight" class="index_tab_item train {{isFlight==1?'current':''}}" data-params="1">
+                火车票
+            </view>
+            <view bindtap="trainOrFlight" class="index_tab_item flight {{isFlight==2?'current':''}}" data-params="2">
+                机票
+            </view>
+            <view bindtap="trainOrFlight" class="index_tab_item bus {{isFlight==3?'current':''}}" data-params="3">
+                汽车/船票
+            </view>
+            <view class="scrollbar"></view>
+        </view>
+        <view class="selform" hidden="{{!(isFlight==1)}}" style="border-bottom-width: 0;">
+            <view class="item notice" wx:if="{{!notice&&trainNotice}}">{{trainNotice}}</view>
+            <view class="item station">
+                <view bindtap="chooseStation" class="cell from {{exchange?'exchange':''}}" data-type="d">{{dStation}}</view>
+                <view bindtap="chooseStation" class="cell to {{exchange?'exchange':''}}" data-type="a">{{aStation}}</view>
+                <view bindtap="exchangeStation" class="switch" style="transform: {{exchange?'rotate(360deg)':''}}">
+                    <view class="icon-change"></view>
+                </view>
+            </view>
+            <view bindtap="chooseDate" class="item time">
+                <view class="cell">
+                    <text>{{monthDay}}</text>
+                    <view class="dayinfo">{{dayInfo}}</view>
+                </view>
+            </view>
+            <view class="item type type--train">
+                <view bindtap="switchStu" class="train-checkbox-wrap">
+                    <text>学生票</text>
+                    <view class="train-checkbox {{isStu?'current':''}}"></view>
+                </view>
+                <view bindtap="switchChange" class="train-checkbox-wrap">
+                    <text>高铁动车</text>
+                    <view class="train-checkbox {{isGaotieOnly?'current':''}}"></view>
+                </view>
+            </view>
+        </view>
+        <view class="selform" hidden="{{!(isFlight==2)}}" style="border-bottom-width: 0;">
+            <view class="item station">
+                <view bindtap="chooseStation" class="cell from {{exchange?'exchange':''}}" data-type="d">{{dStation}}</view>
+                <view bindtap="chooseStation" class="cell to {{exchange?'exchange':''}}" data-type="a">{{aStation}}</view>
+                <view bindtap="exchangeStation" class="switch" style="transform: {{exchange?'rotate(360deg)':''}}">
+                    <view class="icon-change"></view>
+                </view>
+            </view>
+            <view bindtap="chooseDate" class="item time">
+                <view class="cell">
+                    <text>{{monthDay}}</text>
+                    <view class="dayinfo">{{dayInfo}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="selform" hidden="{{!(isFlight==3)}}" style="border-bottom-width: 0;">
+            <view class="bstable_tab">
+                <view bindtap="onclickbus" class="bs_tab_item {{isship==1?'current':''}}">汽车票</view>
+                <view bindtap="onclickship" class="bs_tab_item {{isship==2?'current':''}}">船票</view>
+                <view class="bsscrollbar"></view>
+            </view>
+            <view wx:if="{{isship==1}}">
+                <view class="item station">
+                    <view bindtap="onSelectFrom" class="cell from" data-type="d">{{busdStation}}</view>
+                    <view bindtap="onSelectTo" class="cell to" data-type="a">{{busaStation}}</view>
+                    <view bindtap="exchangeStationbus" class="switch">
+                        <view class="icon-change"></view>
+                    </view>
+                </view>
+                <view bindtap="chooseDate" class="item time">
+                    <view class="cell">
+                        <text>{{monthDay}}</text>
+                        <view class="dayinfo">{{dayInfo}}</view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{isship==2}}">
+                <view class="item station">
+                    <view bindtap="onSelectshipline" class="cell from" data-type="d">{{shipdStation}}</view>
+                    <view bindtap="onSelectshipline" class="cell to" data-type="a">{{shipaStation}}</view>
+                    <view bindtap="exchangeStationship" class="switch">
+                        <view class="icon-change"></view>
+                    </view>
+                </view>
+                <view bindtap="chooseDate" class="item time">
+                    <view class="cell">
+                        <text>{{monthDay}}</text>
+                        <view class="dayinfo">{{dayInfo}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <form bindsubmit="searchSubmit" reportSubmit="true">
+            <view bindtap="noop" class="btnbox" data-ubt-key="search">
+                <button class="btn btn-primary" formType="submit" hoverClass="btn-primary_hover">查询</button>
+            </view>
+        </form>
+    </view>
+    <view class="index-kq">
+        <view class="tit">我的卡券包<text class="tgrey" wx:if="{{!isLogin}}">(登录查看账号内优惠券与加速包)</text>
+            <view bindtap="loginOrCheck" class="fr">{{isLogin?'查看':'登录'}}</view>
+        </view>
+        <view bindtap="loginOrCheck" class="index-kq-bd" wx:if="{{isLogin}}">
+            <view class="item">
+                <icon class="icon-rocket"></icon>抢票加速包<view class="fr">
+                    <text class="tblue">{{speedPointNumber}}</text>个</view>
+            </view>
+            <view class="item">
+                <icon class="icon-ticket"></icon>优惠券<view class="fr">
+                    <text class="tred">{{couponNumber}}</text>张</view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="showNotice" class="notice" wx:if="{{notice}}">{{notice.Title}}</view>
+    <template is="train-toast" data="{{trainToast:trainToast}}"></template>
+</view>
+<view bindtap="hideNotice" class="tip-txt {{isFilterViewAnimation?'active':''}}" hidden="{{showChooseType!='notice'}}">
+    <view class="wrapper">
+        <view class="train-notice-detail">
+            <view class="cblue">{{notice.Title}}</view>
+            <view class="p">{{notice.Content}}</view>
+        </view>
+    </view>
+</view>
+<view bindtap="hideBackDrop" class="wechat-layer" wx:if="{{showType==='save'}}">
+    <view class="wechat-layer-imgBox">
+        <image class="wechat-layer-img" src="https://images3.c-ctrip.com/ztrip/market/jiugongge/img/jiantou.png"></image>
+    </view>
+    <view class="wechat-layer-word">亲爱的，立刻点这里，将{{partnerCN}}抢票神器收藏到桌面哦</view>
+</view>

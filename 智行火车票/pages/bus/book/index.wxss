@@ -1,0 +1,524 @@
+@import "../../../__wuBaseWxss__/0.wxss";
+
+.mt10 {
+    margin-top: 20rpx;
+}
+
+.pl75 {
+    padding-left: 20rpx;
+}
+
+.txt_align_r {
+    text-align: right;
+}
+
+.bus-info {
+    padding: 34rpx 30rpx 5rpx;
+    background-color: #5495e6;
+}
+
+.b-b-station {
+    padding-bottom: 20rpx;
+    font-size: 32rpx;
+    color: #FFF;
+}
+
+.b-b-note {
+    padding: 10rpx 30rpx;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    color: #5495e6;
+}
+
+.arr-fromto {
+    width: 32rpx;
+    height: 4rpx;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    background-color: #FFF;
+    margin: -4rpx 32rpx 0;
+    opacity: .8;
+}
+
+.arr-fromto:before,.arr-fromto:after {
+    position: absolute;
+    content: "";
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -6rpx;
+}
+
+.arr-fromto:before {
+    left: -12rpx;
+    background-color: #FFF;
+}
+
+.arr-fromto:after {
+    right: -12rpx;
+    background-color: #FFF;
+}
+
+.pass-title,.b-b-phonenum {
+    padding-left: 30rpx;
+    min-height: 100rpx;
+    line-height: 100rpx;
+}
+
+.pass-msg {
+    min-height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+}
+
+.btn-add {
+    height: 60rpx;
+    line-height: 60rpx;
+    float: right;
+    margin: 20rpx 10rpx 0 0;
+    font-size: 30rpx;
+}
+
+.b-t-picker,.bus-package,.b-b-insurance {
+    position: relative;
+    padding-left: 30rpx;
+    line-height: 100rpx;
+}
+
+.b-t-picker .name {
+    line-height: 48rpx;
+    margin-top: 8rpx;
+}
+
+.b-t-picker .card {
+    line-height: 48rpx;
+}
+
+.b-b-phonenum {
+    border-top-width: 2rpx;
+}
+
+.b-b-phonenum input {
+    height: 100rpx;
+    padding: 0;
+    display: block;
+}
+
+.b-b-icon,.b-b-switch {
+    text-align: right;
+}
+
+.b-b-icon {
+    padding-right: 0;
+    text-align: left;
+}
+
+.b-b-icon image {
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.bus-ins-explain {
+    line-height: 36rpx;
+    color: #999;
+    font-size: 24rpx;
+    margin-bottom: 20rpx;
+}
+
+.bus-ins-explain text {
+    display: block;
+}
+
+.bus-package {
+    border-top-width: 2rpx;
+}
+
+.bus-ins-title {
+    line-height: 48rpx;
+    margin-top: 24rpx;
+}
+
+.b-b-passlist .iconfont {
+    padding: 0 0 0 48rpx;
+    line-height: 128rpx;
+}
+
+.b-b-passlist .info {
+    padding: 24rpx 0 20rpx;
+}
+
+.b-b-passlist .card,.b-t-picker .card {
+    font-size: 24rpx;
+    color: #999;
+    line-height: 48rpx;
+}
+
+.b-b-passlist .item {
+    border-top-width: 2rpx;
+    padding-left: 30rpx;
+}
+
+.b-b-passlist .label {
+    background-color: #dbdbdb;
+    color: #FFF;
+    font-size: 24rpx;
+    padding: 0 6rpx;
+    margin-left: 12rpx;
+    border-radius: 6rpx;
+}
+
+.row .label {
+    background-color: #dbdbdb;
+    color: #FFF;
+    font-size: 24rpx;
+    padding: 0 6rpx;
+    margin-left: 12rpx;
+    border-radius: 6rpx;
+}
+
+.bar-pay {
+    position: fixed;
+    background-color: #31404F;
+    line-height: 100rpx;
+    color: #FFF;
+    padding: 0 30rpx;
+    height: 100rpx;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1111;
+}
+
+.zindex {
+    z-index: 2222;
+}
+
+.bar-pay .btn-pay {
+    height: 72rpx;
+    line-height: 72rpx;
+    margin-top: 14rpx;
+}
+
+.bar-pay .orange {
+    font-size: 40rpx;
+}
+
+.bar-pay .detail {
+    color: #5495e6;
+    font-size: 26rpx;
+}
+
+.b-b-beixuan {
+    position: relative;
+    background-color: #FFF;
+    line-height: 96rpx;
+    padding-left: 30rpx;
+}
+
+.b-b-beixuan .note {
+    color: #999;
+}
+
+.switch {
+    right: 30rpx;
+}
+
+.bus-warmnotes {
+    margin: 10rpx 20rpx 160rpx;
+    padding: 14rpx;
+    line-height: 1.5em;
+    color: #999;
+    font-size: 24rpx;
+}
+
+.price-detail {
+    line-height: 88rpx;
+    color: #999;
+    position: fixed;
+    z-index: 1002;
+    bottom: 100rpx;
+    background-color: #FFF;
+    width: 100%;
+}
+
+.price-detail view {
+    margin-left: 30rpx;
+    padding-right: 30rpx;
+    border-top: 2rpx solid #F3F3F3;
+}
+
+.price-detail .nobr {
+    border-bottom: none;
+}
+
+.bus-desc {
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    bottom: 100rpx;
+    overflow: auto;
+    padding: 40rpx 40rpx 80rpx;
+    color: #FFF;
+    z-index: 1011;
+    line-height: 60rpx;
+}
+
+.bus-desc .t {
+    color: #5495e6;
+}
+
+.line25 {
+    line-height: 100rpx;
+}
+
+.line26 {
+    line-height: 104rpx;
+}
+
+.line14 {
+    line-height: 64rpx;
+}
+
+.line12 {
+    line-height: 48rpx;
+}
+
+.line08 {
+    line-height: 32rpx;
+}
+
+.coupon-sec {
+    color: #999;
+    text-align: right;
+    padding-right: 35rpx;
+    font-size: 26rpx;
+}
+
+.bus-coupons-warp {
+    position: fixed;
+    top: 30rpx;
+    bottom: 30rpx;
+    left: 30rpx;
+    right: 30rpx;
+    z-index: 9999;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 6rpx;
+    overflow: hidden;
+}
+
+.bus-coupons-title {
+    text-align: center;
+    line-height: 88rpx;
+    height: 88rpx;
+    font-size: 34rpx;
+    font-weight: bold;
+}
+
+.bus-coupons-close {
+    position: absolute;
+    right: 15rpx;
+    top: 10rpx;
+    line-height: 100rpx;
+    font-size: 32rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.bus-coupons-close:before,.bus-coupons-close:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40rpx;
+    height: 2rpx;
+    background-color: #888;
+}
+
+.bus-coupons-close:before {
+    transform: rotate(45deg);
+}
+
+.bus-coupons-close:after {
+    transform: rotate(-45deg);
+}
+
+.bus-coupons-body {
+    position: absolute;
+    top: 88rpx;
+    bottom: 0;
+    background: #EFEFEF;
+}
+
+.bus-coupons-btn-unused {
+    width: 90%;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 8rpx;
+    background: #ffffff;
+    border: 1px solid #dbdbdb;
+    text-align: center;
+    padding: 5rpx 0;
+    margin: 15rpx auto 0rpx;
+}
+
+.justifyContentcenter {
+    text-align: center;
+    justify-content: center;
+}
+
+.bus-coupons-item {
+    background-color: #fff;
+    margin: 15rpx;
+    padding: 10rpx 0;
+    overflow: hidden;
+    font-size: 24rpx;
+}
+
+.disabled .bus-coupons-tics {
+    background-color: #D6D6D6;
+    background-image: none;
+}
+
+.new-custom-msg {
+    margin-top: 8rpx;
+    padding: 10rpx 0 10rpx 20rpx;
+    line-height: 40rpx;
+    color: #999;
+    font-size: 24rpx;
+}
+
+.bus-coupons-tics {
+    position: relative;
+    width: 120rpx;
+    height: 100rpx;
+    float: left;
+    text-align: center;
+    margin-left: 15rpx;
+    margin-right: 10rpx;
+    color: #fff;
+    background-color: #FD8712;
+    border-radius: 4px;
+    background-image: linear-gradient(to top left,#fd8712 45%,#fd912a 55%);
+}
+
+.bus-coupons-tics .discount {
+    line-height: 85rpx;
+    font-size: 28rpx;
+    color: #FFFFFF;
+}
+
+.bus-coupons-tics:before,.bus-coupons-tics:after {
+    position: absolute;
+    content: "";
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    background-color: #ffffff;
+    top: 76rpx;
+}
+
+.bus-coupons-tics:before {
+    left: -12rpx;
+}
+
+.bus-coupons-tics:after {
+    right: -12rpx;
+}
+
+.coupon-item-date {
+    position: relative;
+    padding: 5rpx 0rpx;
+}
+
+.coupon-item-date.current:after {
+    position: absolute;
+    width: 15rpx;
+    height: 9rpx;
+    border-top: 4rpx solid #5495e6;
+    border-right: 4rpx solid #5495e6;
+    transform: rotate(135deg);
+    content: "";
+    right: 20rpx;
+}
+
+.bus-coupons-cancel {
+    position: absolute;
+    z-index: 999;
+    left: 30rpx;
+    top: 0;
+    line-height: 88rpx;
+    color: #333;
+    font-size: 32rpx;
+}
+
+.bus-coupons-done {
+    position: absolute;
+    z-index: 999;
+    right: 30rpx;
+    top: 0;
+    line-height: 88rpx;
+    font-size: 32rpx;
+}
+
+.del-view {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.edit-view {
+    text-align: left;
+    padding-left: 30rpx;
+}
+
+.check-view {
+    text-align: right;
+    padding-right: 30rpx;
+}
+
+.add-icon-view {
+    text-align: right;
+    vertical-align: middle;
+}
+
+.add-txt-view {
+    padding-left: 20rpx;
+    text-align: left;
+}
+
+.bus-ins-info {
+    position: absolute;
+    right: 30%;
+}
+
+.right-view {
+    position: absolute;
+    right: 10rpx;
+}
+
+.invoice {
+    font-size: 32rpx;
+}
+
+.invoice .row {
+    border-top: 1px solid #F3F3F3;
+    line-height: 85rpx;
+    padding-left: 20rpx;
+}
+
+.invoice .title {
+    width: 170rpx;
+}
+
+.invoice input {
+    display: block;
+    height: 85rpx;
+}
+
+.linethrough {
+    text-decoration: line-through;
+}

@@ -1,0 +1,5 @@
+<template name="coupon-title">
+    <view class="coupon-title flex-center">
+        <text class="coupon-title-text">{{text}}</text>
+    </view>
+</template>

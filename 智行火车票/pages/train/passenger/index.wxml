@@ -1,0 +1,109 @@
+<import src="../common/components/toast/toast.wxml"></import>
+<template is="train-toast" data="{{trainToast:trainToast}}"></template>
+<view>
+    <view class="train-list">
+        <view class="yellow-tips" wx:if="{{pas.PassengerType==3}}">学生寒暑假出行可购买指定座席的票，且需持有效学生证件取票。请确保乘车区段与学生证上的优惠区间保持一致，<text class="word--orange">否则无法取票</text>。</view>
+        <view bindtap="showPasType" class="item add-box {{isNew?'greyarr':''}}">
+            <view class="label">乘客类型</view>
+            <text class="tblue" wx:if="{{pas.PassengerType==1}}">成人票</text>
+            <text class="tblue" wx:if="{{pas.PassengerType==2}}">儿童票</text>
+            <text class="tblue" wx:if="{{pas.PassengerType==3}}">学生票</text>
+        </view>
+        <view class="item add-box cnname" wx:if="{{!pas.IsENName||cardTypeText=='身份证'&&!pas.isChild}}">
+            <view bindtap="showNameTips" class="label name">姓名</view>
+            <input bindinput="inputName" placeholder="与乘车证件一致" placeholderClass="placeholder" type="text" value="{{pas.CNName}}"></input>
+            <view bindtap="switchLanguage" class="switch-country" wx:if="{{!(cardTypeText=='身份证'&&!pas.isChild)}}">
+                <text class="cn current">中</text>
+                <text class="en">英</text>
+            </view>
+        </view>
+        <view class="item add-box ename" wx:else>
+            <view bindtap="showNameTips" class="label name">姓(英文)</view>
+            <input bindinput="inputLastName" placeholder="Lastname，如Wang" placeholderClass="placeholder" type="text" value="{{pas.ENLastName}}"></input>
+            <view bindtap="showNameTips" class="label" style="top:70rpx;">名(英文)</view>
+            <input bindinput="inputFirstName" placeholder="Firstname，如Xiang" placeholderClass="placeholder" type="text" value="{{pas.ENFirstName}}"></input>
+            <view bindtap="switchLanguage" class="switch-country">
+                <text class="cn">中</text>
+                <text class="en current">英</text>
+            </view>
+        </view>
+        <view bindtap="showCardType" class="item add-box greyarr" hidden="{{pas.isChild}}">
+            <view class="label">证件类型</view>
+            <text class="tblue">{{cardTypeText}}</text>
+        </view>
+        <view class="item add-box" hidden="{{pas.isChild}}">
+            <view class="label">证件号码</view>
+            <input bindinput="inputCardNum" maxlength="18" placeholder="与乘车证件一致" placeholderClass="placeholder" type="text" value="{{pas.IdentityNo}}"></input>
+        </view>
+        <view class="item add-box greyarr" hidden="{{cardTypeText=='身份证'&&!pas.isChild}}">
+            <view class="label">出生日期</view>
+            <picker bindchange="birthChange" end="2030-12-31" mode="date" start="1890-01-01" value="{{pas.Birthday}}">
+                <text class="tblue">{{pas.Birthday}}</text>
+            </picker>
+        </view>
+    </view>
+    <view class="child-tips" hidden="{{!pas.isChild}}">
+        <view class="p bold">1. 身高在1.2米~1.5米的儿童可购买儿童票。</view>
+        <view class="p--sub">使用同行成人的证件购票，取票时请用成人证件在自助取票机或取票窗口取票。</view>
+        <view class="p bold">2. 身高超过1.5米的儿童，需购买成人票。</view>
+        <view class="p--sub">使用乘车人本人的身份证证件购票</view>
+        <view class="p bold">3. 身高1.2米以下的儿童无需购票</view>
+        <view class="p--sub">每位成年旅客可以免费携带一名身高1.2米以下的儿童；携带多名1.2米以下儿童时，其他儿童需购买儿童票。</view>
+    </view>
+    <view class="btns">
+        <button bindtap="submit" class="btn btn-primary" hoverClass="btn-primary_hover">确定</button>
+    </view>
+    <view class="child-info" hidden="{{!pas.isChild}}">
+        <view bindtap="showChildTips" class="child-info-i">
+            <view class="icon"></view>
+            儿童购票说明
+        </view>
+    </view>
+    <view class="child-info" wx:if="{{pas.PassengerType==3}}">
+        <view bindtap="showStudentTips" class="child-info-i">
+            <view class="icon"></view>
+            学生购票说明
+        </view>
+    </view>
+    <view bindtap="hideNameTips" class="tip-txt {{showType?'active':''}}">
+        <view class="wrapper">
+            <block wx:if="{{showType=='name'}}">
+                <view class="cblue">网络购票需验证乘客身份信息</view>
+                <view class="p">请正确填写，乘客身份证件和姓名都通过验证才可以成功出票。</view>
+                <view class="cblue">乘客姓名填写说明：</view>
+                <view class="p">1、使用身份证、回乡证、台胞证预订火车票请优先使用中文姓名。</view>
+                <view class="p">2、如名字中包含生僻字可直接输入拼音代替。例如：“王鬳”可输入为“王yan”。</view>
+                <view class="p">3、姓名中有”.”或”?”时，请仔细辩析身份证原件上的”.”或”?”，准确输入。</view>
+                <view class="p">4、台籍乘客请使用台胞证（台湾居民来往大陆通行证）</view>
+                <view class="cblue">身份未通过核验购票失败怎么办？</view>
+                <view class="p">如身份信息验证未通过造成出票失败，请您持有效证件原件，去火车站或代售点核验购票。    在车站或代售点核验通过后，下次就可以在网络买票了。</view>
+            </block>
+            <block wx:if="{{showType=='child'}}">
+                <view class="p bold cblue">1.儿童不能单独乘车。</view>
+                <view class="p">为确保儿童出行安全，儿童需有成人同行。</view>
+                <view class="p bold cblue">2.身高在1.2米~1.5米的儿童可购买儿童票。</view>
+                <view class="p">使用同行成人的证件购票，取票时请用成人证件在自助取票机或取票窗口取票。</view>
+                <view class="p bold cblue">3.身高超过1.5米的儿童，需购买成人票。</view>
+                <view class="p">使用该儿童本人的证件购票。</view>
+                <view class="p bold cblue">4.身高1.2米以下的儿童无需购票</view>
+                <view class="p">每位成年旅客可以免费携带一名身高1.2米以下的儿童；携带多名1.2米以下儿童时，其他儿童需购买儿童票。</view>
+                <view class="p bold cblue">5.价格问题</view>
+                <view class="p">由于儿童票价格不定，先按照成人票价收取费用，之后会根据实际出票价格退换差价。</view>
+                <view class="p bold cblue">6.卧铺床位问题</view>
+                <view class="p">卧铺儿童票与同行成人各有床位，需要与儿童共用床位的，请至车站买票。</view>
+                <view class="p bold cblue">7.如何取票</view>
+                <view class="p">儿童使用同行成人的证件购票，取票时请用成人证件在自助取票机或取票窗口取票。</view>
+                <view class="p">儿童使用同行成人的证件购票，取票时请用成人证件在自助取票机或取票窗口取票。</view>
+                <view class="p">
+                    <text class="bold">注意：</text>请根据儿童实际身高来购票，如在进站时由于儿童身高超过标准而无法进站，我司不承担任何责任。</view>
+            </block>
+            <block wx:if="{{showType=='stu'}}">
+                <view class="p">1、学生票乘车时间限为每年的暑假6月1日至9月30日、寒假12月1日至3月31日。其他时间需购买成人票。</view>
+                <view class="p">2、学生票仅支持购买硬座、硬卧、二等座、无座等座席。其他座席需购买成人票。</view>
+                <view class="p">3、每年乘车次数限于四次单程。当年未使用的次数，不能留至下年使用。</view>
+                <view class="p">4、列车出发站和到达站需在优惠乘车区间之内，且优惠乘车区间限于家庭至院校（实习地点）之间。若不在优惠区间内，则无法取票。</view>
+                <view class="p">5、学生票先收取成人票价，出票后根据票价金额退还差价。差价1-3个工作日原路退回。</view>
+            </block>
+        </view>
+    </view>
+</view>

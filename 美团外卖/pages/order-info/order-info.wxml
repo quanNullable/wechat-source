@@ -1,0 +1,191 @@
+<import src="../../components/score/score.wxml"></import>
+<import src="../../components/privacy_protection/privacy_protection.wxml"></import>
+<import src="../../activity/share-coupon/entrance.wxml"></import>
+<view class="page-container">
+    <include src="../base.wxml"></include>
+    <template is="coupon-entrance" data="{{share_switch:share_switch,share_coupon_pop:share_coupon_pop,share_tip:share_tip,activitySwitch:activitySwitch}}"></template>
+    <view class="order-detail-scroll" scrollY="1">
+        <include src="../../components/order-map/order-map.wxml" wx:if="{{showMap==1}}"></include>
+        <view class="info-box">
+            <view bindtap="loadHistoryStatus" class="fst_desc">{{status_operate_area.fst_desc}} <image class="fst_desc-right" src="/img/icons/order_info_right.png"></image>
+            </view>
+            <view class="snd_desc" wx:if="{{status_operate_area.snd_desc!==''}}">{{status_operate_area.snd_desc}}</view>
+            <view class="snd_desc" wx:if="{{!!expected_arrival_time&&(statusData.order_status==4||statusData.order_status==6)}}">
+                <image class="clock-icon" src="/img/icons/black_clock_icon.jpg"></image> {{expected_arrival_time}}: <view class="snd_desc_time">{{status_operate_area.delivery_time}}</view>
+            </view>
+            <view class="snd_desc" wx:if="{{status_operate_area.operator_time_type==2}}">
+                <image class="clock-icon" src="/img/icons/black_clock_icon.jpg"></image> {{status_operate_area.operator_tip}}: <view class="snd_desc_time count_down_time">{{operator_countdown_time}}</view>
+            </view>
+            <view class="privacy-lock-tip" wx:if="{{privacy.usingPrivacy}}">
+                <view class="privacy-lock">
+                    <image class="icon" src="/img/icons/privacy-lock-icon.png"></image>
+                    <view class="msg">已开启号码保护</view>
+                </view>
+            </view>
+            <view class="operate_area_button_bar" wx:if="{{status_operate_area.button_list.length<=3}}">
+                <view bindtap="click_operate_area_button" class="operate_area_button {{item.highlight==1?'highlight':''}}" data-code="{{item.code}}" wx:for="{{status_operate_area.button_list}}" wx:key="{{index}}">
+                    <image class="operate_area_button_icon" src="{{item.icon_url}}" wx:if="{{item.icon_url}}"></image>
+                    <view class="operate_area_button_title">{{item.title}}</view>
+                </view>
+            </view>
+            <view class="operate_area_button_bar" data-action="close" wx:if="{{status_operate_area.button_list.length>3}}">
+                <view bindtap="click_operate_area_button" class="operate_area_button {{item.highlight==1?'highlight':''}}" data-code="{{item.code}}" wx:for="{{status_operate_area.show_button_list}}" wx:key="{{index}}">
+                    <image class="operate_area_button_icon" src="{{item.icon_url}}" wx:if="{{item.icon_url}}"></image>
+                    <view class="operate_area_button_title">{{item.title}}</view>
+                </view>
+                <view bindtap="clickMoreButton" class="operate_area_button operate_area_button_more">... <view class="more_button_bar" wx:if="{{showMoreButton}}">
+                        <view bindtap="click_operate_area_button" class="more_button_item" data-code="{{item.code}}" wx:for="{{status_operate_area.more_button_list}}" wx:key="{{index}}">{{item.title}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="dvd-line" wx:if="{{!!rider_operate_area}}"></view>
+            <view class="rider_info_bar" wx:if="{{!!rider_operate_area}}">
+                <image class="rider_info_avatar" src="{{rider_operate_area.rider_icon}}"></image>
+                <view class="rider_info_txt">
+                    <view class="rider_info_name">{{rider_operate_area.rider_name}} <image class="mt_delivery" src="{{rider_operate_area.mt_delivery_icon}}"></image>
+                    </view>
+                    <template is="score" data="{{score:rider_operate_area.rider_score}}"></template>
+                    <view class="rider_info_score">{{rider_operate_area.rider_score}}分</view>
+                </view>
+                <image bindtap="onClickContact" class="order_info_phone" data-phone="{{item.target}}" src="/img/icons/order_info_phone.png" wx:if="{{item.type==7}}" wx:for="{{rider_operate_area.resources}}" wx:key="{{index}}"></image>
+            </view>
+            <view class="dvd-line" wx:if="{{!!refund_area}}"></view>
+            <view bindtap="onClick_refund_process" class="refund_area_bar rider_info_bar" wx:if="{{!!refund_area}}">
+                <view class="refund_area_title">{{refund_area.title}}</view>
+                <image class="fst_desc-right refund_fst_desc-right" src="/img/icons/order_info_right.png"></image>
+                <view class="refund_area_status">{{refund_area.refund_progress}}</view>
+            </view>
+        </view>
+        <image bindtap="onClickGiftEntrance" class="gift-entry-box" mode="widthFix" src="http://p1.meituan.net/codeman/3e93fff53f5b86d6d72225c471e72d9018713.png" wx:if="{{activitySwitch&&(!share_coupon_pop||!windowStatus)}}"></image>
+        <view class="gift-entry-popup" wx:if="{{activitySwitch&&windowStatus&&share_coupon_pop}}">
+            <view class="gift-entry-popup-box">
+                <image class="gift-entry-popup-icon" src="http://p0.meituan.net/codeman/2dcc5aa831bb186dd922b434467d31fc60871.png"></image>
+                <view class="gift-entry-popup-tip">{{descContext}}</view>
+                <view bindtap="onClickGiftEntrance" class="gift-entry-button">{{buttonContext}}</view>
+                <image bindtap="onClickGiftClose" class="gift-entry-popup-close" src="/img/icons/gift-close.png"></image>
+            </view>
+        </view>
+        <view class="info-box">
+            <view class="detail-list">
+                <view bindtap="onClickShop">
+                    <view class="order-header">
+                        <view class="order-shop">
+                            <image class="shop-icon" mode="aspectFill" src="{{detailOrderInfo.poi_icon}}"></image>
+                            <view class="shop-name ellipsis">{{detailOrderInfo.poi_name}}</view>
+                        </view>
+                        <image class="fst_desc-right" src="/img/icons/order_info_right.png"></image>
+                    </view>
+                </view>
+                <view class="food-list">
+                    <view bindtap="onClickFoodToShop" data-spuid="{{item.spu_id}}" wx:for="{{foodListCopy}}" wx:key="{{index}}">
+                        <view class="food-list-item">
+                            <image class="food-list-picture" mode="aspectFit" src="{{item.picture||'/img/icons/no-shopImg.png'}}"></image>
+                            <view class="food-list-info-box">
+                                <view class="overflow food-name-wrap">
+                                    <image class="discount-icon" src="{{item.icon_url}}" wx:if="{{item.icon_url}}"></image>
+                                    <view class="food-name ellipsis">{{item.name}}</view>
+                                </view>
+                                <view class="cart-food-subdtl ellipsis" wx:if="{{item.attrInfo}}">{{item.attrInfo}}</view>
+                                <view class="food-number ellipsis">x{{item.count}}</view>
+                            </view>
+                            <view class="food-list-price-box">
+                                <view class="food-price ellipsis">{{item.sub_total}}</view>
+                                <view class="food-origin-price ellipsis" wx:if="{{item.original_price!==item.price}}">￥{{item._sub_original_price}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view bindtap="onClickFoodToggle" class="show_more_food" wx:if="{{detailOrderInfo.foodlist&&detailOrderInfo.foodlist.length>3}}">
+                        <text class="show_more_food_text">{{foodToggleWord}}</text>
+                        <image class="show_more_food_img {{moreFoodImgClass}}" src="/img/icons/select-arrow-up2.png"></image>
+                    </view>
+                </view>
+                <view class="fee-list">
+                    <view class="fee-list-item">
+                        <text class="fee-name">餐盒费</text>
+                        <text class="fee-price">￥{{detailOrderInfo._box_total_price}}</text>
+                    </view>
+                    <view class="fee-list-item">
+                        <text class="fee-name">配送费</text>
+                        <text class="fee-price">￥{{detailOrderInfo._shipping_fee}}</text>
+                    </view>
+                </view>
+                <view class="dvd-line" wx:if="{{detailOrderInfo.discounts.length}}"></view>
+                <view class="discounts" wx:if="{{detailOrderInfo.discounts.length}}">
+                    <view class="discounts-item" wx:for="{{detailOrderInfo.discounts}}" wx:key="{{index}}">
+                        <view class="discount-dtl ellipsis">
+                            <image class="discount-icon" src="{{item.icon_url}}" wx:if="{{item.icon_url}}"></image> {{item.name}} </view>
+                        <view class="discount-price">{{item.info}}</view>
+                    </view>
+                </view>
+                <view class="dvd-line"></view>
+                <view class="total-pay">
+                    <view class="total-price"> 共计￥{{detailOrderInfo.original_price}} <text class="total-pref" wx:if="{{detailOrderInfo._discountPrice}}">优惠￥{{detailOrderInfo._discountPrice}}</text>
+                    </view>
+                    <view class="total-pay-price">
+                        <view class="total-pay-black">实付</view>￥{{detailOrderInfo._total}}</view>
+                </view>
+                <view class="dvd-line" wx:if="phone_list.length>0"></view>
+                <view bindtap="onClickContactPoi" class="phone_list_button" wx:if="phone_list.length>0">
+                    <image class="phone_list_phone" src="/img/icons/order_info_phone.png"></image> 联系商家 </view>
+            </view>
+        </view>
+        <view class="info-box">
+            <view class="detail-list">
+                <view class="info-item">
+                    <view class="detail-title">期望时间</view> {{detailOrderInfo.expected_arrival_time}} </view>
+                <view class="info-item">
+                    <view class="detail-title">配送地址</view>
+                    <view class="user-info">
+                        <view class="user-name ellipsis">{{detailOrderInfo.recipient_name}}</view> {{detailOrderInfo.recipient_phone}} </view>
+                    <view class="ellipsis"> {{detailOrderInfo.recipient_address}} </view>
+                </view>
+                <view class="info-item info-item-last">
+                    <view class="detail-title">配送服务</view>
+                    <image class="shipping-icon" src="/img/icons/deliver.png" wx:if="{{detailOrderInfo.delivery_type===1}}"></image> {{detailOrderInfo.delivery_type===1?detailOrderInfo.mt_delivery_info.mt_delivery_tip:detailOrderInfo.app_delivery_tip}} </view>
+            </view>
+        </view>
+        <view class="info-box info-box-last">
+            <view class="detail-list">
+                <view class="info-item">
+                    <view class="detail-title">订单号码</view> {{detailOrderInfo.idTrim}} <view bindtap="onClickCopyViewID" class="detail-button" data-id="{{detailOrderInfo.id}}" wx:if="{{canUseClipbord}}">复制</view>
+                </view>
+                <view class="info-item">
+                    <view class="detail-title">订单时间</view> {{detailOrderInfo._order_time}} </view>
+                <view class="info-item">
+                    <view class="detail-title">支付方式</view> {{detailOrderInfo.wm_order_pay_type===1?'货到付款':'在线支付'}} </view>
+                <view class="info-item info-item-last caution" wx:if="{{detailOrderInfo.caution}}">
+                    <view class="detail-title">订单备注</view> {{detailOrderInfo.caution}} </view>
+                <view class="info-item info-item-last caution" wx:if="{{detailOrderInfo.diners_description}}">
+                    <view class="detail-title">用餐人数</view> {{detailOrderInfo.diners_description}} </view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="onClickHistory" class="ui-modal-backdrop-history" wx:if="{{historyShow}}">
+        <view class="history-box">
+            <view class="history-box-title">订单跟踪</view>
+            <scroll-view class="history-item-container" scrollY="1">
+                <view class="history-box-item" wx:for="{{orderHistoryStatus}}" wx:key="{{index}}">
+                    <view class="{{index==orderHistoryStatus.length-1?'history-box-item-last-icon':'history-box-item-icon'}}"></view>
+                    <view class="history_status_desc {{index==orderHistoryStatus.length-1?'history-box-item-last-desc':''}}">{{item.status_desc}}</view>
+                    <view class="history-box-item-time">{{item.status_view_time}}</view>
+                </view>
+            </scroll-view>
+            <view bindtap="onClickHistory" class="history-box-close">关闭</view>
+        </view>
+    </view>
+    <view hidden="{{!resultModalShown}}">
+        <view class="modal-backdrop"></view>
+        <view class="coupon-modal">
+            <view class="modal-content flex-center">
+                <view class="result-content">
+                    <image class="result-content-img" src="{{poi_coupon.icon}}"></image>
+                    <view class="result-content-title ellipsis">{{poi_coupon.title}}</view>
+                    <view class="result-content-tip ellipsis">{{poi_coupon.desc}}</view>
+                </view>
+                <view class="seperate-line"></view>
+                <view bindtap="confirmReultModal" class="operate-btn"> 知道了 </view>
+            </view>
+        </view>
+    </view>
+    <template is="privacy_protection" data="{{...privacy}}"></template>
+</view>

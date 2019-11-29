@@ -1,0 +1,7 @@
+<template name="quick-filter">
+    <view class="quick-filter">
+        <view class="quick-filter-select-item" wx:for="{{quickFilterActivityFilterList}}" wx:for-index="parentIndex" wx:key="index">
+            <view bindtap="filterOnClickQuickFilterItem" class="quick-filter-btn {{selectedCodes[selectBtn.code]?'quick-filter-btn-active':''}}" data-code="{{selectBtn.code}}" data-index="{{parentIndex}}" wx:for="{{item.items}}" wx:for-item="selectBtn" wx:key="{{selectBtn.code}}"> {{selectBtn.name}} </view>
+        </view>
+    </view>
+</template>

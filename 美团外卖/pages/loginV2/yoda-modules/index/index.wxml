@@ -1,0 +1,30 @@
+<view bindtap="onTapPage" bindtouchmove="onTouchMovePage" class="page">
+    <block wx:if="{{show===4}}">
+        <import src="../sms/template/sms.wxml"></import>
+        <template is="popssms" data="{{...smsInfo}}"></template>
+        <import src="../slidervalid/template/popslider.wxml"></import>
+        <template is="popslider" data="{{...sliderInfo}}"></template>
+        <import src="../image/template/image.wxml"></import>
+        <template is="popsimage" data="{{...imageInfo}}"></template>
+    </block>
+    <block wx:if="{{show===40}}">
+        <import src="../voice/template/voice.wxml"></import>
+        <template is="popsvoice" data="{{...voiceInfo}}"></template>
+    </block>
+    <block wx:if="{{show===71}}">
+        <import src="../slidervalid/template/popslider.wxml"></import>
+        <template is="popslider" data="{{...sliderInfo}}"></template>
+    </block>
+    <block wx:if="{{show===1}}">
+        <import src="../image/template/image.wxml"></import>
+        <template is="popsimage" data="{{...imageInfo}}"></template>
+    </block>
+    <block wx:if="{{show===69}}">
+        <import src="../buying/template/buying.wxml"></import>
+        <template is="popsbuy" data="{{...buyingInfo}}"></template>
+    </block>
+    <block wx:if="{{show===79}}">
+        <import src="../lbs/template/lbs.wxml"></import>
+        <template is="popslbs" data="{{...lbsInfo}}"></template>
+    </block>
+</view>

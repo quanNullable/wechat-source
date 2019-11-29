@@ -1,0 +1,457 @@
+.order_tab {
+    display: flex;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #333;
+    font-size: 32rpx;
+    position: relative;
+    width: 100%;
+}
+
+.order_tab_item {
+    flex: 1;
+    text-align: center;
+    background: #fff;
+}
+
+.scrollbar {
+    position: absolute;
+    width: 25%;
+    height: 8rpx;
+    left: 0%;
+    bottom: -1px;
+    background: #5495e6;
+    transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out;
+    z-index: -1;
+}
+
+.order_tab_item.current~.scrollbar {
+    z-index: 2;
+}
+
+.order_tab_item:nth-of-type(1).current~.scrollbar {
+    transform: translate3d(0%,0,0);
+}
+
+.order_tab_item:nth-of-type(2).current~.scrollbar {
+    transform: translate3d(100%,0,0);
+}
+
+.order_tab_item:nth-of-type(3).current~.scrollbar {
+    transform: translate3d(200%,0,0);
+}
+
+.order_tab_item:nth-of-type(4).current~.scrollbar {
+    transform: translate3d(300%,0,0);
+}
+
+.order-wrap {
+}
+
+.order-list {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #5495e6;
+    padding-bottom: 84rpx;
+    padding-top: 20rpx;
+}
+
+.ico-phone {
+    margin-right: 10rpx;
+    vertical-align: middle;
+    line-height: 42rpx;
+}
+
+.ico-phone:before {
+    font-size: 26rpx;
+}
+
+.icon-goback,.icon-go {
+    background: url(//pic.c-ctrip.com/platform/h5/my/order/un_ico_order@2x_v6.20.png) no-repeat 60px 60px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 8px;
+    background-size: 60px auto;
+}
+
+.icon-goback {
+    width: 15px;
+    height: 11px;
+    background-position: 0 0;
+}
+
+.icon-go {
+    width: 15px;
+    height: 5px;
+    background-position: 0 -40px;
+}
+
+.order-cancel .icon-goback {
+    background-position: -20px 0;
+}
+
+.order-cancel .icon-go {
+    background-position: -20px -40px;
+}
+
+.user-info {
+    width: 100%;
+    height: 78rpx;
+    padding: 15rpx 30rpx;
+    box-sizing: border-box;
+    color: #fff;
+    background: rgba(0,0,0,.25);
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.user-info_whitebg {
+    background: rgba(255,255,255,.25);
+}
+
+.user-desc {
+    float: left;
+    display: inline-block;
+}
+
+.user-name {
+    display: inline-block;
+    max-width: 320rpx;
+    text-align: left;
+    height: 40rpx;
+    line-height: 40rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.user-exit {
+    position: relative;
+    display: inline-block;
+    font-size: 26rpx;
+    border-radius: 20rpx;
+    padding: 0 15rpx;
+    margin-left: 15rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    border: 1rpx solid #fff;
+    vertical-align: middle;
+}
+
+.user-exit:after {
+    content: '';
+    position: absolute;
+    top: -13px;
+    bottom: -13px;
+    left: -30px;
+    right: -30px;
+}
+
+.user-service {
+    float: right;
+    display: inline-block;
+    font-size: 26rpx;
+}
+
+.bu-order {
+    margin: 16rpx 16rpx 10rpx;
+    padding: 30rpx;
+    background: #fff;
+    border-radius: 12rpx;
+}
+
+.order-cont {
+    position: relative;
+    padding-right: 200rpx;
+    margin-bottom: 30rpx;
+    margin-top: -30rpx;
+    overflow: hidden;
+}
+
+.order-rcon {
+    position: absolute;
+    width: 200rpx;
+    right: 0;
+    top: 30rpx;
+    text-align: right;
+}
+
+.order-title {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 32rpx;
+    color: #333;
+    font-weight: bold;
+    margin-top: 30rpx;
+}
+
+.order-title text {
+    vertical-align: middle;
+}
+
+.order-desc {
+    display: block;
+    margin-top: 15rpx;
+    font-size: 28rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.order-desc-s {
+    display: block;
+    margin-top: 10rpx;
+    color: #999;
+    font-size: 28rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.order-starttime {
+    padding-right: 10rpx;
+}
+
+.order-endtime {
+    padding: 0 10rpx;
+}
+
+.order-price {
+    color: #FF7D13;
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+.price-yen {
+    font-size: 20rpx;
+    vertical-align: bottom;
+}
+
+.order-status {
+    color: #666;
+    font-size: 26rpx;
+}
+
+.order-info {
+    display: block;
+    margin-top: 16rpx;
+    color: #999;
+    font-size: 28rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.order-oper {
+    margin-top: 30rpx;
+}
+
+.order-oper:before,.order-oper:after {
+    content: '';
+    display: table;
+}
+
+.order-oper:after {
+    clear: both;
+}
+
+.btn_mini {
+    float: right;
+    margin-left: 20rpx;
+}
+
+.order-detail {
+    position: relative;
+    margin-top: 15rpx;
+    color: #333;
+}
+
+.order-go,.order-back {
+    padding-left: 44rpx;
+}
+
+.order-go:before,.order-back:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26rpx;
+    height: 26rpx;
+    border: 1px solid rgba(102,102,102,.7);
+    border-radius: 4rpx;
+    content: '去';
+    color: #666;
+    font-size: 20rpx;
+}
+
+.order-back:before {
+    content: '返';
+}
+
+.order-cancel,.order-cancel:before {
+    color: #bbb;
+    border-color: #bbb;
+}
+
+.train .order-valid,.train .order-valid:before {
+    color: #25bc53;
+    border-color: #25bc53;
+}
+
+.train .order-price {
+    font-weight: normal;
+}
+
+.train .order-valid.order-price {
+    color: #333;
+    font-weight: normal;
+}
+
+.failure-order_text {
+    display: block;
+    color: #999;
+    font-size: 26rpx;
+    text-align: center;
+    margin-top: 20rpx;
+}
+
+.more-order {
+    display: block;
+    margin-top: 30rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: rgba(255,255,255,.7);
+}
+
+.order_list {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #5495e6;
+    padding-bottom: 84rpx;
+    padding-top: 20rpx;
+}
+
+.order_list_item {
+    background: #fff;
+    margin: 20rpx 20rpx 0;
+    padding: 15rpx;
+    border-radius: 8rpx;
+}
+
+.order_list_hd {
+    border-bottom: 1px dashed #e0e0e0;
+    padding: 0 15rpx 20rpx;
+    overflow: hidden;
+}
+
+.order_list_hd .airport {
+    display: inline-block;
+    font-size: 32rpx;
+}
+
+.separator {
+    position: relative;
+    margin: 0 25rpx;
+    width: 60rpx;
+    height: 4rpx;
+    background: #ccc;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.separator::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10rpx 10rpx 10rpx 0;
+    border-color: transparent transparent #ccc;
+}
+
+.flt_price {
+    font-size: 36rpx;
+    color: #fe6b5b;
+    float: right;
+    margin-top: 0rpx;
+}
+
+.flt_price::before {
+    content: "\00A5";
+    font-size: 22rpx;
+    padding-right: 7rpx;
+    color: #fe6b5b;
+}
+
+.order_list_bd {
+    padding: 0 15rpx;
+    position: relative;
+}
+
+.order_list_tic {
+    margin-top: 20rpx;
+    font-size: 24rpx;
+    line-height: 45rpx;
+}
+
+.order_list_tic .date {
+    color: #666;
+    display: block;
+}
+
+.order_list_tic .airplane {
+    color: #999;
+    display: block;
+}
+
+.order_list_state {
+    position: absolute;
+    top: 50%;
+    right: 15rpx;
+    margin-top: -30rpx;
+    line-height: 60rpx;
+}
+
+.txt_state {
+    color: #5495e6;
+    font-size: 30rpx;
+}
+
+.btn_pay {
+    width: 120rpx;
+    height: 60rpx;
+    background: #5495e6;
+    color: #fff;
+    padding: 0;
+    line-height: 60rpx;
+    font-size: 28rpx;
+}
+
+.btn_pay::after {
+    border: 0;
+}
+
+.flt_none {
+    color: #5495e6;
+    text-align: center;
+    font-size: 26rpx;
+}
+
+.flt_none::before {
+    width: 180rpx;
+    height: 180rpx;
+    background: url(http://images3.c-ctrip.com/tieyou/wechat/wechat_zx.png) no-repeat;
+    background-size: 400rpx 400rpx;
+    display: block;
+    margin: 90rpx auto 50rpx;
+    content: '';
+}

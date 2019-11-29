@@ -1,0 +1,10 @@
+<template name="declaration">
+    <view class="bus-desc touch-scroll" wx:if="mList.length">
+        <view wx:for="{{mList}}" wx:key="{{index}}">
+            <view class="t">{{item.title}}</view>
+            <view wx:for="{{item.desc}}" wx:for-index="idx" wx:for-item="mTxt" wx:key="{{idx}}">
+                <view>{{idx+1}}. {{mTxt['Description']}}</view>
+            </view>
+        </view>
+    </view>
+</template>

@@ -1,0 +1,38 @@
+<view class="">
+    <view class="share-box">
+        <view class="share-top">
+            <view class="topimg-wrapper">
+                <image src="{{grabInfo.cInfo.topImg}}"></image>
+            </view>
+            <view class="share-ticket">
+                <view>{{grabInfo.ddate}} 开<text class="fr">{{grabInfo.cInfo.title}}<text class="i-qiang">抢</text>
+                    </text>
+                </view>
+                <view class="station">
+                    <view class="from">
+                        <view>{{grabInfo.from}}</view>
+                        <view>{{grabInfo.frompinyin}}</view>
+                    </view>
+                    <view class="to">
+                        <view>{{grabInfo.to}}</view>
+                        <view>{{grabInfo.topinyin}}</view>
+                    </view>
+                    <view class="checi">
+                        {{grabInfo.trainNo}}
+                        </view>
+                </view>
+            </view>
+        </view>
+        <view class="share-bd">
+            <view class="share-coef">
+                <view class="h2">抢票速度超过<text class="strong">{{grabInfo.qRate}}</text>的用户</view>
+                <view class="h3">节约流量费：约<text class="strong">{{grabInfo.qPrice}}</text>元</view>
+                <view>难抢系数：<i :class="{{!!star&&'star-red'}} {{!star&&'star-grey'}}" wx:for="{{grabInfo.stars}}"></i>
+                </view>
+            </view>
+            <view bindtap="goGrap">
+                <button class="btn-qiangpiao" type="primary">我也要抢票</button>
+            </view>
+        </view>
+    </view>
+</view>

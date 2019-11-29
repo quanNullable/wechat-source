@@ -1,0 +1,139 @@
+<view class="game">
+    <view class="ready {{ready_animation}}">Ready</view>
+    <view class="step {{step_animation}}">
+        <text>第{{limit+1}}首歌</text>
+    </view>
+    <view class="box {{box_animation}}">
+        <image class="wave1 {{progress_status}}" src="../../image/wave1.png"></image>
+        <image class="wave2 {{progress_status}}" src="../../image/wave2.png"></image>
+        <view class="progress {{progress_status}}">
+            <view class="left-block">
+                <view class="left-circle" style="animation-duration:{{time}}s;"></view>
+            </view>
+            <view class="right-block">
+                <view class="right-circle" style="animation-duration:{{time}}s;"></view>
+            </view>
+            <view class="run-block" style="animation-duration:{{time}}s;">
+                <view class="run-circle"></view>
+            </view>
+        </view>
+        <view class="player {{player_status}}">
+            <image class="cp" src="../../image/cp.png"></image>
+            <image class="control {{control_status}}" src="../../image/control.png"></image>
+            <view class="clock">
+                <text class="{{clock_status}}">{{clock}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="answers {{answers_animation}}">
+        <button bindtap="selectAnswer" class="answer {{index_key==answer_status?'answer-select':''}} {{index_key==answer_right_status?'answer-right':''}} {{index_key==answer_wrong_status?'answer-wrong':''}}" data-answer="{{item_key}}" data-id="{{index_key}}" disabled="{{disabledAnswers?'true':disabled}}" wx:for="{{que_list[limit].mislead_key}}" wx:for-index="index_key" wx:for-item="item_key">
+            <text>{{item_key}}</text>
+            <icon></icon>
+        </button>
+    </view>
+    <view class="tips">答对{{game_questions_number}}题即挑战成功</view>
+</view>
+<view class="banner-ad {{ad_status}}" wx:if="{{gameAd.length>0&&ad_status=='show'}}">
+    <block wx:for="{{gameAd}}" wx:key="index">
+        <ad unitId="adunit-24df01354f2ace31" wx:if="{{item.type==1}}"></ad>
+        <image bindtap="more_games" data-appid="{{item.appid}}" data-path="{{item.link_path}}" data-toid="{{item.app_id}}" data-type="{{item.type}}" data-version="{{item.version}}" mode="widthFix" src="{{item.app_icon}}" wx:else></image>
+    </block>
+</view>
+<view class="popup-over {{is_game_bottom_ad?'showad':''}} {{over_status}}">
+    <view class="popup-mask"></view>
+    <view class="popup-panel">
+        <view class="popup-head">
+            <image src="../../image/wrong.png"></image>
+        </view>
+        <view class="popup-main">
+            <view class="title">{{game_fail_share_txt_1}}</view>
+            <view class="message">
+                <text>{{game_fail_share_txt_2}}</text>
+                <text>{{game_fail_share_txt_3}}</text>
+            </view>
+            <view class="buttons">
+                <button class="button-share" data-sharetype="" openType="share">{{game_fail_share_txt_4}}</button>
+            </view>
+        </view>
+        <view class="popup-close">
+            <image bindtap="closePopupWrong" src="../../image/icon-close.png"></image>
+        </view>
+    </view>
+</view>
+<view class="popup-wrong {{is_game_bottom_ad?'showad':''}} {{wrong_status}}">
+    <view class="popup-mask"></view>
+    <view class="popup-panel">
+        <view class="popup-head">
+            <image src="../../image/wrong.png"></image>
+        </view>
+        <view class="popup-main">
+            <view class="title">{{game_fail_share_txt}}</view>
+            <view class="cover">
+                <image class="c1" src="{{que_list[limit].cover}}"></image>
+                <image class="c2" src="../../image/play-dark.png"></image>
+            </view>
+            <view class="message">
+                <text>{{que_list[limit].singer}}</text>
+                <text>《{{que_list[limit].music_name}}》</text>
+            </view>
+            <view class="buttons">
+                <button class="button-share" data-sharetype="" openType="share">{{game_fail_share_txt_4}}</button>
+            </view>
+        </view>
+        <view class="popup-close">
+            <image bindtap="closePopupWrong" src="../../image/icon-close.png"></image>
+        </view>
+    </view>
+</view>
+<view class="popup-right {{is_game_bottom_ad?'showad':''}} {{right_status}}">
+    <view class="popup-mask"></view>
+    <view class="popup-panel">
+        <view class="popup-head">
+            <image src="../../image/right.png"></image>
+        </view>
+        <view class="popup-main">
+            <view class="title">回答正确</view>
+            <view class="cover">
+                <image class="c1" src="{{que_list[limit].cover}}"></image>
+                <image class="c2" src="../../image/play-dark.png"></image>
+            </view>
+            <view class="message">
+                <text>{{que_list[limit].singer}}</text>
+                <text>《{{que_list[limit].music_name}}》</text>
+            </view>
+            <view class="buttons">
+                <button bindtap="nextQuestion" class="button-next">下一曲</button>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="popup-success {{is_game_bottom_ad?'showad':''}} {{success_status}}">
+    <view class="popup-mask"></view>
+    <view class="popup-panel">
+        <view class="popup-head">
+            <image src="../../image/success.png"></image>
+        </view>
+        <view class="popup-main">
+            <block wx:if="{{is_send_goods==false}}">
+                <image class="image" src="../../image/zan.png"></image>
+                <view class="title">{{game_win_share_txt}}</view>
+                <view class="message">
+                    <text>{{mark}}个赞送给你</text>
+                </view>
+            </block>
+            <block wx:else>
+                <image class="image" src="../../image/wawa.png"></image>
+                <view class="title">获得奖品+1</view>
+                <view class="message">
+                    <text>请前往我的奖品查看</text>
+                </view>
+            </block>
+            <view class="buttons">
+                <button class="button-share" data-img="" openType="share">{{game_win_share_txt_4}}</button>
+            </view>
+        </view>
+        <view class="popup-close">
+            <icon bindtap="closePopupSuccess" color="white" size="30" type="cancel"></icon>
+        </view>
+    </view>
+</view>

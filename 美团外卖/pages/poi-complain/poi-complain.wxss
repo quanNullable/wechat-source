@@ -1,0 +1,21 @@
+@import "../refund-progress/refund-progress.wxss";
+
+.caution-textarea {
+    width: 680rpx;
+    height: 250rpx;
+    margin: 0 auto;
+    color: #333333;
+    font-size: 28rpx;
+}
+
+.submitBtn {
+    width: 670rpx;
+    height: 94rpx;
+    text-align: center;
+    margin: 0 auto;
+    color: #333333;
+    background: #FFD161;
+    margin-top: 40rpx;
+    line-height: 94rpx;
+    font-size: 28rpx;
+}

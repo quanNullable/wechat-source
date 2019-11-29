@@ -1,0 +1,94 @@
+<template name="ticket-addresstips">
+    <view class="other-info" style="margin-top: 20rpx;">
+        <view class="row">
+            <view class="other-RuleDesc">取票退票改签须知</view>
+        </view>
+        <view wx:for="{{data}}" wx:key="{{index}}">
+            <view class="t">{{item.title}}</view>
+            <view>{{item.desc}}</view>
+        </view>
+    </view>
+</template>
+<template name="ticket-address">
+    <view class="other-info" style="margin-top: 20rpx;">
+        <view class="row">
+            <view class="other-title">取票地址</view>
+        </view>
+        <view class="row">
+            <view class="other-address">{{data['location']['ticket_address']['address']}}</view>
+        </view>
+    </view>
+</template>
+<template name="ticket-picker">
+    <view class="other-info" style="margin-top: 20rpx;">
+        <view class="row">
+            <view class="other-title">订单信息</view>
+        </view>
+        <view class="row">
+            <view class="column-1">
+                <view wx:for="{{data['TicketInfo']['TicketItem']}}" wx:key="{{index}}">
+                    <view class="row">
+                        <view class="other-title">{{item['IdentityName']}}</view>
+                        <view class="column-1">
+                            <view>{{item['ticket_type']}}</view>
+                        </view>
+                    </view>
+                    <view class="row">
+                        <view class="other-auto">{{item['IdentityType']}}:  </view>
+                        <view class="column-1">
+                            <view>{{item['IdentityCode']}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="other-title">订单号:</view>
+            <view class="column-1">
+                <view>{{data['OrderNumber']}}</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="other-title">创建时间:</view>
+            <view class="column-1">
+                <view>{{data['OrderTime']}}</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="other-title">联系手机:</view>
+            <view class="column-1">
+                <view>{{data['fetcher_phone_num']}}</view>
+            </view>
+        </view>
+    </view>
+</template>
+<template name="line">
+    <view class="bg-white f-gray p15 flex-row" style="margin-top: 2rpx;">
+        <view class="flex-column " style="width:250rpx;align-items: center;">
+            <view class="">{{data['TicketInfo']['TicketItem'][0]['from_date']}}</view>
+            <view class="">{{data['TicketInfo']['TicketItem'][0]['from_time']}}</view>
+            <view class="">{{data['from_station_name']}}</view>
+        </view>
+        <view class="flex-column " style="width:250rpx;align-items: center;">
+            <view class="">{{data['use_time_fmt']}}</view>
+            <view class="icon-center writecolor biggo"></view>
+            <view class="">{{data['ship_name']}}</view>
+        </view>
+        <view class="flex-column " style="width:250rpx; align-items: center;">
+            <view class="">{{data['TicketInfo']['TicketItem'][0]['to_date']}}</view>
+            <view class="">{{data['TicketInfo']['TicketItem'][0]['to_time']}}</view>
+            <view class="">{{data['to_station_name']}}</view>
+        </view>
+    </view>
+</template>
+<template name="ticket">
+    <view class="order-info bg-white">
+        <view class="row">
+            <view class="column-4" style="color:#111111;">{{data['Status']}}</view>
+            <view class="column-2 t_r" style="color:#FF7D13;">
+                <text class="small">¥</text>
+                <text>{{data['TotalFee']}}</text>
+            </view>
+        </view>
+    </view>
+</template>

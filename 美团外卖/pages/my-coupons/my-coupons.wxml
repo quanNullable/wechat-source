@@ -1,0 +1,15 @@
+<import src="../../components/coupon/coupon.wxml"></import>
+<view class="page-container page-container-abs">
+    <include src="../base.wxml"></include>
+    <scroll-view bindscrolltolower="onScrollBottom" class="page-scroll" scrollY="true">
+        <block wx:if="{{coupons.length>0}}">
+            <template is="coupon" data="{{coupon:item}}" wx:for="{{coupons}}" wx:key="{{coupon.id}}"></template>
+            <view class="coupon-list-end" hidden="{{more}}"> 没有更多有效券了 <text class="coupon-slash">|</text>
+                <navigator class="coupon-link-nav" url="../my-coupons-expired/my-coupons-expired"> 查看无效券 <text class="arraw">>></text>
+                </navigator>
+            </view>
+        </block>
+    </scroll-view>
+    <navigator class="coupon-link-nav coupon-error-tips" url="../my-coupons-expired/my-coupons-expired" wx:if="{{empty}}"> 查看无效券 <text class="coupon-arraw">>></text>
+    </navigator>
+</view>

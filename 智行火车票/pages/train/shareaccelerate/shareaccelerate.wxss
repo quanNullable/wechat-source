@@ -1,0 +1,199 @@
+page {
+    background: url(http://images3.c-ctrip.com/zt/sharenew/bg.jpg) no-repeat #111322;
+    background-size: cover;
+}
+
+.hidden {
+    display: none;
+}
+
+.share-top {
+    margin-top: 100rpx;
+    text-align: center;
+    position: relative;
+}
+
+.share-top .img-top1 {
+    width: 610rpx;
+    height: 269rpx;
+}
+
+.share-top .img-top2 {
+    width: 610rpx;
+    height: 230rpx;
+}
+
+.share-top .img-top3 {
+    width: 610rpx;
+    height: 216rpx;
+}
+
+.share-top .tit {
+    color: #c4c4c4;
+    font-size: 32rpx;
+    font-style: italic;
+    margin: -40rpx 0 -50rpx;
+    display: block;
+}
+
+.share-top .tit text {
+    font-size: 56rpx;
+    font-weight: 500;
+    color: #fff;
+    margin: 0 10rpx;
+}
+
+.share-chip {
+    width: 602rpx;
+    height: 436rpx;
+    background: url(http://images3.c-ctrip.com/zt/sharenew/chip.png) no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    text-align: center;
+    color: #ccc;
+    margin-top: -40rpx;
+    padding-top: 100rpx;
+    box-sizing: border-box;
+}
+
+.share-chip.loading {
+    font-size: 24rpx;
+}
+
+.share-chip.finish {
+    font-size: 26rpx;
+}
+
+.share-chip .strong {
+    font-size: 58rpx;
+    color: #ffcc49;
+    font-weight: 600;
+    font-family: Arial,Helvetica,sans-serifa;
+    margin-top: 8rpx;
+}
+
+.share-chip .tyellew {
+    font-size: 46rpx;
+    color: #ffcc49;
+    font-weight: 400;
+}
+
+.share-chip .box {
+    background: #1d1e26;
+    border: 1px solid #2f3442;
+    display: inline-block;
+    padding: 0 12rpx;
+    line-height: 70rpx;
+    border-radius: 2px;
+    margin: 12rpx 0;
+}
+
+.share-chip .loading-box {
+    width: 317rpx;
+    height: 57rpx;
+    padding: 5rpx;
+    box-sizing: content-box;
+    position: relative;
+    margin: 20rpx auto;
+}
+
+.share-chip .loading-box::before {
+    width: 307rpx;
+    height: 47rpx;
+    position: absolute;
+    left: 5rpx;
+    top: 5rpx;
+    content: "";
+    background: #181c2e;
+}
+
+.share-chip .loading-box::after {
+    width: 317rpx;
+    height: 57rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    background: url(http://images3.c-ctrip.com/zt/sharenew/loadingbarbg.png) no-repeat;
+    background-size: cover;
+    z-index: 20;
+}
+
+.share-chip .loading-bar {
+    height: 47rpx;
+    background: linear-gradient(left,#406ce6 0%,#36f8ff 100%);
+    position: relative;
+    z-index: 10;
+}
+
+.share-chip.loading .total {
+    margin-top: 70rpx;
+}
+
+.share-chip.finish .total {
+    margin-top: 85rpx;
+}
+
+.share-chip .total text {
+    font-size: 30rpx;
+    color: #ffcc49;
+    margin: 0 10rpx;
+}
+
+.share-btn {
+    text-align: center;
+    margin-top: 50rpx;
+}
+
+.share-btn button {
+    width: 473rpx;
+    height: 98rpx;
+    margin-bottom: 17rpx;
+    font-size: 32rpx;
+    line-height: 98rpx;
+    position: relative;
+}
+
+.share-btn .btn1 {
+    background: url(http://images3.c-ctrip.com/zt/sharenew/btn1.png) no-repeat;
+    background-size: cover;
+    color: #540c04;
+}
+
+.share-btn .btn2 {
+    background: url(http://images3.c-ctrip.com/zt/sharenew/btn2.png) no-repeat;
+    background-size: cover;
+    color: #4b82ff;
+}
+
+.btn_hover::before {
+    width: 463rpx;
+    height: 88rpx;
+    position: absolute;
+    left: 5rpx;
+    top: 5rpx;
+    background: rgba(0,0,0,.1);
+    content: "";
+    border-radius: 2rpx;
+}
+
+.share-botm {
+    width: 100%;
+    height: 80rpx;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: #303030;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #ccc;
+}
+
+.logo {
+    width: 40rpx;
+    height: 40rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -2px 15rpx 0 0;
+}

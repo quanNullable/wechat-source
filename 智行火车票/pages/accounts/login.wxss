@@ -1,0 +1,162 @@
+.login-tips {
+    display: block;
+    margin: 40rpx 30rpx 20rpx;
+    font-size: 26rpx;
+    color: #666;
+}
+
+.login-form_list {
+    position: relative;
+    overflow: hidden;
+}
+
+.login-item {
+    position: relative;
+    height: 88rpx;
+    padding-left: 150rpx;
+    margin-left: 30rpx;
+    margin-top: -1px;
+    border-top: 1px solid #e5e5e5;
+    color: #333;
+    background-color: #fff;
+}
+
+.login-item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -28rpx;
+    width: 32rpx;
+    height: 88rpx;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.login-item_title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150rpx;
+    height: 88rpx;
+    overflow: hidden;
+    line-height: 88rpx;
+    font-size: 32rpx;
+}
+
+.login-item_input {
+    display: block;
+    width: 98%;
+    height: 88rpx;
+    line-height: 88rpx;
+    font-size: 32rpx;
+    box-sizing: border-box;
+}
+
+.login-item_input-auth {
+    padding-right: 180rpx;
+}
+
+.login-item_auth {
+    -webkit-appearance: none;
+    position: absolute;
+    top: 12rpx;
+    right: 12rpx;
+    width: 180rpx;
+    height: 60rpx;
+    overflow: hidden;
+    padding: 0;
+    line-height: 60rpx;
+    font-size: 26rpx;
+    border: 1px solid #e6e6e6;
+    box-shadow: 8rpx 8rpx 8rpx transparent inset,-8rpx -8rpx 8rpx transparent inset;
+}
+
+.login-item_auth::after {
+    display: none;
+}
+
+.tab-item {
+    width: 50%;
+}
+
+.btn-login {
+    margin: 60rpx 40rpx 40rpx;
+}
+
+.login-item_invite {
+    margin-left: 30rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.ico-add {
+    position: relative;
+    display: inline-block;
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 5rpx;
+    vertical-align: 0;
+}
+
+.ico-add:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.login-user {
+    overflow: hidden;
+    padding: 100rpx 40rpx 20rpx;
+}
+
+.login-user_head {
+    display: block;
+    width: 180rpx;
+    height: 180rpx;
+    overflow: hidden;
+    margin: 0 auto 40rpx;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+
+.login-user_name {
+    display: block;
+    padding-bottom: 20rpx;
+    text-align: center;
+    font-size: 32rpx;
+    color: #333;
+}
+
+.login-user_tel {
+    display: block;
+    text-align: center;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.login-user_other {
+    display: block;
+    text-align: center;
+    font-size: 28rpx;
+    color: #5495e6;
+}
+
+.btn-login_other {
+    margin: 20rpx 40rpx 40rpx;
+}
+
+.login-by_phone {
+    padding-top: 60rpx;
+}
+
+.login-item_input-picauth {
+    padding-right: 240rpx;
+}
+
+.auth-image {
+    position: absolute;
+    top: 6rpx;
+    right: 10rpx;
+    width: 236rpx;
+    height: 74rpx;
+}

@@ -1,0 +1,131 @@
+<page>
+    <view class="book_modify">
+        <view class="book_modify_white" wx:if="{{!isTransfer}}">
+            <view class="flt_modify_intro">
+                <view class="flt_depart">
+                    <text class="flt_time">{{flight.departTimeDes}}</text>
+                    <text class="flt_airport">{{flight.departAirportName}}{{flight.departTerminal}}</text>
+                </view>
+                <view class="separator">
+                    <view class="spt_type">{{flight.stopTypeDes}}</view>
+                    <view class="spt_arr"></view>
+                    <view class="spt_type">{{flight.costTime}}</view>
+                </view>
+                <view class="flt_arrival">
+                    <text class="flt_time">{{flight.arriveTimeDes}}</text>
+                    <text class="flt_airport">{{flight.arriveAirportName}}{{flight.arriveTerminal}}</text>
+                </view>
+            </view>
+            <view class="airline_info">
+                <image class="airline_logo" src="{{flight.airlineIcon}}"></image>
+                <text class="airline_num">{{flight.airlineName}}{{flight.flightNumber}}</text>
+                <text class="airline_arr" wx:if="{{flight.carrierAirlineName}}"></text>
+                <text class="airline_share" wx:if="{{flight.carrierAirlineName}}">实际承运</text>
+                <image class="airline_logo" src="{{flight.carrierAirlineIcon}}"></image>
+                <text class="airline_num">{{flight.carrierAirlineName}}{{flight.carrierFlightNumber}}</text>
+            </view>
+        </view>
+        <view class="book_modify_white" wx:else>
+            <view class="flight_trans">
+                <view class="info">
+                    <text class="date">{{departDate}}</text>
+                    <text class="haoshi">总耗时: {{flight.costTime}}</text>
+                </view>
+                <view class="range">
+                    <view class="from">
+                        <text class="time strong">{{timeArray[0]}}</text>
+                        <text class="station">{{flight.subsegments[0].departAirportName}}{{flight.subsegments[0].departTerminal}}</text>
+                    </view>
+                    <view class="hangban">
+                        <rich-text class="jingting" nodes="经停<br/>{{flight.subsegments[0].subsegments[0].arriveCityName}}" wx:if="{{flight.subsegments[0].subsegments[0]&&canIUseRichText}}"></rich-text>
+                        <text class="jingting" wx:if="{{flight.subsegments[0].subsegments[0]&&!canIUseRichText}}">经停{{flight.subsegments[0].subsegments[0].arriveCityName}}</text>
+                        <image class="flight_logo" src="{{flight.subsegments[0].airlineIcon}}"></image> {{flight.subsegments[0].airlineName}} {{flight.subsegments[0].flightNumber}} {{flight.subsegments[0].aircraftType}}
+                    </view>
+                    <view class="to">
+                        <text class="time">{{timeArray[1]}}</text>
+                        <text class="station">{{flight.subsegments[0].arriveAirportName}}{{flight.subsegments[0].arriveTerminal}}</text>
+                    </view>
+                </view>
+                <view class="trans">
+                    <view class="zhuan">转</view>{{flight.subsegments[0].arriveCityName}} 停留{{flight.subsegments[0].stopTime}}<text bindtap="showTransferTips" class="xuzhi">中转预订须知</text>
+                </view>
+                <view class="range">
+                    <view class="from">
+                        <text class="time">{{timeArray[2]}}</text>
+                        <text class="station">{{flight.subsegments[1].departAirportName}}{{flight.subsegments[1].departTerminal}}</text>
+                    </view>
+                    <view class="hangban">
+                        <rich-text class="jingting" nodes="经停<br/>{{flight.subsegments[1].subsegments[0].arriveCityName}}" wx:if="{{flight.subsegments[1].subsegments[0]&&canIUseRichText}}"></rich-text>
+                        <text class="jingting" wx:if="{{flight.subsegments[1].subsegments[0]&&!canIUseRichText}}">经停{{flight.subsegments[1].subsegments[0].arriveCityName}}</text>
+                        <image class="flight_logo" src="{{flight.subsegments[1].airlineIcon}}"></image> {{flight.subsegments[1].airlineName}} {{flight.subsegments[1].flightNumber}} {{flight.subsegments[1].aircraftType}}
+                    </view>
+                    <view class="to">
+                        <text class="time strong">{{timeArray[3]}}</text>
+                        <text class="station">{{flight.subsegments[1].arriveAirportName}}{{flight.subsegments[1].arriveTerminal}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="flt_modify_info">
+            <text class="">{{flight.flightRemark}}</text>
+        </view>
+    </view>
+    <view class="flight_tab">
+        <view bindtap="filterCabin" class="flight_tab_list {{cabinType=='economy'?'flight_tab-active':''}}" data-type="economy">经济舱</view>
+        <view bindtap="filterCabin" class="flight_tab_list {{cabinType=='buiness'?'flight_tab-active':''}}" data-type="buiness">公务/头等舱</view>
+        <view class="scrollbar tabnum2"></view>
+    </view>
+    <view class="flight_seat_list">
+        <block wx:if="{{isTransfer}}">
+            <view class="flight_seat_item" wx:for="{{cabinList}}" wx:for-item="cabin">
+                <view class="flight_seat_info">
+                    <view class="flight_seat_tit">
+                        <text class="flt_changwei">{{cabin.cabinName}}</text>
+                        <text bindtap="showRefundTips" class="txt_num" data-index="{{index}}">{{cabin.inventoryRemark}}</text>
+                    </view>
+                    <view class="flight_seat_txt">
+                        <text bindtap="showRefundTips" class="txt_grey flight_seat_detail" data-index="{{index}}">退改详情/行李额</text>
+                    </view>
+                </view>
+                <view class="flight_seat_price">
+                    <view class="price_box">
+                        <text class="flt_price">{{cabin.price-(couponInfo.couponPrice&&showCouponDiscountPrice?couponInfo.couponPrice:0)}}</text>
+                        <view class="flt_info" hidden="{{!couponInfo.couponPrice}}">{{showCouponDiscountPrice?'已减':'可减'}}{{couponInfo.couponPrice}}元</view>
+                    </view>
+                </view>
+                <button bindtap="clickItem" class="btn_book btn-primary" data-index="{{index}}" hoverClass="">预订</button>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="flight_seat_item_s" wx:for="{{cabinList}}" wx:for-item="cabin">
+                <view class="flight_seat_info">
+                    <text class="flt_w200">{{cabin.cabinName}}</text>
+                    <text bindtap="showRefundTips" class="txt_num" data-index="{{index}}">{{cabin.inventoryRemark}}</text>
+                </view>
+                <view class="flight_seat_info">
+                    <text class="flt_w200 txt_grey">{{cabin.discount}}</text>
+                    <text bindtap="showRefundTips" class="txt_grey flight_seat_detail" data-index="{{index}}">退改详情/行李额</text>
+                </view>
+                <view class="flight_seat_price">
+                    <view class="price_box">
+                        <text class="flt_price">{{cabin.price-(couponInfo.couponPrice&&showCouponDiscountPrice?couponInfo.couponPrice:0)}}</text>
+                        <view class="flt_info" hidden="{{!couponInfo.couponPrice}}">{{showCouponDiscountPrice?'已减':'可减'}}{{couponInfo.couponPrice}}元</view>
+                    </view>
+                </view>
+                <button bindtap="clickItem" class="btn_book btn-primary" data-index="{{index}}" hoverClass="">预订</button>
+            </view>
+        </block>
+    </view>
+</page>
+<view bindtap="hideTips" class="tip-txt {{isFilterViewAnimation?'active':''}}" wx:if="{{showType==='refund'}}">
+    <view hidden="{{showType!='refund'}}">
+        <rich-text class="s" nodes="{{refundNodes}}" wx:if="{{canIUseRichText}}"></rich-text>
+        <view class="s" wx:if="{{!canIUseRichText}}">{{refundNodes}}</view>
+    </view>
+</view>
+<view bindtap="hideTips" class="tip-txt {{isFilterViewAnimation?'active':''}}" wx:if="{{isTransfer&&showType==='transfer'}}">
+    <view>
+        <rich-text class="s" nodes="{{flight.subsegments[0].notifyContent}}" wx:if="{{canIUseRichText}}"></rich-text>
+        <view class="s" wx:if="{{!canIUseRichText}}">{{flight.subsegments[0].notifyContent}}</view>
+    </view>
+</view>

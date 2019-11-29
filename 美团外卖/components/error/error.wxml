@@ -1,0 +1,8 @@
+<template name="error">
+    <view class="ui-error-container" style="{{zIndex?'z-index:'+zIndex:''}}" wx:if="{{show}}">
+        <view class="ui-error {{img?'ui-error-'+img:''}}">
+            <view class="ui-error-txt"> {{message}} </view>
+            <view bindtap="onClickBaseComponent" class="ui-btn ui-error-btn" data-action="ok" data-persist="1" data-type="{{type}}" wx:if="{{textOK}}"> {{textOK}} </view>
+        </view>
+    </view>
+</template>

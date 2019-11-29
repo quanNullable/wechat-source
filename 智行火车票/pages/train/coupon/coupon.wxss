@@ -1,0 +1,134 @@
+.coupon-btn {
+    margin: 20rpx;
+}
+
+.coupon-btn .btn-unused {
+    height: 90rpx;
+    line-height: 90rpx;
+    background: #fff;
+    color: #0493FF;
+    font-size: 32rpx;
+}
+
+.coupon-btn .btn-unused_hover::after {
+    background: rgba(0,0,0,.1);
+}
+
+.coupon-box {
+}
+
+.coupon-box .item {
+    margin: 20rpx;
+    padding: 30rpx 40rpx 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 4rpx;
+}
+
+.coupon-box .coupon-price {
+    width: 150rpx;
+    line-height: 100rpx;
+    color: #FD4D21;
+    float: left;
+    position: relative;
+    margin-right: 30rpx;
+    text-align: right;
+    padding-right: 30rpx;
+    box-sizing: border-box;
+}
+
+.coupon-box .coupon-price .strong {
+    font-size: 56rpx;
+}
+
+.coupon-box .coupon-price .yuan {
+    font-size: 24rpx;
+}
+
+.coupon-box .coupon-price .price-tag {
+    position: absolute;
+    height: 28rpx;
+    line-height: 28rpx;
+    background: #FD4D21;
+    color: #fff;
+    top: 0rpx;
+    font-size: 16rpx;
+    padding: 0 10rpx;
+    border-radius: 28rpx 28rpx 28rpx 0;
+    right: -20rpx;
+}
+
+.coupon-box .coupon-bd {
+    height: 148rpx;
+    overflow: hidden;
+}
+
+.coupon-box .tit {
+    font-size: 30rpx;
+    margin-top: 10rpx;
+}
+
+.coupon-box .txt {
+    font-size: 24rpx;
+    color: #808F9E;
+    line-height: 40rpx;
+}
+
+.coupon-box .coupon-hd {
+    clear: both;
+    border-style: solid;
+    border-image: url(data:image/gif;base64,R0lGODlhBQAFAIAAAOrq6v///yH5BAEHAAEALAAAAAAFAAUAAAIHhB9pGatnCgA7) 2 stretch;
+    border-width: 1px 0 0 0;
+}
+
+.coupon-box .coupon-hd .btn-use {
+    background: #fff;
+    color: #0493FF;
+    font-size: 30rpx;
+    height: 80rpx;
+}
+
+.coupon-box .coupon-hd .btn-use::after {
+    border: 0;
+}
+
+.coupon-box .coupon-hd .btn-use_hover::after {
+    background: rgba(0,0,0,.1);
+}
+
+.coupon-tit {
+    margin: 20rpx 20rpx 0;
+    color: #979797;
+}
+
+.coupon-box.disabled,.coupon-box.disabled .coupon-price,.coupon-box.disabled .txt {
+    color: #979797;
+}
+
+.coupon-box.disabled .coupon-hd {
+    line-height: 80rpx;
+}
+
+.coupon-box .icon-qus {
+    width: 40rpx;
+    height: 40rpx;
+    border: 1px solid #ccc;
+    border-radius: 40rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -2px 0 0 12rpx;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.coupon-box .icon-qus::after {
+    position: absolute;
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 30rpx;
+    content: "?";
+    text-align: center;
+    color: #999;
+}

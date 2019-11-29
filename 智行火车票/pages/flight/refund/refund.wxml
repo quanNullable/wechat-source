@@ -1,0 +1,67 @@
+<page>
+    <view class="refund_box">
+        <view class="refund_white" wx:for="{{refundInfo.segmentList}}" wx:for-index="segmentIdx" wx:for-item="flightInfo">
+            <view class="refund_tick">
+                <view class="airport">{{flightInfo.departCityName}}</view>
+                <view class="separator">
+                    <view class="spt_arr"></view>
+                </view>
+                <view class="airport">{{flightInfo.arriveCityName}}</view>
+                <view bindtap="onRule" class="refund_tick_right" data-value="{{segmentIdx}}">
+                    <icon class="info_circle" color="#24bc53" size="18" type="info_circle"></icon>退票政策</view>
+                <view>
+                    <view class="refund_tick_info">{{flightInfo.departDate_display}}</view>
+                    <view class="refund_tick_info">{{refundInfo.refundDes}}</view>
+                </view>
+            </view>
+            <view bindtap="{{ticket.canRefund?'onPassengerClick':''}}" class="{{ticket.canRefund?ticket.isSelected?'refund_list_item current':'refund_list_item':'refund_list_item disabled'}}" data-p-idx="{{passengerIdx}}" data-s-idx="{{segmentIdx}}" wx:for="{{flightInfo.tickets}}" wx:for-index="passengerIdx" wx:for-item="ticket">
+                <text class="icon_checkbox"></text>
+                <text>{{ticket.passengerName}}</text>
+                <text class="state">{{ticket.stateDesc||''}}</text>
+            </view>
+        </view>
+        <view class="refund_white" wx:if="{{reasonList&&reasonList.length>0}}">
+            <view class="refund_title">退款原因选择</view>
+            <view class="refund_list">
+                <view bindtap="onReasonClick" class="{{reason.isSelected?'refund_list_item current':'refund_list_item'}}" data-value="{{index}}" wx:for="{{reasonList}}" wx:for-item="reason">
+                    <text class="icon_checkbox"></text>
+                    <text>{{reason.resonDesc}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="refund_white">
+            <view class="book_item phone_add">
+                <label>
+                    <text>联系手机</text>
+                    <input bindinput="onPhoneNumber" class="book_input" placeholder="11位联系人手机号" type="number" value="{{contactPhone}}"></input>
+                </label>
+            </view>
+        </view>
+        <view class="phone_tips">
+            <icon class="info_circle" color="#5495e6" size="18" type="info_circle"></icon>十分重要,请确认能联系到您，否则可能影响退票。
+        </view>
+        <view class="refund_white">
+            <view class="refund_rule_tips">航班延误或取消时，相关退款费用，请以客服回电时 为准。</view>
+        </view>
+    </view>
+    <view class="pay_box">
+        <view bindtap="onPriceDetail" class="{{isPriceDetailOpen?'pay_closed':'pay_open'}}">
+            <text>退还总额：</text>
+            <text class="pay_price">{{isPriceUndetermined?'待确认':price}}</text>
+        </view>
+        <button bindtap="onSubmit" class="btn_pay" hoverClass="btn_pay_hover">提交申请</button>
+    </view>
+    <view bindtap="onPriceDetail" class="pop_price mask" wx:if="{{isPriceDetailOpen}}">
+        <view class="pop_price_list">
+            <view class="pop_price_total">
+            退款总额 <text class="flt_price">{{price}}</text>
+            </view>
+            <block wx:for="{{priceInfos}}" wx:for-item="priceInfo">
+                <view class="pop_price_tit">{{priceInfo.title}}</view>
+                <view class="pop_price_item" wx:for="{{priceInfo.priceDetails}}" wx:for-item="priceItem">
+                        {{priceItem.title}}<text class="price">￥{{priceItem.price}} X {{priceItem.count}}人</text>
+                </view>
+            </block>
+        </view>
+    </view>
+</page>

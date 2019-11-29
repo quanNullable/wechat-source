@@ -1,0 +1,11 @@
+<template name="flight">
+    <view class="order-title">
+        <text>{{obj.departCityName}}</text>
+        <view class="icon-go"></view>
+        <text>{{obj.arriveCityName}}</text>
+    </view>
+    <view class="order-detail">
+        <text class="order-desc">{{obj.airCompanyName+' '+obj.flightNumber+' '+obj.cabinName}}</text>
+        <text class="order-desc">{{obj.departDateTime+' 出发'}}</text>
+    </view>
+</template>

@@ -1,0 +1,83 @@
+{
+    "pages": [
+        "pages/train/index/index",
+        "cwx/component/calendar/calendar",
+        "cwx/component/imagebrowser/imagebrowser",
+        "cwx/component/city/city",
+        "pages/accounts/login",
+        "pages/pay/index/index",
+        "pages/train/list/list",
+        "pages/train/otherlist/otherlist",
+        "pages/train/booking/booking",
+        "pages/train/timetable/timetable",
+        "pages/train/package/package",
+        "pages/train/orderdetail/orderdetail",
+        "pages/train/passenger/index",
+        "pages/train/robsuccess/robsuccess",
+        "pages/train/friend/friend",
+        "pages/train/shareexpand/shareexpand",
+        "pages/train/shareaccelerate/shareaccelerate",
+        "pages/train/pay/pay",
+        "pages/train/register12306/register12306",
+        "pages/train/robshare0914/robshare0914",
+        "pages/train/adtransfer/adtransfer",
+        "pages/train/service/service",
+        "pages/train/kaquan/kaquan",
+        "pages/train/coupon/coupon",
+        "pages/train/newguestgifts/newguestgifts",
+        "pages/myctrip/list/list",
+        "pages/passenger/passengerlist",
+        "pages/flight/flightPassengerEdit/flightPassengerEdit",
+        "pages/flight/list/list",
+        "pages/flight/bookx/x",
+        "pages/flight/book/book",
+        "pages/flight/orderlist2/orderlist",
+        "pages/flight/detail/detail",
+        "pages/flight/refund/refund",
+        "pages/market/unlimitQRCode/index",
+        "pages/bus/list/index",
+        "pages/bus/station/index",
+        "pages/bus/passenger/index",
+        "pages/bus/book/index",
+        "pages/bus/order/index",
+        "pages/bus/cms/cms",
+        "pages/bus/calendar/index",
+        "pages/bus/tourbus/book/index",
+        "pages/bus/airbus/book/index",
+        "pages/ship/list/list",
+        "pages/ship/x/x",
+        "pages/ship/shipline/shipline",
+        "pages/ship/book/book",
+        "pages/ship/orderdetail/orderdetail",
+        "pages/ship/airline/index",
+        "pages/ship/countrylist/index",
+        "pages/ship/compassenger/index",
+        "pages/ship/foreignpassenger/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#5495e6",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#cccccc"
+    },
+    "tabBar": {
+        "color": "#7F8389",
+        "selectedColor": "#5495e6",
+        "borderStyle": "white",
+        "backgroundColor": "#FAFAFA",
+        "list": [
+            {
+                "pagePath": "pages/train/index/index",
+                "text": "首页",
+                "iconPath": "images/home/bar_logo.png",
+                "selectedIconPath": "images/home/bar_logo_hover.png"
+            },
+            {
+                "pagePath": "pages/myctrip/list/list",
+                "text": "我的订单",
+                "iconPath": "images/home/bar_order.png",
+                "selectedIconPath": "images/home/bar_order_hover.png"
+            }
+        ]
+    }
+}

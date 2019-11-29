@@ -1,0 +1,26 @@
+<view class="page-container-abs">
+    <include src="../base.wxml"></include>
+    <scroll-view scrollY class="page-scroll">
+        <view class="request-header">
+            <image class="refund-icon" src="/img/icons/refund-tip.png"></image>
+            <text>商家确认后，款项将原路退回您的支付账户。</text>
+        </view>
+        <view class="request-item refund-price">
+            <view class="request-title left-item">退款金额</view>
+            <view class="right-item price-txt"> {{refundData.refund_money}}元 </view>
+        </view>
+        <view class="refund-reason">
+            <view class="left-item">退款理由</view>
+        </view>
+        <view class="reason-list" wx:for="{{refundData.type_reasons}}" wx:for-item="typeReasons" wx:key="{{index}}">
+            <view bindtap="chooseReason" class="request-item left-item reason-item" data-id="{{item.reason_id}}" data-type="{{typeReasons.reason_type}}" wx:for="{{typeReasons.reasons}}" wx:key="{{item.reason_id}}">
+                <view class="request-title"> {{item.reason_context}} </view>
+                <image class="radio-img right-item" src="{{selectedReason===item.reason_id?'/img/icons/check.png':'/img/icons/circle.png'}}"></image>
+            </view>
+        </view>
+        <view class="detail-input">
+            <input bindconfirm="onClickSubmit" bindinput="reasonInput" placeholder="请详细描述退款原因，以便尽快处理" placeholderStyle="color: #999;"></input>
+        </view>
+        <view bindtap="onClickSubmit" class="submit-btn flex-center {{selectedReason===-1?'no-active-submit-btn':''}}"> 提交 </view>
+    </scroll-view>
+</view>

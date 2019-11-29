@@ -1,0 +1,28 @@
+.quick-filter {
+    height: 40px;
+    overflow: hidden;
+}
+
+.quick-filter-select-item {
+    padding-top: 20rpx;
+    padding-left: 20rpx;
+    display: flex;
+    flex-wrap: wrap;
+    height: 60rpx;
+    overflow: hidden;
+}
+
+.quick-filter-btn {
+    color: #666;
+    line-height: 60rpx;
+    height: 60rpx;
+    margin-right: 20rpx;
+    flex: 1 0 20%;
+    background: #f8f8f8;
+    text-align: center;
+}
+
+.quick-filter-btn.quick-filter-btn-active {
+    background: rgba(255,209,97,0.2);
+    color: #ffb000;
+}

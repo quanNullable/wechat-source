@@ -1,0 +1,68 @@
+.privacy-service-introduce {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 99;
+}
+
+.privacy-service-introduce .wrap {
+    position: absolute;
+    left: 50%;
+    top: 11.28%;
+    transform: translateX(-50%);
+    width: 560rpx;
+    background-color: #FFF;
+    border-radius: 16rpx;
+}
+
+.privacy-service-introduce .content {
+    padding: 60rpx 42rpx;
+}
+
+.privacy-service-introduce .header {
+    font-size: 32rpx;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+}
+
+.privacy-service-introduce .img {
+    width: 100%;
+    height: 228rpx;
+    padding: 20rpx 0;
+}
+
+.privacy-service-introduce .rules .rule {
+    display: inline-block;
+    width: 100%;
+    font-size: 28rpx;
+    color: #333;
+    text-align: justify;
+    line-height: 38rpx;
+}
+
+.privacy-service-introduce .agree-btn {
+    position: relative;
+    width: 100%;
+    padding: 22rpx 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 32rpx;
+    color: #FFB000;
+}
+
+.privacy-service-introduce .agree-btn:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #E4E4E4;
+    transform: scaleY(0.5);
+}

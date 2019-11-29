@@ -1,0 +1,29 @@
+<template name="wxappTips">
+    <view bindtap="hideBackdrop" class="pop-mid {{isTieyou?'ty':'zx'}} {{showType=='user-tips'?'active':''}}">
+        <view class="pop-mid-bd">
+            <view class="pop-white jiashu-info">
+                <view class="txt">打开【微信】- 点击底部【发现】- 进入【小程序】，搜索{{partnerCN}}，点击即可进入使用</view>
+                <image class="guide1" src="http://images3.c-ctrip.com/train/wechat/jiasu/guide-1.png"></image>
+                <block wx:if="{{isIOS}}">
+                    <view class="txt">左滑可以将小程序设为星标，使用更方便</view>
+                    <view wx:if="{{isTieyou}}">
+                        <image class="guide2" src="http://images3.c-ctrip.com/zt/wechat/guide-ty-2.png"></image>
+                        <image class="guide3" src="http://images3.c-ctrip.com/zt/wechat/guide-ty-3.png"></image>
+                    </view>
+                    <view wx:else>
+                        <image class="guide2" src="http://images3.c-ctrip.com/zt/wechat/guide-2.png"></image>
+                        <image class="guide3" src="http://images3.c-ctrip.com/zt/wechat/guide-3.png"></image>
+                    </view>
+                </block>
+                <block wx:if="{{!isIOS}}">
+                    <view class="txt txt--android">点击右上角
+                        <span>
+                            <image src="http://images3.c-ctrip.com/train/wechat/jiasu/guide-4.png"></image>
+                        </span> 添加小程序到桌面</view>
+                    <image class="guide2--android" src="http://images3.c-ctrip.com/zt/wechat/guide-ty-5.png?v=20180305" wx:if="{{isTieyou}}"></image>
+                    <image class="guide2--android" src="http://images3.c-ctrip.com/zt/wechat/guide-5.png?v=20180305" wx:else></image>
+                </block>
+            </view>
+        </view>
+    </view>
+</template>

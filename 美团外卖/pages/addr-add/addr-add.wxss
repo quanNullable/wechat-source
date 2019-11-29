@@ -1,0 +1,209 @@
+@import "../../__wuBaseWxss__/2.wxss";
+
+@import "../../__wuBaseWxss__/9.wxss";
+
+page {
+    font-size: 28rpx;
+    color: #333;
+}
+
+.search-empty {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 32rpx;
+}
+
+.form-block-title {
+    color: #898989;
+    margin: 20rpx;
+}
+
+.form-block {
+    padding-left: 30rpx;
+    background: #fff;
+}
+
+.form-item {
+    display: flex;
+    align-items: center;
+    height: 95rpx;
+    border-bottom: 1rpx solid #f0f0f0;
+    position: relative;
+}
+
+.form-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    padding-left: 164rpx;
+}
+
+.input-placeholder,.map-input-deative {
+    color: #999;
+}
+
+.map-input {
+    height: 95rpx;
+    display: flex;
+    align-items: center;
+}
+
+.form-input-alt {
+    padding-left: 162rpx;
+}
+
+.map-input-text {
+    flex: 1;
+    white-space: nowrap;
+    word-break: break-all;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.map-input-icon {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+}
+
+.map-input-arrow {
+    width: 12rpx;
+    height: 22rpx;
+    opacity: 0.4;
+    margin: 0 30rpx 0 auto;
+}
+
+.gender-male {
+    margin-left: 164rpx;
+}
+
+.radio {
+    height: 88rpx;
+    padding-right: 70rpx;
+    display: flex;
+    align-items: center;
+}
+
+.radio-img {
+    width: 34rpx;
+    height: 34rpx;
+    margin-right: 20rpx;
+}
+
+.btn-submit,.btn-del {
+    width: 670rpx;
+    height: 80rpx;
+    border-radius: 4rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30rpx auto 0;
+    font-size: 32rpx;
+}
+
+.btn-submit {
+    background-image: linear-gradient(45deg,#FFD266 0%,#FFBD27 100%);
+    color: #333!important;
+}
+
+.btn-del {
+    border: 2rpx solid #FFB000;
+    background: #FFFFFF!important;
+    color: #FFB000!important;
+}
+
+.btn-submit:after {
+    display: none;
+}
+
+.message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    height: 70rpx;
+    line-height: 70rpx;
+    background: #E64340;
+    color: #fff;
+    font-size: 30rpx;
+}
+
+.form-input-invalid {
+    color: #FB4E44;
+}
+
+.phone-suggest {
+    position: absolute;
+    top: 90%;
+    left: 164rpx;
+    right: 20rpx;
+    border: 1rpx solid #f0f0f0;
+    background: #fff;
+    color: #333;
+    z-index: 3;
+}
+
+.phone-suggest-item {
+    padding: 20rpx 30rpx;
+}
+
+.addr-list-container {
+    position: absolute;
+    top: 93rpx;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.addr-list-scroll {
+    height: 100%;
+}
+
+.addr-block-title {
+    margin-left: 30rpx;
+    margin-bottom: 10rpx;
+    color: #666;
+}
+
+.search-empty-icon {
+    width: 400rpx;
+    height: 300rpx;
+    margin-top: 246rpx;
+}
+
+.bg-white {
+    background: #fff;
+}
+
+.addr-name {
+    flex: 1;
+}
+
+.addr-item-distance {
+    font-size: 24rpx;
+    color: #999999;
+}
+
+.search-text-color {
+    color: #FFB000;
+}
+
+.add-block-near {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 14rpx;
+}
+
+.addr-item-address {
+    padding: 20rpx 0;
+}
+
+.addr-item-desc-search {
+    margin-top: 6rpx;
+}

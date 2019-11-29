@@ -1,0 +1,397 @@
+@import "../../../../__wuBaseWxss__/0.wxss";
+
+.mt10 {
+    margin-top: 20rpx;
+}
+
+.b-b-station {
+    padding-bottom: 20rpx;
+    font-size: 32rpx;
+    color: #FFF;
+}
+
+.b-b-note {
+    padding: 10rpx 30rpx;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    color: #5495e6;
+}
+
+.arr-fromto {
+    width: 32rpx;
+    height: 4rpx;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    background-color: #FFF;
+    margin: -4rpx 32rpx 0;
+    opacity: .8;
+}
+
+.arr-fromto:before,.arr-fromto:after {
+    position: absolute;
+    content: "";
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -6rpx;
+}
+
+.arr-fromto:before {
+    left: -12rpx;
+    background-color: #FFF;
+}
+
+.arr-fromto:after {
+    right: -12rpx;
+    background-color: #FFF;
+}
+
+.b-b-phonenum {
+    padding-left: 30rpx;
+    min-height: 100rpx;
+    line-height: 100rpx;
+}
+
+.b-b-phonenum {
+    border-top-width: 2rpx;
+}
+
+.b-b-phonenum input {
+    height: 100rpx;
+    padding: 0;
+    display: block;
+}
+
+.b-b-passlist .iconfont {
+    padding: 0 0 0 48rpx;
+    line-height: 128rpx;
+}
+
+.b-b-passlist .info {
+    padding: 24rpx 0 20rpx;
+}
+
+.b-b-passlist .card,.b-t-picker .card {
+    font-size: 24rpx;
+    color: #999;
+    line-height: 48rpx;
+}
+
+.b-b-passlist .item {
+    border-top-width: 2rpx;
+    padding-left: 30rpx;
+}
+
+.b-b-passlist .label {
+    background-color: #dbdbdb;
+    color: #FFF;
+    font-size: 24rpx;
+    padding: 0 6rpx;
+    margin-left: 12rpx;
+    border-radius: 6rpx;
+}
+
+.bar-pay {
+    position: fixed;
+    background-color: #31404F;
+    line-height: 100rpx;
+    color: #FFF;
+    padding: 0 30rpx;
+    height: 100rpx;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bar-pay .btn-pay {
+    height: 72rpx;
+    line-height: 72rpx;
+    margin-top: 14rpx;
+}
+
+.bar-pay .orange {
+    font-size: 40rpx;
+}
+
+.bar-pay .detail {
+    color: #5495e6;
+    font-size: 26rpx;
+}
+
+.price-detail {
+    line-height: 88rpx;
+    color: #999;
+    position: fixed;
+    z-index: 1002;
+    bottom: 100rpx;
+    background-color: #FFF;
+    width: 100%;
+}
+
+.price-detail view {
+    margin-left: 30rpx;
+    padding-right: 30rpx;
+    border-top: 2rpx solid #F3F3F3;
+}
+
+.price-detail .nobr {
+    border-bottom: none;
+}
+
+.bus-desc {
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    bottom: 100rpx;
+    overflow: auto;
+    padding: 40rpx 40rpx 80rpx;
+    color: #FFF;
+    z-index: 1011;
+    line-height: 60rpx;
+}
+
+.bus-desc .t {
+    color: #5495e6;
+}
+
+.line26 {
+    line-height: 104rpx;
+}
+
+.line12 {
+    line-height: 48rpx;
+}
+
+.line08 {
+    line-height: 32rpx;
+}
+
+.bus-coupons-warp {
+    position: fixed;
+    top: 30rpx;
+    bottom: 30rpx;
+    left: 30rpx;
+    right: 30rpx;
+    z-index: 9999;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 6rpx;
+    overflow: hidden;
+}
+
+.bus-coupons-title {
+    text-align: center;
+    line-height: 88rpx;
+    height: 88rpx;
+    font-size: 34rpx;
+    font-weight: bold;
+}
+
+.bus-coupons-body {
+    position: absolute;
+    top: 88rpx;
+    bottom: 0;
+    background: #EFEFEF;
+}
+
+.bus-coupons-btn-unused {
+    width: 90%;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 8rpx;
+    background: #ffffff;
+    border: 1px solid #dbdbdb;
+    text-align: center;
+    padding: 5rpx 0;
+    margin: 15rpx auto 0rpx;
+}
+
+.justify-center {
+    text-align: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.bus-coupons-cancel {
+    position: absolute;
+    z-index: 999;
+    left: 30rpx;
+    top: 0;
+    line-height: 88rpx;
+    color: #333;
+    font-size: 32rpx;
+}
+
+.bus-coupons-done {
+    position: absolute;
+    z-index: 999;
+    right: 30rpx;
+    top: 0;
+    line-height: 88rpx;
+    font-size: 32rpx;
+}
+
+.del-view {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.edit-view {
+    text-align: left;
+    padding-left: 30rpx;
+}
+
+.check-view {
+    text-align: right;
+    padding-right: 30rpx;
+}
+
+.add-icon-view {
+    text-align: right;
+    vertical-align: middle;
+}
+
+.add-txt-view {
+    padding-left: 20rpx;
+    text-align: left;
+}
+
+.right-view {
+    position: absolute;
+    right: 10rpx;
+}
+
+.info-panel.b-b-note {
+    color: #000;
+    padding: 20rpx 30rpx;
+}
+
+.info-panel view {
+    max-width: 300rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.info-left-panel {
+    text-align: left;
+    padding-right: 38rpx;
+}
+
+.info-right-panel {
+    text-align: right;
+    padding-left: 38rpx;
+}
+
+.info-from-to {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50rpx!important;
+    margin-top: -2rpx;
+    margin-left: -38rpx;
+    background-color: #d8d8d8;
+}
+
+.info-from-to.arr-fromto:after,.info-from-to.arr-fromto:before {
+    background-color: #d8d8d8;
+}
+
+.info-panel .time {
+    font-size: 30rpx;
+}
+
+.info-panel .city {
+    font-size: 36rpx;
+    font-weight: bold;
+    padding: 20rpx 0rpx;
+}
+
+.info-panel .station {
+    font-size: 24rpx;
+}
+
+.tour-info {
+    padding: 34rpx 30rpx;
+    background-color: #5495e6;
+}
+
+.tour-desc {
+    position: relative;
+    padding: 20rpx 30rpx;
+    font-size: 24rpx;
+    border-bottom-width: 2rpx;
+}
+
+.tour-desc text {
+    padding-right: 20rpx;
+    line-height: 40rpx;
+}
+
+.gray-text {
+    color: #999;
+}
+
+.tour-prd-info {
+    position: absolute;
+    top: 0rpx;
+    right: 0rpx;
+    padding: 20rpx 46rpx 20rpx 30rpx;
+}
+
+.tour-prd-info text {
+    padding: 0rpx;
+    color: #5495e6;
+    font-size: 28rpx;
+}
+
+.passenger-title {
+    padding: 20rpx 30rpx;
+    font-size: 40rpx;
+    font-weight: bold;
+}
+
+.tour-phone-num {
+    font-size: 36rpx;
+}
+
+.tour-phone-num .column-4 input {
+    padding-left: 30rpx;
+}
+
+.add-passenger {
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.mb120 {
+    margin-bottom: 120rpx;
+}
+
+.red-num-text {
+    font-size: 23rpx;
+    color: red;
+}
+
+.com-num-text {
+    font-size: 23rpx;
+}
+
+.tour-add-passenger {
+    border-top-width: 2rpx;
+}
+
+.right-arrow::after {
+    border-color: #5495e6;
+    right: 30rpx;
+}
+
+.content-center {
+    margin: 0 auto;
+    max-width: 220rpx;
+}

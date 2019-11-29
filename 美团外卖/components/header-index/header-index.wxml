@@ -1,0 +1,6 @@
+<template name="header-index">
+    <view class="header-index {{forceDock?'dock':''}}">
+        <include src="header/loc.wxml"></include>
+        <include src="../index-search/search.wxml"></include>
+    </view>
+</template>

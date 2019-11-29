@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "美团外卖",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#fff",
+    "usingComponents": {
+        "wm-webview": "../../components/webview/webview"
+    }
+}

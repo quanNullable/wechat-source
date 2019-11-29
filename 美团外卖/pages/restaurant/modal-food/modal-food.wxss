@@ -1,0 +1,160 @@
+.modal-food-container {
+    z-index: 1300;
+    flex-direction: column;
+}
+
+.modal-food-backdrop {
+    position: absolute;
+    z-index: 0;
+}
+
+.zindex-1400 {
+    z-index: 1400;
+}
+
+.modal-food {
+    width: 640rpx;
+    margin-bottom: 40rpx;
+}
+
+.modal-food-scroll-y {
+    height: 2000rpx;
+    max-height: 40vh;
+}
+
+.modal-food-content {
+    padding: 0 0 10rpx 24rpx;
+    font-size: 28rpx;
+}
+
+.modal-food-content:after {
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.modal-food-title {
+    font-size: 32rpx;
+    line-height: 88rpx;
+    padding: 0 70rpx;
+    text-align: center;
+}
+
+.modal-food-label {
+    clear: both;
+    padding: 10rpx 0 16rpx;
+}
+
+.modal-food-btn {
+    display: inline-block;
+    margin: 0 20rpx 20rpx 0;
+    box-sizing: border-box;
+    padding: 0 16rpx;
+    min-width: 150rpx;
+    max-width: 592rpx;
+    line-height: 54rpx;
+    border-radius: 4rpx;
+    border: 2rpx solid #ccc;
+    text-align: center;
+    overflow: hidden;
+}
+
+.modal-food-btn-active {
+    color: #ffb000;
+    background: #fffbf1;
+    border-color: #ffb000;
+}
+
+.modal-food-btn-disabled {
+    color: #999;
+    background: #f4f4f4;
+    border-color: #c4c4c4;
+}
+
+.modal-food-footer {
+    display: flex;
+    align-items: center;
+    padding: 0 24rpx;
+    height: 112rpx;
+    background: #f4f4f4;
+    border-radius: 0 0 16rpx 16rpx;
+}
+
+.modal-food-price {
+    flex: 0 0 auto;
+    font-size: 48rpx;
+    color: #FB4E44;
+    line-height: 64rpx;
+}
+
+.modal-food-price-origin {
+    flex: 0 0 auto;
+    margin: 0 10rpx;
+    font-size: 24rpx;
+    color: #cbcbcb;
+    text-decoration: line-through;
+}
+
+.modal-food-footer-attr {
+    flex: 0 1 auto;
+    font-size: 22rpx;
+    color: #2f2f2f;
+}
+
+.modal-food-cart-click {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 300rpx;
+    height: 112rpx;
+}
+
+.modal-food-cart {
+    flex: 0 0 auto;
+    margin-left: auto;
+    height: 64rpx;
+    line-height: 64rpx;
+    padding: 0 21rpx;
+    background: #ffd161;
+    border-radius: 32rpx;
+    font-size: 26rpx;
+    color: #333;
+}
+
+.modal-food .cart-img {
+    height: 54rpx;
+    width: 48rpx;
+    vertical-align: middle;
+    background-position: 0 40%;
+}
+
+.modal-food .remove-food {
+    margin-left: auto;
+}
+
+.modal-food .remove-food,.modal-food .add-food {
+    position: static;
+    flex: 0 0 auto;
+}
+
+.modal-food .food-num {
+    margin: 0;
+    text-align: center;
+    padding: 0 10rpx;
+    min-width: 46rpx;
+    flex: 0 0 auto;
+}
+
+.modal-food .add-food-box {
+    right: 0;
+    bottom: 0;
+    height: 112rpx;
+    width: 100rpx;
+}
+
+.modal-food .remove-food-box {
+    right: 110rpx;
+    bottom: 0;
+    height: 112rpx;
+    width: 150rpx;
+}

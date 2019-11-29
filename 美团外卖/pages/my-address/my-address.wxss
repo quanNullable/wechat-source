@@ -1,0 +1,186 @@
+@import "../../components/no-net/no-net.wxss";
+
+.address-scroll {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 120rpx;
+    line-height: 1;
+    border-top: 1rpx solid #e4e4e4;
+}
+
+.address-header,.address-list-item {
+    background-color: #fff;
+}
+
+.item-wrap {
+    width: 100%;
+    padding: 0 0 100rpx;
+    display: flex;
+    flex-direction: column;
+}
+
+.address-header,.manage-address,.address-list-item,.no-address {
+    display: flex;
+    align-items: center;
+}
+
+.address-list-item,.address-header {
+    border-bottom: 1rpx solid #e4e4e4;
+}
+
+.manage-address-btn {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20rpx 0 60rpx;
+    margin-left: auto;
+}
+
+.manage-address-btn,.address-txt {
+    color: #333;
+}
+
+.address-txt {
+    margin-bottom: 15rpx;
+}
+
+.my-address,.manage-address-btn {
+    font-size: 32rpx;
+}
+
+.address-list-item {
+    position: relative;
+    height: 130rpx;
+    font-size: 28rpx;
+}
+
+.address-info {
+    padding: 25rpx 20rpx 20rpx 30rpx;
+}
+
+.user-info,.my-address {
+    color: #999;
+}
+
+.footer {
+    width: 100%;
+    height: 90rpx;
+    position: fixed;
+    bottom: 0;
+    font-size: 32rpx;
+    background-color: #fff;
+    border-top: 1rpx solid #e4e4e4;
+}
+
+.nav-footer {
+    width: 100%;
+    height: 100%;
+}
+
+.address-add-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.address-icon {
+    width: 38rpx;
+    height: 38rpx;
+    margin-right: 20rpx;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-gender {
+    width: 110rpx;
+}
+
+.user-name-txt,.address-txt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 460rpx;
+}
+
+.user-name-txt {
+    max-width: 280rpx;
+    margin-right: 20rpx;
+}
+
+.manage-address {
+    flex: 0 0 auto;
+    align-self: stretch;
+    margin-left: auto;
+}
+
+.manage-btn {
+    height: 100%;
+    width: 85rpx;
+}
+
+.modify-addr-icon {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 6rpx;
+}
+
+.no-address {
+    width: 370rpx;
+    position: absolute;
+    top: 100rpx;
+    left: 191rpx;
+    color: #999;
+    font-size: 32rpx;
+    flex-direction: column;
+}
+
+.no-address-img {
+    width: 237rpx;
+    height: 252rpx;
+    margin-bottom: 30rpx;
+}
+
+.no-scope-icon {
+    width: 115rpx;
+    height: 115rpx;
+    margin-left: 9rpx;
+}
+
+.no-shipping-color {
+    color: #999;
+}
+
+.delete {
+    position: absolute;
+    display: flex;
+    width: 130rpx;
+    height: 140rpx;
+    color: #fff;
+    align-items: center;
+    top: 0;
+    justify-content: center;
+    background-color: #FB4E44;
+    right: -130rpx;
+}
+
+.undone-addr-wrap {
+    margin: 52rpx 0 20rpx 20rpx;
+    color: #666;
+    font-size: 28rpx;
+}
+
+.undone-addr-item {
+    color: #999;
+}
+
+.addr-need-edit {
+    color: #FB4E44;
+    margin: 0 0 12rpx 20rpx;
+    flex: 1;
+}

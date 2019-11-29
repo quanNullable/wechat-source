@@ -1,0 +1,63 @@
+<template name="picker-address">
+    <view class="picker-container" wx:if="{{show}}">
+        <view bindtap="onClickAddressMask" class="picker-mask"></view>
+        <view class="picker-content">
+            <view class="picker-header flex-center">
+                <view bindtap="onClickAddressMask" class="picker-cancel flex-center">取消</view> 我的收货地址 </view>
+            <view class="picker-body">
+                <scroll-view class="picker-scroll" scrollIntoView="{{activeID?'address-'+activeID:''}}" scrollY="true">
+                    <view bindtap="onClickAddress" class="address-list-item" data-id="{{item.id}}" id="address-{{item.id}}" wx:if="{{item.bind_type>=11&&item.can_shipping===1}}" wx:for="{{addresses}}" wx:key="{{item.id}}">
+                        <view class="address-check">
+                            <image class="address-check-icon" src="/img/icons/loc-selected.png" wx:if="{{activeID===item.id}}"></image>
+                        </view>
+                        <view class="flex-left">
+                            <view class="address-addr"> {{item.address}} {{item.house_number}} </view>
+                        </view>
+                        <view class="address-info">
+                            <view class="address-name" hidden="{{!item.name}}"> {{item.name}} </view>
+                            <view class="address-gender" hidden="{{!item.name}}"> {{item.name?item.gender:''}} </view>
+                            <view class="address-phone"> {{item.phone}} </view>
+                        </view>
+                        <view catchtap="onClickAddressEdit" class="address-edit" data-id="{{item.id}}" wx:if="{{item.can_shipping===1}}">
+                            <image class="address-edit-icon" src="/img/icons/edit.png"></image>
+                        </view>
+                    </view>
+                    <view class="address-list-title flex-left" hidden="{{!hasUndoneAddr}}">
+                        <image class="position-icon" src="/img/icons/position.png"></image>需要完善的地址 </view>
+                    <view class="address-list-item" data-id="{{item.id}}" id="address-{{item.id}}" wx:if="{{item.bind_type<11}}" wx:for="{{addresses}}" wx:key="{{item.id}}">
+                        <view class="flex-left">
+                            <view class="address-addr unuse999"> {{item.address}} {{item.house_number}} </view>
+                            <view class="flex-center addr-need-edit">
+                                <image class="modify-addr-icon" src="/img/icons/addrUndone.png"></image>需完善 </view>
+                        </view>
+                        <view class="address-info unuse999">
+                            <view class="address-name" hidden="{{!item.name}}"> {{item.name}} </view>
+                            <view class="address-gender" hidden="{{!item.name}}"> {{item.name?item.gender:''}} </view>
+                            <view class="address-phone"> {{item.phone}} </view>
+                        </view>
+                    </view>
+                    <view class="address-list-title flex-left" hidden="{{!canNotShippingAddr}}">
+                        <image class="position-icon" src="/img/icons/position.png"></image>超配送范围地址 </view>
+                    <view class="address-list-item" data-id="{{item.id}}" id="address-{{item.id}}" wx:if="{{item.bind_type>=11&&item.can_shipping===0}}" wx:for="{{addresses}}" wx:key="{{item.id}}">
+                        <view class="flex-left">
+                            <view class="address-addr unuse999"> {{item.address}} {{item.house_number}} </view>
+                        </view>
+                        <view class="address-info unuse999">
+                            <view class="address-name" hidden="{{!item.name}}"> {{item.name}} </view>
+                            <view class="address-gender" hidden="{{!item.name}}"> {{item.name?item.gender:''}} </view>
+                            <view class="address-phone"> {{item.phone}} </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view hidden="{{isClickManageBtn&&addresses.length}}">
+                <navigator url="../addr-add/addr-add?from=preview&poi_id={{poi_id}}">
+                    <view class="picker-footer flex-center">
+                        <image class="address-icon" src="/img/icons/add-light.png"></image>
+                        <view class="footer-address-txt">新增收货地址</view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+</template>

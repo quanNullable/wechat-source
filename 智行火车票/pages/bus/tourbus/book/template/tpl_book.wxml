@@ -1,0 +1,16 @@
+<template name="costdetail">
+    <view class="price-detail">
+        <view wx:if="{{data['mTicket']}}">{{data['mTicket'].name}}<text class="fr orange">{{data['mTicket'].amount}} x {{count}}张</text>
+        </view>
+    </view>
+</template>
+<template name="declaration">
+    <view class="bus-desc touch-scroll" wx:if="mList.length">
+        <view wx:for="{{mList}}" wx:key="{{index}}">
+            <view class="t">{{item.title}}</view>
+            <view wx:for="{{item.desc}}" wx:for-index="idx" wx:for-item="mTxt" wx:key="{{idx}}">
+                <view>{{mTxt}}</view>
+            </view>
+        </view>
+    </view>
+</template>

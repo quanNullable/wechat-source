@@ -1,0 +1,90 @@
+<import src="../unicorn/templates/cardTpl.wxml"></import>
+<import src="../unicorn/templates/rcon.wxml"></import>
+<import src="../unicorn/templates/user.wxml"></import>
+<template is="user" data="{{...userInfo}}"></template>
+<view class="order_tab">
+    <view bindtap="trainOrder" class="order_tab_item {{orderType=='train'?'current':''}}">火车票订单</view>
+    <view bindtap="flightOrder" class="order_tab_item {{orderType=='flight'?'current':''}}">机票订单</view>
+    <view bindtap="busOrder" class="order_tab_item {{orderType=='bus'?'current':''}}">汽车票订单</view>
+    <view bindtap="shipOrder" class="order_tab_item {{orderType=='ship'?'current':''}}">船票订单</view>
+    <view class="scrollbar tabnum2"></view>
+</view>
+<view wx:if="{{orderType=='train'}}">
+    <view class="order-wrap">
+        <view class="order-list">
+            <view class="bu-order bu-train" wx:for="{{orderItems}}" wx:key="orderNumber">
+                <view bindtap="cardClick" class="order-cont" data-index="{{index}}" data-oid="{{item.tyOrderNo}}" data-ubt-key="Train_Detail_{{item.tyOrderNo}}">
+                    <template is="train" data="{{item:item}}"></template>
+                    <template is="rcon" data="{{item:item}}"></template>
+                </view>
+            </view>
+            <view>
+                <text class="more-order">更多订单请至智行客户端查询</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{orderType=='bus'}}">
+    <view class="order-wrap">
+        <view class="order-list">
+            <view class="bu-order bu-train" wx:for="{{busOrderItems}}" wx:key="busOrderItems">
+                <view bindtap="buscardClick" class="order-cont" data-oid="{{item.OrderID}}" data-ubt-key="Train_Detail_{{item.OrderID}}">
+                    <template is="bus" data="{{item:item}}"></template>
+                    <template is="busrcon" data="{{item:item}}"></template>
+                </view>
+            </view>
+            <view>
+                <text class="more-order">更多订单请至智行客户端查询</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{orderType=='ship'}}">
+    <view class="order-wrap">
+        <view class="order-list">
+            <view class="bu-order bu-train" wx:for="{{shipOrderItems}}" wx:key="shipOrderItems">
+                <view bindtap="shipcardClick" class="order-cont" data-oid="{{item.OrderID}}" data-ubt-key="Train_Detail_{{item.OrderID}}">
+                    <template is="ship" data="{{item:item}}"></template>
+                    <template is="shiprcon" data="{{item:item}}"></template>
+                </view>
+            </view>
+            <view>
+                <text class="more-order">更多订单请至铁友客户端查询</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{orderType=='flight'}}">
+    <view class="order-wrap">
+        <view class="order_list">
+            <view bindtap="flightcCardClick" class="order_list_item" data-oid="{{item.orderNumber}}" wx:for="{{flightOrderItems}}" wx:key="item">
+                <text class="flt_price">{{item.orderPrice}}</text>
+                <block wx:for="{{item.flightSegments}}" wx:for-item="obj">
+                    <view class="order_list_hd">
+                        <view class="airport">{{obj.departCityName}}</view>
+                        <view class="separator">
+                            <view class="spt_arr"></view>
+                        </view>
+                        <view class="airport">{{obj.arriveCityName}}</view>
+                    </view>
+                    <view class="order_list_bd">
+                        <view class="order_list_tic">
+                            <text class="date">{{obj.departDateTime+' 出发'}}</text>
+                            <text class="airplane">{{obj.airCompanyName+' '+obj.flightNumber+' '+obj.cabinName}}</text>
+                        </view>
+                        <view class="order_list_state">
+                            <text class="txt_state">{{item.orderState}}</text>
+                        </view>
+                    </view>
+                    <view style="height: 40rpx" wx:if="{{item.flightSegments.length==2&&index==0}}"></view>
+                </block>
+            </view>
+            <view bindtap="moreOrder" class="btnbox" hidden="{{flightMoreOrderHidden}}">
+                <button class="btn btn-primary" hoverClass="btn-primary_hover">更多</button>
+            </view>
+            <view>
+                <text class="more-order">更多订单请至智行客户端查询</text>
+            </view>
+        </view>
+    </view>
+</view>
